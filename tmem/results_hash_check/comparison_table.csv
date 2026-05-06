@@ -1,0 +1,8 @@
+query_id,query_text,category,ground_truth_ids,primary_ground_truth_id,amem_rank,tmem_rank,rank_delta_amem_minus_tmem,movement_vs_amem,amem_top1_id,tmem_top1_id,gt_cosine_similarity,gt_decay,gt_reinforce,gt_link_bonus,gt_r_raw,gt_r_hat,gt_tmem_blended_score
+q_temporal_work,Where does Alice currently work?,temporal,s08_n1,s08_n1,3,1,2,improved,s01_n2,s08_n1,0.5479806911303344,0.8239782779666405,1.0,1.0,0.8239782779666405,0.7474205484667968,0.6078126483312731
+q_temporal_home,Where does Alice live now?,temporal,s09_n1;s10_n1,s10_n1,2,1,1,improved,s02_n2,s10_n1,0.19289383926723616,0.9015758420828016,1.0,1.0,0.9015758420828016,1.0,0.4350256874870654
+q_multi_hop_hobby,What hobby did Alice pick up after she moved to Seattle?,multi_hop,s10_n2;s09_n2,s10_n2,2,1,1,improved,s09_n1,s10_n2,0.48009802427592924,0.9015758420828016,1.0,1.0,0.9015758420828016,1.0,0.6360686169931504
+q_adv_google,Does Alice still work at Google?,adversarial,s08_n1,s08_n1,2,3,-1,worse,s02_n2,s10_n3,0.503100798207753,0.8239782779666405,1.0,1.0,0.8239782779666405,0.7474205484667968,0.5763967232854661
+q_adv_nyc,Is Alice still living in NYC?,adversarial,s09_n1;s09_n3,s09_n1,6,3,3,improved,s01_n2,s10_n1,0.3505968900999321,0.8519071152310391,1.0,1.0,0.8519071152310391,0.8383286907332461,0.4969164302899263
+q_single_camera,What camera does Alice use?,single_hop,s03_n1;s10_n2;s09_n2,s09_n2,12,6,6,improved,s02_n2,s10_n1,0.27076013496143686,0.8519071152310391,1.0,1.0,0.8519071152310391,0.8383286907332461,0.44103070169297964
+q_open_japan,What did Alice and Bob plan to do in Japan?,open_domain,s06_n1;s07_n1;s06_n3,s06_n1,1,1,0,same,s06_n1,s06_n1,0.6730758373848181,0.7890351220845457,1.0,1.0,0.7890351220845457,0.6336808551134517,0.6612573427034082

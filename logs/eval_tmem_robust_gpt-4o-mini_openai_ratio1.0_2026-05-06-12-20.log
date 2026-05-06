@@ -1,0 +1,4 @@
+2026-05-06 12:20:32,603 - INFO - Loading dataset from /Users/rajanyadav/Desktop/Projects/A-mem/data/locomo10.json
+2026-05-06 12:20:32,604 - INFO - Using T-MEM robust memory layer (A-MEM pipeline + temporal retrieval)
+2026-05-06 12:20:32,846 - INFO - Loaded 10 samples
+2026-05-06 12:20:36,027 - INFO - No cached memories found for sample 0. Creating new memories.

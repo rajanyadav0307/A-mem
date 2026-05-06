@@ -6,7 +6,7 @@ import statistics
 from collections import defaultdict
 from rouge_score import rouge_scorer
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
-from bert_score import score as bert_score
+from bert_score import BERTScorer
 import nltk
 from nltk.translate.meteor_score import meteor_score
 from sentence_transformers import SentenceTransformer
@@ -20,6 +20,7 @@ from sentence_transformers.util import pytorch_cos_sim
 # Download required NLTK data
 try:
     nltk.download('punkt', quiet=True)
+    nltk.download('punkt_tab', quiet=True)
     nltk.download('wordnet', quiet=True)
 except Exception as e:
     print(f"Error downloading NLTK data: {e}")
@@ -31,11 +32,30 @@ except Exception as e:
     print(f"Warning: Could not load SentenceTransformer model: {e}")
     sentence_model = None
 
+_bert_scorer = None
+
+
+def get_bert_scorer() -> BERTScorer:
+    """Lazily initialize and reuse one BERTScorer for the whole run."""
+    global _bert_scorer
+    if _bert_scorer is None:
+        _bert_scorer = BERTScorer(lang='en', rescale_with_baseline=False)
+    return _bert_scorer
+
 def simple_tokenize(text):
     """Simple tokenization function."""
     # Convert to string if not already
     text = str(text)
     return text.lower().replace('.', ' ').replace(',', ' ').replace('!', ' ').replace('?', ' ').split()
+
+
+def safe_word_tokenize(text: str) -> List[str]:
+    """Tokenize text with NLTK when available, otherwise use a regex fallback."""
+    text = str(text).lower()
+    try:
+        return nltk.word_tokenize(text)
+    except LookupError:
+        return re.findall(r"[a-z0-9]+(?:'[a-z0-9]+)?", text)
 
 def calculate_rouge_scores(prediction: str, reference: str) -> Dict[str, float]:
     """Calculate ROUGE scores for prediction against reference."""
@@ -49,8 +69,8 @@ def calculate_rouge_scores(prediction: str, reference: str) -> Dict[str, float]:
 
 def calculate_bleu_scores(prediction: str, reference: str) -> Dict[str, float]:
     """Calculate BLEU scores with different n-gram settings."""
-    pred_tokens = nltk.word_tokenize(prediction.lower())
-    ref_tokens = [nltk.word_tokenize(reference.lower())]
+    pred_tokens = safe_word_tokenize(prediction)
+    ref_tokens = [safe_word_tokenize(reference)]
     
     weights_list = [(1, 0, 0, 0), (0.5, 0.5, 0, 0), (0.33, 0.33, 0.33, 0), (0.25, 0.25, 0.25, 0.25)]
     smooth = SmoothingFunction().method1
@@ -68,7 +88,8 @@ def calculate_bleu_scores(prediction: str, reference: str) -> Dict[str, float]:
 def calculate_bert_scores(prediction: str, reference: str) -> Dict[str, float]:
     """Calculate BERTScore for semantic similarity."""
     try:
-        P, R, F1 = bert_score([prediction], [reference], lang='en', verbose=False)
+        scorer = get_bert_scorer()
+        P, R, F1 = scorer.score([prediction], [reference])
         return {
             'bert_precision': P.item(),
             'bert_recall': R.item(),

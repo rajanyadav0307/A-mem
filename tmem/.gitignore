@@ -1,0 +1,8 @@
+.venv/
+.mpl/
+__pycache__/
+*.pyc
+results/*.csv
+results/*.png
+results/*.txt
+!results/.gitkeep

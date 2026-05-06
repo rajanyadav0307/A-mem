@@ -1,0 +1,280 @@
+================================================================================
+T-MEM / TEMPORAL DECAY IMPLEMENTATION — SOURCE MATERIAL FOR POWERPOINT
+================================================================================
+Project path: .../A-mem/tmem/   (run main.py from here, NOT from tmem/tmem/)
+Generated for thesis slides — copy sections into PPT as needed.
+Last aligned to codebase structure: temporal decay + optional full r_i product.
+
+--------------------------------------------------------------------------------
+1. TITLE / SUBTITLE OPTIONS
+--------------------------------------------------------------------------------
+- T-MEM: Temporal Decay for Agent Memory Retrieval
+- Extending A-MEM (Xu et al., NeurIPS 2025) with time-aware relevance on top of cosine similarity
+- Self-contained Python prototype — no LLM APIs — LoCoMo-style simulation
+
+References:
+- Paper: A-MEM: Agentic Memory for LLM Agents — https://arxiv.org/abs/2502.12110
+- Codebases (paper): benchmark https://github.com/WujiangXu/AgenticMemory ; system https://github.com/WujiangXu/A-mem-sys
+
+--------------------------------------------------------------------------------
+2. PROBLEM STATEMENT (1–2 SLIDES)
+--------------------------------------------------------------------------------
+- A-MEM stores structured memory notes and retrieves by **embedding cosine similarity** (paper Eq. 8–9): same semantic similarity for old and new memories if text overlaps.
+- **Gap:** Long-horizon agents need **recency / staleness**: a memory from months ago should often rank below a newer memory even when both match the query lexically.
+- **Our addition (current default):** a **temporal decay** factor on each note, blended with cosine in the retrieval score so newer evidence can surface.
+- **Scope:** This repo implements retrieval-time scoring + a reproducible simulation; it does not re-run full LoCoMo with GPT-4o-mini unless you wire that externally.
+
+--------------------------------------------------------------------------------
+3. A-MEM BASELINE (WHAT WE PRESERVE)
+--------------------------------------------------------------------------------
+Memory note (paper Eq. 1): m_i = { c_i, t_i, K_i, G_i, X_i, e_i, L_i }
+  c_i = content, t_i = timestamp, K_i keywords, G_i tags, X_i contextual sentence,
+  e_i = embedding, L_i = set of linked memory ids.
+
+Embedding (paper): e_i = f_enc( concat(c_i, K_i, G_i, X_i) )
+  Implementation: single string = content + space + keywords + space + tags + space + context
+  Encoder (paper Sec. 4.2): SentenceTransformer "all-MiniLM-L6-v2"
+
+Retrieval (paper Eq. 9 style): rank by cosine similarity
+  s_{q,i} = cos(e_q, e_i)  with L2-normalized vectors (NumPy implementation)
+
+Baseline in code: amem_retrieve() — pure cosine, descending.
+
+--------------------------------------------------------------------------------
+4. TEMPORAL DECAY + MODIFIED RETRIEVAL (OUR EXTENSION)
+--------------------------------------------------------------------------------
+Decay (uses creation time t_i = note.timestamp, NOT last_accessed):
+
+  age = max(0, (t_current - t_i) expressed in chosen time unit)
+
+  decay(m_i) = exp( -lambda * age )
+
+Age unit (config decay_age_unit):
+  - "days"     : age = elapsed_seconds / 86400  (literal day count)
+  - "months_equiv" (default): age = days / 30  (keeps exp(-lambda*age) meaningful over multi-month gaps when lambda=0.1)
+
+Edge case: if t_current < t_i (note "in the future"), age clamps to 0 → decay = 1.
+
+Default relevance (decay-only mode, use_decay_only_temporal=True — CURRENT DEFAULT):
+
+  r_i = decay(m_i)
+
+Optional full product (use_decay_only_temporal=False):
+
+  reinforce(m_i) = 1 + beta * log(1 + access_count_i)
+  link_bonus(m_i) = 1 + gamma * (|L_i| / max_j |L_j|)
+  r_i = decay * reinforce * link_bonus
+
+Normalization for blending:
+
+  r_hat_i = (r_i - min_k r_k) / (max_k r_k - min_k r_k)   [min-max over ALL notes in M; flat → 0.5]
+
+Modified retrieval score (same alpha blend as broader T-MEM design):
+
+  score(q, m_i) = alpha * cos(e_q, e_i) + (1 - alpha) * r_hat_i
+
+  alpha = 1  →  exactly cosine-only ranking (recovers A-MEM baseline for ablation)
+
+Default hyperparameters (tmem/config.py):
+  decay_lambda (lambda)     = 0.1
+  blend_alpha (alpha)       = 0.7
+  reinforce_beta (beta)     = 0.5   [ignored when decay-only]
+  link_gamma (gamma)        = 0.3   [ignored when decay-only]
+  use_decay_only_temporal   = True   [only exp decay in r_i]
+  decay_age_unit            = "months_equiv"
+  auto_link_cosine_threshold= 0.5   (for simulated graph; links do not affect r_i in decay-only mode)
+
+Evaluation time t_current in simulation: fixed datetime 2025-06-10 12:00 (after last session so all ages >= 0).
+
+--------------------------------------------------------------------------------
+5. WHY MIN–MAX r_hat AND NOT RAW DECAY IN THE BLEND
+--------------------------------------------------------------------------------
+- Raw decay lives in (0, 1]; cosine in roughly [-1, 1] for MiniLM.
+- Min–max puts temporal evidence on [0, 1] comparable scale across the bank for the affine blend.
+- Trade-off: global min–max can let one dominant note shape r_hat (document in thesis limitations).
+
+--------------------------------------------------------------------------------
+6. IMPLEMENTATION ARCHITECTURE (MODULE MAP)
+--------------------------------------------------------------------------------
+
+tmem/tmem/config.py
+  TMemConfig: all hyperparameters; merge_env_into_config() for TMEM_PAPER_ALIGNED_AMEM
+
+tmem/tmem/memory_note.py
+  MemoryNote dataclass: paper fields + id, embedding, access_count, last_accessed, relevance_score
+  embedding_input_text() → string for f_enc
+
+tmem/tmem/temporal_scoring.py
+  decay(), reinforce(), link_bonus(), compute_relevance(), min_max_normalize(), max_link_degree()
+
+tmem/tmem/retrieval.py
+  cosine_similarities(), amem_retrieve(), tmem_retrieve(), full_score_breakdown(),
+  apply_access_updates(), best_target_rank()
+
+tmem/tmem/encoder.py
+  load_encoder(): SentenceTransformer; paper-aligned mode; optional HashTextEncoder fallback
+
+simulation/memory_bank.py
+  30 notes, 10 sessions, timestamps, authored K/G/X, encode_notes(), add_cosine_links()
+
+simulation/queries.py
+  7 EvalQuery objects: text, category, correct_note_ids, description
+
+simulation/run_comparison.py
+  Full ranking, CSV row per query, category accuracy stats
+
+visualization/plots.py
+  retrieval_accuracy.png, decay_curves.png, score_breakdown.png, summary_stats.txt
+
+main.py
+  Orchestrates: build bank → compare → print → plots
+
+tests/test_temporal_decay.py
+  Unit tests: monotonicity, exp law, future clamp, decay-only vs full mode
+
+presentation/
+  T_MEM_Deck.pptx (from build_deck.py), snapshot.json, comparison_table.csv copies, PPT_SLIDE_MATERIAL.txt
+
+--------------------------------------------------------------------------------
+7. DATA FLOW (FOR ONE ARCHITECTURE SLIDE)
+--------------------------------------------------------------------------------
+
+  [raw_note_specs] → MemoryNote list
+         ↓
+  [SentenceTransformer or Hash encoder] → fill note.embedding
+         ↓
+  [pairwise cosine > threshold] → bidirectional links L_i
+         ↓
+  For each eval query:
+      encode query → e_q
+      A-MEM: sort notes by cos(e_q, e_i)
+      T-MEM: compute r_i (decay-only or full), r_hat, blend score, sort
+         ↓
+  [comparison_table.csv + figures + summary_stats.txt]
+
+--------------------------------------------------------------------------------
+8. SIMULATION DESIGN (REPRODUCIBILITY SLIDE)
+--------------------------------------------------------------------------------
+- 30 memory notes = 3 notes × 10 sessions.
+- Session dates: anchored at 2025-01-05 + offsets [0, 15, 32, 50, 67, 85, 92, 98, 108, 125] days (~4 month spread).
+- Narrative scenarios baked into text (for cosine + decay stress tests):
+  * Job: Google (early) → Meta (later); query “currently work” uses overlapping “currently” wording.
+  * Location: NYC/Brooklyn → Seattle / Capitol Hill; address + USPS change.
+  * Photography hobby across sessions with higher access_count (only matters if use_decay_only_temporal=False).
+  * One-off restaurant recommendation (low access, old).
+  * Japan trip planning + follow-up sessions (for linking).
+  * Contradictions: old phone vs new phone; old vs new “current” facts.
+- Links: undirected; if cos(e_i, e_j) > 0.5 then add each id to the other’s L_i list.
+- No generative LLM: metadata is hand-authored to mirror the *fields* A-MEM would fill with an LLM.
+
+--------------------------------------------------------------------------------
+9. EVALUATION QUERIES (TABLE FOR SLIDES)
+--------------------------------------------------------------------------------
+Columns: Query ID | Natural language query | LoCoMo-style category | Ground-truth note IDs | Design intent
+
+q_temporal_work    | Where does Alice currently work?                    | temporal    | s08_n1           | Meta vs Google recency
+q_temporal_home    | Where does Alice live now?                          | temporal    | s09_n1, s10_n1   | Seattle vs NYC
+q_multi_hop_hobby  | What hobby after she moved to Seattle?               | multi_hop   | s10_n2, s09_n2   | move + hobby
+q_adv_google       | Does Alice still work at Google?                    | adversarial | s08_n1           | outdated job phrasing
+q_adv_nyc          | Is Alice still living in NYC?                       | adversarial | s09_n1, s09_n3   | outdated location
+q_single_camera    | What camera does Alice use?                         | single_hop  | s03_n1,s10_n2,s09_n2 | Sony A7IV
+q_open_japan       | What did Alice and Bob plan to do in Japan?       | open_domain | s06_n1,s07_n1,s06_n3 | trip + links
+
+Metric: **best rank** among acceptable ground-truth IDs (minimum rank if multiple correct notes).
+
+--------------------------------------------------------------------------------
+10. EXAMPLE RESULTS SNAPSHOT (FROM A TYPICAL RUN — RE-RUN main.py FOR YOUR MACHINE)
+--------------------------------------------------------------------------------
+From results/summary_stats.txt (representative):
+
+  T-MEM improved correct-answer rank vs A-MEM: 6 / 7 queries
+  Same: 1 / 7
+  Worse: 0 / 7
+  Mean rank delta (A-MEM rank minus T-MEM rank): ~2.29  (positive favors T-MEM)
+
+Per-category accuracy snapshot (best GT in top-1 / top-3):
+  temporal:    A-MEM@1=0.00  T-MEM@1=1.00  |  @3 both 1.00
+  multi_hop:   A-MEM@1=0.00  T-MEM@1=1.00  |  @3 both 1.00
+  adversarial: A-MEM@1=0.00 T-MEM@1=0.50  |  @3 0.50 / 0.50
+  single_hop:  A-MEM@1=0.00 T-MEM@1=0.00  |  T-MEM@3=1.00  (top-1 can still be wrong id while GT rank improves)
+  open_domain: A-MEM@1=1.00 T-MEM@1=1.00  |  @3 both 1.00
+
+Caveat for slides: if Hugging Face failed, runs used HashTextEncoder — label slides “offline encoder” vs “MiniLM (paper)”.
+
+--------------------------------------------------------------------------------
+11. ENVIRONMENT VARIABLES (TABLE)
+--------------------------------------------------------------------------------
+TMEM_PAPER_ALIGNED_AMEM=1   Require SentenceTransformer; no hash fallback (paper-faithful embeddings)
+TMEM_LOCAL_MODEL_PATH=...   Offline folder with all-MiniLM-L6-v2 files
+TMEM_ALLOW_HASH_ENCODER=1   Force hash encoder (ignored if paper-aligned)
+TMEM_STRICT=1               Do not auto-fallback to hash when hub fails (non–paper-aligned mode)
+MPLCONFIGDIR=...            Writable dir for Matplotlib cache (avoids font cache errors)
+
+--------------------------------------------------------------------------------
+12. OUTPUT ARTIFACTS (THESIS / APPENDIX)
+--------------------------------------------------------------------------------
+results/comparison_table.csv   Per-query ranks, movement, GT score components
+results/summary_stats.txt      Aggregate stats + per-category @1/@3
+results/retrieval_accuracy.png Bar chart by category
+results/decay_curves.png       Illustrative decay / reinforcement curves
+results/score_breakdown.png    Stacked cosine + temporal term for work query
+presentation/snapshot.json   Machine-readable bundle metadata
+presentation/T_MEM_Deck.pptx   Auto slides (python presentation/build_deck.py)
+
+--------------------------------------------------------------------------------
+13. COSINE SIMILARITY IMPLEMENTATION DETAIL
+--------------------------------------------------------------------------------
+- Query and note embeddings are float vectors.
+- cos(q, row_i) = (row_i · q) / (||row_i|| * ||q||) with epsilon 1e-12 in denominators.
+- Full memory scan O(|M|) per query — acceptable for thesis demo; A-mem-sys uses Chroma for scale.
+
+--------------------------------------------------------------------------------
+14. LIMITATIONS / HONESTY SLIDES (RECOMMENDED)
+--------------------------------------------------------------------------------
+- Simulation metadata is **hand-written**, not LLM-extracted like full A-MEM.
+- Link creation is **cosine-threshold**, not LLM neighbor selection (paper Sec. 3.2).
+- **Decay-only** r_i ignores usage/links unless you set use_decay_only_temporal=False.
+- **months_equiv** rescales time vs literal “days” in a written formula — state λ together with the age definition.
+- Hash encoder is **not** semantic; only for pipeline testing without HF.
+- Top-1 system answer can differ from **best GT rank** (especially single-hop / adversarial) — report ranks, not only argmax id.
+
+--------------------------------------------------------------------------------
+15. VERIFICATION / REPRODUCIBILITY BULLETS
+--------------------------------------------------------------------------------
+Run unit tests:
+  cd tmem && python -m unittest tests.test_temporal_decay -v
+
+Tests cover: future-note clamp, monotone decay in age, closed-form exp for days mode,
+months vs days scaling, decay-only ignores access+links, full mode multiplies factors.
+
+Paper-aligned embedding run:
+  export TMEM_PAPER_ALIGNED_AMEM=1
+  python main.py
+
+--------------------------------------------------------------------------------
+16. DEPENDENCIES (APPENDIX SLIDE)
+--------------------------------------------------------------------------------
+numpy, pandas, matplotlib, sentence-transformers, python-pptx (for deck build only)
+
+Python 3.10+
+
+--------------------------------------------------------------------------------
+17. ONE-SLIDE “EQUATION SUMMARY”
+--------------------------------------------------------------------------------
+A-MEM:     rank by  cos(e_q, e_i)
+
+Extension: r_i = exp(-λ·age(t_i))     [decay-only default]
+           r̂_i = minmax_j(r_j) over bank
+           score_i = α·cos(e_q,e_i) + (1-α)·r̂_i
+
+Ablation:  α = 1  ⇒  A-MEM baseline
+
+--------------------------------------------------------------------------------
+18. OPTIONAL SPEAKER NOTES (SHORT)
+--------------------------------------------------------------------------------
+- Emphasize: we are not claiming to reproduce full NeurIPS benchmark numbers in this repo; we provide a **controlled** illustration of why time-aware blending can reorder memories when cosine is ambiguous.
+- For defense: offer to show test_temporal_decay.py + one CSV row walkthrough live.
+
+================================================================================
+END OF PPT SOURCE MATERIAL — paste into slides and trim to fit time limit.
+================================================================================

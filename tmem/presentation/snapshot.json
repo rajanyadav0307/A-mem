@@ -1,0 +1,141 @@
+{
+  "title": "T-MEM simulation snapshot (thesis Module 1)",
+  "generated_note": "Regenerated with TMEM_ALLOW_HASH_ENCODER=1 when HF is unavailable; re-run without that env var for all-MiniLM-L6-v2 numbers.",
+  "formulas": {
+    "note": "m_i = {c_i, t_i, K_i, G_i, X_i, e_i, L_i} + access_count, last_accessed, relevance_score",
+    "embedding": "e_i = f_enc(concat(c_i, K_i, G_i, X_i))",
+    "r_i": "decay * reinforce * link_bonus",
+    "decay": "exp(-lambda * age_month_equiv) where age_month_equiv = (t_current - t_i) in days / 30",
+    "reinforce": "1 + beta * log(1 + access_count)",
+    "link_bonus": "1 + gamma * (|L_i| / max_j |L_j|)",
+    "retrieval_tmem": "score = alpha * cos(e_q, e_i) + (1-alpha) * minmax(r_i)",
+    "retrieval_amem": "alpha = 1 => pure cosine (A-MEM Eq. 9 style)"
+  },
+  "hyperparameters": {
+    "decay_lambda": 0.1,
+    "reinforce_beta": 0.5,
+    "link_gamma": 0.3,
+    "blend_alpha": 0.7,
+    "encoder_model": "all-MiniLM-L6-v2",
+    "auto_link_cosine_threshold": 0.5
+  },
+  "simulation": {
+    "memory_notes": 30,
+    "sessions": 10,
+    "evaluation_queries": 7
+  },
+  "aggregate_summary": {
+    "tmem_improved_count": 6,
+    "rank_same_count": 1,
+    "rank_worse_count": 0,
+    "mean_rank_delta_amem_minus_tmem": 2.286
+  },
+  "per_category_accuracy": {
+    "temporal": {"n_queries": 2, "amem_top1": 0.0, "tmem_top1": 1.0, "amem_top3": 1.0, "tmem_top3": 1.0},
+    "multi_hop": {"n_queries": 1, "amem_top1": 0.0, "tmem_top1": 1.0, "amem_top3": 1.0, "tmem_top3": 1.0},
+    "adversarial": {"n_queries": 2, "amem_top1": 0.0, "tmem_top1": 0.5, "amem_top3": 0.5, "tmem_top3": 0.5},
+    "single_hop": {"n_queries": 1, "amem_top1": 0.0, "tmem_top1": 0.0, "amem_top3": 0.0, "tmem_top3": 1.0},
+    "open_domain": {"n_queries": 1, "amem_top1": 1.0, "tmem_top1": 1.0, "amem_top3": 1.0, "tmem_top3": 1.0}
+  },
+  "query_results": [
+    {
+      "query_id": "q_temporal_work",
+      "query_text": "Where does Alice currently work?",
+      "category": "temporal",
+      "ground_truth_ids": ["s08_n1"],
+      "amem_rank": 3,
+      "tmem_rank": 1,
+      "movement": "improved",
+      "amem_top1_id": "s01_n2",
+      "tmem_top1_id": "s08_n1"
+    },
+    {
+      "query_id": "q_temporal_home",
+      "query_text": "Where does Alice live now?",
+      "category": "temporal",
+      "ground_truth_ids": ["s09_n1", "s10_n1"],
+      "amem_rank": 2,
+      "tmem_rank": 1,
+      "movement": "improved",
+      "amem_top1_id": "s02_n2",
+      "tmem_top1_id": "s09_n1"
+    },
+    {
+      "query_id": "q_multi_hop_hobby",
+      "query_text": "What hobby did Alice pick up after she moved to Seattle?",
+      "category": "multi_hop",
+      "ground_truth_ids": ["s10_n2", "s09_n2"],
+      "amem_rank": 2,
+      "tmem_rank": 1,
+      "movement": "improved",
+      "amem_top1_id": "s09_n1",
+      "tmem_top1_id": "s10_n2"
+    },
+    {
+      "query_id": "q_adv_google",
+      "query_text": "Does Alice still work at Google?",
+      "category": "adversarial",
+      "ground_truth_ids": ["s08_n1"],
+      "amem_rank": 2,
+      "tmem_rank": 1,
+      "movement": "improved",
+      "amem_top1_id": "s02_n2",
+      "tmem_top1_id": "s08_n1"
+    },
+    {
+      "query_id": "q_adv_nyc",
+      "query_text": "Is Alice still living in NYC?",
+      "category": "adversarial",
+      "ground_truth_ids": ["s09_n1", "s09_n3"],
+      "amem_rank": 6,
+      "tmem_rank": 5,
+      "movement": "improved",
+      "amem_top1_id": "s01_n2",
+      "tmem_top1_id": "s05_n1"
+    },
+    {
+      "query_id": "q_single_camera",
+      "query_text": "What camera does Alice use?",
+      "category": "single_hop",
+      "ground_truth_ids": ["s03_n1", "s10_n2", "s09_n2"],
+      "amem_rank": 12,
+      "tmem_rank": 2,
+      "movement": "improved",
+      "amem_top1_id": "s02_n2",
+      "tmem_top1_id": "s05_n1"
+    },
+    {
+      "query_id": "q_open_japan",
+      "query_text": "What did Alice and Bob plan to do in Japan?",
+      "category": "open_domain",
+      "ground_truth_ids": ["s06_n1", "s07_n1", "s06_n3"],
+      "amem_rank": 1,
+      "tmem_rank": 1,
+      "movement": "same",
+      "amem_top1_id": "s06_n1",
+      "tmem_top1_id": "s06_n1"
+    }
+  ],
+  "implementation_files": [
+    {"path": "tmem/config.py", "role": "Hyperparameters (lambda, beta, gamma, alpha, encoder, link threshold)"},
+    {"path": "tmem/memory_note.py", "role": "MemoryNote dataclass (A-MEM Eq.1 fields + temporal metadata)"},
+    {"path": "tmem/temporal_scoring.py", "role": "decay, reinforce, link_bonus, min-max r_hat inputs"},
+    {"path": "tmem/retrieval.py", "role": "amem_retrieve, tmem_retrieve, access updates, score breakdown"},
+    {"path": "tmem/encoder.py", "role": "SentenceTransformer loader + optional TMEM_ALLOW_HASH_ENCODER fallback"},
+    {"path": "simulation/memory_bank.py", "role": "30-note LoCoMo-style bank, embeddings, cosine auto-links"},
+    {"path": "simulation/queries.py", "role": "7 eval queries with categories and ground-truth ids"},
+    {"path": "simulation/run_comparison.py", "role": "Runs comparison, writes comparison_table.csv"},
+    {"path": "visualization/plots.py", "role": "Matplotlib figures + summary_stats.txt"},
+    {"path": "main.py", "role": "CLI entry: bank build, comparison, plots"}
+  ],
+  "artifacts_in_this_folder": [
+    "comparison_table.csv",
+    "summary_stats.txt",
+    "retrieval_accuracy.png",
+    "decay_curves.png",
+    "score_breakdown.png",
+    "snapshot.json",
+    "T_MEM_Deck.pptx",
+    "build_deck.py"
+  ]
+}

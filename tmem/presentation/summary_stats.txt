@@ -1,0 +1,16 @@
+T-MEM vs A-MEM simulation summary
+================================
+Queries where T-MEM improved correct-answer rank: 6
+Queries where rank stayed the same: 1
+Queries where rank got worse: 0
+Average rank delta (A-MEM rank minus T-MEM rank; positive is better for T-MEM): 2.286
+
+Per-category retrieval accuracy (from grouped bar chart data)
+-------------------------------------------------------------
+temporal: n=2 | A-MEM@1=0.00 T-MEM@1=1.00 | A-MEM@3=1.00 T-MEM@3=1.00
+multi_hop: n=1 | A-MEM@1=0.00 T-MEM@1=1.00 | A-MEM@3=1.00 T-MEM@3=1.00
+adversarial: n=2 | A-MEM@1=0.00 T-MEM@1=0.50 | A-MEM@3=0.50 T-MEM@3=0.50
+single_hop: n=1 | A-MEM@1=0.00 T-MEM@1=0.00 | A-MEM@3=0.00 T-MEM@3=1.00
+open_domain: n=1 | A-MEM@1=1.00 T-MEM@1=1.00 | A-MEM@3=1.00 T-MEM@3=1.00
+
+Note: ranks use the best rank among acceptable ground-truth note ids.

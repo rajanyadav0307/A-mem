@@ -1,13 +1,23 @@
 """
-Evaluation harness using the robust memory layer (no JSON schema dependency).
-Drop-in replacement for test_advanced.py.
+Evaluate T-MEM on LoCoMo using the same robust A-MEM benchmark pipeline.
 
-Usage:
-    python test_advanced_robust.py --backend openai --model gpt-4o-mini --dataset data/locomo10.json
-    python test_advanced_robust.py --backend ollama --model qwen2.5:3b --dataset data/locomo10.json
+This mirrors ``test_advanced_robust.py`` and keeps the following unchanged:
+  - note construction prompts
+  - memory evolution / linking prompts
+  - query keyword generation
+  - answer generation prompts
+  - QA metrics and category aggregation
+
+The only benchmark-time difference is retrieval ranking:
+  A-MEM -> cosine only
+  T-MEM -> alpha * cosine + (1 - alpha) * temporal relevance
 """
 
-from memory_layer_robust import RobustLLMController, RobustAgenticMemorySystem
+from memory_layer_robust import RobustLLMController
+from memory_layer_tmem_robust import (
+    TemporalAwareRobustAgenticMemorySystem,
+    TemporalRetrievalConfig,
+)
 from llm_text_parsers import (
     parse_plain_text_answer,
     parse_relevant_parts,
@@ -17,51 +27,50 @@ import os
 import json
 import argparse
 import logging
-from typing import List, Dict, Optional
-from pathlib import Path
-import numpy as np
-from load_dataset import load_locomo_dataset, QA, Turn, Session, Conversation
-import nltk
-from sentence_transformers import SentenceTransformer
-from sentence_transformers.util import pytorch_cos_sim
-import statistics
+from typing import Optional
+from datetime import datetime
 from collections import defaultdict
 import pickle
 import random
-from tqdm import tqdm
-from utils import calculate_metrics, aggregate_metrics
-from datetime import datetime
 import time
+
+import nltk
+
+from load_dataset import load_locomo_dataset
+from utils import calculate_metrics, aggregate_metrics
+
 
 # Download required NLTK data
 try:
-    nltk.data.find('tokenizers/punkt')
-    nltk.data.find('wordnet')
+    nltk.data.find("tokenizers/punkt")
+    nltk.data.find("wordnet")
 except LookupError:
-    nltk.download('punkt')
-    nltk.download('wordnet')
+    nltk.download("punkt")
+    nltk.download("wordnet")
 
-# Initialize SentenceTransformer model (this will be reused)
-try:
-    sentence_model = SentenceTransformer('all-MiniLM-L6-v2')
-except Exception as e:
-    print(f"Warning: Could not load SentenceTransformer model: {e}")
-    sentence_model = None
-
-logger = logging.getLogger("amem_robust")
+logger = logging.getLogger("tmem_robust_eval")
 
 
-class RobustAdvancedMemAgent:
-    """Agent using the robust memory system with plain-text LLM calls."""
+class TMemAdvancedMemAgent:
+    """Agent that reuses the robust A-MEM pipeline with temporal-aware retrieval."""
 
-    def __init__(self, model, backend, retrieve_k, temperature_c5,
-                 sglang_host="http://localhost", sglang_port=30000):
-        self.memory_system = RobustAgenticMemorySystem(
-            model_name='all-MiniLM-L6-v2',
+    def __init__(
+        self,
+        model: str,
+        backend: str,
+        retrieve_k: int,
+        temperature_c5: float,
+        temporal_config: TemporalRetrievalConfig,
+        sglang_host: str = "http://localhost",
+        sglang_port: int = 30000,
+    ):
+        self.memory_system = TemporalAwareRobustAgenticMemorySystem(
+            model_name="all-MiniLM-L6-v2",
             llm_backend=backend,
             llm_model=model,
             sglang_host=sglang_host,
             sglang_port=sglang_port,
+            temporal_config=temporal_config,
         )
         self.retriever_llm = RobustLLMController(
             backend=backend,
@@ -73,13 +82,22 @@ class RobustAdvancedMemAgent:
         self.retrieve_k = retrieve_k
         self.temperature_c5 = temperature_c5
 
-    def add_memory(self, content, time=None):
+    def add_memory(self, content: str, time: Optional[str] = None):
         self.memory_system.add_note(content, time=time)
 
-    def retrieve_memory(self, content, k=10):
-        return self.memory_system.find_related_memories_raw(content, k=k)
+    def retrieve_memory(
+        self,
+        content: str,
+        k: int = 10,
+        question_category: Optional[int] = None,
+    ):
+        return self.memory_system.find_related_memories_raw(
+            content,
+            k=k,
+            question_category=question_category,
+        )
 
-    def retrieve_memory_llm(self, memories_text, query):
+    def retrieve_memory_llm(self, memories_text: str, query: str):
         """Select relevant parts of conversation memories — plain text, no JSON schema."""
         prompt = f"""Given the following conversation memories and a question, select the most relevant parts of the conversation that would help answer the question. Include the date/time if available.
 
@@ -94,7 +112,7 @@ If no parts are relevant, return the input unchanged."""
         response = self.retriever_llm.llm.get_completion(prompt)
         return parse_relevant_parts(response)
 
-    def generate_query_llm(self, question):
+    def generate_query_llm(self, question: str):
         """Generate query keywords — plain text, no JSON schema."""
         prompt = f"""Given the following question, generate several keywords separated by commas.
 
@@ -108,21 +126,25 @@ Keywords:"""
         return result
 
     def answer_question(self, question: str, category: int, answer: str) -> tuple:
-        """Generate answer for a question — plain text, no JSON schema."""
+        """Generate an answer using the same prompting strategy as robust A-MEM."""
         keywords = self.generate_query_llm(question)
-        raw_context = self.retrieve_memory(keywords, k=self.retrieve_k)
+        raw_context = self.retrieve_memory(
+            keywords,
+            k=self.retrieve_k,
+            question_category=category,
+        )
         context = raw_context
 
         assert category in [1, 2, 3, 4, 5]
 
         if category == 5:
-            answer_tmp = list()
+            answer_tmp = []
             if random.random() < 0.5:
-                answer_tmp.append('Not mentioned in the conversation')
+                answer_tmp.append("Not mentioned in the conversation")
                 answer_tmp.append(answer)
             else:
                 answer_tmp.append(answer)
-                answer_tmp.append('Not mentioned in the conversation')
+                answer_tmp.append("Not mentioned in the conversation")
             user_prompt = f"""Based on the context: {context}, answer the following question. {question}
 
 Select the correct answer: {answer_tmp[0]} or {answer_tmp[1]}  Short answer:"""
@@ -156,9 +178,9 @@ Question: {question} Short answer:"""
 
 def setup_logger(log_file: Optional[str] = None) -> logging.Logger:
     """Set up logging configuration."""
-    eval_logger = logging.getLogger('locomo_eval_robust')
+    eval_logger = logging.getLogger("locomo_eval_tmem_robust")
     eval_logger.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 
     console_handler = logging.StreamHandler()
     console_handler.setFormatter(formatter)
@@ -177,46 +199,62 @@ def _sample_turn_count(sample) -> int:
     return sum(len(session.turns) for session in sample.conversation.sessions.values())
 
 
-def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] = None,
-                     ratio: float = 1.0, backend: str = "sglang",
-                     temperature_c5: float = 0.5, retrieve_k: int = 10,
-                     sglang_host: str = "http://localhost", sglang_port: int = 30000):
-    """Evaluate the robust agent on the LoComo dataset."""
+def evaluate_dataset(
+    dataset_path: str,
+    model: str,
+    output_path: Optional[str] = None,
+    ratio: float = 1.0,
+    backend: str = "openai",
+    temperature_c5: float = 0.5,
+    retrieve_k: int = 10,
+    sglang_host: str = "http://localhost",
+    sglang_port: int = 30000,
+    temporal_config: Optional[TemporalRetrievalConfig] = None,
+):
+    """Evaluate T-MEM on the LoCoMo dataset using the robust A-MEM pipeline."""
     timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M")
-    log_filename = f"eval_robust_{model}_{backend}_ratio{ratio}_{timestamp}.log"
+    log_filename = f"eval_tmem_robust_{model}_{backend}_ratio{ratio}_{timestamp}.log"
     log_path = os.path.join(os.path.dirname(__file__), "logs", log_filename)
     os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
     eval_logger = setup_logger(log_path)
-    eval_logger.info(f"Loading dataset from {dataset_path}")
-    eval_logger.info(f"Using ROBUST memory layer (no JSON schema dependency)")
+    eval_logger.info("Loading dataset from %s", dataset_path)
+    eval_logger.info("Using T-MEM robust memory layer (A-MEM pipeline + temporal retrieval)")
 
     samples = load_locomo_dataset(dataset_path)
-    eval_logger.info(f"Loaded {len(samples)} samples")
+    eval_logger.info("Loaded %d samples", len(samples))
 
     if ratio < 1.0:
         num_samples = max(1, int(len(samples) * ratio))
         samples = samples[:num_samples]
-        eval_logger.info(f"Using {num_samples} samples ({ratio*100:.1f}% of dataset)")
+        eval_logger.info("Using %d samples (%.1f%% of dataset)", num_samples, ratio * 100.0)
 
     results = []
     all_metrics = []
     all_categories = []
     total_questions = 0
     category_counts = defaultdict(int)
-
-    i = 0
     error_num = 0
+
+    # Reuse the same cache namespace as robust A-MEM so the memory bank itself is identical.
     memories_dir = os.path.join(
         os.path.dirname(__file__),
         "cached_memories_robust_{}_{}".format(backend, model),
     )
     os.makedirs(memories_dir, exist_ok=True)
     allow_categories = [1, 2, 3, 4, 5]
+    temporal_config = temporal_config or TemporalRetrievalConfig()
 
     for sample_idx, sample in enumerate(samples):
-        agent = RobustAdvancedMemAgent(model, backend, retrieve_k, temperature_c5,
-                                       sglang_host, sglang_port)
+        agent = TMemAdvancedMemAgent(
+            model,
+            backend,
+            retrieve_k,
+            temperature_c5,
+            temporal_config,
+            sglang_host,
+            sglang_port,
+        )
 
         memory_cache_file = os.path.join(memories_dir, f"memory_cache_sample_{sample_idx}.pkl")
         retriever_cache_file = os.path.join(memories_dir, f"retriever_cache_sample_{sample_idx}.pkl")
@@ -225,28 +263,28 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
         )
 
         if os.path.exists(memory_cache_file):
-            eval_logger.info(f"Loading cached memories for sample {sample_idx}")
-            with open(memory_cache_file, 'rb') as f:
+            eval_logger.info("Loading cached memories for sample %d", sample_idx)
+            with open(memory_cache_file, "rb") as f:
                 cached_memories = pickle.load(f)
             agent.memory_system.memories = cached_memories
             if os.path.exists(retriever_cache_file):
-                eval_logger.info(f"Found retriever cache files")
+                eval_logger.info("Found retriever cache files")
                 agent.memory_system.retriever = agent.memory_system.retriever.load(
                     retriever_cache_file, retriever_cache_embeddings_file
                 )
             else:
-                eval_logger.info(f"No retriever cache found, loading from memory")
+                eval_logger.info("No retriever cache found, loading from memory")
                 agent.memory_system.retriever = agent.memory_system.retriever.load_from_local_memory(
-                    cached_memories, 'all-MiniLM-L6-v2'
+                    cached_memories, "all-MiniLM-L6-v2"
                 )
-            eval_logger.info(f"Successfully loaded {len(cached_memories)} memories")
+            eval_logger.info("Successfully loaded %d memories", len(cached_memories))
         else:
-            eval_logger.info(f"No cached memories found for sample {sample_idx}. Creating new memories.")
+            eval_logger.info("No cached memories found for sample %d. Creating new memories.", sample_idx)
             session_items = list(sample.conversation.sessions.items())
             total_sessions = len(session_items)
             total_turns = _sample_turn_count(sample)
             built_count = 0
-            build_started_at = time.time()
+            build_started_at = time.perf_counter()
             progress_every = 10
 
             eval_logger.info(
@@ -256,42 +294,42 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
                 total_turns,
             )
 
-            for session_idx, (_, session) in enumerate(session_items, start=1):
-                for turn in session.turns:
-                    turn_datatime = session.date_time
+            for session_pos, (_, turns) in enumerate(session_items, start=1):
+                for turn in turns.turns:
+                    turn_datetime = turns.date_time
                     conversation_tmp = "Speaker " + turn.speaker + "says : " + turn.text
-                    agent.add_memory(conversation_tmp, time=turn_datatime)
+                    agent.add_memory(conversation_tmp, time=turn_datetime)
                     built_count += 1
 
                     if built_count % progress_every == 0 or built_count == total_turns:
-                        elapsed = time.time() - build_started_at
-                        percent = (built_count / total_turns * 100.0) if total_turns else 100.0
+                        elapsed = time.perf_counter() - build_started_at
                         eval_logger.info(
                             "Sample %d memory build progress: %d/%d turns (%.1f%%) in %.1fs",
                             sample_idx,
                             built_count,
                             total_turns,
-                            percent,
+                            (built_count / total_turns * 100.0) if total_turns else 100.0,
                             elapsed,
                         )
 
+                elapsed = time.perf_counter() - build_started_at
                 eval_logger.info(
                     "Completed session %d/%d for sample %d (%d/%d turns, %.1fs elapsed)",
-                    session_idx,
+                    session_pos,
                     total_sessions,
                     sample_idx,
                     built_count,
                     total_turns,
-                    time.time() - build_started_at,
+                    elapsed,
                 )
 
             memories_to_cache = agent.memory_system.memories
-            with open(memory_cache_file, 'wb') as f:
+            with open(memory_cache_file, "wb") as f:
                 pickle.dump(memories_to_cache, f)
             agent.memory_system.retriever.save(retriever_cache_file, retriever_cache_embeddings_file)
-            eval_logger.info(f"Successfully cached {len(memories_to_cache)} memories")
+            eval_logger.info("Successfully cached %d memories", len(memories_to_cache))
 
-        eval_logger.info(f"Processing sample {sample_idx + 1}/{len(samples)}")
+        eval_logger.info("Processing sample %d/%d", sample_idx + 1, len(samples))
 
         for qa in sample.qa:
             if int(qa.category) in allow_categories:
@@ -301,45 +339,56 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
                 prediction, user_prompt, raw_context = agent.answer_question(
                     qa.question, qa.category, qa.final_answer
                 )
-
-                # Parse the prediction (handles both JSON and plain text)
                 prediction = parse_plain_text_answer(prediction)
 
-                eval_logger.info(f"Question {total_questions}: {qa.question}")
-                eval_logger.info(f"Prediction: {prediction}")
-                eval_logger.info(f"Reference: {qa.final_answer}")
-                eval_logger.info(f"User Prompt: {user_prompt}")
-                eval_logger.info(f"Category: {qa.category}")
-                eval_logger.info(f"Raw Context: {raw_context}")
+                eval_logger.info("Question %d: %s", total_questions, qa.question)
+                eval_logger.info("Prediction: %s", prediction)
+                eval_logger.info("Reference: %s", qa.final_answer)
+                eval_logger.info("User Prompt: %s", user_prompt)
+                eval_logger.info("Category: %s", qa.category)
+                eval_logger.info("Raw Context: %s", raw_context)
 
                 metrics = calculate_metrics(prediction, qa.final_answer) if qa.final_answer else {
                     "exact_match": 0, "f1": 0.0, "rouge1_f": 0.0, "rouge2_f": 0.0,
                     "rougeL_f": 0.0, "bleu1": 0.0, "bleu2": 0.0, "bleu3": 0.0,
-                    "bleu4": 0.0, "bert_f1": 0.0, "meteor": 0.0, "sbert_similarity": 0.0
+                    "bleu4": 0.0, "bert_f1": 0.0, "meteor": 0.0, "sbert_similarity": 0.0,
                 }
 
                 all_metrics.append(metrics)
                 all_categories.append(qa.category)
-
-                result = {
-                    "sample_id": sample_idx,
-                    "question": qa.question,
-                    "prediction": prediction,
-                    "reference": qa.final_answer,
-                    "category": qa.category,
-                    "metrics": metrics,
-                }
-                results.append(result)
+                results.append(
+                    {
+                        "sample_id": sample_idx,
+                        "question": qa.question,
+                        "prediction": prediction,
+                        "reference": qa.final_answer,
+                        "category": qa.category,
+                        "metrics": metrics,
+                    }
+                )
 
                 if total_questions % 10 == 0:
-                    eval_logger.info(f"Processed {total_questions} questions")
+                    eval_logger.info("Processed %d questions", total_questions)
 
     aggregate_results = aggregate_metrics(all_metrics, all_categories)
-
     final_results = {
         "model": model,
         "dataset": dataset_path,
-        "memory_layer": "robust",
+        "memory_layer": "tmem_robust",
+        "temporal_config": {
+            "decay_lambda": temporal_config.decay_lambda,
+            "blend_alpha": temporal_config.blend_alpha,
+            "decay_age_unit": temporal_config.decay_age_unit,
+            "use_decay_only_temporal": temporal_config.use_decay_only_temporal,
+            "reinforce_beta": temporal_config.reinforce_beta,
+            "link_gamma": temporal_config.link_gamma,
+            "update_access_stats": temporal_config.update_access_stats,
+            "candidate_pool_size": temporal_config.candidate_pool_size,
+            "semantic_anchor_count": temporal_config.semantic_anchor_count,
+            "semantic_margin_to_skip_temporal": temporal_config.semantic_margin_to_skip_temporal,
+            "temporal_score_floor": temporal_config.temporal_score_floor,
+            "temporal_categories": list(temporal_config.temporal_categories),
+        },
         "total_questions": total_questions,
         "category_distribution": {
             str(cat): count for cat, count in category_counts.items()
@@ -347,33 +396,38 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
         "aggregate_metrics": aggregate_results,
         "individual_results": results,
     }
-    eval_logger.info(f"Error number: {error_num}")
+    eval_logger.info("Error number: %d", error_num)
 
     if output_path:
-        with open(output_path, 'w') as f:
+        with open(output_path, "w") as f:
             json.dump(final_results, f, indent=2)
-        eval_logger.info(f"Results saved to {output_path}")
+        eval_logger.info("Results saved to %s", output_path)
 
     eval_logger.info("Evaluation Summary:")
-    eval_logger.info(f"Total questions evaluated: {total_questions}")
+    eval_logger.info("Total questions evaluated: %d", total_questions)
     eval_logger.info("Category Distribution:")
     for category, count in sorted(category_counts.items()):
-        eval_logger.info(f"Category {category}: {count} questions ({count/total_questions*100:.1f}%)")
+        eval_logger.info(
+            "Category %s: %d questions (%.1f%%)",
+            category,
+            count,
+            count / total_questions * 100.0,
+        )
 
     eval_logger.info("Aggregate Metrics:")
     for split_name, metrics in aggregate_results.items():
-        eval_logger.info(f"{split_name.replace('_', ' ').title()}:")
+        eval_logger.info("%s:", split_name.replace("_", " ").title())
         for metric_name, stats in metrics.items():
-            eval_logger.info(f"  {metric_name}:")
+            eval_logger.info("  %s:", metric_name)
             for stat_name, value in stats.items():
-                eval_logger.info(f"    {stat_name}: {value:.4f}")
+                eval_logger.info("    %s: %.4f", stat_name, value)
 
     return final_results
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Evaluate robust text-only agent on LoComo dataset (no JSON schema dependency)"
+        description="Evaluate T-MEM on LoCoMo using the same robust A-MEM benchmark flow"
     )
     parser.add_argument("--dataset", type=str, default="data/locomo10.json",
                         help="Path to the dataset file")
@@ -393,6 +447,33 @@ def main():
                         help="SGLang server host (for sglang backend)")
     parser.add_argument("--sglang_port", type=int, default=30000,
                         help="SGLang server port (for sglang backend)")
+
+    parser.add_argument("--decay_lambda", type=float, default=0.1,
+                        help="Lambda in exp(-lambda * age)")
+    parser.add_argument("--blend_alpha", type=float, default=0.9,
+                        help="Weight on cosine similarity in the blended T-MEM score")
+    parser.add_argument("--decay_age_unit", type=str, default="months_equiv",
+                        choices=["months_equiv", "days"],
+                        help="Age unit for temporal decay")
+    parser.add_argument("--reinforce_beta", type=float, default=0.5,
+                        help="Access reinforcement weight (used only in full relevance mode)")
+    parser.add_argument("--link_gamma", type=float, default=0.3,
+                        help="Link bonus weight (used only in full relevance mode)")
+    parser.add_argument("--full_relevance", action="store_true",
+                        help="Use decay * reinforce * link_bonus instead of decay-only mode")
+    parser.add_argument("--update_access_stats", action="store_true",
+                        help="Increment retrieval_count during evaluation for full-relevance experiments")
+    parser.add_argument("--candidate_pool_size", type=int, default=20,
+                        help="Semantic top-N pool that T-MEM reranks temporally")
+    parser.add_argument("--semantic_anchor_count", type=int, default=2,
+                        help="Number of top semantic memories to keep fixed before reranking the rest")
+    parser.add_argument("--semantic_margin_to_skip_temporal", type=float, default=0.05,
+                        help="Skip temporal reranking when the best semantic match leads by this margin")
+    parser.add_argument("--temporal_score_floor", type=float, default=0.25,
+                        help="Lower bound applied to normalized temporal scores within the candidate pool")
+    parser.add_argument("--temporal_categories", type=int, nargs="+", default=[2],
+                        help="Question categories where temporal reranking is allowed")
+
     args = parser.parse_args()
 
     if args.ratio <= 0.0 or args.ratio > 1.0:
@@ -400,11 +481,32 @@ def main():
 
     dataset_path = os.path.join(os.path.dirname(__file__), args.dataset)
     output_path = os.path.join(os.path.dirname(__file__), args.output) if args.output else None
+    temporal_config = TemporalRetrievalConfig(
+        decay_lambda=args.decay_lambda,
+        blend_alpha=args.blend_alpha,
+        decay_age_unit=args.decay_age_unit,
+        use_decay_only_temporal=not args.full_relevance,
+        reinforce_beta=args.reinforce_beta,
+        link_gamma=args.link_gamma,
+        update_access_stats=args.update_access_stats,
+        candidate_pool_size=args.candidate_pool_size,
+        semantic_anchor_count=args.semantic_anchor_count,
+        semantic_margin_to_skip_temporal=args.semantic_margin_to_skip_temporal,
+        temporal_score_floor=args.temporal_score_floor,
+        temporal_categories=tuple(args.temporal_categories),
+    )
 
     evaluate_dataset(
-        dataset_path, args.model, output_path, args.ratio,
-        args.backend, args.temperature_c5, args.retrieve_k,
-        args.sglang_host, args.sglang_port,
+        dataset_path,
+        args.model,
+        output_path,
+        args.ratio,
+        args.backend,
+        args.temperature_c5,
+        args.retrieve_k,
+        args.sglang_host,
+        args.sglang_port,
+        temporal_config,
     )
 
 
