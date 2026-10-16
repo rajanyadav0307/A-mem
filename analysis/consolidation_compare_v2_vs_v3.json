@@ -1,0 +1,89 @@
+{
+  "0": {
+    "v2": {
+      "groups": 23,
+      "merged": 18,
+      "kept_separate": 5,
+      "rejected": 0,
+      "llm_calls": 60,
+      "median_ratio": 0.8586469396525263,
+      "mean_ratio": 1.0160492414854014,
+      "merges_longer_than_sources": 6,
+      "merges_missing_facts": 0,
+      "merges_with_relative_times": 0,
+      "merges_dropping_times": 1,
+      "labels": {
+        "SMALL_TALK": 9,
+        "SAME_FACT": 9,
+        "DIFFERENT": 5
+      }
+    },
+    "v3": {
+      "groups": 23,
+      "merged": 17,
+      "kept_separate": 5,
+      "rejected": 1,
+      "llm_calls": 64,
+      "median_ratio": 0.9401197604790419,
+      "mean_ratio": 0.9992521243174729,
+      "merges_longer_than_sources": 8,
+      "merges_missing_facts": 0,
+      "merges_with_relative_times": 0,
+      "merges_dropping_times": 0,
+      "labels": {
+        "SMALL_TALK": 8,
+        "SAME_FACT": 10,
+        "DIFFERENT": 5
+      }
+    },
+    "label_changes": [
+      {
+        "indices": [
+          59,
+          61
+        ],
+        "v2": "SMALL_TALK",
+        "v3": "SAME_FACT"
+      }
+    ]
+  },
+  "1": {
+    "v2": {
+      "groups": 23,
+      "merged": 16,
+      "kept_separate": 6,
+      "rejected": 1,
+      "llm_calls": 57,
+      "median_ratio": 0.9031455671699574,
+      "mean_ratio": 1.2202791599156924,
+      "merges_longer_than_sources": 6,
+      "merges_missing_facts": 0,
+      "merges_with_relative_times": 0,
+      "merges_dropping_times": 0,
+      "labels": {
+        "DIFFERENT": 6,
+        "SMALL_TALK": 6,
+        "SAME_FACT": 11
+      }
+    },
+    "v3": {
+      "groups": 23,
+      "merged": 16,
+      "kept_separate": 6,
+      "rejected": 1,
+      "llm_calls": 57,
+      "median_ratio": 0.911372435152923,
+      "mean_ratio": 1.3108329335859459,
+      "merges_longer_than_sources": 7,
+      "merges_missing_facts": 0,
+      "merges_with_relative_times": 0,
+      "merges_dropping_times": 0,
+      "labels": {
+        "DIFFERENT": 6,
+        "SMALL_TALK": 6,
+        "SAME_FACT": 11
+      }
+    },
+    "label_changes": []
+  }
+}

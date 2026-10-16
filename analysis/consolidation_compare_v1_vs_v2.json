@@ -1,0 +1,97 @@
+{
+  "0": {
+    "v1": {
+      "groups": 23,
+      "merged": 18,
+      "kept_separate": 5,
+      "rejected": 0,
+      "llm_calls": 41,
+      "median_ratio": 1.580921954972736,
+      "mean_ratio": 1.600078752217935,
+      "merges_longer_than_sources": 18,
+      "merges_missing_facts": 0,
+      "merges_with_relative_times": 1,
+      "merges_dropping_times": 1,
+      "labels": {
+        "SMALL_TALK": 9,
+        "SAME_FACT": 9,
+        "DIFFERENT": 5
+      }
+    },
+    "v2": {
+      "groups": 23,
+      "merged": 18,
+      "kept_separate": 5,
+      "rejected": 0,
+      "llm_calls": 60,
+      "median_ratio": 0.8586469396525263,
+      "mean_ratio": 1.0160492414854014,
+      "merges_longer_than_sources": 6,
+      "merges_missing_facts": 0,
+      "merges_with_relative_times": 0,
+      "merges_dropping_times": 1,
+      "labels": {
+        "SMALL_TALK": 9,
+        "SAME_FACT": 9,
+        "DIFFERENT": 5
+      }
+    },
+    "label_changes": []
+  },
+  "1": {
+    "v1": {
+      "groups": 23,
+      "merged": 16,
+      "kept_separate": 7,
+      "rejected": 0,
+      "llm_calls": 39,
+      "median_ratio": 1.4852930469603205,
+      "mean_ratio": 1.845310824724591,
+      "merges_longer_than_sources": 16,
+      "merges_missing_facts": 0,
+      "merges_with_relative_times": 0,
+      "merges_dropping_times": 0,
+      "labels": {
+        "DIFFERENT": 7,
+        "SMALL_TALK": 6,
+        "SAME_FACT": 10
+      }
+    },
+    "v2": {
+      "groups": 23,
+      "merged": 16,
+      "kept_separate": 6,
+      "rejected": 1,
+      "llm_calls": 57,
+      "median_ratio": 0.9031455671699574,
+      "mean_ratio": 1.2202791599156924,
+      "merges_longer_than_sources": 6,
+      "merges_missing_facts": 0,
+      "merges_with_relative_times": 0,
+      "merges_dropping_times": 0,
+      "labels": {
+        "DIFFERENT": 6,
+        "SMALL_TALK": 6,
+        "SAME_FACT": 11
+      }
+    },
+    "label_changes": [
+      {
+        "indices": [
+          55,
+          318
+        ],
+        "v1": "DIFFERENT",
+        "v2": "SMALL_TALK"
+      },
+      {
+        "indices": [
+          131,
+          247
+        ],
+        "v1": "SMALL_TALK",
+        "v2": "SAME_FACT"
+      }
+    ]
+  }
+}

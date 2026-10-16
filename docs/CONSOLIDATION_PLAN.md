@@ -232,6 +232,40 @@ By category, multi-hop (1) is the weakest: recall 0.384, and only 14% of questio
 
 **What this means for step 4.** Because each merged note already contains its sources word for word, `primary_expand` would show the same text twice. With these merges, `primary` (hide the sources, show only the merged note) loses nothing and is the cleaner mode. Either the merge prompt and check should be revised so merges really compress, or step 4 should use `primary` as the main mode.
 
+### Merge revision: v1 → v2 → v3 (2026-10-16)
+
+**What changed**
+- **Information check (v2).** A capitalized word at the start of a sentence ("Wow", "Yay", "Super") no longer counts as a fact unless it is an acronym ("LGBTQ"). Names inside a sentence still count, including names after a comma ("Super stoked, Mel").
+- **Relative times (v2).** A merge is blocked if it still contains phrases like "next month", "last week" or "two days ago".
+- **Length (v2).** If a merge is longer than its sources, it is retried. If retries run out, the first merge that has every fact is used. Length alone never blocks a merge.
+- **Merge prompt (v2).** Separate rules for same-fact and small-talk groups. Notes are shown as "Caroline, 17 July 2023: …" instead of the raw "Speaker Carolinesays" format. The worked example uses made-up data (Sam's pottery class), not LoCoMo text. Up to 2 retries, each with feedback on what was wrong.
+- **Dropped times (v3).** In v2, the art-show merge passed the check by **deleting** "next month" instead of resolving it, which lost the show dates. v3 computes what each relative time should become ("next month" said on 17 July 2023 → "August 2023") and blocks merges that leave it out. A note's own date ("25 August 2023") does not count as the resolved month.
+
+**Results.** All three versions are scored with the v3 checks (`compare_consolidation_versions.py`). Ratio = merged length ÷ total length of the source notes.
+
+| | v1 S0 | v2 S0 | v3 S0 | v1 S1 | v2 S1 | v3 S1 |
+|---|---|---|---|---|---|---|
+| Merged | 18 | 18 | 17 | 16 | 16 | 16 |
+| Kept separate | 5 | 5 | 5 | 7 | 6 | 6 |
+| Rejected | 0 | 0 | 1 | 0 | 1 | 1 |
+| LLM calls | 41 | 60 | 64 | 39 | 57 | 57 |
+| Median ratio | 1.58 | 0.86 | 0.94 | 1.49 | 0.90 | 0.91 |
+| Merges longer than sources | 18 | 6 | 8 | 16 | 6 | 7 |
+| Merges missing a fact | 0 | 0 | 0 | 0 | 0 | 0 |
+| Merges with an unresolved relative time | 1 | 0 | 0 | 0 | 0 | 0 |
+| Merges that dropped a time | 1 | 1 | 0 | 0 | 0 | 0 |
+
+**Reading the results**
+- **Merges now compress.** The median merge is about 90% of its sources' length, down from about 150%. Almost every remaining "longer" merge is very short small talk ("Thanks!" + "Agreed!"), where any summary with names and dates is longer than the original.
+- **The art-show group is rejected in v3.** gpt-4o-mini never gave both resolved dates (August 2023 and September 2023) in the same attempt. The two notes stay separate with their own dates, which is the same as A-MEM. This is the intended safe outcome.
+- **The other rejection is too strict.** Sample 1's dance-studio group is rejected only because the addressee "Gina" is missing. That's harmless (the notes stay separate).
+- **Labels are not fully stable at temperature 0.** One sample-0 group changed from SMALL_TALK to SAME_FACT between v2 and v3. Between v1 and v2, two sample-1 labels changed because the note format in the prompt changed.
+- **Hand check.** I read all v2/v3 merges next to their sources. No invented facts were found, but some merges paraphrase loosely. For example, the adoption merge describes the image as "an adoption agency she is considering"; that is an interpretation of the caption.
+
+**Use v3** (`cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3/`) for step 4.
+
+**Step 4 mode.** v3 merges are real summaries, so the original wording and exact phrases are only in the sources. `primary_expand` (merged note plus its sources) is the main mode again, as originally planned.
+
 ## 6. Risks
 
 | Risk | Mitigation |

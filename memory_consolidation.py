@@ -22,6 +22,7 @@ from typing import Dict, Iterable, List, Optional, Sequence
 import numpy as np
 
 from llm_text_parsers import (
+    CONSOLIDATION_LABEL_RULES,
     CONSOLIDATION_MERGE_FEEDBACK,
     CONSOLIDATION_MERGE_PROMPT,
     CONSOLIDATION_VERIFY_PROMPT,
@@ -223,14 +224,38 @@ def _source_date_strings(timestamp: Optional[str]) -> List[str]:
     ]
 
 
+_SENTENCE_BREAK = re.compile(r"[.!?:;\]\[(\"“]")
+_ACRONYM_PATTERN = re.compile(r"^[A-Z0-9+&]{2,}$")
+
+
+def fact_words(text: str) -> List[str]:
+    """Capitalized words that look like names, places, or other proper nouns.
+
+    A capitalized word at the start of a sentence (or clause) is usually just
+    an interjection ("Wow", "Yay", "Super"), so it only counts when it is an
+    acronym like "LGBTQ". Capitalized words inside a sentence count.
+    """
+    words: List[str] = []
+    for match in _CAPITALIZED_PATTERN.finditer(text):
+        word = match.group(0)
+        if word in _IGNORED_CAPITALIZED:
+            continue
+        before = text[:match.start()].rstrip()
+        at_start = not before or _SENTENCE_BREAK.search(before[-1] + " ") is not None
+        if at_start and not _ACRONYM_PATTERN.match(word):
+            continue
+        words.append(word)
+    return words
+
+
 def missing_facts(
     sources: Sequence[RobustMemoryNote],
     merged_text: str,
 ) -> List[str]:
     """Facts from the sources that do not appear in the merged text.
 
-    Checks every number, every capitalized name (minus common sentence
-    starters), and every source date. Returns an empty list when nothing is
+    Checks every number, every proper noun (see ``fact_words``), every
+    speaker, and every source date. Returns an empty list when nothing is
     missing. This is a conservative screen, not a proof of faithfulness.
     """
     merged_lower = merged_text.lower()
@@ -247,9 +272,7 @@ def missing_facts(
         for number in _NUMBER_PATTERN.findall(body):
             if number not in merged_text:
                 _flag(number)
-        for word in _CAPITALIZED_PATTERN.findall(body):
-            if word in _IGNORED_CAPITALIZED:
-                continue
+        for word in fact_words(body):
             if word.lower() not in merged_lower:
                 _flag(word)
         speaker = note_speaker(note)
@@ -259,6 +282,128 @@ def missing_facts(
         if dates and not any(d.lower() in merged_lower for d in dates):
             _flag(dates[0])
     return missing
+
+
+_WEEKDAYS = "monday|tuesday|wednesday|thursday|friday|saturday|sunday"
+_RELATIVE_TIME_PATTERN = re.compile(
+    r"\b(?:next|last|this|coming|past)\s+(?:week|weekend|month|year|summer|winter|spring|fall|autumn|"
+    + _WEEKDAYS + r")\b"
+    r"|\b(?:yesterday|tomorrow|tonight|last night)\b"
+    r"|\b(?:a few|few|a couple of|couple of|a|one|two|three|four|five|six|\d+)\s+"
+    r"(?:days?|weeks?|months?|years?)\s+ago\b",
+    re.IGNORECASE,
+)
+
+
+def relative_times(text: str) -> List[str]:
+    """Relative time phrases such as "next month" or "two weeks ago"."""
+    return [m.group(0).lower() for m in _RELATIVE_TIME_PATTERN.finditer(text or "")]
+
+
+def unresolved_relative_times(merged_text: str) -> List[str]:
+    """Relative time phrases left in a merged note.
+
+    Every source note has its own date, so a merged note should state an
+    absolute time ("August 2023") instead of "next month", which would be
+    ambiguous once notes from different dates are combined.
+    """
+    found: List[str] = []
+    for phrase in relative_times(merged_text):
+        if phrase not in found:
+            found.append(phrase)
+    return found
+
+
+_MONTHS = ("January", "February", "March", "April", "May", "June", "July",
+           "August", "September", "October", "November", "December")
+_NUMBER_WORDS = {"a": 1, "one": 1, "a couple of": 2, "couple of": 2, "two": 2, "three": 3,
+                 "four": 4, "five": 5, "six": 6, "a few": None, "few": None}
+
+
+def _shift_month(year: int, month: int, delta: int) -> tuple:
+    index = year * 12 + (month - 1) + delta
+    return index // 12, index % 12 + 1
+
+
+def expected_resolution(phrase: str, said_at: Optional[str]) -> Optional[List[str]]:
+    """Strings, any one of which shows ``phrase`` was resolved in a merged note.
+
+    "next month" said on 17 July 2023 needs "August 2023"; "last year" said in
+    2023 needs "2022". Week, weekend, weekday, and day phrases need their unit
+    word ("week", "friday", "day"), as in "the week after 20 April 2022".
+    Returns None when the phrase cannot be resolved from the date.
+    """
+    when = parse_timestamp(said_at)
+    if when is None:
+        return None
+    phrase = phrase.lower()
+    month_shift = {"next month": 1, "last month": -1, "this month": 0, "coming month": 1, "past month": -1}
+    if phrase in month_shift:
+        year, month = _shift_month(when.year, when.month, month_shift[phrase])
+        return [f"{_MONTHS[month - 1]} {year}"]
+    year_shift = {"next year": 1, "last year": -1, "this year": 0, "coming year": 1, "past year": -1}
+    if phrase in year_shift:
+        return [str(when.year + year_shift[phrase])]
+    match = re.match(r"(.+?)\s+(day|week|month|year)s?\s+ago$", phrase)
+    if match:
+        count = _NUMBER_WORDS.get(match.group(1), None)
+        if match.group(1).isdigit():
+            count = int(match.group(1))
+        unit = match.group(2)
+        if unit == "month" and count:
+            year, month = _shift_month(when.year, when.month, -count)
+            return [f"{_MONTHS[month - 1]} {year}"]
+        if unit == "year" and count:
+            return [str(when.year - count)]
+        return [unit]
+    for unit in ("weekend", "week", "summer", "winter", "spring", "fall", "autumn") + tuple(_WEEKDAYS.split("|")):
+        if phrase.endswith(unit):
+            return [unit]
+    if phrase in ("yesterday", "tomorrow", "tonight", "last night"):
+        return ["day", "night", "evening"] if phrase in ("tonight", "last night") else ["day"]
+    return None
+
+
+def _mentions(text_lower: str, expected: str) -> bool:
+    """True if ``expected`` appears in the text on its own.
+
+    A month like "August 2023" must not count when it is only part of a day
+    date such as "25 August 2023", which is the note's own date, not the
+    resolved time.
+    """
+    pattern = re.escape(expected.lower())
+    if expected.split()[0] in _MONTHS:
+        pattern = r"(?<!\d\s)(?<!\d)" + pattern
+    return re.search(r"\b" + pattern + r"\b", text_lower) is not None
+
+
+def dropped_relative_times(sources: Sequence[RobustMemoryNote], merged_text: str) -> List[str]:
+    """Relative times in the sources whose resolved form is missing from the merge.
+
+    Catches merges that silence "next month" by deleting it instead of
+    turning it into "August 2023".
+    """
+    merged_lower = merged_text.lower()
+    dropped: List[str] = []
+    for note in sources:
+        for phrase in relative_times(note.content):
+            expected = expected_resolution(phrase, note.timestamp)
+            if expected and not any(_mentions(merged_lower, e) for e in expected):
+                label = f"{phrase} (said {expected_date_label(note.timestamp)} -> {expected[0]})"
+                if label not in dropped:
+                    dropped.append(label)
+    return dropped
+
+
+def expected_date_label(timestamp: Optional[str]) -> str:
+    parsed = parse_timestamp(timestamp)
+    return f"{parsed.day} {parsed.strftime('%B')} {parsed.year}" if parsed else str(timestamp)
+
+
+def compression_ratio(sources: Sequence[RobustMemoryNote], merged_text: str) -> float:
+    """Merged length divided by the total length of the source note bodies."""
+    total = sum(len(_SPEAKER_PATTERN.sub("", note.content or "").strip()) for note in sources)
+    return len(merged_text) / total if total else 0.0
 
 
 # ---------------------------------------------------------------------------
@@ -353,19 +498,53 @@ def _unique(items: Iterable[str]) -> List[str]:
     return out
 
 
+def _merge_problems(sources, parsed: Dict[str, str]) -> Dict[str, List[str]]:
+    """Hard problems block a merge; "too_long" only triggers a retry."""
+    content = parsed["content"]
+    if not content:
+        return {"missing": ["<empty>"], "relative_times": [], "dropped_times": [], "too_long": []}
+    ratio = compression_ratio(sources, content)
+    return {
+        "missing": missing_facts(sources, content),
+        "relative_times": unresolved_relative_times(content),
+        "dropped_times": dropped_relative_times(sources, content),
+        "too_long": [f"{ratio:.2f}x the length of the notes"] if ratio > 1.0 else [],
+    }
+
+
+def _feedback_lines(problems: Dict[str, List[str]]) -> str:
+    lines = []
+    if problems["missing"]:
+        lines.append("- These items are missing and must appear: " + ", ".join(problems["missing"]))
+    if problems["relative_times"]:
+        lines.append(
+            "- Replace these relative times with absolute dates: " + ", ".join(problems["relative_times"])
+        )
+    if problems["dropped_times"]:
+        lines.append(
+            "- State these times as absolute dates (do not drop them): " + "; ".join(problems["dropped_times"])
+        )
+    if problems["too_long"]:
+        lines.append("- The note is too long (" + problems["too_long"][0] + "). Summarize; do not copy.")
+    return "\n".join(lines)
+
+
 def consolidate_bank(
     system: RobustAgenticMemorySystem,
     llm,
     embeddings: np.ndarray,
     config: Optional[ConsolidationConfig] = None,
     temperature: float = 0.0,
-    merge_retries: int = 1,
+    merge_retries: int = 2,
 ) -> Dict:
     """Find, verify, merge, check, and append consolidated notes.
 
     ``llm`` is any object with ``get_completion(prompt, temperature=...)``.
     ``embeddings`` are content-only embeddings of the notes currently in
-    ``system`` (see ``content_embeddings``). Returns a log with one entry per
+    ``system`` (see ``content_embeddings``). A merge is accepted only when no
+    source fact is missing and no relative time is left. If it is merely
+    longer than its sources, it is retried, and the first fact-complete
+    attempt is used when retries run out. Returns a log with one entry per
     candidate group and summary counts.
     """
     cfg = config or ConsolidationConfig()
@@ -399,24 +578,40 @@ def consolidate_bank(
 
         feedback = ""
         attempts: List[Dict] = []
-        merged: Optional[Dict[str, str]] = None
+        accepted: Optional[Dict] = None
+        fallback: Optional[Dict] = None
         for _ in range(1 + max(merge_retries, 0)):
             merge_raw = llm.get_completion(
-                CONSOLIDATION_MERGE_PROMPT.format(notes=note_list, feedback=feedback),
+                CONSOLIDATION_MERGE_PROMPT.format(
+                    notes=note_list,
+                    label_rules=CONSOLIDATION_LABEL_RULES[verdict["label"]],
+                    feedback=feedback,
+                ),
                 temperature=temperature,
             )
             counts["llm_calls"] += 1
             parsed = parse_consolidation_merge(merge_raw)
-            missing = missing_facts(sources, parsed["content"]) if parsed["content"] else ["<empty>"]
-            attempts.append({"content": parsed["content"], "context": parsed["context"], "missing": missing})
-            if not missing:
-                merged = parsed
+            problems = _merge_problems(sources, parsed)
+            attempt = {
+                "content": parsed["content"],
+                "context": parsed["context"],
+                "compression_ratio": compression_ratio(sources, parsed["content"]),
+                **problems,
+            }
+            attempts.append(attempt)
+            hard_ok = not (problems["missing"] or problems["relative_times"] or problems["dropped_times"])
+            if hard_ok and not problems["too_long"]:
+                accepted = attempt
                 break
-            feedback = CONSOLIDATION_MERGE_FEEDBACK.format(missing=", ".join(missing))
+            if hard_ok and fallback is None:
+                fallback = attempt
+            feedback = CONSOLIDATION_MERGE_FEEDBACK.format(problems=_feedback_lines(problems))
         entry["attempts"] = attempts
+        if accepted is None:
+            accepted = fallback
 
-        if merged is None:
-            entry["outcome"] = "rejected_missing_facts"
+        if accepted is None:
+            entry["outcome"] = "rejected"
             counts["rejected"] += 1
             entries.append(entry)
             continue
@@ -424,15 +619,16 @@ def consolidate_bank(
         result = apply_consolidation(
             system,
             group.indices,
-            merged["content"],
+            accepted["content"],
             keywords=_unique(k for note in sources for k in note.keywords),
             tags=_unique(t for note in sources for t in note.tags),
-            context=merged["context"] or None,
+            context=accepted["context"] or None,
             extra={"label": verdict["label"]},
         )
         entry["outcome"] = "merged"
         entry["consolidated_index"] = result.consolidated_index
-        entry["consolidated_content"] = merged["content"]
+        entry["consolidated_content"] = accepted["content"]
+        entry["compression_ratio"] = accepted["compression_ratio"]
         counts["merged"] += 1
         entries.append(entry)
 

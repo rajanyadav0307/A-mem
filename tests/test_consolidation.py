@@ -235,34 +235,60 @@ class ScriptedLLM:
 
 def _two_similar_notes():
     notes = [
-        make_note("Speaker Annasays : I ran 5 miles with Ben", "2:31 pm on 17 July, 2023"),
-        make_note("Speaker Annasays : Ran 5 miles with Ben again", "1:33 pm on 25 August, 2023"),
+        make_note("Speaker Annasays : Wow, I ran 5 miles with Ben along the river trail and it was so tough!",
+                  "2:31 pm on 17 July, 2023"),
+        make_note("Speaker Annasays : Yay, ran 5 miles with Ben again on the river trail, getting easier now!",
+                  "1:33 pm on 25 August, 2023"),
     ]
     return notes, unit([[1.0, 0.0], [1.0, 0.0]])
+
+
+GOOD = "CONTENT: Anna ran 5 miles with Ben on 17 July 2023 and 25 August 2023.\nCONTEXT: running"
 
 
 def test_consolidate_bank_merges_after_retry():
     notes, emb = _two_similar_notes()
     system = make_system(notes)
-    good = "CONTENT: Anna ran 5 miles with Ben on 17 July 2023 and again on 25 August 2023.\nCONTEXT: running"
-    llm = ScriptedLLM("SAME_FACT", ["CONTENT: Anna ran with Ben.\nCONTEXT: running", good])
+    llm = ScriptedLLM("SAME_FACT", ["CONTENT: Anna ran with Ben.\nCONTEXT: running", GOOD])
     log = consolidate_bank(system, llm, emb)
     assert log["counts"] == {"groups": 1, "merged": 1, "different": 0, "rejected": 0, "llm_calls": 3}
-    assert "left out" in llm.prompts[-1]
+    assert "missing and must appear" in llm.prompts[-1]
     merged = list(system.memories.values())[2]
     assert merged.note_type == "consolidated"
     assert merged.context == "running"
     assert log["groups"][0]["outcome"] == "merged"
+    assert log["groups"][0]["compression_ratio"] < 1.0
 
 
 def test_consolidate_bank_rejects_when_facts_stay_missing():
     notes, emb = _two_similar_notes()
     system = make_system(notes)
     bad = "CONTENT: Anna ran with Ben.\nCONTEXT: running"
-    log = consolidate_bank(system, ScriptedLLM("SAME_FACT", [bad, bad]), emb)
+    log = consolidate_bank(system, ScriptedLLM("SAME_FACT", [bad, bad, bad]), emb)
     assert log["counts"]["rejected"] == 1
     assert len(system.memories) == 2
     assert all(n.consolidated_into is None for n in notes)
+
+
+def test_consolidate_bank_rejects_unresolved_relative_times():
+    notes, emb = _two_similar_notes()
+    system = make_system(notes)
+    vague = ("CONTENT: Anna ran 5 miles with Ben on 17 July 2023 and 25 August 2023, "
+             "and plans to run next month.\nCONTEXT: running")
+    llm = ScriptedLLM("SAME_FACT", [vague, vague, vague])
+    log = consolidate_bank(system, llm, emb)
+    assert log["counts"]["rejected"] == 1
+    assert "next month" in llm.prompts[-1]
+
+
+def test_consolidate_bank_falls_back_to_complete_but_long_merge():
+    notes, emb = _two_similar_notes()
+    system = make_system(notes)
+    long_text = "CONTENT: " + " ".join(n.content for n in notes) + " Anna on 17 July 2023 and 25 August 2023.\nCONTEXT: r"
+    log = consolidate_bank(system, ScriptedLLM("SAME_FACT", [long_text, long_text, long_text]), emb)
+    assert log["counts"]["merged"] == 1
+    assert log["groups"][0]["compression_ratio"] > 1.0
+    assert len(log["groups"][0]["attempts"]) == 3
 
 
 def test_consolidate_bank_keeps_different_notes_apart():
@@ -272,3 +298,40 @@ def test_consolidate_bank_keeps_different_notes_apart():
     log = consolidate_bank(system, llm, emb)
     assert log["counts"]["different"] == 1 and log["counts"]["llm_calls"] == 1
     assert len(system.memories) == 2
+
+
+def test_fact_words_skip_interjections_but_keep_names():
+    from memory_consolidation import fact_words
+    words = fact_words("Yay! Next month I'm having an LGBTQ art show. Super stoked, Mel. We went to Paris.")
+    assert words == ["LGBTQ", "Mel", "Paris"]
+
+
+def test_relative_times_detected():
+    from memory_consolidation import relative_times
+    assert relative_times("Next month, two weeks ago, last night") == ["next month", "two weeks ago", "last night"]
+    assert relative_times("in August 2023") == []
+
+
+def test_dropped_relative_time_blocks_merge():
+    from memory_consolidation import dropped_relative_times, expected_resolution
+    assert expected_resolution("next month", "2:31 pm on 17 July, 2023") == ["August 2023"]
+    assert expected_resolution("next month", "1:00 pm on 20 December, 2023") == ["January 2024"]
+    assert expected_resolution("last year", "1:00 pm on 1 May, 2023") == ["2022"]
+    notes = [
+        make_note("Speaker Annasays : Next month I have an art show with my paintings, so excited!",
+                  "2:31 pm on 17 July, 2023"),
+        make_note("Speaker Annasays : Putting together my art show of paintings next month, super stoked!",
+                  "1:33 pm on 25 August, 2023"),
+    ]
+    silent = "Anna is preparing an art show of her paintings, mentioned on 17 July 2023 and 25 August 2023."
+    assert len(dropped_relative_times(notes, silent)) == 2
+    resolved = ("Anna is preparing an art show of her paintings: on 17 July 2023 she said August 2023, "
+                "on 25 August 2023 she said September 2023.")
+    assert dropped_relative_times(notes, resolved) == []
+
+    system = make_system(notes)
+    llm = ScriptedLLM("SAME_FACT", [f"CONTENT: {silent}\nCONTEXT: art"] + [f"CONTENT: {resolved}\nCONTEXT: art"] * 2)
+    log = consolidate_bank(system, llm, unit([[1.0, 0.0], [1.0, 0.0]]))
+    assert log["counts"]["merged"] == 1
+    assert "do not drop them" in llm.prompts[2]
+    assert log["groups"][0]["consolidated_content"] == resolved

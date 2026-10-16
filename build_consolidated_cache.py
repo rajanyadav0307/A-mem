@@ -27,8 +27,8 @@ from memory_layer import SimpleEmbeddingRetriever
 from memory_layer_robust import RobustAgenticMemorySystem, RobustLLMController
 
 
-def default_output_dir(source_dir: str, config: ConsolidationConfig) -> str:
-    return f"{source_dir.rstrip('/')}_consolidated_tau{config.similarity_threshold:.2f}"
+def default_output_dir(source_dir: str, config: ConsolidationConfig, tag: str) -> str:
+    return f"{source_dir.rstrip('/')}_consolidated_tau{config.similarity_threshold:.2f}_{tag}"
 
 
 def load_sample(source_dir: str, sample_idx: int) -> RobustAgenticMemorySystem:
@@ -70,7 +70,8 @@ def main():
     parser.add_argument("--threshold", type=float, default=ConsolidationConfig.similarity_threshold)
     parser.add_argument("--max_group_size", type=int, default=ConsolidationConfig.max_group_size)
     parser.add_argument("--allow_cross_speaker", action="store_true")
-    parser.add_argument("--merge_retries", type=int, default=1)
+    parser.add_argument("--merge_retries", type=int, default=2)
+    parser.add_argument("--tag", default="v2", help="version tag for the output cache and log names")
     parser.add_argument("--log_dir", default="analysis")
     parser.add_argument("--overwrite", action="store_true")
     args = parser.parse_args()
@@ -80,7 +81,7 @@ def main():
         max_group_size=args.max_group_size,
         require_same_speaker=not args.allow_cross_speaker,
     )
-    output_dir = args.output_dir or default_output_dir(args.source_cache, config)
+    output_dir = args.output_dir or default_output_dir(args.source_cache, config, args.tag)
     if os.path.abspath(output_dir) == os.path.abspath(args.source_cache):
         raise SystemExit("output_dir must differ from source_cache")
 
@@ -105,11 +106,12 @@ def main():
             "source_cache": args.source_cache,
             "output_dir": output_dir,
             "model": args.model,
+            "tag": args.tag,
             "notes_before": notes_before,
             "notes_after": len(system.memories),
             "built_at": datetime.now().isoformat(timespec="seconds"),
         })
-        log_path = os.path.join(args.log_dir, f"consolidation_log_sample_{sample_idx}.json")
+        log_path = os.path.join(args.log_dir, f"consolidation_log_sample_{sample_idx}_{args.tag}.json")
         with open(log_path, "w", encoding="utf-8") as handle:
             json.dump(log, handle, indent=2, ensure_ascii=False)
         c = log["counts"]

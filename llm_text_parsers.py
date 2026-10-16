@@ -532,37 +532,74 @@ LABEL: SAME_FACT, SMALL_TALK, or DIFFERENT
 REASON: one sentence"""
 
 
-CONSOLIDATION_MERGE_PROMPT = """Merge these memory notes from a conversation into one note.
+CONSOLIDATION_MERGE_PROMPT = """Combine these memory notes from a conversation into ONE short note.
 
-Notes (each with the date it was said):
+Notes:
 {notes}
 
-Rules:
-- Keep every fact, name, number, and detail from every note.
-- Say who said each thing.
-- Give the absolute date of each note, written like "17 July 2023".
-- Turn relative times into absolute ones using that note's date (for example, "next month" said on 17 July 2023 means August 2023).
-- If the notes differ, keep both versions with their dates. Do not pick one.
-- Write plain sentences. Do not add anything that is not in the notes.
+{label_rules}
+
+Rules for every note you write:
+- Name the speaker. Write each date as an absolute date like "17 July 2023".
+- Never write relative times such as "next month", "last week", "yesterday" or "two days ago". Convert them using the date of the note they came from. Example: "next month" said on 17 July 2023 becomes "in August 2023"; "last week" said on 6 July 2023 becomes "in the week before 6 July 2023".
+- Keep every name, place, number, and distinct fact. Do not add anything that is not in the notes.
+- Do not copy the notes one after another. Write one short summary that is shorter than the notes together.
+
+Example
+Notes:
+1. Sam, 3 March 2022: Next month I'm starting pottery classes at the Oak Street studio - can't wait!
+2. Sam, 20 April 2022: Wow, pottery at Oak Street starts next week. So excited!
+CONTENT: Sam planned to start pottery classes at the Oak Street studio. On 3 March 2022 Sam said they would start in April 2022; on 20 April 2022 Sam said they would start in the week after 20 April 2022.
+CONTEXT: Sam's pottery classes at the Oak Street studio.
 {feedback}
 Respond in this exact format:
-CONTENT: the merged note
+CONTENT: the combined note
 CONTEXT: one sentence describing the topic"""
 
 
+CONSOLIDATION_LABEL_RULES = {
+    "SAME_FACT": (
+        "These notes repeat the same fact, plan, or event. State it once, then list when it was "
+        "mentioned. If the notes disagree on a detail (such as a time), keep each version with its date."
+    ),
+    "SMALL_TALK": (
+        "These notes are small talk (greetings, thanks, praise, encouragement). Write one sentence "
+        "saying who said what kind of thing to whom, and list the dates. Keep any names, places, or "
+        "specific things mentioned."
+    ),
+}
+
+
 CONSOLIDATION_MERGE_FEEDBACK = """
-Your previous attempt left out these items, which must appear in the merged note: {missing}
+Your previous attempt had these problems. Fix all of them:
+{problems}
 """
 
 
 CONSOLIDATION_LABELS = ("SAME_FACT", "SMALL_TALK", "DIFFERENT")
 
 
+_CONSOLIDATION_SPEAKER = re.compile(r"^Speaker\s+(.+?)says\s*:\s*")
+_CONSOLIDATION_DATE = re.compile(r"(\d{1,2})\s+([A-Za-z]+),?\s+(\d{4})")
+
+
 def format_consolidation_notes(notes: List[Any]) -> str:
-    """Numbered note list with dates for the consolidation prompts."""
-    return "\n".join(
-        f"{i}. [{note.timestamp}] {note.content}" for i, note in enumerate(notes, start=1)
-    )
+    """Numbered note list for the consolidation prompts.
+
+    Renders "Speaker Xsays : text" with timestamp "2:31 pm on 17 July, 2023"
+    as "1. X, 17 July 2023: text" so the LLM does not copy the raw format.
+    """
+    lines = []
+    for i, note in enumerate(notes, start=1):
+        content = note.content or ""
+        match = _CONSOLIDATION_SPEAKER.match(content)
+        speaker = match.group(1).strip() if match else None
+        body = content[match.end():] if match else content
+        date_match = _CONSOLIDATION_DATE.search(note.timestamp or "")
+        date = " ".join(date_match.groups()) if date_match else (note.timestamp or "unknown date")
+        who = f"{speaker}, {date}" if speaker else date
+        lines.append(f"{i}. {who}: {body.strip()}")
+    return "\n".join(lines)
 
 
 def parse_consolidation_verdict(response: str) -> Dict[str, str]:

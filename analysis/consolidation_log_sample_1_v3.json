@@ -1,0 +1,998 @@
+{
+  "config": {
+    "similarity_threshold": 0.8,
+    "max_group_size": 5,
+    "require_same_speaker": true,
+    "embedding_model": "all-MiniLM-L6-v2"
+  },
+  "counts": {
+    "groups": 23,
+    "merged": 16,
+    "different": 6,
+    "rejected": 1,
+    "llm_calls": 57
+  },
+  "groups": [
+    {
+      "indices": [
+        23,
+        152
+      ],
+      "min_similarity": 0.8085244397860055,
+      "mean_similarity": 0.8085244397860055,
+      "sources": [
+        {
+          "index": 23,
+          "timestamp": "4:04 pm on 20 January, 2023",
+          "content": "Speaker Jonsays : [Image: a photo of a group of dancers in white dresses on a stage] Thanks! I rehearsed with a small group of dancers after work. We do all kinds of dances, from contemporary to hip-hop. We've got some cool projects in the works. Finishing up choreography to perform at a nearby festival next month. Can't wait!"
+        },
+        {
+          "index": 152,
+          "timestamp": "1:26 pm on 3 April, 2023",
+          "content": "Speaker Jonsays : [Image: a photo of a group of dancers on a stage with a man in the middle of the group] Thanks, Gina! My dance studio and some other schools are bringing their best moves for an awesome night of performances and judging. It'll be super creative and fun. Come join us!"
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The first note discusses rehearsing for a festival performance, while the second note mentions an upcoming night of performances and judging involving multiple dance schools.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        40,
+        157
+      ],
+      "min_similarity": 0.9017210808687113,
+      "mean_similarity": 0.9017210808687113,
+      "sources": [
+        {
+          "index": 40,
+          "timestamp": "2:32 pm on 29 January, 2023",
+          "content": "Speaker Ginasays : Thanks, Jon! Appreciate your support!"
+        },
+        {
+          "index": 157,
+          "timestamp": "1:26 pm on 3 April, 2023",
+          "content": "Speaker Ginasays : Thanks, Jon! Appreciate the kind words. <3"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express gratitude towards Jon without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Gina expressed her gratitude to Jon for his support on 29 January 2023 and for his kind words on 3 April 2023.",
+          "context": "Gina's appreciation for Jon's support and encouragement.",
+          "compression_ratio": 1.3924050632911393,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.39x the length of the notes"
+          ]
+        },
+        {
+          "content": "Gina expressed gratitude to Jon for his support on 29 January 2023 and for his kind words on 3 April 2023.",
+          "context": "Gina's appreciation for Jon's support and encouragement.",
+          "compression_ratio": 1.3417721518987342,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.34x the length of the notes"
+          ]
+        },
+        {
+          "content": "Gina expressed gratitude to Jon for his support on 29 January 2023 and for his kind words on 3 April 2023.",
+          "context": "Gina's appreciation for Jon's support and encouragement.",
+          "compression_ratio": 1.3417721518987342,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.34x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 369,
+      "consolidated_content": "Gina expressed her gratitude to Jon for his support on 29 January 2023 and for his kind words on 3 April 2023.",
+      "compression_ratio": 1.3924050632911393
+    },
+    {
+      "indices": [
+        44,
+        276
+      ],
+      "min_similarity": 0.8390148742410882,
+      "mean_similarity": 0.8390148742410882,
+      "sources": [
+        {
+          "index": 44,
+          "timestamp": "12:48 am on 1 February, 2023",
+          "content": "Speaker Jonsays : Hey Gina, hope you're doing ok! Still following my passion for dance. It's been bumpy, but I'm determined to make it work. I'm still searching for a place to open my dance studio."
+        },
+        {
+          "index": 276,
+          "timestamp": "10:04 am on 19 June, 2023",
+          "content": "Speaker Jonsays : Thanks, Gina. Still working on opening a dance studio."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express Jon's ongoing effort to open a dance studio, indicating a consistent plan over time.",
+      "attempts": [
+        {
+          "content": "Jon is determined to open a dance studio. He mentioned this on 1 February 2023 and again on 19 June 2023.",
+          "context": "Jon's plans to open a dance studio.",
+          "compression_ratio": 0.45064377682403434,
+          "missing": [
+            "Gina"
+          ],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        },
+        {
+          "content": "Jon is determined to open a dance studio. He mentioned this on 1 February 2023 and again on 19 June 2023.",
+          "context": "Jon's plans to open a dance studio.",
+          "compression_ratio": 0.45064377682403434,
+          "missing": [
+            "Gina"
+          ],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        },
+        {
+          "content": "Jon is determined to open a dance studio. He mentioned this on 1 February 2023 and again on 19 June 2023.",
+          "context": "Jon's plans to open a dance studio.",
+          "compression_ratio": 0.45064377682403434,
+          "missing": [
+            "Gina"
+          ],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "rejected"
+    },
+    {
+      "indices": [
+        55,
+        318
+      ],
+      "min_similarity": 0.831004061059297,
+      "mean_similarity": 0.831004061059297,
+      "sources": [
+        {
+          "index": 55,
+          "timestamp": "12:48 am on 1 February, 2023",
+          "content": "Speaker Ginasays : Thanks, Jon! I'll try my best. You're gonna do great with your dance studio, just keep going and stay positive! We'll get through this!"
+        },
+        {
+          "index": 318,
+          "timestamp": "1:25 pm on 9 July, 2023",
+          "content": "Speaker Ginasays : Wow, Jon! That's awesome. Loving what you do and bringing joy to others is so rewarding. You're definitely the perfect mentor & guide. Your positivity and determination will make your dance studio a hit!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express encouragement and praise for Jon's dance studio without stating distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Gina encouraged Jon on 1 February 2023 to stay positive and assured him he would do great with his dance studio, and on 9 July 2023 she praised him for bringing joy to others and being a perfect mentor, expressing confidence in his success.",
+          "context": "Gina's encouragement and praise for Jon regarding his dance studio.",
+          "compression_ratio": 0.7100591715976331,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 370,
+      "consolidated_content": "Gina encouraged Jon on 1 February 2023 to stay positive and assured him he would do great with his dance studio, and on 9 July 2023 she praised him for bringing joy to others and being a perfect mentor, expressing confidence in his success.",
+      "compression_ratio": 0.7100591715976331
+    },
+    {
+      "indices": [
+        67,
+        163
+      ],
+      "min_similarity": 0.8556777261875353,
+      "mean_similarity": 0.8556777261875353,
+      "sources": [
+        {
+          "index": 67,
+          "timestamp": "10:43 am on 4 February, 2023",
+          "content": "Speaker Ginasays : Searching for the perfect dance studio's a tough job, Jon. Hang in there and you'll find it soon!"
+        },
+        {
+          "index": 163,
+          "timestamp": "10:33 am on 9 April, 2023",
+          "content": "Speaker Ginasays : Hey Jon! Wow, way to take your passion and make it into a biz! The dance studio looks awesome."
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The first note discusses the challenge of finding a dance studio, while the second note praises Jon for turning his passion into a business and mentions the dance studio.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        76,
+        270
+      ],
+      "min_similarity": 0.8776635907931675,
+      "mean_similarity": 0.8776635907931675,
+      "sources": [
+        {
+          "index": 76,
+          "timestamp": "10:43 am on 4 February, 2023",
+          "content": "Speaker Jonsays : Thanks, Gina! Your kind words mean a lot. I won't give up!"
+        },
+        {
+          "index": 270,
+          "timestamp": "9:38 pm on 16 June, 2023",
+          "content": "Speaker Jonsays : Sure thing, Gina! Your help means a lot to me. I'm not giving up."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express gratitude from Jon to Gina and convey a similar sentiment of perseverance.",
+      "attempts": [
+        {
+          "content": "Jon expressed gratitude to Gina for her support and affirmed his determination not to give up. On 4 February 2023, Jon thanked Gina for her kind words; on 16 June 2023, he reiterated that her help means a lot to him and that he is not giving up.",
+          "context": "Jon's appreciation for Gina's support and his commitment to perseverance.",
+          "compression_ratio": 1.991869918699187,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.99x the length of the notes"
+          ]
+        },
+        {
+          "content": "Jon expressed gratitude to Gina for her support and affirmed his determination not to give up. He mentioned this on 4 February 2023 and again on 16 June 2023.",
+          "context": "Jon's appreciation for Gina's support and his commitment to persevere.",
+          "compression_ratio": 1.2845528455284554,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.28x the length of the notes"
+          ]
+        },
+        {
+          "content": "Jon expressed gratitude to Gina for her support and affirmed his determination not to give up. He mentioned this on 4 February 2023 and again on 16 June 2023.",
+          "context": "Jon's appreciation for Gina's support and his commitment to perseverance.",
+          "compression_ratio": 1.2845528455284554,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.28x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 371,
+      "consolidated_content": "Jon expressed gratitude to Gina for her support and affirmed his determination not to give up. On 4 February 2023, Jon thanked Gina for her kind words; on 16 June 2023, he reiterated that her help means a lot to him and that he is not giving up.",
+      "compression_ratio": 1.991869918699187
+    },
+    {
+      "indices": [
+        78,
+        313
+      ],
+      "min_similarity": 0.814090122149808,
+      "mean_similarity": 0.814090122149808,
+      "sources": [
+        {
+          "index": 78,
+          "timestamp": "9:32 am on 8 February, 2023",
+          "content": "Speaker Jonsays : Hey Gina! Congrats on the new fashion piece! Looks like your store is growing. Remenber the festival I told you about? Had that performance and it was awesome - so many people there complementing my dance moves. Dancing brings me joy and it was nice to be reminded why I'm passionate about it."
+        },
+        {
+          "index": 313,
+          "timestamp": "1:25 pm on 9 July, 2023",
+          "content": "Speaker Jonsays : Hey Gina! Congrats on the fashion editors reach-out, that's awesome! Dance practice has been fun and exhausting. I'm gonna stay determined and make my own path by going full-time with my biz idea."
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The notes discuss different events and achievements related to Jon's dance and business pursuits at different times.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        80,
+        148
+      ],
+      "min_similarity": 0.8026301884950751,
+      "mean_similarity": 0.8026301884950751,
+      "sources": [
+        {
+          "index": 80,
+          "timestamp": "9:32 am on 8 February, 2023",
+          "content": "Speaker Jonsays : Thanks, Gina! I love running my own studio. It's great having the freedom to create a space and help dancers of all ages and levels express themselves. I'm super thrilled about dancing each day and seeing my students progress. It's so fulfilling."
+        },
+        {
+          "index": 148,
+          "timestamp": "1:26 pm on 3 April, 2023",
+          "content": "Speaker Jonsays : Thanks, Gina! I'm expanding my dance studio's social media presence and offering workshops and classes to local schools and centers. I'm also hosting a dance competition next month to showcase local talent and bring more attention to my studio. All the work's paying off - I'm seeing progress and the dancers are so excited. It's such a great feeling to give a place where people can express themselves through dance!"
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The first note discusses Jon's enjoyment of running his studio and helping dancers, while the second note focuses on his efforts to expand the studio's social media presence and organize a dance competition.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        94,
+        319
+      ],
+      "min_similarity": 0.863267702200958,
+      "mean_similarity": 0.863267702200958,
+      "sources": [
+        {
+          "index": 94,
+          "timestamp": "9:32 am on 8 February, 2023",
+          "content": "Speaker Jonsays : Thanks, Gina! Your support means so much. I'm gonna keep chasing after those dreams. Dance is my passion, and I'm gonna keep working hard to make it a success!"
+        },
+        {
+          "index": 319,
+          "timestamp": "1:25 pm on 9 July, 2023",
+          "content": "Speaker Jonsays : Thanks, Gina - really appreciate your words and encouragement! Dance has the power to bring us together and create sweet moments. Moments like this remind me why I'm chasing my dream and keep me pushing through any struggles."
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The first note expresses Jon's determination to pursue his dance dreams, while the second note reflects on the power of dance and the encouragement he received, highlighting different aspects of his journey.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        107,
+        143
+      ],
+      "min_similarity": 0.813293675600034,
+      "mean_similarity": 0.813293675600034,
+      "sources": [
+        {
+          "index": 107,
+          "timestamp": "2:35 pm on 16 March, 2023",
+          "content": "Speaker Ginasays : Thanks! I'm passionate about fashion trends and finding unique pieces. Plus, I wanted to blend my love for dance and fashion, so it was a perfect match."
+        },
+        {
+          "index": 143,
+          "timestamp": "1:26 pm on 3 April, 2023",
+          "content": "Speaker Ginasays : Thanks! I'm passionate about dance and fashion so combining them lets me show my creativity and share my love with others. Plus, I can add dance-inspired items to my store!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express Gina's passion for combining dance and fashion, highlighting her creativity and the unique items she wants to incorporate into her store.",
+      "attempts": [
+        {
+          "content": "Gina is passionate about combining dance and fashion, allowing her to express her creativity and share her love with others, while also adding dance-inspired items to her store. This was mentioned on 16 March 2023 and 3 April 2023.",
+          "context": "Gina's interests in dance and fashion.",
+          "compression_ratio": 0.7129629629629629,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 372,
+      "consolidated_content": "Gina is passionate about combining dance and fashion, allowing her to express her creativity and share her love with others, while also adding dance-inspired items to her store. This was mentioned on 16 March 2023 and 3 April 2023.",
+      "compression_ratio": 0.7129629629629629
+    },
+    {
+      "indices": [
+        131,
+        247
+      ],
+      "min_similarity": 0.8649266341408516,
+      "mean_similarity": 0.8649266341408516,
+      "sources": [
+        {
+          "index": 131,
+          "timestamp": "7:28 pm on 23 March, 2023",
+          "content": "Speaker Jonsays : Thanks, I'm really grateful for your help with staying motivated."
+        },
+        {
+          "index": 247,
+          "timestamp": "8:29 pm on 13 June, 2023",
+          "content": "Speaker Jonsays : Thanks! It helps me stay motivated and reminds me why I'm doing this."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express gratitude for help with motivation, conveying the same underlying sentiment.",
+      "attempts": [
+        {
+          "content": "Jon expressed gratitude for help with staying motivated on 23 March 2023 and reiterated its importance on 13 June 2023.",
+          "context": "Jon's appreciation for support in maintaining motivation.",
+          "compression_ratio": 0.8880597014925373,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 373,
+      "consolidated_content": "Jon expressed gratitude for help with staying motivated on 23 March 2023 and reiterated its importance on 13 June 2023.",
+      "compression_ratio": 0.8880597014925373
+    },
+    {
+      "indices": [
+        133,
+        325,
+        365
+      ],
+      "min_similarity": 0.8897243177850692,
+      "mean_similarity": 0.9148082548335448,
+      "sources": [
+        {
+          "index": 133,
+          "timestamp": "7:28 pm on 23 March, 2023",
+          "content": "Speaker Jonsays : Thanks, Gina! I won't quit - your words motivate me to keep going!"
+        },
+        {
+          "index": 325,
+          "timestamp": "1:25 pm on 9 July, 2023",
+          "content": "Speaker Jonsays : Thanks, Gina! I won't quit, even when it's hard. I'm gonna make it!"
+        },
+        {
+          "index": 365,
+          "timestamp": "6:46 pm on 23 July, 2023",
+          "content": "Speaker Jonsays : Thanks, Gina! I won't quit. I'm gonna keep going, whatever comes my way."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "All notes express Jon's determination to not quit and his motivation from Gina's encouragement, despite slight variations in wording.",
+      "attempts": [
+        {
+          "content": "Jon expressed gratitude to Gina and stated he won't quit, emphasizing his determination to keep going despite challenges. This was mentioned on 23 March 2023, 9 July 2023, and 23 July 2023.",
+          "context": "Jon's motivation and commitment to persevere.",
+          "compression_ratio": 0.9219512195121952,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 374,
+      "consolidated_content": "Jon expressed gratitude to Gina and stated he won't quit, emphasizing his determination to keep going despite challenges. This was mentioned on 23 March 2023, 9 July 2023, and 23 July 2023.",
+      "compression_ratio": 0.9219512195121952
+    },
+    {
+      "indices": [
+        134,
+        310
+      ],
+      "min_similarity": 0.8485117874090072,
+      "mean_similarity": 0.8485117874090072,
+      "sources": [
+        {
+          "index": 134,
+          "timestamp": "7:28 pm on 23 March, 2023",
+          "content": "Speaker Ginasays : Believe in yourself. Even when it's tough, you got this! Keep going!"
+        },
+        {
+          "index": 310,
+          "timestamp": "2:15 pm on 21 June, 2023",
+          "content": "Speaker Ginasays : Believe in yourself and keep going. You can do it!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes encourage belief in oneself and perseverance, conveying the same core message.",
+      "attempts": [
+        {
+          "content": "Gina emphasized the importance of believing in yourself and continuing to push forward. She mentioned this on 23 March 2023 and reiterated it on 21 June 2023.",
+          "context": "Gina's encouragement to believe in oneself and persevere.",
+          "compression_ratio": 1.3389830508474576,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.34x the length of the notes"
+          ]
+        },
+        {
+          "content": "Gina emphasized the importance of believing in yourself and continuing to push forward. She mentioned this on 23 March 2023 and reiterated it on 21 June 2023.",
+          "context": "Gina's encouragement to believe in oneself and persevere.",
+          "compression_ratio": 1.3389830508474576,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.34x the length of the notes"
+          ]
+        },
+        {
+          "content": "Gina emphasized the importance of believing in yourself and persevering. She mentioned this on 23 March 2023 and reiterated it on 21 June 2023.",
+          "context": "Gina's encouragement to believe in oneself and keep going.",
+          "compression_ratio": 1.2118644067796611,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.21x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 375,
+      "consolidated_content": "Gina emphasized the importance of believing in yourself and continuing to push forward. She mentioned this on 23 March 2023 and reiterated it on 21 June 2023.",
+      "compression_ratio": 1.3389830508474576
+    },
+    {
+      "indices": [
+        166,
+        168
+      ],
+      "min_similarity": 0.8325261650654106,
+      "mean_similarity": 0.8325261650654106,
+      "sources": [
+        {
+          "index": 166,
+          "timestamp": "10:33 am on 9 April, 2023",
+          "content": "Speaker Jonsays : Yeah, Gina! It's been tough, but I'm living my true self. Dancing makes me so happy, and now I get to share that with other people. Seeing my students get better at it brings me such joy."
+        },
+        {
+          "index": 168,
+          "timestamp": "10:33 am on 9 April, 2023",
+          "content": "Speaker Jonsays : Thanks a bunch, Gina! You seriously rock. Dancing for me is like a way to express myself and find my happy place. I used to be scared to death of what people would think, but I learnt that my own happiness is the most important thing. It's been tough but also the best thing ever!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express Jon's feelings about dancing as a source of happiness and self-expression, emphasizing the importance of personal joy over others' opinions.",
+      "attempts": [
+        {
+          "content": "Jon expressed that dancing brings him happiness and allows him to live his true self, sharing this joy with his students. He mentioned on 9 April 2023 that it has been tough but ultimately the best thing ever, and he learned that his own happiness is the most important thing.",
+          "context": "Jon's experience and feelings about dancing and teaching.",
+          "compression_ratio": 0.5910064239828694,
+          "missing": [
+            "Gina"
+          ],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        },
+        {
+          "content": "Jon expressed that dancing makes him happy and allows him to live his true self, sharing this joy with his students. He mentioned on 9 April 2023 that it has been tough but ultimately the best thing ever, and he learned that his own happiness is the most important thing, despite initial fears of others' opinions. He thanked Gina for her support.",
+          "context": "Jon's experience and feelings about dancing and teaching.",
+          "compression_ratio": 0.7430406852248393,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 376,
+      "consolidated_content": "Jon expressed that dancing makes him happy and allows him to live his true self, sharing this joy with his students. He mentioned on 9 April 2023 that it has been tough but ultimately the best thing ever, and he learned that his own happiness is the most important thing, despite initial fears of others' opinions. He thanked Gina for her support.",
+      "compression_ratio": 0.7430406852248393
+    },
+    {
+      "indices": [
+        175,
+        271
+      ],
+      "min_similarity": 0.8379766403596065,
+      "mean_similarity": 0.8379766403596065,
+      "sources": [
+        {
+          "index": 175,
+          "timestamp": "10:33 am on 9 April, 2023",
+          "content": "Speaker Ginasays : Way to go, Jon! Keep it up, you're almost there!"
+        },
+        {
+          "index": 271,
+          "timestamp": "9:38 pm on 16 June, 2023",
+          "content": "Speaker Ginasays : Go, Jon! I'm here for you. Keep going!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express encouragement and praise for Jon without stating distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Gina encouraged Jon on 9 April 2023 by saying \"Way to go, Jon! Keep it up, you're almost there!\" and again on 16 June 2023 by saying \"Go, Jon! I'm here for you. Keep going!\"",
+          "context": "Gina's encouragement to Jon.",
+          "compression_ratio": 2.011627906976744,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "2.01x the length of the notes"
+          ]
+        },
+        {
+          "content": "Gina encouraged Jon on 9 April 2023 by saying \"Way to go, Jon! Keep it up, you're almost there!\" and again on 16 June 2023 with \"Go, Jon! I'm here for you. Keep going!\"",
+          "context": "Gina's encouragement to Jon.",
+          "compression_ratio": 1.9534883720930232,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.95x the length of the notes"
+          ]
+        },
+        {
+          "content": "Gina encouraged Jon on 9 April 2023 by saying \"Way to go, Jon! Keep it up, you're almost there!\" and again on 16 June 2023 with \"Go, Jon! I'm here for you. Keep going!\"",
+          "context": "Gina's encouragement to Jon.",
+          "compression_ratio": 1.9534883720930232,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.95x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 377,
+      "consolidated_content": "Gina encouraged Jon on 9 April 2023 by saying \"Way to go, Jon! Keep it up, you're almost there!\" and again on 16 June 2023 by saying \"Go, Jon! I'm here for you. Keep going!\"",
+      "compression_ratio": 2.011627906976744
+    },
+    {
+      "indices": [
+        185,
+        273
+      ],
+      "min_similarity": 0.8227665174456766,
+      "mean_similarity": 0.8227665174456766,
+      "sources": [
+        {
+          "index": 185,
+          "timestamp": "11:24 am on 25 April, 2023",
+          "content": "Speaker Ginasays : No worries, Jon! Sounds like what I said was helpful. You're incredibly talented and passionate about dance. Don't forget, believe in yourself and your abilities. Tackle any obstacle that comes your way and keep shining!"
+        },
+        {
+          "index": 273,
+          "timestamp": "9:38 pm on 16 June, 2023",
+          "content": "Speaker Ginasays : No worries, Jon! You're really inspiring with your determination and passion for dance. Keep it up!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express encouragement and praise for Jon's talent and passion for dance without stating distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Gina praised Jon's talent and passion for dance, encouraging him to believe in himself and tackle obstacles on 25 April 2023, and later expressed admiration for his determination on 16 June 2023.",
+          "context": "Gina's encouragement and praise for Jon's dance abilities.",
+          "compression_ratio": 0.6112852664576802,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 378,
+      "consolidated_content": "Gina praised Jon's talent and passion for dance, encouraging him to believe in himself and tackle obstacles on 25 April 2023, and later expressed admiration for his determination on 16 June 2023.",
+      "compression_ratio": 0.6112852664576802
+    },
+    {
+      "indices": [
+        227,
+        266
+      ],
+      "min_similarity": 0.8916199382458706,
+      "mean_similarity": 0.8916199382458706,
+      "sources": [
+        {
+          "index": 227,
+          "timestamp": "7:18 pm on 27 May, 2023",
+          "content": "Speaker Jonsays : Thanks! I really appreciate your help. I'm gonna keep on going and never quit."
+        },
+        {
+          "index": 266,
+          "timestamp": "9:38 pm on 16 June, 2023",
+          "content": "Speaker Jonsays : Thanks! I won't quit, no matter what. Your encouragement really motivates me to keep going."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express Jon's determination to keep going and his appreciation for encouragement, albeit with slightly different wording.",
+      "attempts": [
+        {
+          "content": "Jon expressed gratitude for encouragement and stated he will not quit. On 27 May 2023, he said he would keep going and never quit; on 16 June 2023, he reiterated that he won't quit, motivated by the encouragement.",
+          "context": "Jon's determination to persist despite challenges.",
+          "compression_ratio": 1.2603550295857988,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.26x the length of the notes"
+          ]
+        },
+        {
+          "content": "Jon expressed gratitude for encouragement and stated he will not quit pursuing his goals. On 27 May 2023, he mentioned his determination to keep going, and on 16 June 2023, he reiterated that he won't quit, attributing his motivation to the support he received.",
+          "context": "Jon's determination to persist in his endeavors.",
+          "compression_ratio": 1.544378698224852,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.54x the length of the notes"
+          ]
+        },
+        {
+          "content": "Jon expressed gratitude for encouragement and stated he will not quit pursuing his goals. On 27 May 2023, he mentioned he would keep going and never quit; on 16 June 2023, he reiterated that he won't quit, motivated by the support he received.",
+          "context": "Jon's determination to continue pursuing his goals with encouragement.",
+          "compression_ratio": 1.4378698224852071,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.44x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 379,
+      "consolidated_content": "Jon expressed gratitude for encouragement and stated he will not quit. On 27 May 2023, he said he would keep going and never quit; on 16 June 2023, he reiterated that he won't quit, motivated by the encouragement.",
+      "compression_ratio": 1.2603550295857988
+    },
+    {
+      "indices": [
+        237,
+        239
+      ],
+      "min_similarity": 0.8014860539337757,
+      "mean_similarity": 0.8014860539337757,
+      "sources": [
+        {
+          "index": 237,
+          "timestamp": "8:29 pm on 13 June, 2023",
+          "content": "Speaker Jonsays : Besides the dance classes and workshops, I'm offering one-on-one mentoring and training to help dancers reach their full potential."
+        },
+        {
+          "index": 239,
+          "timestamp": "8:29 pm on 13 June, 2023",
+          "content": "Speaker Jonsays : [Image: a photo of a clipboard with a notepad attached to it] Yeah, a mentor can do wonders. Guidance and support can help dancers really shine."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes discuss the role of mentoring in helping dancers improve, with one note stating the offer of mentoring and the other emphasizing its benefits.",
+      "attempts": [
+        {
+          "content": "Jon is offering one-on-one mentoring and training to help dancers reach their full potential. On 13 June 2023, Jon mentioned that a mentor can provide guidance and support to help dancers shine.",
+          "context": "Jon's mentoring and training for dancers.",
+          "compression_ratio": 0.7054545454545454,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 380,
+      "consolidated_content": "Jon is offering one-on-one mentoring and training to help dancers reach their full potential. On 13 June 2023, Jon mentioned that a mentor can provide guidance and support to help dancers shine.",
+      "compression_ratio": 0.7054545454545454
+    },
+    {
+      "indices": [
+        249,
+        290
+      ],
+      "min_similarity": 0.8148433021960871,
+      "mean_similarity": 0.8148433021960871,
+      "sources": [
+        {
+          "index": 249,
+          "timestamp": "8:29 pm on 13 June, 2023",
+          "content": "Speaker Jonsays : Thanks!"
+        },
+        {
+          "index": 290,
+          "timestamp": "10:04 am on 19 June, 2023",
+          "content": "Speaker Jonsays : Agreed!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express appreciation and agreement without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Jon expressed gratitude on 13 June 2023 and agreement on 19 June 2023.",
+          "context": "Jon's expressions of thanks and agreement.",
+          "compression_ratio": 5.0,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "5.00x the length of the notes"
+          ]
+        },
+        {
+          "content": "Jon expressed thanks on 13 June 2023 and agreed on 19 June 2023.",
+          "context": "Jon's expressions of gratitude and agreement.",
+          "compression_ratio": 4.571428571428571,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "4.57x the length of the notes"
+          ]
+        },
+        {
+          "content": "Jon expressed gratitude on 13 June 2023 and agreement on 19 June 2023.",
+          "context": "Jon's small talk involving thanks and agreement.",
+          "compression_ratio": 5.0,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "5.00x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 381,
+      "consolidated_content": "Jon expressed gratitude on 13 June 2023 and agreement on 19 June 2023.",
+      "compression_ratio": 5.0
+    },
+    {
+      "indices": [
+        251,
+        363
+      ],
+      "min_similarity": 0.8066867782984545,
+      "mean_similarity": 0.8066867782984545,
+      "sources": [
+        {
+          "index": 251,
+          "timestamp": "8:29 pm on 13 June, 2023",
+          "content": "Speaker Jonsays : Thanks, Gina! Your support's really been awesome."
+        },
+        {
+          "index": 363,
+          "timestamp": "6:46 pm on 23 July, 2023",
+          "content": "Speaker Jonsays : Thanks a ton, Gina! Your help and encouragement mean a lot. Your support will help me make it happen."
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express gratitude and appreciation towards Gina without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Jon expressed gratitude to Gina for her awesome support on 13 June 2023 and emphasized that her help and encouragement mean a lot to him on 23 July 2023.",
+          "context": "Jon's appreciation for Gina's support and encouragement.",
+          "compression_ratio": 1.02,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.02x the length of the notes"
+          ]
+        },
+        {
+          "content": "Jon expressed gratitude to Gina for her awesome support on 13 June 2023 and emphasized that her help and encouragement mean a lot to him on 23 July 2023.",
+          "context": "Jon's appreciation for Gina's support and encouragement.",
+          "compression_ratio": 1.02,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.02x the length of the notes"
+          ]
+        },
+        {
+          "content": "Jon expressed gratitude to Gina for her awesome support on 13 June 2023 and emphasized that her help and encouragement mean a lot to him on 23 July 2023.",
+          "context": "Jon's appreciation for Gina's support and encouragement.",
+          "compression_ratio": 1.02,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.02x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 382,
+      "consolidated_content": "Jon expressed gratitude to Gina for her awesome support on 13 June 2023 and emphasized that her help and encouragement mean a lot to him on 23 July 2023.",
+      "compression_ratio": 1.02
+    },
+    {
+      "indices": [
+        312,
+        333
+      ],
+      "min_similarity": 0.8111379871646577,
+      "mean_similarity": 0.8111379871646577,
+      "sources": [
+        {
+          "index": 312,
+          "timestamp": "1:25 pm on 9 July, 2023",
+          "content": "Speaker Ginasays : Hey Jon! Long time no chat! How's the dance studio? Last week was wild, I got noticed by fashion editors and it's been amazing but kinda scary. Everything's exciting but it's a lot of pressure to keep going up!"
+        },
+        {
+          "index": 333,
+          "timestamp": "5:44 pm on 21 July, 2023",
+          "content": "Speaker Ginasays : Hey Jon! Long time no talk! Last week, I built a new website for customers to make orders. It's been a wild ride but I'm loving it. What's up with you? How's the dance studio?"
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The notes describe different events, with one focusing on Gina's experience in the fashion industry and the other on her new website for customer orders.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        350,
+        352
+      ],
+      "min_similarity": 0.8234669298391132,
+      "mean_similarity": 0.8234669298391132,
+      "sources": [
+        {
+          "index": 350,
+          "timestamp": "5:44 pm on 21 July, 2023",
+          "content": "Speaker Jonsays : Definitely, Gina! Let's make our collaboration awesome and bring some dance magic to the world. Can't wait to see what we can do together!"
+        },
+        {
+          "index": 352,
+          "timestamp": "5:44 pm on 21 July, 2023",
+          "content": "Speaker Jonsays : Yeah, Gina! We'll rock the dance floor and teach others to chase their dreams. Let's go for it and make an impact!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express enthusiasm for collaborating on a dance project and emphasize making an impact together.",
+      "attempts": [
+        {
+          "content": "Jon expressed enthusiasm for collaborating with Gina to create impactful dance experiences and inspire others to chase their dreams. On 21 July 2023, Jon mentioned making their collaboration awesome and rocking the dance floor.",
+          "context": "Jon's collaboration with Gina on dance initiatives.",
+          "compression_ratio": 0.9007936507936508,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 383,
+      "consolidated_content": "Jon expressed enthusiasm for collaborating with Gina to create impactful dance experiences and inspire others to chase their dreams. On 21 July 2023, Jon mentioned making their collaboration awesome and rocking the dance floor.",
+      "compression_ratio": 0.9007936507936508
+    },
+    {
+      "indices": [
+        351,
+        353
+      ],
+      "min_similarity": 0.8002408538100343,
+      "mean_similarity": 0.8002408538100343,
+      "sources": [
+        {
+          "index": 351,
+          "timestamp": "5:44 pm on 21 July, 2023",
+          "content": "Speaker Ginasays : Definitely, Jon! I'm pumped to collaborate with you and make some sweet moves. Together, we can make a difference and show the world what we can do. Let's go for it!"
+        },
+        {
+          "index": 353,
+          "timestamp": "5:44 pm on 21 July, 2023",
+          "content": "Speaker Ginasays : Yeah Jon! Let's make a difference and show 'em what we got. We can do amazing things together!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express enthusiasm for collaboration and the intention to make a difference together, conveying the same message in slightly different wording.",
+      "attempts": [
+        {
+          "content": "Gina is excited to collaborate with Jon and believes they can make a difference together. On 21 July 2023, she expressed her enthusiasm for their partnership and the amazing things they can achieve.",
+          "context": "Gina's collaboration plans with Jon.",
+          "compression_ratio": 0.7644787644787645,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 384,
+      "consolidated_content": "Gina is excited to collaborate with Jon and believes they can make a difference together. On 21 July 2023, she expressed her enthusiasm for their partnership and the amazing things they can achieve.",
+      "compression_ratio": 0.7644787644787645
+    }
+  ],
+  "sample": 1,
+  "source_cache": "cached_memories_robust_openai_gpt-4o-mini",
+  "output_dir": "cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3",
+  "model": "gpt-4o-mini",
+  "tag": "v3",
+  "notes_before": 369,
+  "notes_after": 385,
+  "built_at": "2026-10-16T12:28:03"
+}

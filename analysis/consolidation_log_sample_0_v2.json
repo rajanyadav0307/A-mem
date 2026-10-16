@@ -1,0 +1,1012 @@
+{
+  "config": {
+    "similarity_threshold": 0.8,
+    "max_group_size": 5,
+    "require_same_speaker": true,
+    "embedding_model": "all-MiniLM-L6-v2"
+  },
+  "counts": {
+    "groups": 23,
+    "merged": 18,
+    "different": 5,
+    "rejected": 0,
+    "llm_calls": 60
+  },
+  "groups": [
+    {
+      "indices": [
+        1,
+        67
+      ],
+      "min_similarity": 0.8035056943181632,
+      "mean_similarity": 0.8035056943181632,
+      "sources": [
+        {
+          "index": 1,
+          "timestamp": "1:56 pm on 8 May, 2023",
+          "content": "Speaker Melaniesays : Hey Caroline! Good to see you! I'm swamped with the kids & work. What's up with you? Anything new?"
+        },
+        {
+          "index": 67,
+          "timestamp": "10:37 am on 27 June, 2023",
+          "content": "Speaker Melaniesays : Thanks, Caroline! Family time matters to me. What's up with you lately?"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes consist of greetings and casual inquiries about each other's well-being without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Melanie greeted Caroline on 8 May 2023, expressing that she was busy with kids and work, and later thanked Caroline on 27 June 2023, emphasizing the importance of family time.",
+          "context": "Small talk between Melanie and Caroline about their lives and family.",
+          "compression_ratio": 1.0355029585798816,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.04x the length of the notes"
+          ]
+        },
+        {
+          "content": "Melanie greeted Caroline on 8 May 2023, expressing that she was busy with kids and work, and later thanked Caroline on 27 June 2023, emphasizing the importance of family time.",
+          "context": "Melanie's updates on her busy life and appreciation for family time.",
+          "compression_ratio": 1.0355029585798816,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.04x the length of the notes"
+          ]
+        },
+        {
+          "content": "Melanie greeted Caroline on 8 May 2023, expressing that she was busy with kids and work, and later thanked Caroline on 27 June 2023, emphasizing the importance of family time.",
+          "context": "Melanie's updates on her busy life and appreciation for family time.",
+          "compression_ratio": 1.0355029585798816,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.04x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 419,
+      "consolidated_content": "Melanie greeted Caroline on 8 May 2023, expressing that she was busy with kids and work, and later thanked Caroline on 27 June 2023, emphasizing the importance of family time.",
+      "compression_ratio": 1.0355029585798816
+    },
+    {
+      "indices": [
+        10,
+        68
+      ],
+      "min_similarity": 0.8020382906788754,
+      "mean_similarity": 0.8020382906788754,
+      "sources": [
+        {
+          "index": 10,
+          "timestamp": "1:56 pm on 8 May, 2023",
+          "content": "Speaker Carolinesays : I'm keen on counseling or working in mental health - I'd love to support those with similar issues."
+        },
+        {
+          "index": 68,
+          "timestamp": "10:37 am on 27 June, 2023",
+          "content": "Speaker Carolinesays : Lately, I've been looking into counseling and mental health as a career. I want to help people who have gone through the same things as me."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express Caroline's interest in pursuing a career in counseling or mental health to help others with similar experiences.",
+      "attempts": [
+        {
+          "content": "Caroline is keen on pursuing a career in counseling or mental health to support those with similar issues. She expressed this interest on 8 May 2023 and reiterated it on 27 June 2023.",
+          "context": "Caroline's aspiration to work in counseling and mental health.",
+          "compression_ratio": 0.7689075630252101,
+          "missing": [],
+          "relative_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 420,
+      "consolidated_content": "Caroline is keen on pursuing a career in counseling or mental health to support those with similar issues. She expressed this interest on 8 May 2023 and reiterated it on 27 June 2023.",
+      "compression_ratio": 0.7689075630252101
+    },
+    {
+      "indices": [
+        25,
+        27
+      ],
+      "min_similarity": 0.8799032278115042,
+      "mean_similarity": 0.8799032278115042,
+      "sources": [
+        {
+          "index": 25,
+          "timestamp": "1:14 pm on 25 May, 2023",
+          "content": "Speaker Carolinesays : Researching adoption agencies — it's been a dream to have a family and give a loving home to kids who need it."
+        },
+        {
+          "index": 27,
+          "timestamp": "1:14 pm on 25 May, 2023",
+          "content": "Speaker Carolinesays : [Image: a photography of a sign for a new arrival and an information and domestic building] Thanks, Mel! My goal is to give kids a loving home. I'm truly grateful for all the support I've got from friends and mentors. Now the hard work starts to turn my dream into a reality. And here's one of the adoption agencies I'm looking into. It's a lot to take in, but I'm feeling hopeful and optimistic."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express Caroline's aspiration to adopt and provide a loving home for children, emphasizing her gratitude for support and her determination to make her dream a reality.",
+      "attempts": [
+        {
+          "content": "Caroline is researching adoption agencies with the goal of giving kids a loving home. On 25 May 2023, she expressed gratitude for the support from friends and mentors and mentioned that the hard work to turn her dream into a reality is just beginning, sharing an image of one of the agencies she is considering.",
+          "context": "Caroline's aspiration to adopt and provide a loving home for children.",
+          "compression_ratio": 0.6146245059288538,
+          "missing": [
+            "Mel"
+          ],
+          "relative_times": [],
+          "too_long": []
+        },
+        {
+          "content": "Caroline is researching adoption agencies with the goal of giving kids a loving home. On 25 May 2023, she expressed gratitude for the support from friends and mentors and shared an image of an adoption agency she is considering, feeling hopeful and optimistic about turning her dream into a reality. She thanked Mel for her support.",
+          "context": "Caroline's aspiration to adopt and provide a loving home for children.",
+          "compression_ratio": 0.6561264822134387,
+          "missing": [],
+          "relative_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 421,
+      "consolidated_content": "Caroline is researching adoption agencies with the goal of giving kids a loving home. On 25 May 2023, she expressed gratitude for the support from friends and mentors and shared an image of an adoption agency she is considering, feeling hopeful and optimistic about turning her dream into a reality. She thanked Mel for her support.",
+      "compression_ratio": 0.6561264822134387
+    },
+    {
+      "indices": [
+        36,
+        77
+      ],
+      "min_similarity": 0.812902611849185,
+      "mean_similarity": 0.812902611849185,
+      "sources": [
+        {
+          "index": 36,
+          "timestamp": "7:55 pm on 9 June, 2023",
+          "content": "Speaker Melaniesays : Hey Caroline! Great to hear from you. Sounds like your event was amazing! I'm so proud of you for spreading awareness and getting others involved in the LGBTQ community. You've come a long way since your transition - keep on inspiring people with your strength and courage!"
+        },
+        {
+          "index": 77,
+          "timestamp": "1:36 pm on 3 July, 2023",
+          "content": "Speaker Melaniesays : Wow, Caroline, sounds like the parade was an awesome experience! It's great to see the love and support for the LGBTQ+ community. Congrats! Has this experience influenced your goals at all?"
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The notes discuss different events and experiences related to Caroline's involvement in the LGBTQ community, with one focusing on an event and the other on a parade.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        56,
+        170,
+        214
+      ],
+      "min_similarity": 0.8057814252682227,
+      "mean_similarity": 0.8121206790959885,
+      "sources": [
+        {
+          "index": 56,
+          "timestamp": "7:55 pm on 9 June, 2023",
+          "content": "Speaker Melaniesays : Absolutely, Caroline! I cherish time with family. It's when I really feel alive and happy."
+        },
+        {
+          "index": 170,
+          "timestamp": "1:51 pm on 15 July, 2023",
+          "content": "Speaker Melaniesays : Yeah, Caroline, they're some of my fave memories. It brings us together and brings us happiness. Glad you're here to share in it."
+        },
+        {
+          "index": 214,
+          "timestamp": "8:56 pm on 20 July, 2023",
+          "content": "Speaker Melaniesays : Thanks, Caroline! I'm really lucky to have my family; they bring so much joy and love."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "All notes express Melanie's appreciation for family and the joy it brings her, conveying similar sentiments about family memories and happiness.",
+      "attempts": [
+        {
+          "content": "Melanie cherishes time with her family, feeling alive and happy, and considers them a source of joy and love. She mentioned this on 9 June 2023, 15 July 2023, and 20 July 2023.",
+          "context": "Melanie's appreciation for family and the happiness they bring her.",
+          "compression_ratio": 0.5770491803278689,
+          "missing": [
+            "Caroline"
+          ],
+          "relative_times": [],
+          "too_long": []
+        },
+        {
+          "content": "Melanie cherishes time with her family, feeling alive and happy, and considers them a source of joy and love. She mentioned this on 9 June 2023, 15 July 2023, and 20 July 2023, expressing gratitude for sharing these moments with Caroline.",
+          "context": "Melanie's appreciation for family time and shared memories with Caroline.",
+          "compression_ratio": 0.780327868852459,
+          "missing": [],
+          "relative_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 422,
+      "consolidated_content": "Melanie cherishes time with her family, feeling alive and happy, and considers them a source of joy and love. She mentioned this on 9 June 2023, 15 July 2023, and 20 July 2023, expressing gratitude for sharing these moments with Caroline.",
+      "compression_ratio": 0.780327868852459
+    },
+    {
+      "indices": [
+        59,
+        61
+      ],
+      "min_similarity": 0.8005067866466447,
+      "mean_similarity": 0.8005067866466447,
+      "sources": [
+        {
+          "index": 59,
+          "timestamp": "10:37 am on 27 June, 2023",
+          "content": "Speaker Melaniesays : Hey, Caroline! Nice to hear from you! Love the necklace, any special meaning to it?"
+        },
+        {
+          "index": 61,
+          "timestamp": "10:37 am on 27 June, 2023",
+          "content": "Speaker Melaniesays : That's gorgeous, Caroline! It's awesome what items can mean so much to us, right? Got any other objects that you treasure, like that necklace?"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express praise and appreciation for Caroline's necklace without conveying distinct facts.",
+      "attempts": [
+        {
+          "content": "On 27 June 2023, Melanie greeted Caroline, complimented her necklace, and inquired about its meaning and any other treasured objects she might have.",
+          "context": "Melanie's conversation with Caroline about a necklace and sentimental items.",
+          "compression_ratio": 0.6577777777777778,
+          "missing": [],
+          "relative_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 423,
+      "consolidated_content": "On 27 June 2023, Melanie greeted Caroline, complimented her necklace, and inquired about its meaning and any other treasured objects she might have.",
+      "compression_ratio": 0.6577777777777778
+    },
+    {
+      "indices": [
+        66,
+        213
+      ],
+      "min_similarity": 0.9087471689507757,
+      "mean_similarity": 0.9087471689507757,
+      "sources": [
+        {
+          "index": 66,
+          "timestamp": "10:37 am on 27 June, 2023",
+          "content": "Speaker Carolinesays : That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time."
+        },
+        {
+          "index": 213,
+          "timestamp": "8:56 pm on 20 July, 2023",
+          "content": "Speaker Carolinesays : Wow, Melanie, what a beautiful moment! Lucky you to have such an awesome family!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express praise and encouragement regarding Melanie's family moments without stating distinct facts.",
+      "attempts": [
+        {
+          "content": "Caroline praised Melanie for her special family moments on 27 June 2023 and again on 20 July 2023 for having a beautiful moment with her awesome family.",
+          "context": "Caroline's compliments to Melanie about her family experiences.",
+          "compression_ratio": 0.8491620111731844,
+          "missing": [],
+          "relative_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 424,
+      "consolidated_content": "Caroline praised Melanie for her special family moments on 27 June 2023 and again on 20 July 2023 for having a beautiful moment with her awesome family.",
+      "compression_ratio": 0.8491620111731844
+    },
+    {
+      "indices": [
+        74,
+        230,
+        244
+      ],
+      "min_similarity": 0.8213488357997997,
+      "mean_similarity": 0.8491567340910221,
+      "sources": [
+        {
+          "index": 74,
+          "timestamp": "10:37 am on 27 June, 2023",
+          "content": "Speaker Carolinesays : Thanks, Melanie! Your kind words mean a lot."
+        },
+        {
+          "index": 230,
+          "timestamp": "2:24 pm on 14 August, 2023",
+          "content": "Speaker Carolinesays : Thanks, Melanie. It means a lot to share this with you."
+        },
+        {
+          "index": 244,
+          "timestamp": "1:50 pm on 17 August, 2023",
+          "content": "Speaker Carolinesays : Thanks, Melanie! It means a lot having you in my corner. Appreciate our friendship!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "All notes express gratitude and appreciation towards Melanie without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Caroline expressed gratitude to Melanie on 27 June 2023, 14 August 2023, and 17 August 2023, emphasizing how much it means to have her support and friendship.",
+          "context": "Caroline's appreciation for Melanie's support and friendship.",
+          "compression_ratio": 0.8681318681318682,
+          "missing": [],
+          "relative_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 425,
+      "consolidated_content": "Caroline expressed gratitude to Melanie on 27 June 2023, 14 August 2023, and 17 August 2023, emphasizing how much it means to have her support and friendship.",
+      "compression_ratio": 0.8681318681318682
+    },
+    {
+      "indices": [
+        75,
+        355
+      ],
+      "min_similarity": 0.8166984456580729,
+      "mean_similarity": 0.8166984456580729,
+      "sources": [
+        {
+          "index": 75,
+          "timestamp": "10:37 am on 27 June, 2023",
+          "content": "Speaker Melaniesays : Congrats Caroline! Good on you for going after what you really care about."
+        },
+        {
+          "index": 355,
+          "timestamp": "10:31 am on 13 October, 2023",
+          "content": "Speaker Melaniesays : Hey Caroline! Great to hear from you! Wow, what an amazing journey. Congrats!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express praise and encouragement towards Caroline without stating distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Melanie congratulated Caroline on pursuing her passions on 27 June 2023 and praised her amazing journey on 13 October 2023.",
+          "context": "Melanie's encouragement and praise for Caroline's endeavors.",
+          "compression_ratio": 0.8145695364238411,
+          "missing": [],
+          "relative_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 426,
+      "consolidated_content": "Melanie congratulated Caroline on pursuing her passions on 27 June 2023 and praised her amazing journey on 13 October 2023.",
+      "compression_ratio": 0.8145695364238411
+    },
+    {
+      "indices": [
+        92,
+        135
+      ],
+      "min_similarity": 0.8513297991472303,
+      "mean_similarity": 0.8513297991472303,
+      "sources": [
+        {
+          "index": 92,
+          "timestamp": "8:18 pm on 6 July, 2023",
+          "content": "Speaker Carolinesays : Hey Mel! Long time no talk. Lots has been going on since then!"
+        },
+        {
+          "index": 135,
+          "timestamp": "1:51 pm on 15 July, 2023",
+          "content": "Speaker Carolinesays : Hey Mel, what's up? Been a busy week since we talked."
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes are greetings and express a sense of reconnecting without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Caroline reached out to Mel on 6 July 2023 to say it's been a long time and mentioned a lot has been going on, and then followed up on 15 July 2023 to check in and say it has been a busy week since their last conversation.",
+          "context": "Caroline's updates to Mel about their lives.",
+          "compression_ratio": 1.9304347826086956,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.93x the length of the notes"
+          ]
+        },
+        {
+          "content": "Caroline reached out to Mel on 6 July 2023 to catch up, mentioning a lot has been going on, and followed up on 15 July 2023 asking how Mel was doing after a busy week.",
+          "context": "Caroline's greetings and updates to Mel.",
+          "compression_ratio": 1.4521739130434783,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.45x the length of the notes"
+          ]
+        },
+        {
+          "content": "Caroline reached out to Mel on 6 July 2023 to catch up after a long time and again on 15 July 2023 to check in after a busy week.",
+          "context": "Caroline's greetings and updates to Mel.",
+          "compression_ratio": 1.1217391304347826,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.12x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 427,
+      "consolidated_content": "Caroline reached out to Mel on 6 July 2023 to say it's been a long time and mentioned a lot has been going on, and then followed up on 15 July 2023 to check in and say it has been a busy week since their last conversation.",
+      "compression_ratio": 1.9304347826086956
+    },
+    {
+      "indices": [
+        93,
+        192
+      ],
+      "min_similarity": 0.8219641698502967,
+      "mean_similarity": 0.8219641698502967,
+      "sources": [
+        {
+          "index": 93,
+          "timestamp": "8:18 pm on 6 July, 2023",
+          "content": "Speaker Melaniesays : Hey Caroline! Missed you. Anything new? Spill the beans!"
+        },
+        {
+          "index": 192,
+          "timestamp": "8:56 pm on 20 July, 2023",
+          "content": "Speaker Melaniesays : Hey Caroline! Good to talk to you again. What's up? Anything new since last time?"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes consist of greetings and inquiries about each other's lives without conveying distinct facts.",
+      "attempts": [
+        {
+          "content": "Melanie reached out to Caroline on 6 July 2023 to ask if there was anything new, and again on 20 July 2023 to check in and see what was up since their last conversation.",
+          "context": "Melanie's inquiries about updates in Caroline's life.",
+          "compression_ratio": 1.2335766423357664,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.23x the length of the notes"
+          ]
+        },
+        {
+          "content": "Melanie reached out to Caroline on 6 July 2023 and 20 July 2023, expressing that she missed her and asking if there was anything new to share.",
+          "context": "Melanie's inquiries about updates in her conversation with Caroline.",
+          "compression_ratio": 1.0364963503649636,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.04x the length of the notes"
+          ]
+        },
+        {
+          "content": "Melanie reached out to Caroline on 6 July 2023 and 20 July 2023, expressing that she missed her and asking if there was anything new to share.",
+          "context": "Melanie's greetings and inquiries about updates in her conversation with Caroline.",
+          "compression_ratio": 1.0364963503649636,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.04x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 428,
+      "consolidated_content": "Melanie reached out to Caroline on 6 July 2023 to ask if there was anything new, and again on 20 July 2023 to check in and see what was up since their last conversation.",
+      "compression_ratio": 1.2335766423357664
+    },
+    {
+      "indices": [
+        105,
+        172,
+        392
+      ],
+      "min_similarity": 0.800607930193221,
+      "mean_similarity": 0.8227087316718847,
+      "sources": [
+        {
+          "index": 105,
+          "timestamp": "8:18 pm on 6 July, 2023",
+          "content": "Speaker Melaniesays : Wow, Caroline! It's great you have people to support you, that's really awesome!"
+        },
+        {
+          "index": 172,
+          "timestamp": "1:51 pm on 15 July, 2023",
+          "content": "Speaker Melaniesays : Thanks, Caroline! Appreciate your friendship. It's great to have a supporter!"
+        },
+        {
+          "index": 392,
+          "timestamp": "6:55 pm on 20 October, 2023",
+          "content": "Speaker Melaniesays : Thanks, Caroline. They're a real support. Appreciate them a lot."
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "The notes express appreciation and encouragement towards Caroline without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Melanie expressed appreciation for Caroline's support on 6 July 2023, thanked her for friendship on 15 July 2023, and acknowledged the importance of their support on 20 October 2023.",
+          "context": "Melanie's gratitude towards Caroline for her support and friendship.",
+          "compression_ratio": 0.8235294117647058,
+          "missing": [],
+          "relative_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 429,
+      "consolidated_content": "Melanie expressed appreciation for Caroline's support on 6 July 2023, thanked her for friendship on 15 July 2023, and acknowledged the importance of their support on 20 October 2023.",
+      "compression_ratio": 0.8235294117647058
+    },
+    {
+      "indices": [
+        107,
+        166
+      ],
+      "min_similarity": 0.8260816366716095,
+      "mean_similarity": 0.8260816366716095,
+      "sources": [
+        {
+          "index": 107,
+          "timestamp": "8:18 pm on 6 July, 2023",
+          "content": "Speaker Melaniesays : [Image: a photo of a family sitting around a campfire on the beach] Glad you have support, Caroline! Unconditional love is so important. Here's a pic of my family camping at the beach. We love it, it brings us closer!"
+        },
+        {
+          "index": 166,
+          "timestamp": "1:51 pm on 15 July, 2023",
+          "content": "Speaker Melaniesays : [Image: a photo of a man and two children sitting around a campfire] Yeah, Caroline, my family's been great - their love and support really helped me through tough times. It's awesome! We even went on another camping trip in the forest."
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The first note discusses a family camping trip at the beach, while the second note mentions a camping trip in the forest with different details.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        108,
+        193
+      ],
+      "min_similarity": 0.8265403841871156,
+      "mean_similarity": 0.8265403841871156,
+      "sources": [
+        {
+          "index": 108,
+          "timestamp": "4:33 pm on 12 July, 2023",
+          "content": "Speaker Carolinesays : Hey Mel, great to chat with you again! So much has happened since we last spoke - I went to an LGBTQ conference two days ago and it was really special. I got the chance to meet and connect with people who've gone through similar journeys. It was such a welcoming environment and I felt totally accepted. I'm really thankful for this amazing community - it's shown me how important it is to fight for trans rights and spread awareness."
+        },
+        {
+          "index": 193,
+          "timestamp": "8:56 pm on 20 July, 2023",
+          "content": "Speaker Carolinesays : Hey Mel! A lot's happened since we last chatted - I just joined a new LGBTQ activist group last Tues. I'm meeting so many cool people who are as passionate as I am about rights and community support. I'm giving my voice and making a real difference, plus it's fulfilling in so many ways. It's just great, you know?"
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The notes describe different events and experiences related to Caroline's involvement in the LGBTQ community, with one focusing on a conference and the other on joining an activist group.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        131,
+        133
+      ],
+      "min_similarity": 0.8645785959367674,
+      "mean_similarity": 0.8645785959367674,
+      "sources": [
+        {
+          "index": 131,
+          "timestamp": "4:33 pm on 12 July, 2023",
+          "content": "Speaker Melaniesays : Thanks, Caroline! This has been great for my mental health. I'm gonna keep it up."
+        },
+        {
+          "index": 133,
+          "timestamp": "4:33 pm on 12 July, 2023",
+          "content": "Speaker Melaniesays : Caroline, thanks! Mental health is important to me, and it's made such an improvement!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express Melanie's gratitude towards Caroline and emphasize the positive impact on her mental health, conveying the same underlying message.",
+      "attempts": [
+        {
+          "content": "Melanie expressed gratitude to Caroline for the positive impact on her mental health and stated her intention to continue this practice. On 12 July 2023, Melanie mentioned that it has made a significant improvement for her mental health.",
+          "context": "Melanie's appreciation for Caroline's support regarding her mental health.",
+          "compression_ratio": 1.4191616766467066,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.42x the length of the notes"
+          ]
+        },
+        {
+          "content": "Melanie expressed gratitude to Caroline for the positive impact on her mental health and plans to continue the practice. This was mentioned on 12 July 2023.",
+          "context": "Melanie's improvement in mental health through support from Caroline.",
+          "compression_ratio": 0.9341317365269461,
+          "missing": [],
+          "relative_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 430,
+      "consolidated_content": "Melanie expressed gratitude to Caroline for the positive impact on her mental health and plans to continue the practice. This was mentioned on 12 July 2023.",
+      "compression_ratio": 0.9341317365269461
+    },
+    {
+      "indices": [
+        185,
+        303
+      ],
+      "min_similarity": 0.9543551831656443,
+      "mean_similarity": 0.9543551831656443,
+      "sources": [
+        {
+          "index": 185,
+          "timestamp": "2:31 pm on 17 July, 2023",
+          "content": "Speaker Carolinesays : Yay! Next month I'm having an LGBTQ art show with my paintings - can't wait!"
+        },
+        {
+          "index": 303,
+          "timestamp": "1:33 pm on 25 August, 2023",
+          "content": "Speaker Carolinesays : I'm putting together an LGBTQ art show next month and I'm gonna show my paintings. Super stoked!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes convey the same information about Caroline's upcoming LGBTQ art show featuring her paintings, just stated at different times.",
+      "attempts": [
+        {
+          "content": "Caroline is putting together an LGBTQ art show to showcase her paintings. On 17 July 2023, she mentioned it would be in August 2023; on 25 August 2023, she reiterated her excitement for the upcoming show.",
+          "context": "Caroline's LGBTQ art show featuring her paintings.",
+          "compression_ratio": 1.186046511627907,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.19x the length of the notes"
+          ]
+        },
+        {
+          "content": "Caroline is putting together an LGBTQ art show to showcase her paintings. She mentioned this on 17 July 2023, stating it would be in August 2023, and again on 25 August 2023, expressing her excitement.",
+          "context": "Caroline's LGBTQ art show featuring her paintings.",
+          "compression_ratio": 1.1686046511627908,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.17x the length of the notes"
+          ]
+        },
+        {
+          "content": "Caroline is putting together an LGBTQ art show to showcase her paintings. She mentioned this on 17 July 2023 and again on 25 August 2023.",
+          "context": "Caroline's LGBTQ art show featuring her paintings.",
+          "compression_ratio": 0.7965116279069767,
+          "missing": [],
+          "relative_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 431,
+      "consolidated_content": "Caroline is putting together an LGBTQ art show to showcase her paintings. She mentioned this on 17 July 2023 and again on 25 August 2023.",
+      "compression_ratio": 0.7965116279069767
+    },
+    {
+      "indices": [
+        188,
+        345
+      ],
+      "min_similarity": 0.845230727478176,
+      "mean_similarity": 0.845230727478176,
+      "sources": [
+        {
+          "index": 188,
+          "timestamp": "2:31 pm on 17 July, 2023",
+          "content": "Speaker Melaniesays : Wow, Caroline, that painting is awesome! Those colors are so vivid and the whole thing looks really unified. What inspired you?"
+        },
+        {
+          "index": 345,
+          "timestamp": "12:09 am on 13 September, 2023",
+          "content": "Speaker Melaniesays : Wow, Caroline! This painting is awesome. Love the red and blue. What gave you the idea?"
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The notes refer to different aspects of the painting, with one focusing on the overall unity and inspiration, while the other highlights specific colors and the idea behind it.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        191,
+        306
+      ],
+      "min_similarity": 0.8171057942261839,
+      "mean_similarity": 0.8171057942261839,
+      "sources": [
+        {
+          "index": 191,
+          "timestamp": "8:56 pm on 20 July, 2023",
+          "content": "Speaker Carolinesays : Hey Melanie! Just wanted to say hi!"
+        },
+        {
+          "index": 306,
+          "timestamp": "3:19 pm on 28 August, 2023",
+          "content": "Speaker Carolinesays : Hey Melanie, great to hear from you. What's been up since we talked?"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes consist of greetings and casual conversation without distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Caroline greeted Melanie on 20 July 2023 and followed up on 28 August 2023 asking what had been happening since their last conversation.",
+          "context": "Small talk between Caroline and Melanie.",
+          "compression_ratio": 1.3203883495145632,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.32x the length of the notes"
+          ]
+        },
+        {
+          "content": "Caroline greeted Melanie on 20 July 2023 and followed up on 28 August 2023 asking what had been happening since their last conversation.",
+          "context": "Caroline's greetings and inquiry about Melanie's life updates.",
+          "compression_ratio": 1.3203883495145632,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.32x the length of the notes"
+          ]
+        },
+        {
+          "content": "Caroline greeted Melanie on 20 July 2023 and followed up on 28 August 2023 asking what had been happening since their last conversation.",
+          "context": "Caroline's greetings and inquiry about Melanie's life updates.",
+          "compression_ratio": 1.3203883495145632,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.32x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 432,
+      "consolidated_content": "Caroline greeted Melanie on 20 July 2023 and followed up on 28 August 2023 asking what had been happening since their last conversation.",
+      "compression_ratio": 1.3203883495145632
+    },
+    {
+      "indices": [
+        222,
+        338
+      ],
+      "min_similarity": 0.8074483866015688,
+      "mean_similarity": 0.8074483866015688,
+      "sources": [
+        {
+          "index": 222,
+          "timestamp": "2:24 pm on 14 August, 2023",
+          "content": "Speaker Carolinesays : [Image: a photo of a painting with a painting brush and paint on it] That pic is cool! Representing inclusivity and diversity in my art is important to me. I also use it to speak up for the LGBTQ+ community and push for acceptance. Here's a recent painting!"
+        },
+        {
+          "index": 338,
+          "timestamp": "12:09 am on 13 September, 2023",
+          "content": "Speaker Carolinesays : [Image: a photo of a painting of a heart on a table] I'm inspired seeing my work make a difference for the LGBTQ+ community. Knowing I'm helping create a more loving world is amazing. I'm really thankful for my friends, family and mentors' support. It inspires me to keep making art, too."
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The first note discusses the importance of inclusivity and diversity in Caroline's art, while the second note focuses on the impact of her work on the LGBTQ+ community and her gratitude for support.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        241,
+        243
+      ],
+      "min_similarity": 0.8176458256421401,
+      "mean_similarity": 0.8176458256421401,
+      "sources": [
+        {
+          "index": 241,
+          "timestamp": "1:50 pm on 17 August, 2023",
+          "content": "Speaker Melaniesays : Agreed, Caroline. Life's tough but it's worth it when we have things that make us happy."
+        },
+        {
+          "index": 243,
+          "timestamp": "1:50 pm on 17 August, 2023",
+          "content": "Speaker Melaniesays : Yeah, same here Caroline. You make life's struggles more bearable."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express a similar sentiment about the challenges of life and the importance of happiness, making them effectively the same message.",
+      "attempts": [
+        {
+          "content": "Melanie expressed that life is tough but worth it when there are things that make us happy, and that Caroline makes life's struggles more bearable. On 17 August 2023, Melanie mentioned both sentiments.",
+          "context": "Melanie's perspective on life's challenges and the importance of happiness.",
+          "compression_ratio": 1.3051948051948052,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.31x the length of the notes"
+          ]
+        },
+        {
+          "content": "Melanie expressed that life is tough but worth it when there are things that bring happiness, making struggles more bearable. This was mentioned on 17 August 2023.",
+          "context": "Melanie's perspective on life's challenges and happiness.",
+          "compression_ratio": 1.0584415584415585,
+          "missing": [
+            "Caroline"
+          ],
+          "relative_times": [],
+          "too_long": [
+            "1.06x the length of the notes"
+          ]
+        },
+        {
+          "content": "Melanie agreed with Caroline that life is tough but worth it when there are things that make us happy, making struggles more bearable. On 17 August 2023, Melanie expressed this sentiment to Caroline.",
+          "context": "Melanie and Caroline's discussion about finding happiness amidst life's struggles.",
+          "compression_ratio": 1.2922077922077921,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.29x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 433,
+      "consolidated_content": "Melanie expressed that life is tough but worth it when there are things that make us happy, and that Caroline makes life's struggles more bearable. On 17 August 2023, Melanie mentioned both sentiments.",
+      "compression_ratio": 1.3051948051948052
+    },
+    {
+      "indices": [
+        249,
+        251
+      ],
+      "min_similarity": 0.8302623588726201,
+      "mean_similarity": 0.8302623588726201,
+      "sources": [
+        {
+          "index": 249,
+          "timestamp": "1:50 pm on 17 August, 2023",
+          "content": "Speaker Melaniesays : Sounds great, Caroline! Let's plan something special!"
+        },
+        {
+          "index": 251,
+          "timestamp": "1:50 pm on 17 August, 2023",
+          "content": "Speaker Melaniesays : Yeah, Caroline! I'll start thinking about what we can do."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express Melanie's enthusiasm for planning something special with Caroline, indicating the same intention.",
+      "attempts": [
+        {
+          "content": "Melanie and Caroline planned to do something special together. Melanie mentioned this on 17 August 2023 and expressed that she would start thinking about what they can do on the same date.",
+          "context": "Melanie and Caroline's plans for a special event.",
+          "compression_ratio": 1.709090909090909,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.71x the length of the notes"
+          ]
+        },
+        {
+          "content": "Melanie and Caroline are planning something special together. Melanie mentioned this on 17 August 2023 and stated she would start thinking about what they can do on the same date.",
+          "context": "Melanie and Caroline's plans for a special event.",
+          "compression_ratio": 1.6272727272727272,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.63x the length of the notes"
+          ]
+        },
+        {
+          "content": "Melanie and Caroline are planning something special together. Melanie mentioned this on 17 August 2023 and stated she would start thinking about ideas for it on the same date.",
+          "context": "Melanie and Caroline's plans for a special event.",
+          "compression_ratio": 1.5909090909090908,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.59x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 434,
+      "consolidated_content": "Melanie and Caroline planned to do something special together. Melanie mentioned this on 17 August 2023 and expressed that she would start thinking about what they can do on the same date.",
+      "compression_ratio": 1.709090909090909
+    },
+    {
+      "indices": [
+        250,
+        252
+      ],
+      "min_similarity": 0.8501640382814121,
+      "mean_similarity": 0.8501640382814121,
+      "sources": [
+        {
+          "index": 250,
+          "timestamp": "1:50 pm on 17 August, 2023",
+          "content": "Speaker Carolinesays : Sounds great, Mel! We'll make some awesome memories!"
+        },
+        {
+          "index": 252,
+          "timestamp": "1:50 pm on 17 August, 2023",
+          "content": "Speaker Carolinesays : Yeah, Mel! Life's all about creating memories. Can't wait for the trip!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express excitement about creating memories related to an upcoming trip with Mel.",
+      "attempts": [
+        {
+          "content": "Caroline expressed excitement about creating memories on the upcoming trip. On 17 August 2023, Caroline said they would make awesome memories and that life is all about creating memories.",
+          "context": "Caroline's anticipation for the trip and the memories to be made.",
+          "compression_ratio": 1.5203252032520325,
+          "missing": [
+            "Mel"
+          ],
+          "relative_times": [],
+          "too_long": [
+            "1.52x the length of the notes"
+          ]
+        },
+        {
+          "content": "Caroline expressed excitement about creating awesome memories on the trip with Mel. This was mentioned on 17 August 2023.",
+          "context": "Caroline's anticipation for the trip with Mel.",
+          "compression_ratio": 0.983739837398374,
+          "missing": [],
+          "relative_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 435,
+      "consolidated_content": "Caroline expressed excitement about creating awesome memories on the trip with Mel. This was mentioned on 17 August 2023.",
+      "compression_ratio": 0.983739837398374
+    },
+    {
+      "indices": [
+        290,
+        296
+      ],
+      "min_similarity": 0.8422767871201331,
+      "mean_similarity": 0.8422767871201331,
+      "sources": [
+        {
+          "index": 290,
+          "timestamp": "1:33 pm on 25 August, 2023",
+          "content": "Speaker Melaniesays : Wow, Caroline!  All those colors are incredible and the story it tells is so inspiring."
+        },
+        {
+          "index": 296,
+          "timestamp": "1:33 pm on 25 August, 2023",
+          "content": "Speaker Melaniesays : Wow, Caroline, that's so nice! The colors are so bright and the flowers are so pretty. Art is such a source of joy."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express admiration for Caroline's artwork, highlighting the colors and the joy it brings.",
+      "attempts": [
+        {
+          "content": "Melanie expressed admiration for Caroline's artwork, noting the incredible colors, inspiring story, and the joy that art brings. On 25 August 2023, Melanie mentioned the colors and flowers being pretty and bright, and that art is a source of joy.",
+          "context": "Melanie's appreciation for Caroline's artwork.",
+          "compression_ratio": 1.2178217821782178,
+          "missing": [],
+          "relative_times": [],
+          "too_long": [
+            "1.22x the length of the notes"
+          ]
+        },
+        {
+          "content": "Melanie expressed admiration for Caroline's artwork, noting the incredible colors, inspiring story, and the joy that art brings. This was mentioned on 25 August 2023.",
+          "context": "Melanie's appreciation for Caroline's artwork.",
+          "compression_ratio": 0.8217821782178217,
+          "missing": [],
+          "relative_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 436,
+      "consolidated_content": "Melanie expressed admiration for Caroline's artwork, noting the incredible colors, inspiring story, and the joy that art brings. This was mentioned on 25 August 2023.",
+      "compression_ratio": 0.8217821782178217
+    }
+  ],
+  "sample": 0,
+  "source_cache": "cached_memories_robust_openai_gpt-4o-mini",
+  "output_dir": "cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v2",
+  "model": "gpt-4o-mini",
+  "tag": "v2",
+  "notes_before": 419,
+  "notes_after": 437,
+  "built_at": "2026-10-16T12:21:56"
+}
