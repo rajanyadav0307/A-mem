@@ -1,0 +1,26 @@
+# Secrets
+.env
+
+# Python environments and caches
+.venv/
+__pycache__/
+*.pyc
+.cache/
+.mplconfig/
+
+# OS files
+.DS_Store
+
+# Claude Code local files
+.claude/settings.local.json
+.claude/worktrees/
+
+# Evaluation logs (logs already committed stay tracked)
+logs/*.log
+
+# Memory caches built during evaluation
+cached_memories_*/
+
+# Large per-experiment logs and caches (results, notes and question plans stay visible)
+experiments/*/logs/
+experiments/*/cache/
