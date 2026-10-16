@@ -1,0 +1,524 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\renewcommand{\arraystretch}{1.08}
+\setlength{\tabcolsep}{4pt}
+\setlist[enumerate]{leftmargin=*, itemsep=2pt, topsep=2pt}
+\setlist[itemize]{leftmargin=*, itemsep=2pt, topsep=2pt}
+\urlstyle{same}
+
+\begin{document}
+
+\title{T-MEM: Temporal-Aware Memory Management for Agentic Memory Systems}
+
+\author{
+\IEEEauthorblockN{Rajan Yadav}
+\IEEEauthorblockA{Department of Computer Science\\
+University of Texas Permian Basin\\
+Odessa, TX, USA\\
+yadav\_r30680@utpb.edu}
+}
+
+\maketitle
+
+\begin{abstract}
+Large language model agents require memory to remain consistent across long conversations, yet most current memory systems do not explicitly model freshness. A-MEM organizes memory as structured, linked notes and retrieves them by embedding similarity, but it does not give newer memories a principled advantage over older ones when both are semantically similar. This work proposes T-MEM, a time-aware extension to that framework. The broader T-MEM framework includes temporal retrieval, memory consolidation, and conflict handling, but only the temporal retrieval component is implemented so far. A self-contained LoCoMo-style simulation was developed first; under the standalone setting that matches the A-MEM paper's embedding configuration, decay-based reranking improved the rank of the correct memory on 6 of 7 test queries. T-MEM was then integrated into the same robust LoCoMo question-answering pipeline used for A-MEM and evaluated on a two-sample subset containing 304 question-answer pairs with GPT-4o-mini. A naive global recency blend reduced performance, but a revised semantic-first, category-selective reranking strategy slightly improved overall F1 from 0.361 to 0.369 and category-2 F1 from 0.446 to 0.461. These results indicate that temporal information can improve retrieval quality, but only when it is applied conservatively. Consolidation, conflict handling, and larger-scale evaluation remain future work.
+\end{abstract}
+
+\begin{IEEEkeywords}
+LLM agents, agentic memory, temporal reasoning, temporal retrieval, long-term memory
+\end{IEEEkeywords}
+
+%--------------------------------------------------------------
+\section{Introduction}
+%--------------------------------------------------------------
+
+\subsection{Motivation}
+
+Large language models can generate, reason, and plan effectively, but they do not retain a durable personal history across interactions. For long-running assistants, tutoring systems, or support agents, this limitation directly affects consistency and personalization over time.
+
+Long-term agent behavior therefore depends on external memory systems. Instead of treating every new conversation as a fresh start, these systems store past information and retrieve it later when needed. Some approaches are simple chunk stores, while others try to organize memory more deliberately. A-MEM~\cite{xu2025amem}, the baseline system used in this work, falls into the second category. It stores each interaction as a structured note with content, keywords, tags, context, and links to related notes.
+
+This design provides more structure than plain retrieval. However, analysis of both the paper and the codebase reveals a limitation once conversations extend across time: A-MEM has no explicit notion of freshness. If a user says ``I work at Google'' in January and later says ``I just moved to Meta'' in April, both memories remain in the bank with no direct bias toward the newer fact. If the two notes are semantically similar enough, cosine similarity alone may not separate them well.
+
+There are two related issues as well. First, the memory bank tends to grow without much cleanup. Repeated mentions of the same stable fact can produce overlapping notes instead of one consolidated memory. Second, when a newer fact contradicts an older one, the old fact is not explicitly marked as outdated. These are exactly the kinds of cases where a long-term conversational agent needs better memory management.
+
+This limitation is also reflected in A-MEM's reported LoCoMo results. In the GPT-4o-mini setting, temporal reasoning is the weakest category, with 45.85 F1 and 36.67 BLEU-1~\cite{xu2025amem,maharana2024locomo}. This observation does not prove that time-awareness alone resolves the problem, but it does motivate targeted investigation.
+
+\subsection{Problem Setting and Scope}
+
+The goal of this work is to extend A-MEM with mechanisms that better model temporal change in long-term conversational memory. The current scope is organized around three practical targets:
+
+\begin{enumerate}
+    \item Add a temporal retrieval signal so that newer memories can be preferred when they compete with older semantically similar memories.
+    \item Keep the broader T-MEM framework modular by reserving separate extensions for consolidation and conflict handling.
+    \item Evaluate the temporal module first under the same QA pipeline already used for A-MEM before attempting larger benchmark claims.
+\end{enumerate}
+
+The key distinction is that the full T-MEM framework is broader than the current implementation. At this stage, the implemented and benchmarked contribution is the temporal retrieval module.
+
+The implementation and evaluation code used in this study are available at \url{https://github.com/rajanyadav0307/A-mem}.
+
+%--------------------------------------------------------------
+\section{Related Work}
+%--------------------------------------------------------------
+
+This section reviews prior work on agent memory systems, retrieval design, long-conversation benchmarks, and the cognitive science behind forgetting. The central observation is that many systems store and retrieve memories, but relatively few treat time itself as a first-class signal.
+
+\subsection{Agent Memory Systems}
+
+Prior work on agent memory systems spans cache-like architectures, memory streams, forgetting-based designs, and structured note systems. MemGPT~\cite{packer2023memgpt} prioritizes recent information through a hierarchical context-and-storage design, while Generative Agents~\cite{park2023generative} introduced a memory stream that supports reflection over prior experiences. MemoryBank~\cite{zhong2024memorybank} is particularly relevant because it incorporates a forgetting-curve perspective, but its decay behavior is comparatively uniform and is not paired with explicit consolidation or contradiction handling. Among these systems, A-MEM~\cite{xu2025amem} is the closest foundation for the present work because it organizes memory as structured notes with keywords, tags, context, and links. This organization makes A-MEM a strong base for a temporal extension, even though temporal freshness, note consolidation, and conflict marking remain largely unaddressed.
+
+\subsection{Retrieval and Updating}
+
+Several works are also relevant from the perspective of retrieval and memory updating. Think-in-Memory~\cite{liu2023tim} supports insertion, forgetting, and merging operations, making it relevant to planned consolidation even though it is not centered on temporal retrieval. ReadAgent~\cite{lee2024readagent} emphasizes gist-based compression for long documents, while HippoRAG~\cite{gutierrez2024hipporag} uses graph-based organization to support multi-hop retrieval. Mem0~\cite{chhikara2025mem0} represents a production-oriented memory system with strong practical relevance, but transparent time-based reranking is not its main focus. At a broader modeling level, MEMORYLLM~\cite{wang2024memoryllm} and MemLLM~\cite{modarressi2024memllm} are relevant because they study explicit or self-updatable memory modules for language models, even though their emphasis is closer to model-side memory integration than to retrieval-time reranking over conversational notes.
+
+\subsection{Benchmarks and Theory}
+
+The benchmark and theory landscape further clarifies the research gap. LoCoMo~\cite{maharana2024locomo} is the primary benchmark for the present study because it contains 7,512 question-answer pairs drawn from long, multi-session conversations and explicitly includes a temporal-reasoning category. DialSim~\cite{kim2024dialsim} provides a complementary benchmark based on long-form dialogue from TV-show scripts, and LongMemEval~\cite{wu2025longmemeval} further emphasizes temporal reasoning, knowledge updates, and long-term interactive memory. Zep~\cite{rasmussen2025zep} is important because it demonstrates the value of temporal knowledge graphs for memory-intensive agents, although its graph infrastructure is broader than the lightweight retrieval extension studied here. At a broader level, the survey by Zhang et al.~\cite{zhang2024survey} and the long-term memory framing of Jiang et al.~\cite{jiang2024ltm} both reinforce the view that temporal reasoning remains an open challenge. Theoretical support for the temporal module comes from the forgetting-curve perspective of Ebbinghaus~\cite{ebbinghaus1885} and the spacing-effect literature synthesized by Cepeda et al.~\cite{cepeda2006}.
+
+\subsection{Research Gap}
+
+Across these systems, there is no clean, modular extension to A-MEM that enables three questions to be studied independently: whether time should influence retrieval, whether repeated notes should be consolidated, and whether outdated facts should be marked without deleting them. That is the role T-MEM is intended to play.
+
+At the same time, it is important to separate the broader T-MEM framework from the current code path. The complete proposal includes all three capabilities, but the current implementation only covers the first one.
+
+\begin{table}[htbp]
+\caption{Capability Comparison Across Surveyed Systems}
+\label{tab:gap}
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{System} & \textbf{Temporal} & \textbf{Consoli-} & \textbf{Conflict} \\
+                & \textbf{Decay}    & \textbf{dation}   & \textbf{Detection} \\
+\midrule
+MemGPT             & \texttimes & \texttimes & \texttimes \\
+Generative Agents  & \texttimes & \texttimes & \texttimes \\
+MemoryBank         & \checkmark & \texttimes & \texttimes \\
+A-MEM              & \texttimes & \texttimes & \texttimes \\
+Think-in-Memory    & \texttimes & Partial    & \texttimes \\
+ReadAgent          & \texttimes & Partial    & \texttimes \\
+HippoRAG           & \texttimes & \texttimes & \texttimes \\
+Mem0               & \texttimes & \texttimes & \texttimes \\
+Zep                & \checkmark & \texttimes & Partial \\
+\midrule
+\textbf{T-MEM (full framework)} & \checkmark & \checkmark & \checkmark \\
+\textbf{T-MEM (current code)}  & \checkmark & Planned    & Planned \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%--------------------------------------------------------------
+\section{Method}
+%--------------------------------------------------------------
+
+\subsection{Framework Scope}
+
+T-MEM does not replace A-MEM. The method leaves A-MEM's note construction and memory evolution mechanisms in place and introduces time-aware behavior at selected points. Figure~\ref{fig:workflow} illustrates the intended end-state framework.
+
+\begin{figure}[htbp]
+\centering
+\fbox{\parbox{0.95\columnwidth}{
+\centering
+\textbf{T-MEM Target Workflow}\\[6pt]
+\small
+\texttt{New Interaction} $\rightarrow$ \texttt{Note Construction (A-MEM)}\\
+$\downarrow$\\
+\texttt{[Planned] Conflict Handling During Update/Linking}\\
+$\downarrow$\\
+\texttt{Memory Evolution (A-MEM)}\\
+$\downarrow$\\
+\texttt{[Planned] Periodic Consolidation}\\
+$\downarrow$\\
+\texttt{[Current] Query $\rightarrow$ Temporal-Aware Retrieval}
+}}
+\caption{Target T-MEM workflow. In the current benchmarked code path, only the final query-time temporal retrieval block is implemented.}
+\label{fig:workflow}
+\end{figure}
+
+\subsection{Temporal Retrieval Extension}
+
+The first module addresses a specific question: if two memories are semantically similar, should the newer one receive a modest advantage at retrieval time?
+
+In the integrated evaluator, temporal age is measured relative to the end of the loaded conversation rather than wall-clock time. If $t_q$ denotes the latest memory timestamp in the current dialogue history and $t_i$ denotes the timestamp of memory $m_i$, the code computes
+\begin{equation}
+\text{age}_i = \max\!\left(\frac{t_q - t_i}{30\ \text{days}}, 0\right)
+\end{equation}
+when month-equivalent decay is enabled. The basic temporal factor is then
+\begin{equation}
+\text{decay}(m_i) = \exp(-\lambda \cdot \text{age}_i)
+\end{equation}
+In the current benchmark runs, $\lambda = 0.1$.
+
+The broader T-MEM framework still includes two optional factors:
+\begin{equation}
+\text{reinforce}(m_i) = 1 + \beta \cdot \log(1 + c_i)
+\end{equation}
+\begin{equation}
+\text{link\_bonus}(m_i) = 1 + \gamma \cdot \frac{|L_i|}{\max_j |L_j|}
+\end{equation}
+where $c_i$ is the retrieval count stored with the memory note and $L_i$ is the link set of $m_i$. If the optional full mode is enabled, the raw temporal relevance becomes
+\begin{equation}
+r_i = \text{decay}(m_i)\cdot \text{reinforce}(m_i)\cdot \text{link\_bonus}(m_i)
+\end{equation}
+However, the current benchmarked configuration does \emph{not} use these optional factors. The active mode in the robust evaluator is still decay-only temporal scoring, so in the reported runs $r_i = \text{decay}(m_i)$.
+
+The main revision is architectural. The first integrated version applied temporal blending across the whole memory bank:
+\begin{equation}
+\text{score}^{(v1)}(q, m_i) = \alpha \cdot \cos(e_q, e_i) + (1 - \alpha)\cdot \hat{r}_i
+\end{equation}
+where $\hat{r}_i$ is min-max normalized over the full memory bank. With $\alpha = 0.7$, that design turned out to be too aggressive. It often pushed newer but irrelevant memories above older correct ones.
+
+The current version is more conservative and matches the implemented benchmark code more closely. Let $s_i = \cos(e_q, e_i)$ be the semantic score for memory $m_i$. T-MEM v2 works in four steps:
+\begin{enumerate}
+    \item Retrieve a semantic candidate pool $C$ by taking the top-$N$ memories under $s_i$.
+    \item If the best semantic score already exceeds the second-best by at least a fixed margin, return the semantic ranking without temporal reranking.
+    \item Otherwise, compute candidate-local normalized scores
+    \begin{equation}
+    \tilde{s}_i = \text{minmax}(s_i), \quad i \in C
+    \end{equation}
+    \begin{equation}
+    \tilde{r}_i = f + (1-f)\cdot \text{minmax}(r_i), \quad i \in C
+    \end{equation}
+    where $f$ is a temporal score floor.
+    \item Blend the two signals inside the candidate pool:
+    \begin{equation}
+    \text{score}^{(v2)}(q, m_i) = \alpha \cdot \tilde{s}_i + (1-\alpha)\cdot \tilde{r}_i, \quad i \in C
+    \end{equation}
+    Then preserve the top semantic anchors and append the remaining candidates in descending order of $\text{score}^{(v2)}$.
+\end{enumerate}
+
+In the current best-performing configuration, the defaults are:
+\begin{itemize}
+    \item decay-only temporal mode
+    \item $\alpha = 0.9$
+    \item candidate pool size $N = 20$
+    \item top semantic anchors $a = 2$
+    \item temporal score floor $f = 0.25$
+    \item temporal reranking enabled only for LoCoMo category 2 questions
+    \item temporal reranking skipped when the top semantic memory already leads by a margin of at least $0.05$
+\end{itemize}
+
+This matters because it changes the role of time. Time is no longer allowed to dominate retrieval globally; it only acts as a controlled tie-breaker inside a semantically plausible candidate set and only for configured question categories.
+
+\subsection{Broader Framework Scope}
+
+Beyond temporal retrieval, the full T-MEM framework also includes memory consolidation and conflict handling. Consolidation is intended to merge clusters of repeated or near-duplicate notes, while conflict handling is intended to detect when a newer note supersedes an older one and to lower the priority of the older fact without deleting it. These components are part of the broader framework design, but they are not yet integrated into the benchmarked code path and are therefore not part of the reported experiments.
+
+\subsection{Experimental Configuration}
+
+\begin{table}[htbp]
+\caption{Research-relevant experimental configuration}
+\label{tab:tools}
+\centering
+\small
+\begin{tabular}{p{2.4cm}p{5.0cm}}
+\toprule
+\textbf{Component} & \textbf{Configuration} \\
+\midrule
+Backbone evaluator & Robust A-MEM QA pipeline with unchanged note construction, memory evolution, prompts, and metrics \\
+Temporal extension & Query-time temporal retrieval layer added on top of the robust A-MEM evaluator \\
+LLM backend & OpenAI API with \texttt{gpt-4o-mini} in the current pilot \\
+Embeddings & \texttt{all-MiniLM-L6-v2} \\
+Benchmarks & Standalone LoCoMo-style retrieval simulation; integrated evaluation on the first two samples of the repository \texttt{locomo10} subset; DialSim planned \\
+Metrics & F1, BLEU-1, ROUGE, METEOR, BERTScore, SBERT similarity \\
+\textit{k} value & \texttt{retrieve\_k = 10} for the integrated pilot \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%--------------------------------------------------------------
+\section{Integration with A-MEM}
+%--------------------------------------------------------------
+
+This section describes the components that have been implemented and evaluated so far.
+
+\subsection{Integrated Evaluation Path}
+
+The implemented evaluation relies on two related code paths. The first is the root evaluation harness, which takes LoCoMo conversations, converts each turn into a memory note, performs A-MEM-style retrieval and memory evolution, answers benchmark questions, and computes QA metrics. The second is the separate \texttt{reference\_A-mem-sys} directory, which serves as a system-level reference but is not the path used for the reported benchmark results.
+
+That distinction matters because the current T-MEM evaluation is built directly on top of the root robust evaluator. Note construction, memory evolution, prompts, cache format, and QA metrics are kept the same as A-MEM, and only retrieval behavior is changed. This makes the comparison substantially cleaner than the earlier standalone simulation.
+
+\subsection{Implemented Components}
+
+Two T-MEM code paths are currently available.
+
+\textbf{1. Standalone prototype in \texttt{tmem/}.} This code path uses a synthetic LoCoMo-style memory bank, hand-authored metadata, and a local retrieval simulation without LLM dependency.
+
+\textbf{2. Integrated robust evaluator.} A temporal-aware memory layer and a dedicated benchmark entrypoint were then added so that T-MEM can run through the same robust LoCoMo QA pipeline as A-MEM. This path uses the same memory bank, the same question prompts, and the same metrics as the A-MEM baseline.
+
+In the current integrated path, the following research-relevant components are in place:
+\begin{itemize}
+    \item temporal-aware retrieval on top of the robust A-MEM memory system
+    \item a controlled A-MEM vs T-MEM comparison under shared prompts, note construction, and evaluation metrics
+    \item a standalone retrieval simulation for controlled rank-based analysis
+\end{itemize}
+
+\subsection{Current Limitations}
+
+Two planned parts of the broader framework are still missing from the benchmarked code path:
+\begin{itemize}
+    \item memory consolidation
+    \item conflict handling / superseded-fact tracking
+\end{itemize}
+
+There are also evaluation limits that matter:
+\begin{itemize}
+    \item the current QA pilot uses only the first two samples of the \texttt{locomo10} subset included in the repository
+    \item the full LoCoMo dataset has not yet been run through the revised T-MEM variant
+    \item DialSim evaluation has not started yet
+\end{itemize}
+
+\subsection{Retrieval Variants}
+
+The main lesson from the integrated benchmark work is that time-awareness is easy to overdo. The first integrated T-MEM version used a global temporal blend over the whole memory bank. That design looked reasonable in the abstract, but in practice it often promoted recent memories that were not actually the best semantic match for the question.
+
+After that failure mode became clear, the retrieval design was revised rather than forcing the original formula to work. The updated version uses semantic retrieval first, then applies temporal reranking only inside a candidate pool and only for temporal-question categories. This is the version that produced the current best pilot result.
+
+\begin{table}[htbp]
+\caption{How the integrated retrieval variants differ}
+\label{tab:variants}
+\centering
+\small
+\begin{tabular}{p{1.8cm}p{1.1cm}p{1.0cm}p{1.0cm}p{2.4cm}}
+\toprule
+\textbf{System} & \textbf{$\alpha$} & \textbf{Scope} & \textbf{Pool} & \textbf{Main idea} \\
+\midrule
+A-MEM & 1.0 & all QA & none & cosine-only retrieval \\
+T-MEM v1 & 0.7 & all QA & full bank & global recency blend \\
+T-MEM v2 & 0.9 & cat.\ 2 only & top 20 & semantic-first reranking with anchors \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%--------------------------------------------------------------
+\section{Experimental Setup}
+%--------------------------------------------------------------
+
+\subsection{Integrated QA Setup}
+
+To test whether the temporal module helps in the same setting as A-MEM, both systems were evaluated through the robust LoCoMo QA pipeline rather than through the standalone simulation. This matters because the integrated path uses the same conversation-to-memory conversion, the same QA prompts, and the same metrics for both systems. The only intended difference is retrieval behavior.
+
+For the pilot reported here, both A-MEM and T-MEM were run with the OpenAI backend using \texttt{gpt-4o-mini}. The first two samples of the repository \texttt{locomo10} subset were used with \texttt{retrieve\_k = 10}. Sample 0 contains 199 QA pairs and sample 1 contains 105 QA pairs, for a total of 304 questions. Memory caches were reused across the A-MEM and T-MEM runs so that both systems operated over the same memory bank for the same backend/model setting.
+
+The benchmark pipeline proceeds in three stages. First, each conversation turn is converted into a structured memory note using the robust A-MEM memory layer. Second, the system answers each benchmark question by generating query keywords, retrieving relevant memory context, and asking the LLM for a short answer. Third, the generated answer is scored against the reference using the same metric suite for both systems.
+
+\subsection{Dataset Slice and Category Mix}
+
+The current pilot is limited to two samples because the first integrated objective was to determine whether the temporal module improves or harms the A-MEM baseline under matched conditions before scaling to a larger evaluation. Even with only two samples, the slice still covers all five LoCoMo question categories.
+
+\begin{table}[htbp]
+\caption{Question distribution in the two-sample pilot}
+\label{tab:distribution}
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Category} & \textbf{Questions} & \textbf{Share} \\
+\midrule
+1 & 43  & 14.1\% \\
+2 & 63  & 20.7\% \\
+3 & 13  & 4.3\% \\
+4 & 114 & 37.5\% \\
+5 & 71  & 23.4\% \\
+\midrule
+\textbf{Total} & \textbf{304} & \textbf{100.0\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This category mix is important for interpretation. The current best T-MEM configuration only applies temporal reranking to category 2 questions, so only about one-fifth of the pilot directly receives the temporal adjustment. That means a large overall gain would have been unrealistic at this stage. The key question is whether a carefully targeted temporal policy can improve the temporal category without causing broad regressions elsewhere.
+
+\subsection{Metrics and Comparison Logic}
+
+The benchmark uses the same answer-level metrics for both systems: exact match, token-level F1, ROUGE, BLEU, METEOR, BERTScore, and SBERT similarity. In addition to aggregate averages, the systems were also compared at the question level by checking which method had the higher F1 on each matched question. That question-level view helps distinguish between a broad improvement and a result driven by only a handful of outliers.
+
+Three comparisons are particularly informative in this setting:
+\begin{enumerate}
+    \item A-MEM as the cosine-only baseline
+    \item T-MEM v1 as the first integrated temporal attempt
+    \item T-MEM v2 as the revised semantic-first temporal design
+\end{enumerate}
+
+Looking at all three together is more informative than only comparing the final T-MEM result against A-MEM, because it shows what changed when the retrieval design became more selective.
+
+%--------------------------------------------------------------
+\section{Results}
+%--------------------------------------------------------------
+
+\subsection{Standalone Retrieval Simulation}
+
+Before integrating into the full QA pipeline, the temporal idea was tested in a small LoCoMo-style simulation with about 30 synthetic memories distributed across 10 sessions. Under the standalone setting that matches the A-MEM paper's embedding configuration, the correct memory moved to a better rank in 6 of 7 queries, with an average improvement of about 2.3 rank positions. This result should be interpreted only as a controlled retrieval study, because the metadata in that setup was hand-authored and the evaluation was rank-based rather than answer-based.
+
+\subsection{Integrated A-MEM vs T-MEM Pilot}
+
+The more meaningful result is the integrated QA pilot. For this run, the first two samples of the repository \texttt{locomo10} subset were used, which together contain 304 QA pairs. Both A-MEM and T-MEM were run with the same \texttt{gpt-4o-mini} backend and the same robust QA pipeline.
+
+\begin{table}[htbp]
+\caption{Preliminary QA results on two \texttt{locomo10} samples (304 questions, \texttt{gpt-4o-mini}, $k=10$)}
+\label{tab:pilot}
+\centering
+\small
+\begin{tabular}{p{4.0cm}ccc}
+\toprule
+\textbf{Configuration} & \textbf{Exact Match} & \textbf{F1} & \textbf{ROUGE-L} \\
+\midrule
+A-MEM baseline & \textbf{0.1480} & 0.3613 & 0.3689 \\
+T-MEM v1: global decay blend & 0.0822 & 0.2768 & 0.2798 \\
+T-MEM v2: selective semantic-first reranking & \textbf{0.1480} & \textbf{0.3686} & \textbf{0.3742} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The results first show that simply adding recency is not enough. The first integrated T-MEM version was worse than A-MEM by a clear margin, indicating that naive global recency weighting is not an effective design.
+
+The results also show that the revised retrieval strategy is more promising. The selective semantic-first version slightly improved overall F1 from 0.3613 to 0.3686 while matching A-MEM on exact match. The margin is modest, but it is directionally favorable.
+
+The most interpretable gain appears in LoCoMo category 2, where temporal reranking is actually enabled in the current best configuration. In that category, F1 improved from 0.4455 to 0.4610. This is the cleanest evidence so far that the temporal module can help when it is applied in a targeted way instead of as a global bias.
+
+\begin{table}[htbp]
+\caption{Category-level F1 comparison on the two-sample pilot}
+\label{tab:categoryf1}
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Category} & \textbf{A-MEM} & \textbf{T-MEM v1} & \textbf{T-MEM v2} \\
+\midrule
+1 & 0.1978 & 0.1609 & 0.1920 \\
+2 & 0.4455 & 0.3579 & \textbf{0.4610} \\
+3 & \textbf{0.1107} & 0.0923 & 0.1073 \\
+4 & \textbf{0.3203} & 0.2340 & 0.3130 \\
+5 & 0.4974 & 0.3778 & \textbf{0.5305} \\
+\midrule
+\textbf{Overall} & 0.3613 & 0.2768 & \textbf{0.3686} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:categoryf1} helps explain why the first and second T-MEM versions behave so differently. T-MEM v1 is worse than A-MEM in every major category. T-MEM v2, in contrast, recovers almost all of that loss and slightly surpasses A-MEM overall. The clearest gain attributable to the design appears in category 2, which is exactly where temporal reranking is active. The category 4 gap also becomes much smaller in v2 than it was in v1, which suggests that the semantic-first candidate filtering is preventing some of the irrelevant recency bias seen earlier.
+
+At the same time, these results need to be read carefully. The question-level summary for the revised run was 58 T-MEM wins, 58 A-MEM wins, and 188 ties. That is a narrow result, not a decisive one. Also, some improvements outside the explicitly temporal category should be treated cautiously because the QA pipeline still contains stochastic answer generation, so not every category-level difference can be credited directly to the temporal module.
+
+The first version of temporal reranking hurt performance, whereas the revised version produced a small positive result on the same pilot. This is sufficient to justify further study, but not yet sufficient for a strong final claim.
+
+%--------------------------------------------------------------
+\section{Analysis}
+%--------------------------------------------------------------
+
+\subsection{Why the First Version Failed}
+
+The main weakness of T-MEM v1 is that it treated recency as a broad ranking signal instead of a local tie-breaker. Once the temporal score was normalized and blended across the whole memory bank, older but semantically precise memories could be pushed below newer notes that happened to share partial vocabulary with the query. The ranking therefore sometimes favored recency before semantic adequacy had been established.
+
+This failure mode is especially harmful in a benchmark like LoCoMo, where many questions are not about the latest event at all. Some ask about stable user facts, some require combining older pieces of information, and some are adversarial precisely because the system must resist a misleading or incomplete retrieval cue. Under those conditions, a global freshness bias can easily do more harm than good.
+
+\subsection{Why the Revised Version Looks Better}
+
+The improvement in T-MEM v2 is consistent with a simpler interpretation of what the temporal feature should do. Time should not replace semantic retrieval. Instead, it should refine semantic retrieval when the remaining candidates are already plausible and temporality is relevant to the question. That is exactly what the revised design tries to do by limiting reranking to category 2 questions, applying it only within a semantic candidate pool, and preserving the strongest semantic matches as anchors.
+
+That design also explains why the gain is modest rather than dramatic. The current system is not attempting to rewrite the entire retrieval stack. Instead, it makes a controlled adjustment in a subset of questions where timing is most likely to matter. This selectivity is useful because it makes the effect of the temporal module easier to interpret.
+
+\subsection{What Can and Cannot Be Claimed Yet}
+
+The current evidence is enough to support a cautious claim: the temporal module appears promising when used selectively, and the revised retrieval policy is better than both the A-MEM baseline and the earlier T-MEM attempt on this two-sample pilot.
+
+At the same time, several stronger claims would still be premature. T-MEM cannot yet be claimed to be better than A-MEM in general, because the current evidence comes from only 304 QA pairs in the \texttt{locomo10} subset. Nor can every observed gain be attributed to the temporal module alone, because the QA process still contains stochastic answer generation. The large improvement seen in category 5 under T-MEM v2, for example, is encouraging, but it should be interpreted cautiously because temporal reranking is not explicitly enabled there in the current configuration.
+
+What can be stated with confidence is that the study has already produced a useful negative result and a useful positive result. The negative result is that naive global recency weighting is a poor design choice in this benchmark setting. The positive result is that a conservative semantic-first temporal policy can slightly improve answer quality without changing the rest of the A-MEM QA pipeline.
+
+%--------------------------------------------------------------
+\section{Conclusion}
+%--------------------------------------------------------------
+
+This paper makes a narrower and more accurate claim than the original full-framework proposal. T-MEM remains a three-module extension to A-MEM at the framework level, but the implemented contribution at this stage is only the temporal retrieval module. The current evidence shows that temporal information can help, but only when it is applied conservatively: a naive global recency blend hurt performance, while a semantic-first, category-selective reranking strategy produced a small gain over A-MEM on the present two-sample pilot. This result is encouraging, but it should still be interpreted as preliminary.
+
+%--------------------------------------------------------------
+\section{Future Work}
+%--------------------------------------------------------------
+
+Future work will extend the revised T-MEM variant to all 10 samples of the repository \texttt{locomo10} subset and will reduce evaluation variance through repeated controlled runs. Additional temporal ablations should also be tested, including broader category coverage and the optional reinforcement and link-based terms. At the system level, the next major steps are to implement the consolidation module and the conflict-handling mechanism, and then evaluate whether these additions improve memory quality without degrading question-answering performance. A further extension is evaluation on DialSim and, if available, a larger LoCoMo release.
+
+%--------------------------------------------------------------
+\section*{Acknowledgment}
+%--------------------------------------------------------------
+
+The author thanks Dr.~Priyanka Kumar for her guidance throughout this work. OpenAI ChatGPT/Codex~\cite{openai2025chatgpt} and Anthropic Claude~\cite{anthropic2025claude} were used for language-level editing support, structural brainstorming, and formatting assistance during report preparation. All technical design decisions, code changes, experiments, result interpretation, and final responsibility for the written content remain with the author.
+
+%--------------------------------------------------------------
+\begin{thebibliography}{99}
+
+\bibitem{packer2023memgpt}
+C.~Packer, S.~Wooders, K.~Lin, V.~Fang, S.~G. Patil, I.~Stoica, and J.~E. Gonzalez, ``MemGPT: Towards LLMs as operating systems,'' \emph{arXiv preprint arXiv:2310.08560}, 2023.
+
+\bibitem{park2023generative}
+J.~S. Park, J.~C. O'Brien, C.~J. Cai, M.~R. Morris, P.~Liang, and M.~S. Bernstein, ``Generative agents: Interactive simulacra of human behavior,'' in \emph{Proc. ACM UIST}, 2023. DOI: 10.1145/3586183.3606763.
+
+\bibitem{zhong2024memorybank}
+W.~Zhong, L.~Guo, Q.~Gao, H.~Ye, and Y.~Wang, ``MemoryBank: Enhancing large language models with long-term memory,'' in \emph{Proc. AAAI}, 2024.
+
+\bibitem{xu2025amem}
+W.~Xu, Z.~Liang, K.~Mei, H.~Gao, J.~Tan, and Y.~Zhang, ``A-MEM: Agentic memory for LLM agents,'' \emph{arXiv preprint arXiv:2502.12110}, 2025.
+
+\bibitem{liu2023tim}
+L.~Liu, J.~Du, and W.~Liu, ``Think-in-Memory: Recalling and post-thinking enable LLMs with long-term memory,'' \emph{arXiv preprint arXiv:2311.08719}, 2023.
+
+\bibitem{lee2024readagent}
+K.-H.~Lee, X.~Chen, H.~Furuta, J.~Canny, and I.~Fischer, ``A human-inspired reading agent with gist memory of very long contexts,'' in \emph{Proc. ICML}, 2024. arXiv:2402.09727.
+
+\bibitem{gutierrez2024hipporag}
+B.~Jim\'enez Guti\'errez, Y.~Shu, Y.~Gu, M.~Yasunaga, and Y.~Su, ``HippoRAG: Neurobiologically inspired long-term memory for large language models,'' in \emph{Proc. NeurIPS}, 2024. arXiv:2405.14831.
+
+\bibitem{chhikara2025mem0}
+P.~Chhikara, D.~Khant, S.~Aryan, T.~Singh, and D.~Yadav, ``Mem0: Building production-ready AI agents with scalable long-term memory,'' \emph{arXiv preprint arXiv:2504.19413}, 2025.
+
+\bibitem{wang2024memoryllm}
+Y.~Wang, Y.~Gao, X.~Chen, H.~Jiang, S.~Li, J.~Yang, Q.~Yin, Z.~Li, X.~Li, B.~Yin, J.~Shang, and J.~J. McAuley, ``MEMORYLLM: Towards self-updatable large language models,'' \emph{arXiv preprint arXiv:2402.04624}, 2024.
+
+\bibitem{modarressi2024memllm}
+A.~Modarressi, A.~K\"oksal, A.~Imani, M.~Fayyaz, and H.~Sch\"utze, ``MemLLM: Finetuning LLMs to use an explicit read-write memory,'' \emph{arXiv preprint arXiv:2404.11672}, 2024.
+
+\bibitem{maharana2024locomo}
+A.~Maharana, D.-H.~Lee, S.~Tulyakov, M.~Bansal, F.~Barbieri, and Y.~Fang, ``Evaluating very long-term conversational memory of LLM agents,'' in \emph{Proc. ACL}, 2024. DOI: 10.18653/v1/2024.acl-long.747.
+
+\bibitem{kim2024dialsim}
+J.~Kim, W.~Chay, H.~Hwang, D.~Kyung, H.~Chung, E.~Cho, Y.~Jo, and E.~Choi, ``DialSim: A real-time simulator for evaluating long-term multi-party dialogue understanding of conversational agents,'' \emph{arXiv preprint arXiv:2406.13144}, 2024.
+
+\bibitem{wu2025longmemeval}
+D.~Wu, H.~Wang, W.~Yu, Y.~Zhang, K.-W.~Chang, and D.~Yu, ``LongMemEval: Benchmarking chat assistants on long-term interactive memory,'' in \emph{Proc. ICLR}, 2025. arXiv:2410.10813.
+
+\bibitem{rasmussen2025zep}
+P.~Rasmussen, P.~Paliychuk, T.~Beauvais, J.~Ryan, and D.~Chalef, ``Zep: A temporal knowledge graph architecture for agent memory,'' \emph{arXiv preprint arXiv:2501.13956}, 2025.
+
+\bibitem{zhang2024survey}
+Z.~Zhang, X.~Bo, C.~Ma, R.~Li, X.~Chen, Q.~Dai, J.~Zhu, Z.~Dong, and J.-R.~Wen, ``A survey on the memory mechanism of large language model based agents,'' \emph{arXiv preprint arXiv:2404.13501}, 2024.
+
+\bibitem{jiang2024ltm}
+X.~Jiang, F.~Li, H.~Zhao, J.~Qiu, J.~Wang, J.~Shao, S.~Xu, S.~Zhang, W.~Chen, X.~Tang, Y.~Chen, M.~Wu, W.~Ma, M.~Wang, and T.~Chen, ``Long term memory: The foundation of AI self-evolution,'' \emph{arXiv preprint arXiv:2410.15665}, 2024.
+
+\bibitem{ebbinghaus1885}
+H.~Ebbinghaus, \emph{{\"U}ber das Ged{\"a}chtnis}. Leipzig: Duncker \& Humblot, 1885.
+
+\bibitem{cepeda2006}
+N.~J. Cepeda, H.~Pashler, E.~Vul, J.~T. Wixted, and D.~Rohrer, ``Distributed practice in verbal recall tasks: A review and quantitative synthesis,'' \emph{Psychological Bulletin}, vol.~132, no.~3, pp.~354--380, 2006.
+
+\bibitem{openai2025chatgpt}
+OpenAI, ``ChatGPT,'' 2025. [Online]. Available: \url{https://chatgpt.com}
+
+\bibitem{anthropic2025claude}
+Anthropic, ``Claude,'' 2025. [Online]. Available: \url{https://claude.ai}
+
+\end{thebibliography}
+
+\end{document}
