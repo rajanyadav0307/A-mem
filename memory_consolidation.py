@@ -415,6 +415,65 @@ def _sorted_timestamps(notes: Iterable[RobustMemoryNote]) -> List[str]:
     return sorted(stamps, key=lambda s: (parse_timestamp(s) or datetime.min, s))
 
 
+EMBEDDING_RECIPES = ("union", "content", "content_context")
+
+
+def consolidated_embedding_text(note: RobustMemoryNote, recipe: str = "union") -> str:
+    """Text the retriever embeds for a consolidated note.
+
+    union           - A-MEM's add_note format with the merged keywords and tags
+                      of all sources (what v1-v3 caches used)
+    content         - the merged text only
+    content_context - the merged text plus its one-sentence context
+    """
+    if recipe == "union":
+        return (
+            "content:" + note.content +
+            " context:" + note.context +
+            " keywords: " + ", ".join(note.keywords) +
+            " tags: " + ", ".join(note.tags)
+        )
+    if recipe == "content":
+        return note.content
+    if recipe == "content_context":
+        return "content:" + note.content + " context:" + note.context
+    raise ValueError(f"unknown embedding recipe: {recipe!r}")
+
+
+def reembed_consolidated_notes(system: RobustAgenticMemorySystem, recipe: str) -> int:
+    """Recompute retriever rows for consolidated notes with another recipe.
+
+    Raw-note rows are untouched. Returns the number of notes re-embedded.
+    """
+    notes = list(system.memories.values())
+    positions = [i for i, note in enumerate(notes) if note.note_type == "consolidated"]
+    if not positions:
+        return 0
+    texts = [consolidated_embedding_text(notes[i], recipe) for i in positions]
+    rows = np.asarray(system.retriever.model.encode(texts))
+    embeddings = np.array(system.retriever.embeddings, copy=True)
+    embeddings[positions] = rows
+    system.retriever.embeddings = embeddings
+    for i, text in zip(positions, texts):
+        system.retriever.corpus[i] = text
+    return len(positions)
+
+
+def attach_labels_from_log(system: RobustAgenticMemorySystem, log: Dict) -> int:
+    """Copy SAME_FACT / SMALL_TALK labels from a merge log onto the notes.
+
+    Caches built before ``consolidation_label`` existed only have the label
+    in the log. Returns the number of notes labeled.
+    """
+    notes = list(system.memories.values())
+    count = 0
+    for group in log.get("groups", []):
+        if group.get("outcome") == "merged":
+            notes[group["consolidated_index"]].consolidation_label = group["label"]
+            count += 1
+    return count
+
+
 def apply_consolidation(
     system: RobustAgenticMemorySystem,
     source_indices: Sequence[int],
@@ -424,6 +483,8 @@ def apply_consolidation(
     context: Optional[str] = None,
     archive_sources: bool = True,
     extra: Optional[Dict] = None,
+    label: Optional[str] = None,
+    embedding_recipe: str = "union",
 ) -> ConsolidationResult:
     """Append one consolidated note and mark its sources.
 
@@ -463,12 +524,8 @@ def apply_consolidation(
 
     new_index = len(all_notes)
     system.memories[note.id] = note
-    system.retriever.add_documents([
-        "content:" + note.content +
-        " context:" + note.context +
-        " keywords: " + ", ".join(note.keywords) +
-        " tags: " + ", ".join(note.tags)
-    ])
+    note.consolidation_label = label
+    system.retriever.add_documents([consolidated_embedding_text(note, embedding_recipe)])
 
     for source in sources:
         source.consolidated_into = new_index
@@ -536,6 +593,7 @@ def consolidate_bank(
     config: Optional[ConsolidationConfig] = None,
     temperature: float = 0.0,
     merge_retries: int = 2,
+    embedding_recipe: str = "union",
 ) -> Dict:
     """Find, verify, merge, check, and append consolidated notes.
 
@@ -624,6 +682,8 @@ def consolidate_bank(
             tags=_unique(t for note in sources for t in note.tags),
             context=accepted["context"] or None,
             extra={"label": verdict["label"]},
+            label=verdict["label"],
+            embedding_recipe=embedding_recipe,
         )
         entry["outcome"] = "merged"
         entry["consolidated_index"] = result.consolidated_index

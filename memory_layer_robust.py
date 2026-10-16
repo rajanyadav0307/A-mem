@@ -287,6 +287,7 @@ class RobustMemoryNote:
     last_seen: Optional[str] = None        # latest source timestamp
     consolidated_into: Optional[int] = None  # position of the consolidated note (source notes)
     status: str = "active"                 # "active" or "archived"
+    consolidation_label: Optional[str] = None  # "SAME_FACT" or "SMALL_TALK" (consolidated notes)
 
     def __init__(self,
                  content: str,
@@ -379,6 +380,11 @@ class RobustAgenticMemorySystem:
     #                    retrieved consolidated note brings its sources along
     # Class-level default so systems built with __new__ (cached runs) work.
     consolidation_mode: str = "off"
+    # Extra controls for consolidated notes in non-off modes (fixes for
+    # consolidated notes crowding the top-k). Defaults change nothing.
+    consolidated_score_penalty: float = 0.0       # subtracted from their cosine score
+    consolidated_top_k_cap: Optional[int] = None  # at most this many in the top-k
+    hide_small_talk_summaries: bool = False       # SMALL_TALK summaries are not retrievable
 
     def __init__(self,
                  model_name: str = 'all-MiniLM-L6-v2',
@@ -532,12 +538,42 @@ class RobustAgenticMemorySystem:
         """Note positions that may appear in top-k for the current mode."""
         notes = list(self.memories.values())
         if self.consolidation_mode == "add_only":
-            return list(range(len(notes)))
-        if self.consolidation_mode in ("primary", "primary_expand"):
-            return [i for i, note in enumerate(notes) if note.status != "archived"]
-        if self.consolidation_mode == "off":
+            allowed = list(range(len(notes)))
+        elif self.consolidation_mode in ("primary", "primary_expand"):
+            allowed = [i for i, note in enumerate(notes) if note.status != "archived"]
+        elif self.consolidation_mode == "off":
             return list(range(self._raw_prefix_length()))
-        raise ValueError(f"unknown consolidation_mode: {self.consolidation_mode!r}")
+        else:
+            raise ValueError(f"unknown consolidation_mode: {self.consolidation_mode!r}")
+        if self.hide_small_talk_summaries:
+            allowed = [
+                i for i in allowed
+                if not (notes[i].note_type == "consolidated" and notes[i].consolidation_label == "SMALL_TALK")
+            ]
+        return allowed
+
+    def adjust_consolidated_scores(self, allowed: np.ndarray, scores: np.ndarray):
+        """Apply the score penalty and top-k cap to consolidated notes.
+
+        ``allowed`` are note positions and ``scores`` their cosine scores.
+        Returns the (possibly shorter) positions and adjusted scores. The cap
+        keeps only the best-scoring consolidated notes, so at most that many
+        can reach the top-k.
+        """
+        penalty = self.consolidated_score_penalty
+        cap = self.consolidated_top_k_cap
+        if not penalty and cap is None:
+            return allowed, scores
+        notes = list(self.memories.values())
+        is_consolidated = np.array([notes[i].note_type == "consolidated" for i in allowed], dtype=bool)
+        scores = np.where(is_consolidated, scores - penalty, scores)
+        if cap is not None:
+            positions = np.flatnonzero(is_consolidated)
+            ranked = positions[np.argsort(scores[positions])[::-1]]
+            keep = np.ones(len(allowed), dtype=bool)
+            keep[ranked[max(cap, 0):]] = False
+            allowed, scores = allowed[keep], scores[keep]
+        return allowed, scores
 
     def search_retrievable(self, query: str, k: int) -> List[int]:
         """Top-k cosine search restricted to ``retrievable_indices``."""
@@ -546,6 +582,7 @@ class RobustAgenticMemorySystem:
             return []
         query_embedding = self.retriever.model.encode([query])[0]
         similarities = cosine_similarity([query_embedding], self.retriever.embeddings[allowed])[0]
+        allowed, similarities = self.adjust_consolidated_scores(allowed, similarities)
         top = np.argsort(similarities)[-k:][::-1]
         return [int(allowed[t]) for t in top]
 

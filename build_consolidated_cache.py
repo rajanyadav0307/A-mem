@@ -22,7 +22,12 @@ from datetime import datetime
 
 from sentence_transformers import SentenceTransformer
 
-from memory_consolidation import ConsolidationConfig, consolidate_bank, content_embeddings
+from memory_consolidation import (
+    EMBEDDING_RECIPES,
+    ConsolidationConfig,
+    consolidate_bank,
+    content_embeddings,
+)
 from memory_layer import SimpleEmbeddingRetriever
 from memory_layer_robust import RobustAgenticMemorySystem, RobustLLMController
 
@@ -72,6 +77,8 @@ def main():
     parser.add_argument("--allow_cross_speaker", action="store_true")
     parser.add_argument("--merge_retries", type=int, default=2)
     parser.add_argument("--tag", default="v2", help="version tag for the output cache and log names")
+    parser.add_argument("--embedding_recipe", choices=EMBEDDING_RECIPES, default="union",
+                        help="text embedded for consolidated notes")
     parser.add_argument("--log_dir", default="analysis")
     parser.add_argument("--overwrite", action="store_true")
     args = parser.parse_args()
@@ -98,7 +105,10 @@ def main():
         system = load_sample(args.source_cache, sample_idx)
         notes_before = len(system.memories)
         embeddings = content_embeddings(list(system.memories.values()), encoder)
-        log = consolidate_bank(system, llm, embeddings, config, merge_retries=args.merge_retries)
+        log = consolidate_bank(
+            system, llm, embeddings, config,
+            merge_retries=args.merge_retries, embedding_recipe=args.embedding_recipe,
+        )
         save_sample(system, output_dir, sample_idx)
 
         log.update({
@@ -107,6 +117,7 @@ def main():
             "output_dir": output_dir,
             "model": args.model,
             "tag": args.tag,
+            "embedding_recipe": args.embedding_recipe,
             "notes_before": notes_before,
             "notes_after": len(system.memories),
             "built_at": datetime.now().isoformat(timespec="seconds"),

@@ -304,6 +304,50 @@ Result is in `analysis/off_mode_check.json`. As a negative control, `primary_exp
 2. Don't make small-talk summaries retrievable. Archive small talk behind one short note, or don't index it at all.
 3. Give consolidated notes a small score penalty, or allow at most one consolidated note in the top-k.
 
+### Fixes for crowding (2026-10-16)
+
+**What was added** (all default to "no change"; `off` still matches May 6 in 608/608 contexts)
+- **Fix 1, embedding recipe.** `consolidated_embedding_text(note, recipe)` supports `union` (used in v1–v3), `content`, and `content_context`. `reembed_consolidated_notes()` swaps recipes on a loaded cache without touching raw rows. `build_consolidated_cache.py --embedding_recipe` sets it for new builds.
+- **Fix 2, hide small talk.** `hide_small_talk_summaries`. A consolidated note now stores its `consolidation_label`. For v3 caches, the label is read from the merge log with `attach_labels_from_log()`.
+- **Fix 3, penalty or cap.** `consolidated_score_penalty` subtracts a fixed amount from a consolidated note's cosine score. `consolidated_top_k_cap` allows at most N consolidated notes in the top-k. Both apply to A-MEM search and to T-MEM's semantic scores.
+
+**Results.** `evaluate_consolidation_fixes.py` on the v3 cache, samples 0–1, k = 10, 302 questions, all variants in `primary_expand` mode unless noted. Results files: `analysis/consolidation_fixes_recall*.json`.
+
+| Variant (A-MEM) | Recall | Cat 1 | Cat 2 | Cat 3 | Cat 4 | Cat 5 | Seed recall | All found | Δ recall vs off |
+|---|---|---|---|---|---|---|---|---|---|
+| **off (May 6)** | 0.556 | 0.384 | 0.714 | 0.409 | 0.518 | 0.606 | 0.472 | 0.510 | — |
+| primary_expand (no fix) | 0.528 | 0.384 | 0.635 | 0.500 | 0.531 | 0.521 | 0.457 | 0.490 | −0.028 |
+| Fix 1: content only | 0.464 | 0.315 | 0.540 | 0.455 | 0.496 | 0.437 | 0.400 | 0.430 | −0.093 |
+| Fix 1: content + context | 0.470 | 0.315 | 0.540 | 0.455 | 0.487 | 0.479 | 0.410 | 0.437 | −0.086 |
+| Fix 2: hide small talk | 0.548 | 0.396 | 0.683 | 0.500 | 0.526 | 0.563 | 0.472 | 0.507 | −0.008 |
+| Fix 3: penalty 0.05 | 0.545 | 0.373 | 0.683 | 0.500 | 0.518 | 0.577 | 0.465 | 0.503 | −0.012 |
+| Fix 3: penalty 0.10 | 0.566 | 0.350 | 0.730 | 0.500 | 0.539 | 0.606 | 0.485 | 0.520 | +0.010 |
+| Fix 3: penalty 0.15 | 0.558 | 0.350 | 0.730 | 0.455 | 0.522 | 0.606 | 0.477 | 0.510 | +0.002 |
+| **Fix 3: cap 1** | **0.568** | 0.384 | 0.730 | 0.500 | 0.539 | 0.592 | **0.485** | **0.526** | **+0.012** |
+| Fix 3: cap 0 (merged groups unreachable) | 0.548 | 0.338 | 0.714 | 0.455 | 0.509 | 0.606 | 0.470 | 0.503 | −0.008 |
+| Fix 2 + cap 1 | 0.565 | 0.384 | 0.730 | 0.500 | 0.531 | 0.592 | 0.482 | 0.523 | +0.008 |
+| Fix 1 (content + context) + Fix 2 + cap 1 | 0.558 | 0.384 | 0.730 | 0.500 | 0.522 | 0.577 | 0.475 | 0.517 | +0.002 |
+| Fix 1 (content + context) + Fix 2 + penalty 0.05 | 0.542 | 0.396 | 0.651 | 0.500 | 0.526 | 0.563 | 0.465 | 0.500 | −0.015 |
+| `primary` + Fix 1 + Fix 2 + cap 1 | 0.558 | 0.384 | 0.730 | 0.500 | 0.522 | 0.577 | 0.475 | 0.517 | +0.002 |
+
+T-MEM v2 shows the same pattern: cap 1 gives +0.008, penalty 0.10 gives +0.010, and content-only gives −0.093.
+
+**Paired check against off** (per-question recall, exact two-sided sign test):
+
+| Variant | A-MEM better / worse / same | p | T-MEM v2 better / worse / same | p |
+|---|---|---|---|---|
+| cap 1 | 10 / 7 / 285 | 0.63 | 9 / 7 / 286 | 0.80 |
+| penalty 0.10 | 8 / 6 / 288 | 0.79 | 8 / 6 / 288 | 0.79 |
+| Fix 2 + cap 1 | 9 / 7 / 286 | 0.80 | 8 / 7 / 287 | 1.00 |
+
+**What the results show**
+1. **Fix 1 (plain embedding) makes things worse,** by 0.09. The keywords and tags were not causing the crowding; they were diluting it. With content alone, the summaries ("Caroline expressed … on 8 May 2023") look even more like the questions. The cause is the **summary wording**, not the metadata.
+2. **Fix 2 (hide small talk) removes most of the damage** (−0.028 → −0.008) but does not beat off.
+3. **Fix 3 (cap 1 or penalty 0.10) is the only fix that beats off,** by +0.010 to +0.012. It helps categories 2, 3 and 4 slightly. Category 5 falls a little with cap 1.
+4. **None of the gains are statistically meaningful.** The best variant changes recall on only 17 of 302 questions (10 better, 7 worse, p = 0.63). The variants were also chosen on the same two samples they are scored on. The honest conclusion: with a cap of 1, consolidation is **no worse** than off on retrieval. It is **not shown to be better**.
+
+**Recommended setting for any QA run:** `primary_expand` + cap 1 + the `union` recipe. Small-talk hiding is optional; it doesn't add anything on top of the cap.
+
 ## 6. Risks
 
 | Risk | Mitigation |

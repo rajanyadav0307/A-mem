@@ -150,9 +150,11 @@ class TemporalAwareRobustAgenticMemorySystem(RobustAgenticMemorySystem):
         query_embedding = self.retriever.model.encode([query])[0]
         scores = cosine_similarity([query_embedding], self.retriever.embeddings)[0]
         if self.consolidation_mode != "off":
-            allowed = np.zeros(len(scores), dtype=bool)
-            allowed[self.retrievable_indices()] = True
-            scores = np.where(allowed, scores, -np.inf)
+            allowed = np.asarray(self.retrievable_indices(), dtype=int)
+            allowed, kept_scores = self.adjust_consolidated_scores(allowed, scores[allowed])
+            masked = np.full(len(scores), -np.inf)
+            masked[allowed] = kept_scores
+            scores = masked
         return scores
 
     def _rank_memories_temporally(

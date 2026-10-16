@@ -429,3 +429,59 @@ def test_unknown_mode_raises():
     system.consolidation_mode = "bogus"
     with pytest.raises(ValueError):
         system.find_related_memories_raw("art", k=1)
+
+
+# ---------------------------------------------------------------------------
+# Fixes for consolidated notes crowding the top-k
+# ---------------------------------------------------------------------------
+
+def test_small_talk_summaries_can_be_hidden():
+    system = mode_system()
+    system.consolidation_mode = "primary_expand"
+    list(system.memories.values())[4].consolidation_label = "SMALL_TALK"
+    assert 4 in system.retrievable_indices()
+    system.hide_small_talk_summaries = True
+    assert 4 not in system.retrievable_indices()
+
+
+def test_cap_limits_consolidated_notes_in_top_k():
+    system = mode_system()
+    system.consolidation_mode = "add_only"
+    assert 4 in system.search_retrievable("art", 5)
+    system.consolidated_top_k_cap = 0
+    assert 4 not in system.search_retrievable("art", 5)
+    system.consolidated_top_k_cap = 1
+    assert 4 in system.search_retrievable("art", 5)
+
+
+def test_penalty_moves_consolidated_note_down():
+    system = mode_system()
+    system.consolidation_mode = "add_only"
+    first = system.search_retrievable("art", 5)
+    system.consolidated_score_penalty = 5.0
+    assert system.search_retrievable("art", 5)[-1] == 4
+    assert first != system.search_retrievable("art", 5)
+
+
+def test_defaults_leave_search_unchanged():
+    system = mode_system()
+    system.consolidation_mode = "add_only"
+    before = system.search_retrievable("art chat", 5)
+    system.consolidated_score_penalty = 0.0
+    system.consolidated_top_k_cap = None
+    assert system.search_retrievable("art chat", 5) == before
+
+
+def test_reembed_and_labels():
+    from memory_consolidation import attach_labels_from_log, consolidated_embedding_text, reembed_consolidated_notes
+    system = mode_system()
+    raw_rows = system.retriever.embeddings[:4].copy()
+    note = list(system.memories.values())[4]
+    assert consolidated_embedding_text(note, "content") == note.content
+    assert reembed_consolidated_notes(system, "content") == 1
+    np.testing.assert_array_equal(system.retriever.embeddings[:4], raw_rows)
+    assert system.retriever.corpus[4] == note.content
+    log = {"groups": [{"outcome": "merged", "consolidated_index": 4, "label": "SAME_FACT"},
+                      {"outcome": "kept_separate", "label": "DIFFERENT"}]}
+    assert attach_labels_from_log(system, log) == 1
+    assert note.consolidation_label == "SAME_FACT"
