@@ -209,6 +209,29 @@ By category, multi-hop (1) is the weakest: recall 0.384, and only 14% of questio
 
 **Key finding:** the answer prompt contains about 51 notes, but only about 24 are unique. More than half of the context is repeated notes from link expansion. Removing repeats and merging near-duplicates could free a lot of room.
 
+### Steps 2–3 results (2026-10-16)
+
+**Threshold: τ = 0.80.** I read every group at 0.80 (`analysis/candidates_080_review.json`). Most are small talk or repeated facts. Several look alike but are different (two different campfire photos, two different painting comments), and the LLM check is there to catch those. 0.85 leaves too few groups (7 per sample) to matter.
+
+**Build:** `build_consolidated_cache.py` with gpt-4o-mini at temperature 0, writing to `cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80/`. Merge logs are in `analysis/consolidation_log_sample_{0,1}.json`.
+
+| | Sample 0 | Sample 1 |
+|---|---|---|
+| Groups | 23 | 23 |
+| Merged | 18 (9 small talk, 9 same fact) | 16 (6 small talk, 10 same fact) |
+| Kept separate (LLM said DIFFERENT) | 5 | 7 |
+| Rejected by the information check | 0 | 0 |
+| LLM calls | 41 | 39 |
+| Notes | 419 → 437 | 369 → 385 |
+
+**The verification step works.** All 12 "DIFFERENT" decisions look correct when read by hand (for example: different camping trips, a conference vs joining an activist group).
+
+**The merges are concatenations, not summaries.** gpt-4o-mini mostly copies each source note word for word with its date. The merged text is 1.22× the length of its sources. It did **not** follow the rule to turn relative dates into absolute ones (the art-show note still says "next month" twice). No facts were lost, but the notes aren't compressed either. Two causes:
+1. The information check requires every capitalized word, including words like "Yay" and "Super", so copying is the easiest way to pass.
+2. gpt-4o-mini follows the "keep every detail" rule over the "rewrite" rules.
+
+**What this means for step 4.** Because each merged note already contains its sources word for word, `primary_expand` would show the same text twice. With these merges, `primary` (hide the sources, show only the merged note) loses nothing and is the cleaner mode. Either the merge prompt and check should be revised so merges really compress, or step 4 should use `primary` as the main mode.
+
 ## 6. Risks
 
 | Risk | Mitigation |

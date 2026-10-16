@@ -7,9 +7,9 @@ note and marks the source notes. It never deletes or reorders notes, because
 A-MEM links and retriever embedding rows are positions into
 ``list(memories.values())``.
 
-This module holds the LLM-free core: candidate grouping, the information-loss
-guard, and the append-only apply step. The LLM verify/merge prompts live in
-``llm_text_parsers.py`` (added in a later step).
+This module holds candidate grouping, the information-loss guard, the
+append-only apply step, and ``consolidate_bank`` which runs the LLM verify and
+merge steps. Prompts and parsers live in ``llm_text_parsers.py``.
 """
 
 from __future__ import annotations
@@ -21,6 +21,14 @@ from typing import Dict, Iterable, List, Optional, Sequence
 
 import numpy as np
 
+from llm_text_parsers import (
+    CONSOLIDATION_MERGE_FEEDBACK,
+    CONSOLIDATION_MERGE_PROMPT,
+    CONSOLIDATION_VERIFY_PROMPT,
+    format_consolidation_notes,
+    parse_consolidation_merge,
+    parse_consolidation_verdict,
+)
 from memory_layer_robust import RobustAgenticMemorySystem, RobustMemoryNote
 
 
@@ -38,7 +46,7 @@ _TIMESTAMP_FORMATS = (
 class ConsolidationConfig:
     """Settings for finding candidate groups."""
 
-    similarity_threshold: float = 0.85
+    similarity_threshold: float = 0.80
     max_group_size: int = 5
     require_same_speaker: bool = True
     embedding_model: str = "all-MiniLM-L6-v2"
@@ -328,3 +336,104 @@ def apply_consolidation(
         note_id=note.id,
         extra=dict(extra or {}),
     )
+
+
+# ---------------------------------------------------------------------------
+# Full offline pass (LLM verify + merge)
+# ---------------------------------------------------------------------------
+
+def _unique(items: Iterable[str]) -> List[str]:
+    seen: set = set()
+    out: List[str] = []
+    for item in items:
+        key = str(item).strip()
+        if key and key.lower() not in seen:
+            seen.add(key.lower())
+            out.append(key)
+    return out
+
+
+def consolidate_bank(
+    system: RobustAgenticMemorySystem,
+    llm,
+    embeddings: np.ndarray,
+    config: Optional[ConsolidationConfig] = None,
+    temperature: float = 0.0,
+    merge_retries: int = 1,
+) -> Dict:
+    """Find, verify, merge, check, and append consolidated notes.
+
+    ``llm`` is any object with ``get_completion(prompt, temperature=...)``.
+    ``embeddings`` are content-only embeddings of the notes currently in
+    ``system`` (see ``content_embeddings``). Returns a log with one entry per
+    candidate group and summary counts.
+    """
+    cfg = config or ConsolidationConfig()
+    notes = list(system.memories.values())
+    groups = find_candidate_groups(notes, embeddings, cfg)
+    entries: List[Dict] = []
+    counts = {"groups": len(groups), "merged": 0, "different": 0, "rejected": 0, "llm_calls": 0}
+
+    for group in groups:
+        sources = [notes[i] for i in group.indices]
+        note_list = format_consolidation_notes(sources)
+        entry: Dict = {
+            **group.to_dict(),
+            "sources": [{"index": i, "timestamp": notes[i].timestamp, "content": notes[i].content}
+                        for i in group.indices],
+        }
+
+        verdict_raw = llm.get_completion(
+            CONSOLIDATION_VERIFY_PROMPT.format(notes=note_list), temperature=temperature
+        )
+        counts["llm_calls"] += 1
+        verdict = parse_consolidation_verdict(verdict_raw)
+        entry["label"] = verdict["label"]
+        entry["label_reason"] = verdict["reason"]
+
+        if verdict["label"] == "DIFFERENT":
+            entry["outcome"] = "kept_separate"
+            counts["different"] += 1
+            entries.append(entry)
+            continue
+
+        feedback = ""
+        attempts: List[Dict] = []
+        merged: Optional[Dict[str, str]] = None
+        for _ in range(1 + max(merge_retries, 0)):
+            merge_raw = llm.get_completion(
+                CONSOLIDATION_MERGE_PROMPT.format(notes=note_list, feedback=feedback),
+                temperature=temperature,
+            )
+            counts["llm_calls"] += 1
+            parsed = parse_consolidation_merge(merge_raw)
+            missing = missing_facts(sources, parsed["content"]) if parsed["content"] else ["<empty>"]
+            attempts.append({"content": parsed["content"], "context": parsed["context"], "missing": missing})
+            if not missing:
+                merged = parsed
+                break
+            feedback = CONSOLIDATION_MERGE_FEEDBACK.format(missing=", ".join(missing))
+        entry["attempts"] = attempts
+
+        if merged is None:
+            entry["outcome"] = "rejected_missing_facts"
+            counts["rejected"] += 1
+            entries.append(entry)
+            continue
+
+        result = apply_consolidation(
+            system,
+            group.indices,
+            merged["content"],
+            keywords=_unique(k for note in sources for k in note.keywords),
+            tags=_unique(t for note in sources for t in note.tags),
+            context=merged["context"] or None,
+            extra={"label": verdict["label"]},
+        )
+        entry["outcome"] = "merged"
+        entry["consolidated_index"] = result.consolidated_index
+        entry["consolidated_content"] = merged["content"]
+        counts["merged"] += 1
+        entries.append(entry)
+
+    return {"config": cfg.__dict__, "counts": counts, "groups": entries}

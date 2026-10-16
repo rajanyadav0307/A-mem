@@ -194,3 +194,81 @@ def test_apply_consolidation_rejects_bad_input():
     apply_consolidation(system, [0, 1], "merged")
     with pytest.raises(ValueError):
         apply_consolidation(system, [1, 2], "note 1 already consolidated")
+
+
+# ---------------------------------------------------------------------------
+# Prompts, parsers and the full offline pass (fake LLM)
+# ---------------------------------------------------------------------------
+
+from llm_text_parsers import parse_consolidation_merge, parse_consolidation_verdict  # noqa: E402
+from memory_consolidation import consolidate_bank  # noqa: E402
+
+
+def test_verdict_parser_defaults_to_different():
+    assert parse_consolidation_verdict("LABEL: same fact\nREASON: x")["label"] == "SAME_FACT"
+    assert parse_consolidation_verdict("LABEL: Small talk.")["label"] == "SMALL_TALK"
+    assert parse_consolidation_verdict("no idea")["label"] == "DIFFERENT"
+    assert parse_consolidation_verdict("")["label"] == "DIFFERENT"
+    assert parse_consolidation_verdict('{"label": "SAME_FACT", "reason": "r"}')["label"] == "SAME_FACT"
+
+
+def test_merge_parser_joins_lines():
+    parsed = parse_consolidation_merge("CONTENT: Anna said hi\n on 1 May 2023.\nCONTEXT: greeting")
+    assert parsed == {"content": "Anna said hi on 1 May 2023.", "context": "greeting"}
+    assert parse_consolidation_merge("nothing useful")["content"] == ""
+
+
+class ScriptedLLM:
+    """Returns a label for verify prompts and queued answers for merge prompts."""
+
+    def __init__(self, label, merges):
+        self.label = label
+        self.merges = list(merges)
+        self.prompts = []
+
+    def get_completion(self, prompt, temperature=0.7):
+        self.prompts.append(prompt)
+        if prompt.startswith("You are checking"):
+            return f"LABEL: {self.label}\nREASON: test"
+        return self.merges.pop(0)
+
+
+def _two_similar_notes():
+    notes = [
+        make_note("Speaker Annasays : I ran 5 miles with Ben", "2:31 pm on 17 July, 2023"),
+        make_note("Speaker Annasays : Ran 5 miles with Ben again", "1:33 pm on 25 August, 2023"),
+    ]
+    return notes, unit([[1.0, 0.0], [1.0, 0.0]])
+
+
+def test_consolidate_bank_merges_after_retry():
+    notes, emb = _two_similar_notes()
+    system = make_system(notes)
+    good = "CONTENT: Anna ran 5 miles with Ben on 17 July 2023 and again on 25 August 2023.\nCONTEXT: running"
+    llm = ScriptedLLM("SAME_FACT", ["CONTENT: Anna ran with Ben.\nCONTEXT: running", good])
+    log = consolidate_bank(system, llm, emb)
+    assert log["counts"] == {"groups": 1, "merged": 1, "different": 0, "rejected": 0, "llm_calls": 3}
+    assert "left out" in llm.prompts[-1]
+    merged = list(system.memories.values())[2]
+    assert merged.note_type == "consolidated"
+    assert merged.context == "running"
+    assert log["groups"][0]["outcome"] == "merged"
+
+
+def test_consolidate_bank_rejects_when_facts_stay_missing():
+    notes, emb = _two_similar_notes()
+    system = make_system(notes)
+    bad = "CONTENT: Anna ran with Ben.\nCONTEXT: running"
+    log = consolidate_bank(system, ScriptedLLM("SAME_FACT", [bad, bad]), emb)
+    assert log["counts"]["rejected"] == 1
+    assert len(system.memories) == 2
+    assert all(n.consolidated_into is None for n in notes)
+
+
+def test_consolidate_bank_keeps_different_notes_apart():
+    notes, emb = _two_similar_notes()
+    system = make_system(notes)
+    llm = ScriptedLLM("DIFFERENT", [])
+    log = consolidate_bank(system, llm, emb)
+    assert log["counts"]["different"] == 1 and log["counts"]["llm_calls"] == 1
+    assert len(system.memories) == 2

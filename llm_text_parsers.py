@@ -509,3 +509,95 @@ def _heuristic_context(content: str) -> str:
         return match.group(1).strip()
     # Fallback: first 200 chars
     return content[:200].strip()
+
+
+# ---------------------------------------------------------------------------
+# Consolidation (T-MEM Module 2)
+# ---------------------------------------------------------------------------
+
+CONSOLIDATION_VERIFY_PROMPT = """You are checking whether several memory notes from a conversation can be merged into one note.
+
+Notes (each with the date it was said):
+{notes}
+
+Choose exactly one label:
+- SAME_FACT: the notes state the same fact, plan, or event (repeated or rephrased). Merging loses nothing.
+- SMALL_TALK: the notes are greetings, thanks, praise, or encouragement with no distinct facts.
+- DIFFERENT: the notes describe different facts, events, objects, or details, even if they sound similar.
+
+If you are unsure, choose DIFFERENT.
+
+Respond in this exact format:
+LABEL: SAME_FACT, SMALL_TALK, or DIFFERENT
+REASON: one sentence"""
+
+
+CONSOLIDATION_MERGE_PROMPT = """Merge these memory notes from a conversation into one note.
+
+Notes (each with the date it was said):
+{notes}
+
+Rules:
+- Keep every fact, name, number, and detail from every note.
+- Say who said each thing.
+- Give the absolute date of each note, written like "17 July 2023".
+- Turn relative times into absolute ones using that note's date (for example, "next month" said on 17 July 2023 means August 2023).
+- If the notes differ, keep both versions with their dates. Do not pick one.
+- Write plain sentences. Do not add anything that is not in the notes.
+{feedback}
+Respond in this exact format:
+CONTENT: the merged note
+CONTEXT: one sentence describing the topic"""
+
+
+CONSOLIDATION_MERGE_FEEDBACK = """
+Your previous attempt left out these items, which must appear in the merged note: {missing}
+"""
+
+
+CONSOLIDATION_LABELS = ("SAME_FACT", "SMALL_TALK", "DIFFERENT")
+
+
+def format_consolidation_notes(notes: List[Any]) -> str:
+    """Numbered note list with dates for the consolidation prompts."""
+    return "\n".join(
+        f"{i}. [{note.timestamp}] {note.content}" for i, note in enumerate(notes, start=1)
+    )
+
+
+def parse_consolidation_verdict(response: str) -> Dict[str, str]:
+    """Parse the verify response.
+
+    Returns:
+        {"label": "SAME_FACT|SMALL_TALK|DIFFERENT", "reason": "..."}
+
+    Anything unreadable becomes DIFFERENT, so a bad response never merges notes.
+    """
+    def _section_parse(resp: str) -> Dict[str, str]:
+        label_text = _extract_section(resp, "LABEL", ["REASON"])
+        reason_text = _extract_section(resp, "REASON", ["LABEL"])
+        return {"label": label_text, "reason": reason_text}
+
+    result = parse_with_json_fallback(response or "", _section_parse)
+    label = str(result.get("label", "")).strip().upper().replace(" ", "_").strip(".")
+    if label not in CONSOLIDATION_LABELS:
+        found = [cand for cand in CONSOLIDATION_LABELS if cand in label]
+        label = found[0] if len(found) == 1 else "DIFFERENT"
+    return {"label": label, "reason": str(result.get("reason", "")).strip()}
+
+
+def parse_consolidation_merge(response: str) -> Dict[str, str]:
+    """Parse the merge response.
+
+    Returns:
+        {"content": "...", "context": "..."}  (content is "" if missing)
+    """
+    def _section_parse(resp: str) -> Dict[str, str]:
+        content = _extract_section(resp, "CONTENT", ["CONTEXT"])
+        context = _extract_section(resp, "CONTEXT", ["CONTENT"])
+        return {"content": content, "context": context}
+
+    result = parse_with_json_fallback(response or "", _section_parse)
+    content = " ".join(str(result.get("content", "")).split())
+    context = " ".join(str(result.get("context", "")).split())
+    return {"content": content, "context": context}
