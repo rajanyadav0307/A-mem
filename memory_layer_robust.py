@@ -21,6 +21,11 @@ import functools
 from datetime import datetime
 from abc import ABC, abstractmethod
 
+import contextlib
+
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
+
 from memory_layer import SimpleEmbeddingRetriever, simple_tokenize
 from llm_text_parsers import (
     ANALYZE_CONTENT_PROMPT,
@@ -359,8 +364,21 @@ class RobustMemoryNote:
 # RobustAgenticMemorySystem
 # ---------------------------------------------------------------------------
 
+CONSOLIDATION_MODES = ("off", "add_only", "primary", "primary_expand")
+
+
 class RobustAgenticMemorySystem:
     """Memory management system using plain-text LLM calls (no JSON schema)."""
+
+    # How retrieval treats consolidated notes (T-MEM Module 2):
+    #   off            - ignore consolidated notes; identical to plain A-MEM
+    #   add_only       - consolidated notes compete alongside their sources
+    #   primary        - archived sources are hidden; links to them point to
+    #                    their consolidated note instead
+    #   primary_expand - archived sources are hidden from top-k, but a
+    #                    retrieved consolidated note brings its sources along
+    # Class-level default so systems built with __new__ (cached runs) work.
+    consolidation_mode: str = "off"
 
     def __init__(self,
                  model_name: str = 'all-MiniLM-L6-v2',
@@ -439,6 +457,15 @@ class RobustAgenticMemorySystem:
 
     def find_related_memories_raw(self, query: str, k: int = 5) -> str:
         """Find related memories with neighborhood expansion."""
+        if self.consolidation_mode == "off":
+            with self.raw_only_view():
+                return self._find_related_memories_raw_amem(query, k)
+        if not self.memories:
+            return ""
+        return self.render_notes(self.consolidated_context_order(query, k))
+
+    def _find_related_memories_raw_amem(self, query: str, k: int = 5) -> str:
+        """Original A-MEM retrieval with neighborhood expansion (unchanged)."""
         if not self.memories:
             return ""
 
@@ -467,6 +494,104 @@ class RobustAgenticMemorySystem:
                     break
                 j += 1
         return memory_str
+
+    # ---- consolidation-aware retrieval ----
+
+    def _raw_prefix_length(self) -> int:
+        """Number of raw notes. Consolidated notes are always appended after them."""
+        notes = list(self.memories.values())
+        n_raw = 0
+        while n_raw < len(notes) and notes[n_raw].note_type == "raw":
+            n_raw += 1
+        if any(note.note_type == "raw" for note in notes[n_raw:]):
+            raise ValueError("raw note found after a consolidated note; bank is not append-only")
+        return n_raw
+
+    @contextlib.contextmanager
+    def raw_only_view(self):
+        """Temporarily hide consolidated notes so retrieval sees the original bank.
+
+        Consolidated notes sit at the end of the memory dict and retriever,
+        so slicing both to the raw prefix restores the exact pre-consolidation
+        state. With no consolidated notes this does nothing.
+        """
+        n_raw = self._raw_prefix_length()
+        if n_raw == len(self.memories):
+            yield
+            return
+        saved = (self.memories, self.retriever.embeddings, self.retriever.corpus)
+        self.memories = dict(list(self.memories.items())[:n_raw])
+        self.retriever.embeddings = saved[1][:n_raw]
+        self.retriever.corpus = saved[2][:n_raw]
+        try:
+            yield
+        finally:
+            self.memories, self.retriever.embeddings, self.retriever.corpus = saved
+
+    def retrievable_indices(self) -> List[int]:
+        """Note positions that may appear in top-k for the current mode."""
+        notes = list(self.memories.values())
+        if self.consolidation_mode == "add_only":
+            return list(range(len(notes)))
+        if self.consolidation_mode in ("primary", "primary_expand"):
+            return [i for i, note in enumerate(notes) if note.status != "archived"]
+        if self.consolidation_mode == "off":
+            return list(range(self._raw_prefix_length()))
+        raise ValueError(f"unknown consolidation_mode: {self.consolidation_mode!r}")
+
+    def search_retrievable(self, query: str, k: int) -> List[int]:
+        """Top-k cosine search restricted to ``retrievable_indices``."""
+        allowed = np.asarray(self.retrievable_indices(), dtype=int)
+        if allowed.size == 0:
+            return []
+        query_embedding = self.retriever.model.encode([query])[0]
+        similarities = cosine_similarity([query_embedding], self.retriever.embeddings[allowed])[0]
+        top = np.argsort(similarities)[-k:][::-1]
+        return [int(allowed[t]) for t in top]
+
+    def context_neighbors(self, index: int) -> List[int]:
+        """Linked notes to expand for one seed, following the current mode."""
+        notes = list(self.memories.values())
+        links = [int(n) for n in notes[index].links if 0 <= int(n) < len(notes)]
+        if self.consolidation_mode != "primary":
+            return links
+        redirected: List[int] = []
+        for neighbor in links:
+            if notes[neighbor].status == "archived":
+                neighbor = notes[neighbor].consolidated_into
+            if neighbor is None or neighbor == index or neighbor in redirected:
+                continue
+            redirected.append(int(neighbor))
+        return redirected
+
+    def consolidated_context_order(
+        self, query: str, k: int, seeds: Optional[List[int]] = None
+    ) -> List[int]:
+        """Seeds plus linked neighbors, using A-MEM's expansion budget per seed."""
+        if seeds is None:
+            seeds = self.search_retrievable(query, k)
+        order: List[int] = []
+        for i in seeds:
+            order.append(int(i))
+            j = 0
+            for neighbor in self.context_neighbors(int(i)):
+                order.append(neighbor)
+                if j >= k:
+                    break
+                j += 1
+        return order
+
+    def render_notes(self, order: List[int]) -> str:
+        """Format notes the same way as A-MEM's raw retrieval."""
+        notes = list(self.memories.values())
+        return "".join(
+            "talk start time:" + notes[i].timestamp +
+            "memory content: " + notes[i].content +
+            "memory context: " + notes[i].context +
+            "memory keywords: " + str(notes[i].keywords) +
+            "memory tags: " + str(notes[i].tags) + "\n"
+            for i in order
+        )
 
     # ---- evolution (3 sequential plain-text calls) ----
 

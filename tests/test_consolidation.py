@@ -335,3 +335,97 @@ def test_dropped_relative_time_blocks_merge():
     assert log["counts"]["merged"] == 1
     assert "do not drop them" in llm.prompts[2]
     assert log["groups"][0]["consolidated_content"] == resolved
+
+
+# ---------------------------------------------------------------------------
+# Retrieval modes
+# ---------------------------------------------------------------------------
+
+class KeywordModel:
+    """Embeds text as a 3-d vector by keyword, so search results are predictable."""
+
+    AXES = ("art", "dog", "chat")
+
+    def encode(self, texts):
+        rows = []
+        for text in texts:
+            text = text.lower()
+            rows.append([1.0 if axis in text else 0.01 for axis in self.AXES])
+        return np.asarray(rows, dtype=np.float64)
+
+
+class ModelRetriever:
+    def __init__(self, docs):
+        self.model = KeywordModel()
+        self.corpus = list(docs)
+        self.embeddings = self.model.encode(docs)
+
+    def add_documents(self, documents):
+        self.corpus.extend(documents)
+        self.embeddings = np.vstack([self.embeddings, self.model.encode(documents)])
+
+    def search(self, query, k=5):
+        q = self.model.encode([query])[0]
+        e = self.embeddings
+        sims = e @ q / (np.linalg.norm(e, axis=1) * np.linalg.norm(q))
+        return np.argsort(sims)[-k:][::-1]
+
+
+def mode_system():
+    notes = [
+        make_note("Speaker Annasays : art show in August", links=[3]),   # 0, source
+        make_note("Speaker Bensays : my dog is sick", links=[]),         # 1
+        make_note("Speaker Annasays : art show is coming", links=[]),    # 2, source
+        make_note("Speaker Bensays : nice chat", links=[0]),              # 3, links to a source
+    ]
+    system = RobustAgenticMemorySystem.__new__(RobustAgenticMemorySystem)
+    system.memories = {n.id: n for n in notes}
+    system.retriever = ModelRetriever([n.content for n in notes])
+    apply_consolidation(system, [0, 2], "Anna has an art show in August")  # becomes note 4
+    return system
+
+
+def context_order(system, query, k=2):
+    rendered = system.find_related_memories_raw(query, k=k)
+    contents = [n.content for n in system.memories.values()]
+    lines = [line.split("memory content: ")[1].split("memory context: ")[0] for line in rendered.splitlines()]
+    return [contents.index(line) for line in lines]
+
+
+def test_off_mode_ignores_consolidated_notes_and_restores_state():
+    system = mode_system()
+    system.consolidation_mode = "off"
+    order = context_order(system, "art", k=2)
+    assert 4 not in order and order[0] in (0, 2)
+    assert len(system.memories) == 5 and system.retriever.embeddings.shape[0] == 5
+
+
+def test_add_only_lets_everything_compete():
+    system = mode_system()
+    system.consolidation_mode = "add_only"
+    assert system.retrievable_indices() == [0, 1, 2, 3, 4]
+
+
+def test_primary_hides_sources_and_redirects_links():
+    system = mode_system()
+    system.consolidation_mode = "primary"
+    assert system.retrievable_indices() == [1, 3, 4]
+    assert system.search_retrievable("art", 1) == [4]
+    assert system.context_neighbors(4) == []       # its sources are archived: not expanded
+    assert system.context_neighbors(3) == [4]      # link to source 0 now points to note 4
+    assert 0 not in context_order(system, "art chat", k=3)
+    assert 2 not in context_order(system, "art chat", k=3)
+
+
+def test_primary_expand_brings_sources_with_consolidated_note():
+    system = mode_system()
+    system.consolidation_mode = "primary_expand"
+    assert system.search_retrievable("art", 1) == [4]
+    assert context_order(system, "art", k=1)[:3] == [4, 0, 2]
+
+
+def test_unknown_mode_raises():
+    system = mode_system()
+    system.consolidation_mode = "bogus"
+    with pytest.raises(ValueError):
+        system.find_related_memories_raw("art", k=1)

@@ -210,6 +210,8 @@ def evaluate_dataset(
     sglang_host: str = "http://localhost",
     sglang_port: int = 30000,
     temporal_config: Optional[TemporalRetrievalConfig] = None,
+    memories_dir: Optional[str] = None,
+    consolidation_mode: str = "off",
 ):
     """Evaluate T-MEM on the LoCoMo dataset using the robust A-MEM pipeline."""
     timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M")
@@ -237,11 +239,16 @@ def evaluate_dataset(
     error_num = 0
 
     # Reuse the same cache namespace as robust A-MEM so the memory bank itself is identical.
-    memories_dir = os.path.join(
+    default_memories_dir = os.path.join(
         os.path.dirname(__file__),
         "cached_memories_robust_{}_{}".format(backend, model),
     )
-    os.makedirs(memories_dir, exist_ok=True)
+    if memories_dir is None:
+        memories_dir = default_memories_dir
+        os.makedirs(memories_dir, exist_ok=True)
+    elif not os.path.isdir(memories_dir):
+        raise FileNotFoundError(f"memories_dir not found: {memories_dir}")
+    custom_memories_dir = os.path.abspath(memories_dir) != os.path.abspath(default_memories_dir)
     allow_categories = [1, 2, 3, 4, 5]
     temporal_config = temporal_config or TemporalRetrievalConfig()
 
@@ -255,6 +262,7 @@ def evaluate_dataset(
             sglang_host,
             sglang_port,
         )
+        agent.memory_system.consolidation_mode = consolidation_mode
 
         memory_cache_file = os.path.join(memories_dir, f"memory_cache_sample_{sample_idx}.pkl")
         retriever_cache_file = os.path.join(memories_dir, f"retriever_cache_sample_{sample_idx}.pkl")
@@ -279,6 +287,8 @@ def evaluate_dataset(
                 )
             eval_logger.info("Successfully loaded %d memories", len(cached_memories))
         else:
+            if custom_memories_dir:
+                raise FileNotFoundError(f"no cached memories for sample {sample_idx} in {memories_dir}")
             eval_logger.info("No cached memories found for sample %d. Creating new memories.", sample_idx)
             session_items = list(sample.conversation.sessions.items())
             total_sessions = len(session_items)
@@ -396,6 +406,9 @@ def evaluate_dataset(
         "aggregate_metrics": aggregate_results,
         "individual_results": results,
     }
+    if consolidation_mode != "off" or custom_memories_dir:
+        final_results["consolidation_mode"] = consolidation_mode
+        final_results["memories_dir"] = memories_dir
     eval_logger.info("Error number: %d", error_num)
 
     if output_path:
@@ -447,6 +460,11 @@ def main():
                         help="SGLang server host (for sglang backend)")
     parser.add_argument("--sglang_port", type=int, default=30000,
                         help="SGLang server port (for sglang backend)")
+    parser.add_argument("--memories_dir", type=str, default=None,
+                        help="Load cached memories from this directory (e.g. a consolidated cache)")
+    parser.add_argument("--consolidation_mode", type=str, default="off",
+                        choices=["off", "add_only", "primary", "primary_expand"],
+                        help="How retrieval treats consolidated notes (default: off)")
 
     parser.add_argument("--decay_lambda", type=float, default=0.1,
                         help="Lambda in exp(-lambda * age)")
@@ -507,6 +525,8 @@ def main():
         args.sglang_host,
         args.sglang_port,
         temporal_config,
+        memories_dir=args.memories_dir,
+        consolidation_mode=args.consolidation_mode,
     )
 
 

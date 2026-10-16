@@ -266,6 +266,44 @@ By category, multi-hop (1) is the weakest: recall 0.384, and only 14% of questio
 
 **Step 4 mode.** v3 merges are real summaries, so the original wording and exact phrases are only in the sources. `primary_expand` (merged note plus its sources) is the main mode again, as originally planned.
 
+### Step 4 results (2026-10-16)
+
+**What was added**
+- `RobustAgenticMemorySystem.consolidation_mode` supports `off`, `add_only`, `primary` and `primary_expand`. It is a class-level default, so cached systems built with `__new__` get `off`. T-MEM inherits the modes. Under `primary` and `primary_expand`, its temporal reranking never puts hidden notes into the candidate pool.
+- `off` runs the **unchanged** May 6 code inside `raw_only_view()`. That view temporarily cuts the memory dict and retriever back to the raw notes, which works because consolidated notes are always appended at the end.
+- `test_advanced_robust.py` and `test_tmem_advanced_robust.py` take `--memories_dir` (load a consolidated cache, never build into it) and `--consolidation_mode`. With the defaults, the code path and the output JSON are unchanged.
+- `evaluate_evidence_recall.py --modes …` gives a consolidated note credit for its sources' evidence (`recall`). It also reports `raw_recall`, which counts only original notes.
+
+**Off matches May 6 exactly.** `check_off_mode_matches_may6.py` exports the May 6 modules from commit `24ad98fa` and dumps the retrieval context for every question (304 questions × A-MEM and T-MEM v2 = 608 contexts). It then compares those with the current code in `off` mode:
+
+| Current code, `off` | Contexts | Mismatches |
+|---|---|---|
+| Original cache | 608 | 0 |
+| v3 consolidated cache | 608 | 0 |
+
+Result is in `analysis/off_mode_check.json`. As a negative control, `primary_expand` on the v3 cache differs from May 6 in 522 of 608 contexts, so the check does detect real changes.
+
+**Evidence recall by mode.** v3 cache, samples 0–1, k = 10, question as the query (`analysis/evidence_recall_v3_modes.json`). Shown for A-MEM; T-MEM v2 is within 0.005 everywhere.
+
+| Mode | Recall | Top-k (seed) recall | All found | Cat 1 all found | Cat 2 recall | Cat 5 recall | Notes in context / unique |
+|---|---|---|---|---|---|---|---|
+| off (= May 6) | **0.556** | **0.472** | **0.510** | 0.140 | **0.714** | **0.606** | 50.7 / 23.7 |
+| add_only | 0.510 | 0.433 | 0.470 | 0.163 | 0.635 | 0.493 | 45.3 / 26.5 |
+| primary | 0.528 | 0.457 | 0.490 | **0.186** | 0.635 | 0.521 | 38.6 / 21.0 |
+| primary_expand | 0.528 | 0.457 | 0.490 | **0.186** | 0.635 | 0.521 | 44.9 / 27.2 |
+
+**Consolidation lowers recall as it stands.** Multi-hop (category 1) improves a little: all evidence found goes from 14.0% to 18.6%, and top-k recall from 0.208 to 0.243. Categories 3 and 4 move up slightly. But time questions (2) and adversarial questions (5) drop clearly, and overall recall falls from 0.556 to 0.528.
+
+**Why: consolidated notes act as "hubs".** On average about 2.9 of the top-10 slots go to consolidated notes, but only 14 of 892 such appearances (1.6%) actually cover the evidence. They push out evidence-bearing raw notes and their linked neighbors. Likely causes:
+- The retriever text for a consolidated note includes the union of all source keywords and tags, plus the merged summary.
+- The summaries are written like "Caroline expressed … on 8 May 2023", which closely matches question wording ("When did Caroline …").
+- Small-talk summaries are retrieved as often as same-fact summaries (436 vs 454 appearances) and almost never hold evidence.
+
+**Possible next fixes (to test with evidence recall before any QA runs):**
+1. Embed a consolidated note with the same text recipe as its sources, without merging all their keywords and tags.
+2. Don't make small-talk summaries retrievable. Archive small talk behind one short note, or don't index it at all.
+3. Give consolidated notes a small score penalty, or allow at most one consolidated note in the top-k.
+
 ## 6. Risks
 
 | Risk | Mitigation |

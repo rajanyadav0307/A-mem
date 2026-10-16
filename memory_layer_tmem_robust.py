@@ -148,7 +148,12 @@ class TemporalAwareRobustAgenticMemorySystem(RobustAgenticMemorySystem):
             self.retriever = self.retriever.load_from_local_memory(self.memories, "all-MiniLM-L6-v2")
 
         query_embedding = self.retriever.model.encode([query])[0]
-        return cosine_similarity([query_embedding], self.retriever.embeddings)[0]
+        scores = cosine_similarity([query_embedding], self.retriever.embeddings)[0]
+        if self.consolidation_mode != "off":
+            allowed = np.zeros(len(scores), dtype=bool)
+            allowed[self.retrievable_indices()] = True
+            scores = np.where(allowed, scores, -np.inf)
+        return scores
 
     def _rank_memories_temporally(
         self,
@@ -177,6 +182,7 @@ class TemporalAwareRobustAgenticMemorySystem(RobustAgenticMemorySystem):
         candidate_pool_size = max(top_k, self.temporal_config.candidate_pool_size)
         candidate_pool_size = min(candidate_pool_size, len(all_memories))
         candidate_indices = semantic_ranked[:candidate_pool_size]
+        candidate_indices = candidate_indices[np.isfinite(semantic_scores[candidate_indices])]
 
         t_current = self._current_query_time(all_memories)
         max_links = max((len(m.links) for m in all_memories), default=1)
@@ -225,6 +231,15 @@ class TemporalAwareRobustAgenticMemorySystem(RobustAgenticMemorySystem):
         if not self._should_apply_temporal(question_category):
             return super().find_related_memories_raw(query, k=k)
 
+        if self.consolidation_mode == "off":
+            with self.raw_only_view():
+                return self._find_related_memories_raw_temporal(query, k)
+
+        indices, _ = self._rank_memories_temporally(query, k)
+        return self.render_notes(self.consolidated_context_order(query, k, seeds=indices))
+
+    def _find_related_memories_raw_temporal(self, query: str, k: int) -> str:
+        """Original T-MEM v2 temporal retrieval with neighbor expansion (unchanged)."""
         indices, _ = self._rank_memories_temporally(query, k)
         all_memories = list(self.memories.values())
         memory_str = ""

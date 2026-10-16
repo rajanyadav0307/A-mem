@@ -1,0 +1,17 @@
+{
+  "reference": "May 6 code (24ad98fa) on cached_memories_robust_openai_gpt-4o-mini",
+  "contexts": 608,
+  "checks": {
+    "current code, off, original cache": {
+      "cache_dir": "cached_memories_robust_openai_gpt-4o-mini",
+      "mismatches": 0,
+      "examples": []
+    },
+    "current code, off, consolidated cache": {
+      "cache_dir": "cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3",
+      "mismatches": 0,
+      "examples": []
+    }
+  },
+  "identical": true
+}

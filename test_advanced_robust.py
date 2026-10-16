@@ -180,7 +180,8 @@ def _sample_turn_count(sample) -> int:
 def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] = None,
                      ratio: float = 1.0, backend: str = "sglang",
                      temperature_c5: float = 0.5, retrieve_k: int = 10,
-                     sglang_host: str = "http://localhost", sglang_port: int = 30000):
+                     sglang_host: str = "http://localhost", sglang_port: int = 30000,
+                     memories_dir: Optional[str] = None, consolidation_mode: str = "off"):
     """Evaluate the robust agent on the LoComo dataset."""
     timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M")
     log_filename = f"eval_robust_{model}_{backend}_ratio{ratio}_{timestamp}.log"
@@ -207,16 +208,22 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
 
     i = 0
     error_num = 0
-    memories_dir = os.path.join(
+    default_memories_dir = os.path.join(
         os.path.dirname(__file__),
         "cached_memories_robust_{}_{}".format(backend, model),
     )
-    os.makedirs(memories_dir, exist_ok=True)
+    if memories_dir is None:
+        memories_dir = default_memories_dir
+        os.makedirs(memories_dir, exist_ok=True)
+    elif not os.path.isdir(memories_dir):
+        raise FileNotFoundError(f"memories_dir not found: {memories_dir}")
+    custom_memories_dir = os.path.abspath(memories_dir) != os.path.abspath(default_memories_dir)
     allow_categories = [1, 2, 3, 4, 5]
 
     for sample_idx, sample in enumerate(samples):
         agent = RobustAdvancedMemAgent(model, backend, retrieve_k, temperature_c5,
                                        sglang_host, sglang_port)
+        agent.memory_system.consolidation_mode = consolidation_mode
 
         memory_cache_file = os.path.join(memories_dir, f"memory_cache_sample_{sample_idx}.pkl")
         retriever_cache_file = os.path.join(memories_dir, f"retriever_cache_sample_{sample_idx}.pkl")
@@ -241,6 +248,8 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
                 )
             eval_logger.info(f"Successfully loaded {len(cached_memories)} memories")
         else:
+            if custom_memories_dir:
+                raise FileNotFoundError(f"no cached memories for sample {sample_idx} in {memories_dir}")
             eval_logger.info(f"No cached memories found for sample {sample_idx}. Creating new memories.")
             session_items = list(sample.conversation.sessions.items())
             total_sessions = len(session_items)
@@ -347,6 +356,9 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
         "aggregate_metrics": aggregate_results,
         "individual_results": results,
     }
+    if consolidation_mode != "off" or custom_memories_dir:
+        final_results["consolidation_mode"] = consolidation_mode
+        final_results["memories_dir"] = memories_dir
     eval_logger.info(f"Error number: {error_num}")
 
     if output_path:
@@ -393,6 +405,11 @@ def main():
                         help="SGLang server host (for sglang backend)")
     parser.add_argument("--sglang_port", type=int, default=30000,
                         help="SGLang server port (for sglang backend)")
+    parser.add_argument("--memories_dir", type=str, default=None,
+                        help="Load cached memories from this directory (e.g. a consolidated cache)")
+    parser.add_argument("--consolidation_mode", type=str, default="off",
+                        choices=["off", "add_only", "primary", "primary_expand"],
+                        help="How retrieval treats consolidated notes (default: off)")
     args = parser.parse_args()
 
     if args.ratio <= 0.0 or args.ratio > 1.0:
@@ -405,6 +422,7 @@ def main():
         dataset_path, args.model, output_path, args.ratio,
         args.backend, args.temperature_c5, args.retrieve_k,
         args.sglang_host, args.sglang_port,
+        memories_dir=args.memories_dir, consolidation_mode=args.consolidation_mode,
     )
 
 
