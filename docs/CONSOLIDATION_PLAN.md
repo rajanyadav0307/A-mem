@@ -186,6 +186,29 @@ Check after step 4: with `--consolidation_mode off`, the output must match the M
 
 ---
 
+### Step 0 results (2026-10-16)
+
+**Candidate groups.** Produced by `analyze_consolidation_candidates.py`, using complete linkage, same speaker only, and a maximum group size of 5. Full data is in `analysis/consolidation_candidates.json`.
+
+| τ | Sample 0 groups / notes | Sample 1 groups / notes | Largest group |
+|---|---|---|---|
+| 0.80 | 23 / 49 (11.7%) | 23 / 47 (12.7%) | 3 |
+| 0.85 | 7 / 14 (3.3%) | 7 / 15 (4.1%) | 2–3 |
+| 0.90 | 2 / 4 (1.0%) | 2 / 4 (1.1%) | 2 |
+
+Complete linkage is much stricter than the earlier single-link estimate. At 0.85, the groups are the art-show repeat, small talk ("Thanks, Melanie…"), and one text-plus-image pair that is not the same fact. This confirms that the LLM verification step is needed. τ = 0.80 gives enough groups to matter.
+
+**Baseline evidence recall.** Produced by `evaluate_evidence_recall.py` on samples 0–1 with k = 10, using the question text as the query. 302 questions have evidence that maps to a note. Full data is in `analysis/evidence_recall_baseline.json`. The script checked that its retrieved notes exactly match the real `find_related_memories_raw` output for every question.
+
+| System | Recall | Top-k (seed) recall | All evidence found | Notes in context | Unique notes |
+|---|---|---|---|---|---|
+| A-MEM | 0.556 | 0.472 | 0.510 | 50.7 | 23.7 |
+| T-MEM v2 | 0.556 | 0.475 | 0.510 | 50.7 | 23.7 |
+
+By category, multi-hop (1) is the weakest: recall 0.384, and only 14% of questions have all their evidence found. For time questions (2), T-MEM v2 raises top-k recall from 0.667 to 0.683, but recall after neighbor expansion is the same (0.714).
+
+**Key finding:** the answer prompt contains about 51 notes, but only about 24 are unique. More than half of the context is repeated notes from link expansion. Removing repeats and merging near-duplicates could free a lot of room.
+
 ## 6. Risks
 
 | Risk | Mitigation |

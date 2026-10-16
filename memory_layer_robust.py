@@ -273,6 +273,16 @@ class RobustLLMController:
 class RobustMemoryNote:
     """Memory note that uses plain-text LLM calls for metadata extraction."""
 
+    # Consolidation fields (T-MEM Module 2). Class-level defaults so notes
+    # unpickled from caches built before these fields existed still read them.
+    note_type: str = "raw"                 # "raw" or "consolidated"
+    source_indices: tuple = ()             # positions of source notes (consolidated notes)
+    source_timestamps: tuple = ()          # timestamps of those source notes
+    first_seen: Optional[str] = None       # earliest source timestamp
+    last_seen: Optional[str] = None        # latest source timestamp
+    consolidated_into: Optional[int] = None  # position of the consolidated note (source notes)
+    status: str = "active"                 # "active" or "archived"
+
     def __init__(self,
                  content: str,
                  id: Optional[str] = None,
