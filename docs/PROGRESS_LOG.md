@@ -81,6 +81,23 @@ Newest entries are at the bottom. Times are local (US Central).
 
 ---
 
+### 2026-10-21: Conflict handling: research and plan
+
+- New branch `conflict-handling-support`, on top of consolidation.
+- Read how other systems handle conflicts (Mem0, Zep, ROAM, MemStrata, STALE and others).
+- Our idea, **state timelines:** link notes about the same thing in date order, mark old facts as outdated (never delete), weaken old notes only if they were really replaced, and label outdated notes in the prompt.
+- Main setting chosen: `annotate + demote`.
+- Docs: [CONFLICT_HANDLING_RESEARCH.md](CONFLICT_HANDLING_RESEARCH.md), [CONFLICT_HANDLING_PLAN.md](CONFLICT_HANDLING_PLAN.md)
+- Commit: `9d41eb38`
+
+### 2026-10-21: Conflict handling step 0, first try
+
+- Measured how many real conflicts samples 0–1 contain (951 AI calls, about $0.07).
+- **Found:** similarity search alone misses real conflicts, so we must group notes by topic.
+- **Found:** the first try counted too much small talk, so its numbers can't be trusted yet. From reading the conversations: about 5–8 real timelines per sample, mostly plans moving forward, and 1 clear contradiction (Jon's studio).
+- Folder: `analysis/conflict_step0_2026-10-21/`
+- Next: a stricter second try (about $0.07 more).
+
 ## Things to keep in mind
 
 - **Results vary between runs.** The AI answers a little differently each time, so always compare averages of several runs, never a single run.

@@ -131,6 +131,36 @@ We report the same simple columns as the fresh run: normal questions, time quest
 
 ---
 
+## 6a. Step 0 results, first try (2026-10-21)
+
+Script: `measure_conflicts.py`. Output: `analysis/conflict_step0_2026-10-21/`. 951 AI calls with gpt-4o-mini, about $0.07. The May 6 memory bank was only read, never changed.
+
+**Finding 1: similarity alone misses real conflicts.**
+For known conflicts (Jon's studio, Caroline's adoption), the older note ranked **8th to 35th** among that person's similar earlier notes. A "top 3 most similar" search would miss them. So candidates have to come from **topics**, not from similarity alone. This matches MemStrata's finding (research §4).
+
+**Finding 2: the first try is too loose to trust its counts.**
+
+| | Sample 0 | Sample 1 |
+|---|---|---|
+| Notes | 419 | 369 |
+| Tagged as "situation" notes | 204 (49%) | 230 (62%) |
+| Topic timelines | 17 | 12 |
+| Timeline steps checked | 74 | 89 |
+| PROGRESS / CHANGE / CONTRADICTION | 16 / 0 / 0 | 50 / 1 / 0 |
+
+When I read 16 random PROGRESS steps, only about **4 were real progress**. Three problems:
+1. **Too much counted as a "situation".** Lines like "Thanks! I'm going for my dreams!" and "Let's plan something special!" got tagged.
+2. **Topics are too broad.** For example, "Caroline's self-acceptance" holds 50 notes, so a timeline mixes unrelated statements.
+3. **Only neighbouring notes are compared.** The known contradiction (Jon, 8 Feb "I love running my own studio" vs 19 Jun "Still working on opening a dance studio") was never compared directly. Jon's 19 Jun note was only compared with his 16 Jun note, and labelled PROGRESS.
+
+**Rough count from reading the conversations myself (not measured):** about 5–8 real timelines per sample, each with 2–5 steps. Almost all are PROGRESS (adoption, counselling career, Jon's studio, Gina's store, Melanie's pottery class), with **1 clear CONTRADICTION** (Jon's studio) and very few clean CHANGEs (Gina losing her DoorDash job).
+
+**What to fix in the second try:**
+- A stricter "situation" test: concrete, checkable facts only (an event, a status, a possession, a job, a place, a step in a plan). No feelings, thanks or encouragement.
+- Finer topics: a higher similarity threshold, and topics named by the thing itself ("Jon's dance studio"), not a feeling.
+- Compare each new note with **every** earlier note on the same topic that has a different status, not only the one just before it.
+- Before trusting any counts, check that the known cases are found (Jon's studio contradiction, Caroline's adoption steps, Gina's job → store).
+
 ## 7. Risks and how we handle them
 
 | Risk | How we handle it |
@@ -144,8 +174,8 @@ We report the same simple columns as the fresh run: normal questions, time quest
 
 ---
 
-## 8. Decisions for you
+## 8. Decisions
 
-1. **Main retrieval setting:** `annotate + demote` (recommended), or test `annotate` only first?
-2. **Step 0:** OK to spend under $0.10 measuring how many real conflicts exist before building?
-3. **Hand labelling:** are you able to label about 60 pairs for the detection-quality check?
+1. **Main retrieval setting:** `annotate + demote` (decided 2026-10-21). `annotate` and `demote` on their own are tested as extra checks.
+2. **Step 0:** approved 2026-10-21.
+3. **Hand labelling** of about 60 pairs: still open.

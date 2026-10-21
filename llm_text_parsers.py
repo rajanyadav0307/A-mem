@@ -638,3 +638,68 @@ def parse_consolidation_merge(response: str) -> Dict[str, str]:
     content = " ".join(str(result.get("content", "")).split())
     context = " ".join(str(result.get("context", "")).split())
     return {"content": content, "context": context}
+
+
+# ---------------------------------------------------------------------------
+# Conflict handling (T-MEM Module 3)
+# ---------------------------------------------------------------------------
+
+STATE_EXTRACT_PROMPT = """A person said this in a conversation on {date}:
+{speaker}: {text}
+
+Does it state something about the speaker's own situation that can change over time?
+Examples: a job or business, where they live, a relationship, health, a plan or project and how far it has got, something they own, a regular habit, a goal.
+Greetings, thanks, praise, questions and opinions about other people do not count.
+
+Respond in this exact format:
+STATE: YES or NO
+TOPIC: if YES, 2 to 5 words naming the thing, starting with the speaker's name (e.g. "Jon's dance studio"); if NO, write NONE
+STATUS: if YES, a short phrase for its status at that time (e.g. "searching for a location"); if NO, write NONE"""
+
+
+CONFLICT_CHECK_PROMPT = """Two things the same person said about the same topic, in date order:
+
+OLDER ({old_date}): {old_text}
+NEWER ({new_date}): {new_text}
+
+How does the NEWER statement relate to the OLDER one? Choose exactly one label:
+- SAME: it repeats the same fact or status.
+- PROGRESS: the same plan or situation has moved forward (for example, searching -> found -> running).
+- CHANGE: the old fact is no longer true and has been replaced (for example, a new job, moved house, quit).
+- CONTRADICTION: the two cannot both be true and it is not a natural change over time.
+- COMPATIBLE: both are true at the same time; the newer one adds something without replacing the older one.
+- UNRELATED: they are not about the same thing.
+
+If you are unsure, choose COMPATIBLE.
+
+Respond in this exact format:
+LABEL: one of SAME, PROGRESS, CHANGE, CONTRADICTION, COMPATIBLE, UNRELATED
+REASON: one sentence"""
+
+
+CONFLICT_LABELS = ("SAME", "PROGRESS", "CHANGE", "CONTRADICTION", "COMPATIBLE", "UNRELATED")
+
+
+def parse_state_extract(response: str) -> Dict[str, Any]:
+    """Parse the state-extraction response.
+
+    Returns:
+        {"is_state": bool, "topic": str, "status": str}. Unreadable -> not a state.
+    """
+    text = response or ""
+    is_state = _extract_section(text, "STATE", ["TOPIC", "STATUS"]).strip().upper().startswith("YES")
+    topic = " ".join(_extract_section(text, "TOPIC", ["STATUS", "STATE"]).split()).strip('"')
+    status = " ".join(_extract_section(text, "STATUS", ["TOPIC", "STATE"]).split()).strip('"')
+    if not is_state or not topic or topic.upper() == "NONE":
+        return {"is_state": False, "topic": "", "status": ""}
+    return {"is_state": True, "topic": topic, "status": "" if status.upper() == "NONE" else status}
+
+
+def parse_conflict_label(response: str) -> Dict[str, str]:
+    """Parse the conflict-check response. Unreadable -> COMPATIBLE (changes nothing)."""
+    text = response or ""
+    label = _extract_section(text, "LABEL", ["REASON"]).strip().upper().replace(" ", "_").strip(".")
+    if label not in CONFLICT_LABELS:
+        found = [cand for cand in CONFLICT_LABELS if cand in label]
+        label = found[0] if len(found) == 1 else "COMPATIBLE"
+    return {"label": label, "reason": " ".join(_extract_section(text, "REASON", ["LABEL"]).split())}
