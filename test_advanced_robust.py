@@ -181,10 +181,16 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
                      ratio: float = 1.0, backend: str = "sglang",
                      temperature_c5: float = 0.5, retrieve_k: int = 10,
                      sglang_host: str = "http://localhost", sglang_port: int = 30000,
-                     memories_dir: Optional[str] = None, consolidation_mode: str = "off"):
+                     memories_dir: Optional[str] = None, consolidation_mode: str = "off",
+                     consolidated_top_k_cap: Optional[int] = None,
+                     consolidated_score_penalty: float = 0.0,
+                     seed: Optional[int] = None, run_tag: Optional[str] = None):
     """Evaluate the robust agent on the LoComo dataset."""
+    if seed is not None:
+        random.seed(seed)
     timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M")
-    log_filename = f"eval_robust_{model}_{backend}_ratio{ratio}_{timestamp}.log"
+    tag = f"_{run_tag}" if run_tag else ""
+    log_filename = f"eval_robust_{model}_{backend}_ratio{ratio}{tag}_{timestamp}.log"
     log_path = os.path.join(os.path.dirname(__file__), "logs", log_filename)
     os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
@@ -224,6 +230,8 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
         agent = RobustAdvancedMemAgent(model, backend, retrieve_k, temperature_c5,
                                        sglang_host, sglang_port)
         agent.memory_system.consolidation_mode = consolidation_mode
+        agent.memory_system.consolidated_top_k_cap = consolidated_top_k_cap
+        agent.memory_system.consolidated_score_penalty = consolidated_score_penalty
 
         memory_cache_file = os.path.join(memories_dir, f"memory_cache_sample_{sample_idx}.pkl")
         retriever_cache_file = os.path.join(memories_dir, f"retriever_cache_sample_{sample_idx}.pkl")
@@ -359,6 +367,10 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
     if consolidation_mode != "off" or custom_memories_dir:
         final_results["consolidation_mode"] = consolidation_mode
         final_results["memories_dir"] = memories_dir
+        final_results["consolidated_top_k_cap"] = consolidated_top_k_cap
+        final_results["consolidated_score_penalty"] = consolidated_score_penalty
+    if seed is not None:
+        final_results["seed"] = seed
     eval_logger.info(f"Error number: {error_num}")
 
     if output_path:
@@ -410,6 +422,14 @@ def main():
     parser.add_argument("--consolidation_mode", type=str, default="off",
                         choices=["off", "add_only", "primary", "primary_expand"],
                         help="How retrieval treats consolidated notes (default: off)")
+    parser.add_argument("--consolidated_top_k_cap", type=int, default=None,
+                        help="At most this many consolidated notes in the top-k")
+    parser.add_argument("--consolidated_score_penalty", type=float, default=0.0,
+                        help="Subtracted from consolidated notes' cosine score")
+    parser.add_argument("--seed", type=int, default=None,
+                        help="Seed for the category-5 answer-option order (default: unseeded, as on May 6)")
+    parser.add_argument("--run_tag", type=str, default=None,
+                        help="Extra tag in the log file name, so parallel runs do not collide")
     args = parser.parse_args()
 
     if args.ratio <= 0.0 or args.ratio > 1.0:
@@ -423,6 +443,9 @@ def main():
         args.backend, args.temperature_c5, args.retrieve_k,
         args.sglang_host, args.sglang_port,
         memories_dir=args.memories_dir, consolidation_mode=args.consolidation_mode,
+        consolidated_top_k_cap=args.consolidated_top_k_cap,
+        consolidated_score_penalty=args.consolidated_score_penalty,
+        seed=args.seed, run_tag=args.run_tag,
     )
 
 
