@@ -1,0 +1,646 @@
+{
+  "created": "2026-10-21T16:22:22",
+  "rule": "question whose evidence turn is a note in a conflict-handling timeline (conflicts_v1 bank)",
+  "fixed_before_results": true,
+  "questions": [
+    {
+      "sample": 0,
+      "question_index": 3,
+      "category": 1,
+      "question": "What did Caroline research?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 7,
+      "category": 1,
+      "question": "What is Caroline's relationship status?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 13,
+      "category": 1,
+      "question": "What career path has Caroline decided to persue?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 15,
+      "category": 1,
+      "question": "What activities does Melanie partake in?",
+      "touches_replaced_note": true
+    },
+    {
+      "sample": 0,
+      "question_index": 16,
+      "category": 2,
+      "question": "When did Melanie sign up for a pottery class?",
+      "touches_replaced_note": true
+    },
+    {
+      "sample": 0,
+      "question_index": 24,
+      "category": 1,
+      "question": "What does Melanie do to destress?",
+      "touches_replaced_note": true
+    },
+    {
+      "sample": 0,
+      "question_index": 27,
+      "category": 3,
+      "question": "Would Caroline pursue writing as a career option?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 28,
+      "category": 2,
+      "question": "When did Caroline go to the adoption meeting?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 29,
+      "category": 2,
+      "question": "When did Melanie go to the pottery workshop?",
+      "touches_replaced_note": true
+    },
+    {
+      "sample": 0,
+      "question_index": 39,
+      "category": 1,
+      "question": "In what ways is Caroline participating in the LGBTQ community?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 52,
+      "category": 1,
+      "question": "What are Melanie's pets' names?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 53,
+      "category": 2,
+      "question": "When did Caroline apply to adoption agencies?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 55,
+      "category": 1,
+      "question": "What subject have Caroline and Melanie both painted?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 58,
+      "category": 2,
+      "question": "When did Melanie make a plate in pottery class?",
+      "touches_replaced_note": true
+    },
+    {
+      "sample": 0,
+      "question_index": 68,
+      "category": 2,
+      "question": "How long has Melanie been practicing art?",
+      "touches_replaced_note": true
+    },
+    {
+      "sample": 0,
+      "question_index": 72,
+      "category": 2,
+      "question": "When did Melanie's friend adopt a child?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 73,
+      "category": 2,
+      "question": "When did Melanie get hurt?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 79,
+      "category": 2,
+      "question": "When did Caroline pass the adoption interview?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 81,
+      "category": 3,
+      "question": "Would Caroline want to move back to her home country soon?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 85,
+      "category": 4,
+      "question": "What are Caroline's plans for the summer?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 86,
+      "category": 4,
+      "question": "What type of individuals does the adoption agency Caroline is considering support?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 87,
+      "category": 4,
+      "question": "Why did Caroline choose the adoption agency?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 88,
+      "category": 4,
+      "question": "What is Caroline excited about in the adoption process?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 96,
+      "category": 4,
+      "question": "What kind of counseling and mental health services is Caroline interested in pursuing?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 97,
+      "category": 4,
+      "question": "What workshop did Caroline attend recently?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 98,
+      "category": 4,
+      "question": "What was discussed in the LGBTQ+ counseling workshop?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 101,
+      "category": 4,
+      "question": "Did Melanie make the black and white bowl in the photo?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 109,
+      "category": 4,
+      "question": "What did Mel and her kids make during the pottery workshop?",
+      "touches_replaced_note": true
+    },
+    {
+      "sample": 0,
+      "question_index": 113,
+      "category": 4,
+      "question": "What did Caroline see at the council meeting for adoption?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 124,
+      "category": 4,
+      "question": "What pets does Melanie have?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 135,
+      "category": 4,
+      "question": "What setback did Melanie face in October 2023?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 153,
+      "category": 5,
+      "question": "What are Melanie's plans for the summer with respect to adoption?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 154,
+      "category": 5,
+      "question": "What type of individuals does the adoption agency Melanie is considering support?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 155,
+      "category": 5,
+      "question": "Why did Melanie choose the adoption agency?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 156,
+      "category": 5,
+      "question": "What is Melanie excited about in her adoption process?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 163,
+      "category": 5,
+      "question": "What kind of counseling and mental health services is Melanie interested in pursuing?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 164,
+      "category": 5,
+      "question": "What kind of counseling workshop did Melanie attend recently?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 167,
+      "category": 5,
+      "question": "Did Caroline make the black and white bowl in the photo?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 171,
+      "category": 5,
+      "question": "What did Melanie see at the council meeting for adoption?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 0,
+      "question_index": 188,
+      "category": 5,
+      "question": "What setback did Caroline face recently?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 0,
+      "category": 2,
+      "question": "When Jon has lost his job as a banker?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 1,
+      "category": 2,
+      "question": "When Gina has lost her job at Door Dash?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 2,
+      "category": 4,
+      "question": "How do Jon and Gina both like to destress?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 3,
+      "category": 1,
+      "question": "What do Jon and Gina both have in common?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 4,
+      "category": 4,
+      "question": "Why did Jon decide to start his dance studio?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 5,
+      "category": 1,
+      "question": "What Jon thinks the ideal dance studio should look like?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 6,
+      "category": 2,
+      "question": "When is Jon's group performing at a festival?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 7,
+      "category": 2,
+      "question": "When did Gina launch an ad campaign for her store?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 8,
+      "category": 2,
+      "question": "When was Jon in Paris?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 9,
+      "category": 1,
+      "question": "Which city have both Jean and John visited?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 10,
+      "category": 2,
+      "question": "When did Gina team up with a local artist for some cool designs?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 13,
+      "category": 2,
+      "question": "When did Gina open her online clothing store?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 14,
+      "category": 2,
+      "question": "When did Jon start expanding his studio's social media presence?",
+      "touches_replaced_note": true
+    },
+    {
+      "sample": 1,
+      "question_index": 15,
+      "category": 2,
+      "question": "When did Jon host a dance competition?",
+      "touches_replaced_note": true
+    },
+    {
+      "sample": 1,
+      "question_index": 16,
+      "category": 2,
+      "question": "When did Jon go to a fair to get more exposure for his dance studio?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 17,
+      "category": 1,
+      "question": "Why did Gina decide to start her own clothing store?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 18,
+      "category": 1,
+      "question": "Do Jon and Gina start businesses out of what they love?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 19,
+      "category": 2,
+      "question": "When did Gina interview for a design internship?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 20,
+      "category": 2,
+      "question": "When did Gina get accepted for the design internship?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 21,
+      "category": 2,
+      "question": "When did Jon start reading \"The Lean Startup\"?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 22,
+      "category": 2,
+      "question": "When did Gina develop a video presentation to teach how to style her fashion pieces? ",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 23,
+      "category": 1,
+      "question": "How did Gina promote her clothes store?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 24,
+      "category": 1,
+      "question": "Which events has Jon participated in to promote his business venture?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 25,
+      "category": 1,
+      "question": "What does Jon's dance studio offer?",
+      "touches_replaced_note": true
+    },
+    {
+      "sample": 1,
+      "question_index": 28,
+      "category": 2,
+      "question": "When was Jon in Rome?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 29,
+      "category": 1,
+      "question": "Which cities has Jon visited?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 31,
+      "category": 1,
+      "question": "How long did it take for Jon to open his studio?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 34,
+      "category": 2,
+      "question": "When did Gina start being recognized by fashion editors?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 35,
+      "category": 2,
+      "question": "When did Jon start learning marketing and analytics tools?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 47,
+      "category": 4,
+      "question": "What did Gina find for her clothing store on 1 February, 2023?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 48,
+      "category": 4,
+      "question": "What did Gina design for her store?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 49,
+      "category": 4,
+      "question": "What did Gina want her customers to feel in her store?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 51,
+      "category": 4,
+      "question": "What made Gina choose the furniture and decor for her store?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 54,
+      "category": 4,
+      "question": "How is Gina's store doing?",
+      "touches_replaced_note": true
+    },
+    {
+      "sample": 1,
+      "question_index": 59,
+      "category": 4,
+      "question": "Why did Gina combine her clothing business with dance?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 63,
+      "category": 4,
+      "question": "What kind of professional experience did Gina get accepted for on May 23, 2023?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 65,
+      "category": 4,
+      "question": "What book is Jon currently reading?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 69,
+      "category": 4,
+      "question": "What did Jon take a trip to Rome for?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 70,
+      "category": 4,
+      "question": "What is Jon working on opening?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 80,
+      "category": 4,
+      "question": "What plans does Jon have after receiving advice at the networking event?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 87,
+      "category": 5,
+      "question": "What did Jon find for his clothing store on 1 February, 2023?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 88,
+      "category": 5,
+      "question": "What did Jon design for his store?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 89,
+      "category": 5,
+      "question": "What did Jon want his customers to feel in her store?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 90,
+      "category": 5,
+      "question": "What made Jon choose the furniture and decor for his store?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 91,
+      "category": 5,
+      "question": "How is Jon's store doing?",
+      "touches_replaced_note": true
+    },
+    {
+      "sample": 1,
+      "question_index": 94,
+      "category": 5,
+      "question": "Why did Jon combine his clothing business with dance?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 96,
+      "category": 5,
+      "question": "What kind of professional experience did Jon get accepted for on May 23, 2023?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 99,
+      "category": 5,
+      "question": "What book is Gina currently reading?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 101,
+      "category": 5,
+      "question": "What did Jon take a trip to Barcelona for?",
+      "touches_replaced_note": false
+    },
+    {
+      "sample": 1,
+      "question_index": 104,
+      "category": 5,
+      "question": "What plans does Gina have after receiving advice at the networking event?",
+      "touches_replaced_note": false
+    }
+  ],
+  "count": 90,
+  "by_category": {
+    "1": 18,
+    "2": 26,
+    "3": 2,
+    "4": 25,
+    "5": 19
+  },
+  "touching_replaced_notes": 12
+}

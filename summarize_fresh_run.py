@@ -3,9 +3,13 @@ Summarize a fresh run folder (A-MEM, T-MEM V2, T-MEM V2 + consolidation).
 
 Reads <dir>/results/<system>_seed<N>.json and writes <dir>/REPORT.md with a
 simple stacked table: each system's scores and its gain over A-MEM.
+With --include_from, systems missing from <dir> are read from earlier run
+folders (for example steps 1-3 from an earlier fresh run, step 4 from <dir>).
 
 Example:
     .venv/bin/python summarize_fresh_run.py --dir experiments/fresh_run_2026-10-21_14-27
+    .venv/bin/python summarize_fresh_run.py --dir experiments/fresh_run_2026-10-21_16-21_step4_conflict \
+        --include_from experiments/fresh_run_2026-10-21_14-27
 """
 
 from __future__ import annotations
@@ -25,6 +29,7 @@ SYSTEMS = [
     ("amem", "A-MEM (starting point)"),
     ("tmem_v2", "+ time ranking (T-MEM V2)"),
     ("tmem_v2_consolidated", "+ consolidation (T-MEM V2 + C)"),
+    ("tmem_v2_consolidated_conflict", "+ conflict handling (T-MEM V2 + C + CH)"),
 ]
 
 
@@ -44,6 +49,8 @@ def scores(result: dict) -> dict:
 def main():
     parser = argparse.ArgumentParser(description=__doc__.strip().splitlines()[0])
     parser.add_argument("--dir", required=True)
+    parser.add_argument("--include_from", nargs="*", default=[],
+                        help="earlier run folders to take missing systems from")
     args = parser.parse_args()
 
     manifest = json.load(open(os.path.join(args.dir, "manifest.json"), encoding="utf-8"))
@@ -52,9 +59,16 @@ def main():
     finished = open(os.path.join(args.dir, "finished_at.txt")).read().strip() if os.path.exists(
         os.path.join(args.dir, "finished_at.txt")) else "unknown"
 
-    per_system = {}
+    per_system, source_of = {}, {}
     for key, _ in SYSTEMS:
-        files = sorted(glob.glob(os.path.join(args.dir, "results", f"{key}_seed*.json")))
+        files = []
+        for folder in [args.dir] + list(args.include_from):
+            files = sorted(glob.glob(os.path.join(folder, "results", f"{key}_seed*.json")))
+            if files:
+                source_of[key] = folder
+                break
+        if not files:
+            continue
         runs = {}
         for path in files:
             seed = re.search(r"_seed(\d+)\.json$", path).group(1)
@@ -64,7 +78,8 @@ def main():
             runs[seed] = scores(result)
         per_system[key] = runs
 
-    seeds = sorted(per_system["amem"])
+    systems = [(k, label) for k, label in SYSTEMS if k in per_system]
+    seeds = sorted(per_system[systems[0][0]])
     for key, runs in per_system.items():
         if sorted(runs) != seeds:
             raise SystemExit(f"{key} has seeds {sorted(runs)}, A-MEM has {seeds}")
@@ -81,26 +96,27 @@ def main():
         f"- Code: `{manifest['git_commit'][:8]}` on `{manifest['branch']}`",
         f"- Samples {manifest['samples']}, {manifest['questions']} questions, k = {manifest['retrieve_k']}, "
         f"seeds {', '.join(seeds)}, model {manifest['model']}",
+    ] + [f"- {label}: runs from `{source_of[key]}`" for key, label in systems] + [
         "",
         "## Results (average of the runs)",
         "",
         "| Step | System | Answerable questions F1 | Time questions F1 | Trap questions refused | Overall F1 (paper scoring) |",
         "|---|---|---|---|---|---|",
     ]
-    for i, (key, label) in enumerate(SYSTEMS, start=1):
+    for i, (key, label) in enumerate(systems, start=1):
         lines.append(f"| {i} | {label} | {mean(key, 'answerable_f1'):.3f} | {mean(key, 'time_f1'):.3f} | "
                      f"{mean(key, 'trap_refusal'):.1%} | {mean(key, 'overall_f1_paper'):.3f} |")
 
     lines += ["", "## Gain over A-MEM", "",
               "| System | Answerable questions | Time questions | Trap refusals |", "|---|---|---|---|"]
-    for key, label in SYSTEMS[1:]:
+    for key, label in systems[1:]:
         lines.append(f"| {label} | {mean(key, 'answerable_f1') - mean('amem', 'answerable_f1'):+.3f} | "
                      f"{mean(key, 'time_f1') - mean('amem', 'time_f1'):+.3f} | "
                      f"{(mean(key, 'trap_refusal') - mean('amem', 'trap_refusal')) * 100:+.1f} points |")
 
     lines += ["", "## Each run", "",
               "| System | Seed | Answerable F1 | Time F1 | Trap refused | Overall F1 |", "|---|---|---|---|---|---|"]
-    for key, label in SYSTEMS:
+    for key, label in systems:
         for s in seeds:
             r = per_system[key][s]
             lines.append(f"| {label} | {s} | {r['answerable_f1']:.3f} | {r['time_f1']:.3f} | "
