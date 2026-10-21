@@ -137,6 +137,15 @@ def main():
                      f"{mean(key, 'time_f1') - mean('amem', 'time_f1'):+.3f} | "
                      f"{(mean(key, 'trap_refusal') - mean('amem', 'trap_refusal')) * 100:+.1f} points |")
 
+    lines += ["", "## Each step vs the step before (matching runs)", "",
+              "Change in answerable F1 for each seed; the last column counts the runs where the step helped.", "",
+              "| Step | " + " | ".join(f"Seed {sd}" for sd in seeds) + " | Mean change | Runs better |",
+              "|---|" + "---|" * (len(seeds) + 2)]
+    for (prev, _), (key, label) in zip(systems, systems[1:]):
+        deltas = [per_system[key][sd]["answerable_f1"] - per_system[prev][sd]["answerable_f1"] for sd in seeds]
+        lines.append(f"| {label} | " + " | ".join(f"{d:+.3f}" for d in deltas) +
+                     f" | {statistics.mean(deltas):+.3f} | {sum(d > 0 for d in deltas)} of {len(deltas)} |")
+
     lines += ["", "## Each run", "",
               "| System | Seed | Answerable F1 | Time F1 | Trap refused | Overall F1 |", "|---|---|---|---|---|---|"]
     for key, label in systems:

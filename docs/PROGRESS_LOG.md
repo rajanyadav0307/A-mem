@@ -133,6 +133,23 @@ Newest entries are at the bottom. Times are local (US Central).
 - On the 90 "timeline questions" (fixed before the run): 0.383 → **0.411** with conflict handling.
 - **Caution:** step 4 ran separately from steps 1–3, and it beats step 3 in 2 of 3 matching runs. It looks promising, but isn't proven yet.
 
+### 2026-10-21 16:36: All 4 steps run together (main result)
+
+- All 4 steps, 3 runs each, in one batch: same time, code, model and memory. This is the fair comparison.
+- Folder: [experiments/fresh_run_2026-10-21_16-36_all4/](../experiments/fresh_run_2026-10-21_16-36_all4/REPORT.md). Ran 16:36 to 17:07.
+
+| Step | System | Normal questions | Time questions | Traps refused |
+|---|---|---|---|---|
+| 1 | A-MEM | 0.325 | 0.450 | 46.0% |
+| 2 | + time ranking (T-MEM V2) | 0.318 | 0.457 | 44.1% |
+| 3 | + consolidation | 0.333 | 0.452 | 47.9% |
+| 4 | **+ conflict handling** | **0.337** | **0.483** | 46.9% |
+
+- **Conflict handling** helped time questions in **all 3 runs** (+0.024 to +0.044 over step 3), and normal questions a little (also 3 of 3).
+- **Consolidation** helped normal questions in **all 3 runs** (+0.016).
+- **T-MEM V2's** time gain was small in this batch (+0.006). It varies from batch to batch.
+- **Final system (step 4)** is the best on normal questions, time questions, and the paper's overall score (0.384 vs 0.376 for A-MEM).
+
 ## Things to keep in mind
 
 - **Results vary between runs.** The AI answers a little differently each time, so always compare averages of several runs, never a single run.
