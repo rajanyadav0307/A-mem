@@ -150,6 +150,13 @@ Newest entries are at the bottom. Times are local (US Central).
 - **T-MEM V2's** time gain was small in this batch (+0.006). It varies from batch to batch.
 - **Final system (step 4)** is the best on normal questions, time questions, and the paper's overall score (0.384 vs 0.376 for A-MEM).
 
+### 2026-10-21: Novelty check
+
+- Compared T-MEM (V2 + consolidation + conflict handling) with published work.
+- **Short answer:** each idea exists somewhere. What's new is the design and the combination: time used only where a fact really changed, date-safe merging, verified typed changes, and switchable modules tested step by step.
+- **Closest work:** Theanine (memory timelines), Zep (invalid dates), Cognis and Mem0 (current vs historical questions), ROAM and LightMem (consolidation).
+- Doc: [TMEM_NOVELTY_CHECK.md](TMEM_NOVELTY_CHECK.md)
+
 ## Things to keep in mind
 
 - **Results vary between runs.** The AI answers a little differently each time, so always compare averages of several runs, never a single run.
