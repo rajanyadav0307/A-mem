@@ -1,0 +1,130 @@
+{
+  "cat5_answer_types": {
+    "A-MEM": {
+      "not_mentioned": 30.333333333333332,
+      "trap": 36.333333333333336,
+      "both": 4.333333333333333,
+      "other": 0
+    },
+    "A-MEM + C": {
+      "not_mentioned": 33,
+      "trap": 34.666666666666664,
+      "both": 3.3333333333333335,
+      "other": 0
+    },
+    "T-MEM V2": {
+      "not_mentioned": 30.666666666666668,
+      "trap": 37,
+      "both": 3.3333333333333335,
+      "other": 0
+    },
+    "T-MEM V2 + C": {
+      "not_mentioned": 35,
+      "trap": 32.666666666666664,
+      "both": 3.3333333333333335,
+      "other": 0
+    }
+  },
+  "f1_cats_1_4": {
+    "A-MEM": [
+      0.3026034569399553,
+      0.3277890792741663,
+      0.3219315741780834
+    ],
+    "A-MEM + C": [
+      0.333804820546198,
+      0.3463363614850384,
+      0.32823002357245
+    ],
+    "T-MEM V2": [
+      0.3178305594167596,
+      0.3142800168376253,
+      0.30816669784741335
+    ],
+    "T-MEM V2 + C": [
+      0.32067822396238976,
+      0.3404312682606795,
+      0.33531736944595225
+    ]
+  },
+  "prompts": {
+    "A-MEM": {
+      "notes": 51.074561403508774,
+      "unique_notes": 23.38267543859649,
+      "merged_notes": 0,
+      "share_with_merged_note": 0
+    },
+    "A-MEM + C": {
+      "notes": 49.61951754385965,
+      "unique_notes": 24.663377192982455,
+      "merged_notes": 0.7697368421052632,
+      "share_with_merged_note": 0.7697368421052632
+    },
+    "T-MEM V2": {
+      "notes": 51.16008771929825,
+      "unique_notes": 23.489035087719298,
+      "merged_notes": 0,
+      "share_with_merged_note": 0
+    },
+    "T-MEM V2 + C": {
+      "notes": 49.6875,
+      "unique_notes": 24.667763157894736,
+      "merged_notes": 0.7752192982456141,
+      "share_with_merged_note": 0.7752192982456141
+    }
+  },
+  "by_merged_note": {
+    "A-MEM + C vs A-MEM": {
+      "cats 1-4 | no merged note": {
+        "n": 144,
+        "mean_delta": 0.010373919238646558,
+        "better": 29,
+        "worse": 24
+      },
+      "cats 1-4 | merged note": {
+        "n": 555,
+        "mean_delta": 0.0208380699349731,
+        "better": 140,
+        "worse": 118
+      },
+      "cat 5 | merged note": {
+        "n": 147,
+        "mean_delta": -0.04034115856775956,
+        "better": 12,
+        "worse": 16
+      },
+      "cat 5 | no merged note": {
+        "n": 66,
+        "mean_delta": -0.028282828282828285,
+        "better": 4,
+        "worse": 5
+      }
+    },
+    "T-MEM V2 + C vs T-MEM V2": {
+      "cats 1-4 | no merged note": {
+        "n": 140,
+        "mean_delta": -0.004231277203617748,
+        "better": 25,
+        "worse": 30
+      },
+      "cats 1-4 | merged note": {
+        "n": 559,
+        "mean_delta": 0.024463743670249553,
+        "better": 147,
+        "worse": 119
+      },
+      "cat 5 | merged note": {
+        "n": 148,
+        "mean_delta": -0.08415145915145915,
+        "better": 6,
+        "worse": 18
+      },
+      "cat 5 | no merged note": {
+        "n": 65,
+        "mean_delta": -0.009230769230769228,
+        "better": 3,
+        "worse": 4
+      }
+    }
+  }
+}
