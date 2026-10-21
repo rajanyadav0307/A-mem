@@ -34,13 +34,17 @@ def export_commit(commit: str, target: str) -> None:
             handle.write(source)
 
 
-def dump(output: str, cache_dir: str, samples, code_dir=None, mode=None) -> dict:
+def dump(output: str, cache_dir: str, samples, code_dir=None, mode=None, cap=None, conflict_mode=None) -> dict:
     cmd = [sys.executable, "dump_retrieval_contexts.py", "--cache_dir", cache_dir,
            "--samples", *map(str, samples), "--output", output]
     if code_dir:
         cmd += ["--code_dir", code_dir]
     if mode:
         cmd += ["--mode", mode]
+    if cap is not None:
+        cmd += ["--cap", str(cap)]
+    if conflict_mode:
+        cmd += ["--conflict_mode", conflict_mode]
     run = subprocess.run(cmd, capture_output=True, text=True)
     if run.returncode != 0:
         raise RuntimeError(run.stderr[-2000:])
@@ -62,25 +66,37 @@ def main():
     parser.add_argument("--consolidated_cache", default=None)
     parser.add_argument("--samples", type=int, nargs="+", default=[0, 1])
     parser.add_argument("--output", default="analysis/off_mode_check.json")
+    parser.add_argument("--reference_commit", default=MAY6_COMMIT,
+                        help="commit whose code is the reference (default: May 6)")
+    parser.add_argument("--mode", default=None,
+                        help="consolidation_mode for both reference and current code (default: May 6 check)")
+    parser.add_argument("--cap", type=int, default=None)
+    parser.add_argument("--conflict_cache", default=None,
+                        help="also check the current code with conflict_mode off on this conflict-aware cache")
     args = parser.parse_args()
 
     with tempfile.TemporaryDirectory() as tmp:
         code_dir = os.path.join(tmp, "may6")
         os.makedirs(code_dir)
-        export_commit(MAY6_COMMIT, code_dir)
-        reference = dump(os.path.join(tmp, "may6.json"), args.cache_dir, args.samples, code_dir=code_dir)
+        export_commit(args.reference_commit, code_dir)
+        reference = dump(os.path.join(tmp, "reference.json"), args.cache_dir, args.samples, code_dir=code_dir,
+                         mode=args.mode, cap=args.cap)
         if not reference["memory_layer_robust_file"].startswith(code_dir):
-            raise RuntimeError("May 6 dump did not import the exported code")
+            raise RuntimeError("reference dump did not import the exported code")
 
-        checks = {"current code, off, original cache": (args.cache_dir, "off")}
+        mode = args.mode or "off"
+        checks = {f"current code, {mode}, {args.cache_dir}": (args.cache_dir, mode)}
         if args.consolidated_cache:
-            checks["current code, off, consolidated cache"] = (args.consolidated_cache, "off")
+            checks[f"current code, {mode}, {args.consolidated_cache}"] = (args.consolidated_cache, mode)
+        if args.conflict_cache:
+            checks[f"current code, {mode}, conflict off, {args.conflict_cache}"] = (args.conflict_cache, mode)
 
-        report = {"reference": f"May 6 code ({MAY6_COMMIT}) on {args.cache_dir}",
+        report = {"reference": f"code at {args.reference_commit} on {args.cache_dir}, mode {mode}, cap {args.cap}",
                   "contexts": len(reference["records"]), "checks": {}}
         ok = True
         for name, (cache, mode) in checks.items():
-            candidate = dump(os.path.join(tmp, "candidate.json"), cache, args.samples, mode=mode)
+            candidate = dump(os.path.join(tmp, "candidate.json"), cache, args.samples, mode=mode, cap=args.cap,
+                             conflict_mode="off")
             mismatches = compare(reference, candidate)
             ok &= not mismatches
             report["checks"][name] = {"cache_dir": cache, "mismatches": len(mismatches),

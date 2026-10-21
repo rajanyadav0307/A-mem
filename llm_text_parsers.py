@@ -722,3 +722,27 @@ Respond in this exact format:
 STATE: YES or NO
 TOPIC: if YES, the specific thing, as "<speaker>'s <thing>" in 2 to 5 words (e.g. "Jon's dance studio", "Caroline's adoption", "Melanie's pottery class"); if NO, write NONE
 STATUS: if YES, its concrete status at that time in a few words (e.g. "searching for a location", "applied to agency"); if NO, write NONE"""
+
+
+CONFLICT_VERIFY_PROMPT = """Two things the same person said, in date order:
+
+OLDER ({old_date}): {old_text}
+NEWER ({new_date}): {new_text}
+
+After the NEWER statement, is the OLDER statement no longer true, because it was replaced or contradicted?
+Answer YES only if the NEWER statement clearly says something that cannot be true at the same time as the OLDER one.
+Thanks, encouragement, feelings, plans, or simply moving forward do not count. If unsure, answer NO.
+
+Respond in this exact format:
+ANSWER: YES or NO
+QUOTE: the exact words from the NEWER statement that show it, or NONE"""
+
+
+def parse_conflict_verify(response: str, newer_text: str) -> Dict[str, Any]:
+    """Parse the verification answer. Confirmed only with YES and a quote found in the newer text."""
+    text = response or ""
+    yes = _extract_section(text, "ANSWER", ["QUOTE"]).strip().upper().startswith("YES")
+    quote = " ".join(_extract_section(text, "QUOTE", ["ANSWER"]).split()).strip().strip('"').strip("'")
+    norm = lambda s: re.sub(r"[^a-z0-9 ]", "", " ".join(s.lower().split()))  # noqa: E731
+    quoted = bool(quote) and quote.upper() != "NONE" and norm(quote) in norm(newer_text)
+    return {"confirmed": yes and quoted, "answer_yes": yes, "quote": quote}

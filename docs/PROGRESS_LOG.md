@@ -108,6 +108,16 @@ Newest entries are at the bottom. Times are local (US Central).
 - Cost: 1,234 AI calls, about $0.09.
 - Folder: `analysis/conflict_step0_v2_2026-10-21/`
 
+### 2026-10-21: Conflict handling built (steps 1–3)
+
+- Built the new note fields, timeline detection, and the `annotate` / `demote` options.
+- Added a second check before marking any note as replaced. It cut 15 doubtful replacements down to 9.
+- Built the conflict-aware memory bank for samples 0–1. Nothing was deleted or added.
+- **Safety:** with conflict handling off, results are exactly May 6 (608 of 608), and exactly the consolidation step (608 of 608).
+- With conflict handling on, timeline labels appear in about 2/3 of prompts. "Now" questions are rare (5), so demotion barely matters on LoCoMo.
+- 45 tests pass.
+- Next: QA run of the 4th step (A-MEM → V2 → + consolidation → + conflict handling).
+
 ## Things to keep in mind
 
 - **Results vary between runs.** The AI answers a little differently each time, so always compare averages of several runs, never a single run.

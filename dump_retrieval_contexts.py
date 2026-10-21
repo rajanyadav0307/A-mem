@@ -28,6 +28,8 @@ def main():
     parser.add_argument("--samples", type=int, nargs="+", default=[0, 1])
     parser.add_argument("--retrieve_k", type=int, default=10)
     parser.add_argument("--mode", default=None, help="consolidation_mode to set (omit for old code)")
+    parser.add_argument("--cap", type=int, default=None, help="consolidated_top_k_cap to set")
+    parser.add_argument("--conflict_mode", default=None, help="conflict_mode to set (omit for old code)")
     parser.add_argument("--output", required=True)
     args = parser.parse_args()
 
@@ -58,8 +60,13 @@ def main():
                 system.temporal_config = memory_layer_tmem_robust.TemporalRetrievalConfig()
             if args.mode is not None:
                 system.consolidation_mode = args.mode
+            if args.cap is not None:
+                system.consolidated_top_k_cap = args.cap
+            if args.conflict_mode is not None:
+                system.conflict_mode = args.conflict_mode
 
             for q_idx, qa in enumerate(sample.qa):
+                system.current_question = qa.question
                 if system_name == "tmem_v2":
                     context = system.find_related_memories_raw(
                         qa.question, k=args.retrieve_k, question_category=int(qa.category)
@@ -80,6 +87,8 @@ def main():
         "memory_layer_robust_file": memory_layer_robust.__file__,
         "cache_dir": args.cache_dir,
         "mode": args.mode,
+        "cap": args.cap,
+        "conflict_mode": args.conflict_mode,
         "records": records,
     }
     with open(args.output, "w", encoding="utf-8") as handle:

@@ -13,6 +13,7 @@ decay-only scoring using note timestamps.
 
 from __future__ import annotations
 
+import contextlib
 from dataclasses import dataclass
 from datetime import datetime
 import logging
@@ -155,6 +156,8 @@ class TemporalAwareRobustAgenticMemorySystem(RobustAgenticMemorySystem):
             masked = np.full(len(scores), -np.inf)
             masked[allowed] = kept_scores
             scores = masked
+        if self.conflict_mode != "off":
+            scores = scores - self.conflict_penalties()[: len(scores)]
         return scores
 
     def _rank_memories_temporally(
@@ -233,12 +236,14 @@ class TemporalAwareRobustAgenticMemorySystem(RobustAgenticMemorySystem):
         if not self._should_apply_temporal(question_category):
             return super().find_related_memories_raw(query, k=k)
 
-        if self.consolidation_mode == "off":
+        if self.consolidation_mode == "off" and self.conflict_mode == "off":
             with self.raw_only_view():
                 return self._find_related_memories_raw_temporal(query, k)
 
-        indices, _ = self._rank_memories_temporally(query, k)
-        return self.render_notes(self.consolidated_context_order(query, k, seeds=indices))
+        view = self.raw_only_view() if self.consolidation_mode == "off" else contextlib.nullcontext()
+        with view:
+            indices, _ = self._rank_memories_temporally(query, k)
+            return self.render_notes(self.consolidated_context_order(query, k, seeds=indices))
 
     def _find_related_memories_raw_temporal(self, query: str, k: int) -> str:
         """Original T-MEM v2 temporal retrieval with neighbor expansion (unchanged)."""

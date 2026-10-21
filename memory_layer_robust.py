@@ -289,6 +289,15 @@ class RobustMemoryNote:
     status: str = "active"                 # "active" or "archived"
     consolidation_label: Optional[str] = None  # "SAME_FACT" or "SMALL_TALK" (consolidated notes)
 
+    # Conflict-handling fields (T-MEM Module 3), class-level defaults as above.
+    timeline_id: Optional[int] = None      # which state timeline the note belongs to
+    timeline_topic: Optional[str] = None   # e.g. "Jon's dance studio"
+    timeline_status: Optional[str] = None  # e.g. "searching for a location"
+    transition: Optional[str] = None       # label vs the previous step: PROGRESS, CHANGE, ...
+    valid_until: Optional[str] = None      # date a newer note replaced this one (CHANGE)
+    superseded_by: Optional[int] = None    # position of that newer note
+    conflicts_with: tuple = ()             # positions of notes this one contradicts
+
     def __init__(self,
                  content: str,
                  id: Optional[str] = None,
@@ -366,6 +375,21 @@ class RobustMemoryNote:
 # ---------------------------------------------------------------------------
 
 CONSOLIDATION_MODES = ("off", "add_only", "primary", "primary_expand")
+CONFLICT_MODES = ("off", "annotate", "demote", "annotate_demote")
+
+# Question intent for conflict demotion (fixed 2026-10-21, before any QA run).
+# A question is a "now" question if it has a NOW word and no HISTORY word.
+NOW_WORDS = re.compile(
+    r"\b(now|currently|current|still|these days|nowadays|at the moment|latest|anymore|any more)\b", re.I)
+HISTORY_WORDS = re.compile(
+    r"\b(when|before|first|used to|originally|previously|initially|ago|earlier|in (19|20)\d\d)\b", re.I)
+
+
+def is_now_question(question: Optional[str]) -> bool:
+    """True for questions about the current state, not about history."""
+    if not question:
+        return False
+    return bool(NOW_WORDS.search(question)) and not HISTORY_WORDS.search(question)
 
 
 class RobustAgenticMemorySystem:
@@ -385,6 +409,15 @@ class RobustAgenticMemorySystem:
     consolidated_score_penalty: float = 0.0       # subtracted from their cosine score
     consolidated_top_k_cap: Optional[int] = None  # at most this many in the top-k
     hide_small_talk_summaries: bool = False       # SMALL_TALK summaries are not retrievable
+    # Conflict handling (T-MEM Module 3):
+    #   off             - no change (May 6 behaviour, or the consolidation step)
+    #   annotate        - timeline / OUTDATED / CONFLICT labels shown in the prompt
+    #   demote          - replaced or contradicted older notes score lower, only for
+    #                     "now" questions (see is_now_question)
+    #   annotate_demote - both
+    conflict_mode: str = "off"
+    demote_penalty: float = 0.10
+    current_question: Optional[str] = None  # set by the QA agent before retrieval
 
     def __init__(self,
                  model_name: str = 'all-MiniLM-L6-v2',
@@ -463,12 +496,14 @@ class RobustAgenticMemorySystem:
 
     def find_related_memories_raw(self, query: str, k: int = 5) -> str:
         """Find related memories with neighborhood expansion."""
-        if self.consolidation_mode == "off":
+        if self.consolidation_mode == "off" and self.conflict_mode == "off":
             with self.raw_only_view():
                 return self._find_related_memories_raw_amem(query, k)
         if not self.memories:
             return ""
-        return self.render_notes(self.consolidated_context_order(query, k))
+        view = self.raw_only_view() if self.consolidation_mode == "off" else contextlib.nullcontext()
+        with view:
+            return self.render_notes(self.consolidated_context_order(query, k))
 
     def _find_related_memories_raw_amem(self, query: str, k: int = 5) -> str:
         """Original A-MEM retrieval with neighborhood expansion (unchanged)."""
@@ -583,6 +618,7 @@ class RobustAgenticMemorySystem:
         query_embedding = self.retriever.model.encode([query])[0]
         similarities = cosine_similarity([query_embedding], self.retriever.embeddings[allowed])[0]
         allowed, similarities = self.adjust_consolidated_scores(allowed, similarities)
+        similarities = similarities - self.conflict_penalties()[allowed]
         top = np.argsort(similarities)[-k:][::-1]
         return [int(allowed[t]) for t in top]
 
@@ -619,16 +655,77 @@ class RobustAgenticMemorySystem:
         return order
 
     def render_notes(self, order: List[int]) -> str:
-        """Format notes the same way as A-MEM's raw retrieval."""
+        """Format notes the same way as A-MEM's raw retrieval.
+
+        With conflict annotation on, notes in a state timeline get one extra
+        "memory timeline:" field before the newline.
+        """
         notes = list(self.memories.values())
+        annotate = self.conflict_mode in ("annotate", "annotate_demote")
+        timelines = self._timeline_index() if annotate else {}
         return "".join(
             "talk start time:" + notes[i].timestamp +
             "memory content: " + notes[i].content +
             "memory context: " + notes[i].context +
             "memory keywords: " + str(notes[i].keywords) +
-            "memory tags: " + str(notes[i].tags) + "\n"
+            "memory tags: " + str(notes[i].tags) +
+            (self._timeline_annotation(i, notes, timelines) if annotate else "") + "\n"
             for i in order
         )
+
+    # ---- conflict handling (T-MEM Module 3) ----
+
+    def _timeline_index(self) -> Dict[int, List[int]]:
+        """timeline id -> note positions in time order."""
+        index: Dict[int, List[int]] = {}
+        for pos, note in enumerate(self.memories.values()):
+            if note.timeline_id is not None:
+                index.setdefault(note.timeline_id, []).append(pos)
+        return index
+
+    @staticmethod
+    def _short_date(timestamp: Optional[str]) -> str:
+        match = re.search(r"(\d{1,2})\s+([A-Za-z]+),?\s+(\d{4})", timestamp or "")
+        return " ".join(match.groups()) if match else (timestamp or "")
+
+    def _timeline_annotation(self, i: int, notes: List, timelines: Dict[int, List[int]]) -> str:
+        note = notes[i]
+        parts: List[str] = []
+        if note.timeline_id is not None and note.timeline_id in timelines:
+            steps = timelines[note.timeline_id]
+            k = steps.index(i)
+            text = f"{note.timeline_topic}, step {k + 1} of {len(steps)}"
+            if k > 0:
+                prev = notes[steps[k - 1]]
+                text += f"; before: {prev.timeline_status} ({self._short_date(prev.timestamp)})"
+            if k + 1 < len(steps):
+                nxt = notes[steps[k + 1]]
+                text += f"; after: {nxt.timeline_status} ({self._short_date(nxt.timestamp)})"
+            parts.append(text)
+        if note.superseded_by is not None and 0 <= note.superseded_by < len(notes):
+            newer = notes[note.superseded_by]
+            parts.append(f"OUTDATED since {note.valid_until}: replaced by \"{newer.timeline_status or newer.content[:80]}\"")
+        for other in note.conflicts_with:
+            if 0 <= other < len(notes):
+                parts.append(f"CONFLICTS with what was said on {self._short_date(notes[other].timestamp)}: "
+                             f"\"{notes[other].timeline_status or notes[other].content[:80]}\"")
+        return (" memory timeline: " + " | ".join(parts)) if parts else ""
+
+    def conflict_penalties(self) -> np.ndarray:
+        """Score penalty per note position (zeros unless demotion applies).
+
+        Demotion applies only in demote modes and only to "now" questions.
+        It hits notes replaced by a CHANGE and the older side of a CONTRADICTION.
+        """
+        notes = list(self.memories.values())
+        penalties = np.zeros(len(notes))
+        if self.conflict_mode not in ("demote", "annotate_demote") or not is_now_question(self.current_question):
+            return penalties
+        for pos, note in enumerate(notes):
+            older_side = any(0 <= o < len(notes) and o > pos for o in note.conflicts_with)
+            if note.superseded_by is not None or older_side:
+                penalties[pos] = self.demote_penalty
+        return penalties
 
     # ---- evolution (3 sequential plain-text calls) ----
 

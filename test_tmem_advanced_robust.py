@@ -128,6 +128,7 @@ Keywords:"""
     def answer_question(self, question: str, category: int, answer: str) -> tuple:
         """Generate an answer using the same prompting strategy as robust A-MEM."""
         keywords = self.generate_query_llm(question)
+        self.memory_system.current_question = question  # used only by conflict demotion
         raw_context = self.retrieve_memory(
             keywords,
             k=self.retrieve_k,
@@ -214,6 +215,8 @@ def evaluate_dataset(
     consolidation_mode: str = "off",
     consolidated_top_k_cap: Optional[int] = None,
     consolidated_score_penalty: float = 0.0,
+    conflict_mode: str = "off",
+    demote_penalty: float = 0.10,
     seed: Optional[int] = None,
     run_tag: Optional[str] = None,
 ):
@@ -272,6 +275,8 @@ def evaluate_dataset(
         agent.memory_system.consolidation_mode = consolidation_mode
         agent.memory_system.consolidated_top_k_cap = consolidated_top_k_cap
         agent.memory_system.consolidated_score_penalty = consolidated_score_penalty
+        agent.memory_system.conflict_mode = conflict_mode
+        agent.memory_system.demote_penalty = demote_penalty
 
         memory_cache_file = os.path.join(memories_dir, f"memory_cache_sample_{sample_idx}.pkl")
         retriever_cache_file = os.path.join(memories_dir, f"retriever_cache_sample_{sample_idx}.pkl")
@@ -420,6 +425,9 @@ def evaluate_dataset(
         final_results["memories_dir"] = memories_dir
         final_results["consolidated_top_k_cap"] = consolidated_top_k_cap
         final_results["consolidated_score_penalty"] = consolidated_score_penalty
+    if conflict_mode != "off":
+        final_results["conflict_mode"] = conflict_mode
+        final_results["demote_penalty"] = demote_penalty
     if seed is not None:
         final_results["seed"] = seed
     eval_logger.info("Error number: %d", error_num)
@@ -482,6 +490,11 @@ def main():
                         help="At most this many consolidated notes in the top-k")
     parser.add_argument("--consolidated_score_penalty", type=float, default=0.0,
                         help="Subtracted from consolidated notes' cosine score")
+    parser.add_argument("--conflict_mode", type=str, default="off",
+                        choices=["off", "annotate", "demote", "annotate_demote"],
+                        help="How retrieval uses conflict handling (default: off)")
+    parser.add_argument("--demote_penalty", type=float, default=0.10,
+                        help="Score penalty for replaced notes on 'now' questions")
     parser.add_argument("--seed", type=int, default=None,
                         help="Seed for the category-5 answer-option order (default: unseeded, as on May 6)")
     parser.add_argument("--run_tag", type=str, default=None,
@@ -550,6 +563,8 @@ def main():
         consolidation_mode=args.consolidation_mode,
         consolidated_top_k_cap=args.consolidated_top_k_cap,
         consolidated_score_penalty=args.consolidated_score_penalty,
+        conflict_mode=args.conflict_mode,
+        demote_penalty=args.demote_penalty,
         seed=args.seed,
         run_tag=args.run_tag,
     )

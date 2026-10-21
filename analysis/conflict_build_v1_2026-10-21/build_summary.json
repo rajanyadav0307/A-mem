@@ -1,0 +1,107 @@
+{
+  "created": "2026-10-21T16:13:50",
+  "source_cache": "cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3",
+  "output_dir": "cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3_conflicts_v1",
+  "model": "gpt-4o-mini",
+  "tag": "v1",
+  "samples": {
+    "0": {
+      "raw_notes": 419,
+      "state_notes": 52,
+      "labels": {
+        "PROGRESS": 65,
+        "COMPATIBLE": 6,
+        "CHANGE": 5
+      },
+      "new_llm_calls": 6,
+      "timelines": 6,
+      "replaced": 5,
+      "contradictions": 0,
+      "known_cases": [
+        {
+          "old_text": "Researching adoption agencies",
+          "new_text": "first step towards becoming a mom",
+          "expected": [
+            "PROGRESS"
+          ],
+          "result": "found",
+          "labels_into_newer": [
+            "PROGRESS"
+          ]
+        },
+        {
+          "old_text": "first step towards becoming a mom",
+          "new_text": "passed the adoption agency interviews",
+          "expected": [
+            "PROGRESS"
+          ],
+          "result": "found",
+          "labels_into_newer": [
+            "PROGRESS"
+          ]
+        },
+        {
+          "old_text": "signed up for a pottery class",
+          "new_text": "made this bowl in my class",
+          "expected": [
+            "COMPATIBLE",
+            "PROGRESS",
+            "SAME"
+          ],
+          "result": "not compared",
+          "labels_into_newer": []
+        }
+      ]
+    },
+    "1": {
+      "raw_notes": 369,
+      "state_notes": 93,
+      "labels": {
+        "PROGRESS": 488,
+        "COMPATIBLE": 73,
+        "CHANGE": 5,
+        "SAME": 1
+      },
+      "new_llm_calls": 13,
+      "timelines": 7,
+      "replaced": 4,
+      "contradictions": 0,
+      "known_cases": [
+        {
+          "old_text": "on the hunt for the ideal spot for my dance studio",
+          "new_text": "I love running my own studio",
+          "expected": [
+            "PROGRESS"
+          ],
+          "result": "found",
+          "labels_into_newer": [
+            "PROGRESS"
+          ]
+        },
+        {
+          "old_text": "I love running my own studio",
+          "new_text": "Still working on opening a dance studio",
+          "expected": [
+            "CHANGE",
+            "CONTRADICTION"
+          ],
+          "result": "found",
+          "labels_into_newer": [
+            "CHANGE",
+            "PROGRESS",
+            "SAME"
+          ]
+        },
+        {
+          "old_text": "lost my job at Door Dash",
+          "new_text": "ad campaign for my clothing store",
+          "expected": [
+            "CHANGE",
+            "PROGRESS"
+          ],
+          "result": "different topics"
+        }
+      ]
+    }
+  }
+}

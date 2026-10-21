@@ -1,14 +1,19 @@
 {
-  "reference": "May 6 code (24ad98fa) on cached_memories_robust_openai_gpt-4o-mini",
+  "reference": "code at 24ad98fa on cached_memories_robust_openai_gpt-4o-mini, mode off, cap None",
   "contexts": 608,
   "checks": {
-    "current code, off, original cache": {
+    "current code, off, cached_memories_robust_openai_gpt-4o-mini": {
       "cache_dir": "cached_memories_robust_openai_gpt-4o-mini",
       "mismatches": 0,
       "examples": []
     },
-    "current code, off, consolidated cache": {
+    "current code, off, cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3": {
       "cache_dir": "cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3",
+      "mismatches": 0,
+      "examples": []
+    },
+    "current code, off, conflict off, cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3_conflicts_v1": {
+      "cache_dir": "cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3_conflicts_v1",
       "mismatches": 0,
       "examples": []
     }

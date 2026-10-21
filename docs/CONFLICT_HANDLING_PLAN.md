@@ -201,6 +201,58 @@ Command: `measure_conflicts.py --method v2`. Output: `analysis/conflict_step0_v2
 2. **Contradictions in this data are rare and hard to catch.** The one we know of (Jon's studio) needs comparison with *all* earlier statuses, or a check focused on the first and most recent.
 3. **Cross-topic changes** (job → business) aren't caught. That's acceptable for now; we'll note it as a limit.
 
+## 6c. Steps 1–3 built (2026-10-21)
+
+**Code**
+- **Note fields:** `timeline_id`, `timeline_topic`, `timeline_status`, `transition`, `valid_until`, `superseded_by`, `conflicts_with`. They are class-level defaults on `RobustMemoryNote`, so old banks still load.
+- **Detection:** `memory_conflicts.py`, run with `build_conflict_bank.py`.
+  1. Tag concrete facts with the strict prompt.
+  2. Group them into topics (threshold 0.78).
+  3. Compare each note with **all** earlier distinct statuses of its topic.
+  4. **Verify** every CHANGE or CONTRADICTION with a second prompt that must quote the newer note. Unconfirmed ones change nothing.
+  5. Set the fields.
+
+  Only raw notes are tagged. Nothing is added or removed. Retriever files are copied unchanged.
+- **Retrieval:** `conflict_mode` is `off` / `annotate` / `demote` / `annotate_demote`, with `demote_penalty` = 0.10.
+  - `annotate` adds one `memory timeline:` field to timeline notes, for example: topic, step k of n, the step before and after with dates, an `OUTDATED since …` label, or a `CONFLICTS with …` label.
+  - `demote` lowers replaced notes, and the older side of a contradiction, only for "now" questions.
+- **"Now" questions** (fixed before any QA run): the question contains *now, currently, current, still, these days, nowadays, at the moment, latest, anymore* and **none** of *when, before, first, used to, originally, previously, initially, ago, earlier, in <year>* (`is_now_question` in `memory_layer_robust.py`).
+- **QA scripts:** new flags `--conflict_mode` and `--demote_penalty`. The agent stores the question so demotion can see it.
+- **Tests:** `tests/test_conflicts.py`, 14 tests; 45 tests pass in total.
+
+**Bank built:** `cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3_conflicts_v1/`. This is the v3 consolidated bank plus conflict fields. Log: `analysis/conflict_build_v1_2026-10-21/`. It cost 197 + 19 new AI calls; the rest were reused from step 0.
+
+| | Sample 0 | Sample 1 |
+|---|---|---|
+| Situation notes / timelines | 52 / 6 | 93 / 7 |
+| CHANGE or CONTRADICTION before verification | 6 | 13 |
+| Kept after verification (notes marked replaced) | 5 | 4 |
+| Contradictions kept | 0 | 0 |
+
+**What was marked as replaced (9):**
+- **Sample 0:** five of Melanie's pottery notes, replaced on 13 Oct by "Last month I got hurt and had to take a break from pottery". The change is real, but the old notes are events (making a bowl), so "OUTDATED" may read oddly for "what did she make" questions.
+- **Sample 1:** Jon's "I love running my own studio" (8 Feb), replaced on 19 Jun by "Still working on opening a dance studio". This is the known contradiction, labelled CHANGE.
+- **Sample 1:** two of Jon's earlier studio notes, replaced on 11 May by "Losing my job gave me the push to finally start my dream business". This is the same inconsistency in the data.
+- **Sample 1:** Gina's "The store's doing great!", replaced by "I lost my job. I opened an online clothing store". This is doubtful: a restatement, not a change.
+
+Verification removed 10 wrong ones, such as dance-competition notes "replaced" by "determined to make this studio work".
+
+**Known cases:** 4 of 5 valid cases found (adoption ×2, Jon search → running, Jon running → "still opening"). Missed: Gina job → store (two topics). The two-dogs check works (COMPATIBLE).
+
+**Checks:**
+
+| Check | Result |
+|---|---|
+| `off` vs May 6 code: original bank, v3 bank, conflict bank | 608/608 identical, all three (`analysis/off_mode_check.json`) |
+| Consolidation step (`primary_expand`, cap 1) vs code before conflict work (`f3686cef`), with conflict off: v3 bank and conflict bank | 608/608 identical (`analysis/stage3_unchanged_check.json`) |
+| Negative control: prompts that change when conflict handling is on | annotate 408/608, demote 4/608, annotate_demote 408/608 |
+
+**What this tells us before any QA run:**
+- **Annotate does almost all the work.** Timeline labels reach about 2/3 of prompts.
+- **Demote barely matters on LoCoMo.** Only **5** questions in samples 0–1 count as "now" questions, and demote changes just 4 prompts.
+
+**Not done yet:** the QA run (step 5, the 4th row of the stacked table).
+
 ## 7. Risks and how we handle them
 
 | Risk | How we handle it |
