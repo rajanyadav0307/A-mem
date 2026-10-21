@@ -15,6 +15,7 @@ Example:
 from __future__ import annotations
 
 import argparse
+import collections
 import glob
 import json
 import os
@@ -33,11 +34,27 @@ SYSTEMS = [
 ]
 
 
-def scores(result: dict) -> dict:
-    rows = list(per_question_f1(result).values())
+def scores(result: dict, subset=None) -> dict:
+    keyed = per_question_f1(result)  # (sample, position) -> (question, f1, category)
+    rows = list(keyed.values())
     refusals = [classify_cat5(r["prediction"], r["reference"]) == "not_mentioned"
                 for r in result["individual_results"] if str(r["category"]) == "5"]
-    return {
+    out = {}
+    if subset:
+        raw = {}
+        pos = collections.Counter()
+        for r in result["individual_results"]:
+            key = (str(r["sample_id"]), pos[str(r["sample_id"])])
+            pos[str(r["sample_id"])] += 1
+            raw[key] = r
+        sub = [keyed[k] for k in subset]
+        sub5 = [raw[k] for k in subset if keyed[k][2] == 5]
+        out = {
+            "subset_answerable_f1": statistics.mean(f for _, f, c in sub if c != 5),
+            "subset_trap_refusal": statistics.mean(
+                classify_cat5(r["prediction"], r["reference"]) == "not_mentioned" for r in sub5) if sub5 else None,
+        }
+    return out | {
         "answerable_f1": statistics.mean(f for _, f, c in rows if c != 5),
         "time_f1": statistics.mean(f for _, f, c in rows if c == 2),
         "trap_refusal": statistics.mean(refusals),
@@ -51,6 +68,8 @@ def main():
     parser.add_argument("--dir", required=True)
     parser.add_argument("--include_from", nargs="*", default=[],
                         help="earlier run folders to take missing systems from")
+    parser.add_argument("--subset", default=None,
+                        help="JSON with a fixed question subset (e.g. analysis/conflict_timeline_questions.json)")
     args = parser.parse_args()
 
     manifest = json.load(open(os.path.join(args.dir, "manifest.json"), encoding="utf-8"))
@@ -59,6 +78,10 @@ def main():
     finished = open(os.path.join(args.dir, "finished_at.txt")).read().strip() if os.path.exists(
         os.path.join(args.dir, "finished_at.txt")) else "unknown"
 
+    subset, subset_info = None, None
+    if args.subset:
+        subset_info = json.load(open(args.subset, encoding="utf-8"))
+        subset = [(str(q["sample"]), q["question_index"]) for q in subset_info["questions"]]
     per_system, source_of = {}, {}
     for key, _ in SYSTEMS:
         files = []
@@ -75,7 +98,7 @@ def main():
             result = load(path)
             if result["total_questions"] != manifest["questions"]:
                 raise SystemExit(f"{path}: {result['total_questions']} questions, expected {manifest['questions']}")
-            runs[seed] = scores(result)
+            runs[seed] = scores(result, subset)
         per_system[key] = runs
 
     systems = [(k, label) for k, label in SYSTEMS if k in per_system]
@@ -121,6 +144,16 @@ def main():
             r = per_system[key][s]
             lines.append(f"| {label} | {s} | {r['answerable_f1']:.3f} | {r['time_f1']:.3f} | "
                          f"{r['trap_refusal']:.1%} | {r['overall_f1_paper']:.3f} |")
+
+    if subset:
+        n5 = sum(q["category"] == 5 for q in subset_info["questions"])
+        lines += ["", f"## Timeline questions only ({len(subset)} questions, fixed before results)", "",
+                  f"Rule: {subset_info['rule']}. Answerable: {len(subset) - n5}, trap questions: {n5}.", "",
+                  "| System | Answerable F1 | Trap questions refused |", "|---|---|---|"]
+        for key, label in systems:
+            refusal = [per_system[key][sd]["subset_trap_refusal"] for sd in seeds]
+            lines.append(f"| {label} | {mean(key, 'subset_answerable_f1'):.3f} | "
+                         f"{statistics.mean(refusal):.1%} |")
 
     lines += ["", "**What the columns mean**",
               "- *Answerable questions*: categories 1–4 (233 questions).",

@@ -118,6 +118,21 @@ Newest entries are at the bottom. Times are local (US Central).
 - 45 tests pass.
 - Next: QA run of the 4th step (A-MEM → V2 → + consolidation → + conflict handling).
 
+### 2026-10-21 16:21: Step 4 run: + conflict handling
+
+- Ran T-MEM V2 + consolidation + conflict handling (`annotate_demote`) on samples 0–1, 3 runs (16:21 to 16:31).
+- Folder: [experiments/fresh_run_2026-10-21_16-21_step4_conflict/](../experiments/fresh_run_2026-10-21_16-21_step4_conflict/REPORT.md). Steps 1–3 are taken from the 14:27 run.
+
+| Step | System | Normal questions | Time questions | Traps refused |
+|---|---|---|---|---|
+| 1 | A-MEM | 0.321 | 0.439 | 45.1% |
+| 2 | + time ranking (T-MEM V2) | 0.328 | 0.462 | 45.5% |
+| 3 | + consolidation | 0.336 | 0.471 | 47.9% |
+| 4 | **+ conflict handling** | **0.342** | **0.490** | 47.4% |
+
+- On the 90 "timeline questions" (fixed before the run): 0.383 → **0.411** with conflict handling.
+- **Caution:** step 4 ran separately from steps 1–3, and it beats step 3 in 2 of 3 matching runs. It looks promising, but isn't proven yet.
+
 ## Things to keep in mind
 
 - **Results vary between runs.** The AI answers a little differently each time, so always compare averages of several runs, never a single run.

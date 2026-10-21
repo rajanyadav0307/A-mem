@@ -1,0 +1,29 @@
+{
+  "folder": "experiments/fresh_run_2026-10-21_16-21_step4_conflict",
+  "created_local": "2026-10-21 16:21",
+  "git_commit": "b5c26250142970424f276f21082e5d41e8b4b5a1",
+  "branch": "conflict-handling-support",
+  "model": "gpt-4o-mini (served as gpt-4o-mini-2024-07-18)",
+  "samples": [
+    0,
+    1
+  ],
+  "questions": 304,
+  "retrieve_k": 10,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "systems": {
+    "tmem_v2_consolidated_conflict": "T-MEM V2 + consolidation (v3, primary_expand, cap 1) + conflict handling (annotate_demote, demote_penalty 0.10)"
+  },
+  "steps_1_to_3_from": "experiments/fresh_run_2026-10-21_14-27",
+  "memory_banks": {
+    "conflict": "cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3_conflicts_v1 (v3 consolidated bank + conflict fields, built 2026-10-21)"
+  },
+  "memory_bank_sha256_prefix": {
+    "cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3_conflicts_v1/s0": "9d730de3ef8452fb",
+    "cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3_conflicts_v1/s1": "e69d457e28b3b1db"
+  }
+}
