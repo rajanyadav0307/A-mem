@@ -254,3 +254,25 @@ def test_verify_parser_needs_a_real_quote():
     assert not parse_conflict_verify("ANSWER: YES\nQUOTE: I closed the studio", newer)["confirmed"]
     assert not parse_conflict_verify("ANSWER: NO\nQUOTE: Still working on opening", newer)["confirmed"]
     assert not parse_conflict_verify("garbage", newer)["confirmed"]
+
+
+def test_timeline_only_style_has_no_outdated_or_conflict_labels(tmp_path):
+    llm = ScriptedLLM(change_pair=("running my own studio", "still opening the studio"))
+    system, _, _ = run_detection(tmp_path, llm)
+    system.conflict_mode = "timeline_only"
+    text = system.render_notes([2])
+    assert "memory timeline: Jon's dance studio, step 2 of 3" in text
+    assert "OUTDATED" not in text and "CONFLICTS" not in text
+    system.current_question = "Is Jon currently running a studio?"
+    assert system.conflict_penalties().sum() == 0
+
+
+def test_date_range_style(tmp_path):
+    llm = ScriptedLLM(change_pair=("running my own studio", "still opening the studio"))
+    system, _, _ = run_detection(tmp_path, llm)
+    system.conflict_mode = "date_range"
+    assert "memory timeline: valid 8 February 2023 - 19 June 2023" in system.render_notes([2])
+    assert "memory timeline: valid 19 June 2023 - present" in system.render_notes([5])
+    assert "memory timeline" not in system.render_notes([1])  # not in a timeline
+    system.current_question = "Is Jon currently running a studio?"
+    assert system.conflict_penalties().sum() == 0

@@ -375,7 +375,7 @@ class RobustMemoryNote:
 # ---------------------------------------------------------------------------
 
 CONSOLIDATION_MODES = ("off", "add_only", "primary", "primary_expand")
-CONFLICT_MODES = ("off", "annotate", "demote", "annotate_demote")
+CONFLICT_MODES = ("off", "annotate", "demote", "annotate_demote", "timeline_only", "date_range")
 
 # Question intent for conflict demotion (fixed 2026-10-21, before any QA run).
 # A question is a "now" question if it has a NOW word and no HISTORY word.
@@ -415,6 +415,10 @@ class RobustAgenticMemorySystem:
     #   demote          - replaced or contradicted older notes score lower, only for
     #                     "now" questions (see is_now_question)
     #   annotate_demote - both
+    #   timeline_only   - comparison: timeline labels only, no OUTDATED/CONFLICT
+    #                     labels and no demotion (Theanine-style timelines)
+    #   date_range      - comparison: each timeline note shows "valid <from> - <until
+    #                     or present>" only, no demotion (Zep-style validity ranges)
     conflict_mode: str = "off"
     demote_penalty: float = 0.10
     current_question: Optional[str] = None  # set by the QA agent before retrieval
@@ -661,7 +665,7 @@ class RobustAgenticMemorySystem:
         "memory timeline:" field before the newline.
         """
         notes = list(self.memories.values())
-        annotate = self.conflict_mode in ("annotate", "annotate_demote")
+        annotate = self.conflict_mode in ("annotate", "annotate_demote", "timeline_only", "date_range")
         timelines = self._timeline_index() if annotate else {}
         return "".join(
             "talk start time:" + notes[i].timestamp +
@@ -690,6 +694,11 @@ class RobustAgenticMemorySystem:
 
     def _timeline_annotation(self, i: int, notes: List, timelines: Dict[int, List[int]]) -> str:
         note = notes[i]
+        if self.conflict_mode == "date_range":
+            if note.timeline_id is None:
+                return ""
+            until = note.valid_until or "present"
+            return f" memory timeline: valid {self._short_date(note.timestamp)} - {until}"
         parts: List[str] = []
         if note.timeline_id is not None and note.timeline_id in timelines:
             steps = timelines[note.timeline_id]
@@ -702,6 +711,8 @@ class RobustAgenticMemorySystem:
                 nxt = notes[steps[k + 1]]
                 text += f"; after: {nxt.timeline_status} ({self._short_date(nxt.timestamp)})"
             parts.append(text)
+        if self.conflict_mode == "timeline_only":
+            return (" memory timeline: " + parts[0]) if parts else ""
         if note.superseded_by is not None and 0 <= note.superseded_by < len(notes):
             newer = notes[note.superseded_by]
             parts.append(f"OUTDATED since {note.valid_until}: replaced by \"{newer.timeline_status or newer.content[:80]}\"")

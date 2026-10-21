@@ -491,7 +491,7 @@ def main():
     parser.add_argument("--consolidated_score_penalty", type=float, default=0.0,
                         help="Subtracted from consolidated notes' cosine score")
     parser.add_argument("--conflict_mode", type=str, default="off",
-                        choices=["off", "annotate", "demote", "annotate_demote"],
+                        choices=["off", "annotate", "demote", "annotate_demote", "timeline_only", "date_range"],
                         help="How retrieval uses conflict handling (default: off)")
     parser.add_argument("--demote_penalty", type=float, default=0.10,
                         help="Score penalty for replaced notes on 'now' questions")
