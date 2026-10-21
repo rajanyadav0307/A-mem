@@ -161,6 +161,46 @@ When I read 16 random PROGRESS steps, only about **4 were real progress**. Three
 - Compare each new note with **every** earlier note on the same topic that has a different status, not only the one just before it.
 - Before trusting any counts, check that the known cases are found (Jon's studio contradiction, Caroline's adoption steps, Gina's job → store).
 
+## 6b. Step 0 results, second try (2026-10-21)
+
+Command: `measure_conflicts.py --method v2`. Output: `analysis/conflict_step0_v2_2026-10-21/`. 1,234 AI calls, about $0.09 (estimated $0.07). The memory bank was only read.
+
+**What changed from the first try:** a strict "situation" test (concrete facts only), finer topics (threshold 0.78), and each note compared with up to 8 earlier distinct statuses on the same topic.
+
+| | Sample 0 | Sample 1 |
+|---|---|---|
+| Notes tagged as situations | **52** (was 204) | **93** (was 230) |
+| Timelines | 6 | 7 |
+| Questions whose evidence is in a timeline note | 37 | 48 |
+
+**The timelines found are the real ones:**
+- Sample 0: Caroline's adoption (researching → applied → contacted mentor → passed interviews), Caroline's counselling career, Caroline's art show, Caroline's painting, Melanie's pottery class, Melanie's pets.
+- Sample 1: Jon's business, Jon's dance studio (searching for a location → opened and thriving → teaching → expanding), Gina's job, Gina's store, Gina's fashion piece, Gina's design internship (interviewed → accepted).
+
+**Spot check:** 15 of 16 random "situation" notes were real concrete facts. The one mistake was a fact about the other speaker ("Gina's own studio | opened" was really about Jon).
+
+**Known cases:**
+
+| Case | Result |
+|---|---|
+| Caroline: researching agencies → applied | ✅ found (PROGRESS) |
+| Caroline: applied → passed interviews | ✅ found (PROGRESS) |
+| Jon: searching for a location → running the studio | ✅ found (PROGRESS) |
+| Jon: running the studio (8 Feb) → "still working on opening" (19 Jun) | ❌ not compared. Jon's studio has more than 12 statuses, and the 8 Feb one fell outside the 8 most recent |
+| Gina: lost DoorDash job → clothing store | ❌ put under two different topics (job vs store) |
+| Melanie: signed up for pottery → made a bowl | Not a valid test: both were said on the same day |
+| **"Two dogs" check** (Melanie: owns a dog and cat → got another cat) | ✅ correctly labelled COMPATIBLE, nothing replaced |
+
+**Labels:** almost every step is **PROGRESS**. There are a few CHANGEs, but the 6 in sample 0 all come from one wrongly tagged note. There are **no CONTRADICTIONs**. The pair counts (65 and 320 PROGRESS) are inflated, because each note is compared with several earlier statuses. The useful count is the number of timelines and their steps.
+
+**What this means for the design:**
+1. **In LoCoMo, changes are almost all progress, not replacements.** An earlier step ("researching agencies") is not *wrong* later; it's history. So:
+   - **Annotate** should present each timeline in date order ("earlier step on 25 May → later: applied on 23 Aug"). This is where most of the value is, because about 85 of 304 questions (28%) have evidence in timeline notes.
+   - **Demote** should weaken only notes replaced by a **CHANGE** or **CONTRADICTION**, and only for "now" questions. In samples 0–1 that will rarely trigger.
+   - This keeps the chosen setting (`annotate + demote`) and makes clear which part does the work on LoCoMo.
+2. **Contradictions in this data are rare and hard to catch.** The one we know of (Jon's studio) needs comparison with *all* earlier statuses, or a check focused on the first and most recent.
+3. **Cross-topic changes** (job → business) aren't caught. That's acceptable for now; we'll note it as a limit.
+
 ## 7. Risks and how we handle them
 
 | Risk | How we handle it |

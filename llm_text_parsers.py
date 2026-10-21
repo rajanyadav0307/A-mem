@@ -703,3 +703,22 @@ def parse_conflict_label(response: str) -> Dict[str, str]:
         found = [cand for cand in CONFLICT_LABELS if cand in label]
         label = found[0] if len(found) == 1 else "COMPATIBLE"
     return {"label": label, "reason": " ".join(_extract_section(text, "REASON", ["LABEL"]).split())}
+
+
+STATE_EXTRACT_PROMPT_STRICT = """A person said this in a conversation on {date}:
+{speaker}: {text}
+
+Does it state a concrete, checkable fact about the speaker's own life that could change later?
+Count ONLY:
+- a job, business or studio and its status (e.g. looking for a location, opened, expanding, closed)
+- where they live or a move
+- a relationship status
+- a step in a specific plan (e.g. researched agencies, applied, passed interviews)
+- signing up for, starting, or stopping a specific activity, class or routine
+- something specific they bought, own, lost or got
+Do NOT count: feelings, thanks, praise, encouragement, wishes, general enthusiasm ("going for my dreams"), opinions, questions, or facts about other people.
+
+Respond in this exact format:
+STATE: YES or NO
+TOPIC: if YES, the specific thing, as "<speaker>'s <thing>" in 2 to 5 words (e.g. "Jon's dance studio", "Caroline's adoption", "Melanie's pottery class"); if NO, write NONE
+STATUS: if YES, its concrete status at that time in a few words (e.g. "searching for a location", "applied to agency"); if NO, write NONE"""

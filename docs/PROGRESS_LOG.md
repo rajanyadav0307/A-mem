@@ -98,6 +98,16 @@ Newest entries are at the bottom. Times are local (US Central).
 - Folder: `analysis/conflict_step0_2026-10-21/`
 - Next: a stricter second try (about $0.07 more).
 
+### 2026-10-21: Conflict handling step 0, second try
+
+- Stricter tagging: only concrete facts count (52 and 93 notes instead of 204 and 230). 15 of 16 spot-checked were correct.
+- Found the real timelines: Caroline's adoption, Jon's dance studio, Gina's store, Gina's internship, and others (6 in sample 0, 7 in sample 1).
+- Known cases: 3 of 5 found. Missed: Jon's studio contradiction, and Gina's job → store (filed under two topics).
+- **Main lesson:** in LoCoMo, changes are almost all **progress** (steps of a plan), not replacements. So showing the timeline with dates matters most; weakening old notes will rarely apply.
+- About 85 of 304 questions (28%) have evidence in timeline notes.
+- Cost: 1,234 AI calls, about $0.09.
+- Folder: `analysis/conflict_step0_v2_2026-10-21/`
+
 ## Things to keep in mind
 
 - **Results vary between runs.** The AI answers a little differently each time, so always compare averages of several runs, never a single run.
