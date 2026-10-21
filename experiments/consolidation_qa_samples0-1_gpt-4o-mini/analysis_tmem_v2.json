@@ -1,0 +1,310 @@
+{
+  "two_by_two": {
+    "overall": {
+      "means": {
+        "A": 0.37764967506029645,
+        "AC": 0.3834195831832656,
+        "V": 0.37419271295543327,
+        "VC": 0.37422389491677877
+      },
+      "interaction_per_seed": [
+        -0.013855786209077237,
+        0.0008825304742741125,
+        -0.004242922750067879
+      ]
+    },
+    "cats 1-4": {
+      "means": {
+        "A": 0.317441370130735,
+        "AC": 0.3361237352012288,
+        "V": 0.31342575803393274,
+        "VC": 0.33214228722300715
+      },
+      "interaction_per_seed": [
+        -0.028353699060612525,
+        0.007603969212182093,
+        0.020852222204172266
+      ]
+    },
+    "cat 1": {
+      "means": {
+        "A": 0.19576299448565757,
+        "AC": 0.20750980344742853,
+        "V": 0.18413185788163106,
+        "VC": 0.2046364959961481
+      },
+      "interaction_per_seed": [
+        0.013432621272297718,
+        -0.02753768068416057,
+        0.04037854687010109
+      ]
+    },
+    "cat 2": {
+      "means": {
+        "A": 0.44529250878457227,
+        "AC": 0.45094796444002794,
+        "V": 0.45993211667814843,
+        "VC": 0.4612499199800787
+      },
+      "interaction_per_seed": [
+        -0.055634577063148505,
+        0.01351047541523731,
+        0.029111144587335047
+      ]
+    },
+    "cat 3": {
+      "means": {
+        "A": 0.13013305102294545,
+        "AC": 0.1383936653405402,
+        "V": 0.12276287117932472,
+        "VC": 0.13774126560065933
+      },
+      "interaction_per_seed": [
+        0.013057630398767534,
+        -0.016685839092959842,
+        0.023781549005411823
+      ]
+    },
+    "cat 4": {
+      "means": {
+        "A": 0.3140427435162424,
+        "AC": 0.34372867846050964,
+        "V": 0.3029727285696634,
+        "VC": 0.3310561595050243
+      },
+      "interaction_per_seed": [
+        -0.03376127575471166,
+        0.020364921516717982,
+        0.008588842211274705
+      ]
+    },
+    "cat 5 F1": {
+      "means": {
+        "A": 0.575234675744632,
+        "AC": 0.538629901208823,
+        "V": 0.5736110298104985,
+        "VC": 0.5123226919963391
+      },
+      "interaction_per_seed": [
+        0.03372187145863692,
+        -0.02117514876421256,
+        -0.0865974125294755
+      ]
+    },
+    "cat 5 refusal": {
+      "means": {
+        "A": 0.4272300469483568,
+        "AC": 0.4647887323943662,
+        "V": 0.431924882629108,
+        "VC": 0.4929577464788732
+      },
+      "interaction_per_seed": [
+        -0.04225352112676056,
+        0.028169014084507005,
+        0.08450704225352107
+      ]
+    }
+  },
+  "cat2_by_merged_note": {
+    "merged note holds evidence": {
+      "n": 3,
+      "mean_delta": 0.0,
+      "better": 0,
+      "worse": 0
+    },
+    "merged note, not evidence": {
+      "n": 154,
+      "mean_delta": -9.462038682817915e-05,
+      "better": 31,
+      "worse": 29
+    },
+    "no merged note": {
+      "n": 32,
+      "mean_delta": 0.008238636363636363,
+      "better": 5,
+      "worse": 5
+    }
+  },
+  "cat2_extremes": [
+    {
+      "direction": "worse",
+      "mean_delta": -1.0,
+      "question": "How long has Caroline had her current group of friends for?",
+      "reference": "4 years",
+      "v2": [
+        "4 years",
+        "4 years",
+        "4 years"
+      ],
+      "v2_c": [
+        "Not specified.",
+        "Since approximately July 6, 2023.",
+        "Approximate date: 15 July 2023"
+      ]
+    },
+    {
+      "direction": "worse",
+      "mean_delta": -0.5714285714285714,
+      "question": "When did Gina team up with a local artist for some cool designs?",
+      "reference": "February, 2023",
+      "v2": [
+        "21 June, 2023",
+        "1 February, 2023",
+        "1 February, 2023"
+      ],
+      "v2_c": [
+        "Not mentioned.",
+        "Approximate date: 3 April 2023",
+        "Not mentioned."
+      ]
+    },
+    {
+      "direction": "worse",
+      "mean_delta": -0.3888888888888889,
+      "question": "When was Jon in Paris?",
+      "reference": "28 January 2023",
+      "v2": [
+        "29 January, 2023",
+        "Approximate date: 29 January, 2023",
+        "Not mentioned."
+      ],
+      "v2_c": [
+        "Not mentioned.",
+        "Not mentioned.",
+        "Not specified."
+      ]
+    },
+    {
+      "direction": "worse",
+      "mean_delta": -0.3333333333333333,
+      "question": "When did Gina get her tattoo?",
+      "reference": "A few years ago",
+      "v2": [
+        "A few years ago.",
+        "A few years ago.",
+        "A few years ago."
+      ],
+      "v2_c": [
+        "Not mentioned.",
+        "a few years ago",
+        "a few years ago"
+      ]
+    },
+    {
+      "direction": "worse",
+      "mean_delta": -0.2857142857142857,
+      "question": "When did Gina get accepted for the design internship?",
+      "reference": "27 May, 2023",
+      "v2": [
+        "27 May, 2023",
+        "27 May, 2023",
+        "Gina got accepted for the fashion internship on 27 May, 2023."
+      ],
+      "v2_c": [
+        "Yesterday, 11 May, 2023.",
+        "No specific date mentioned for design internship acceptance.",
+        "27 May, 2023"
+      ]
+    },
+    {
+      "direction": "better",
+      "mean_delta": 0.6785714285714286,
+      "question": "When did Melanie go to the park?",
+      "reference": "27 August 2023",
+      "v2": [
+        "Yesterday (27 August, 2023).",
+        "Yesterday.",
+        "Yesterday."
+      ],
+      "v2_c": [
+        "Yesterday, 28 August 2023.",
+        "Yesterday, on 27 August, 2023.",
+        "27 August, 2023"
+      ]
+    },
+    {
+      "direction": "better",
+      "mean_delta": 0.6666666666666666,
+      "question": "When did Caroline give a speech at a school?",
+      "reference": "The week before 9 June 2023",
+      "v2": [
+        "Not mentioned.",
+        "Not specified.",
+        "Not mentioned."
+      ],
+      "v2_c": [
+        "9 June, 2023",
+        "9 June, 2023",
+        "9 June, 2023"
+      ]
+    },
+    {
+      "direction": "better",
+      "mean_delta": 0.6,
+      "question": "When is Caroline going to the transgender conference?",
+      "reference": "July 2023",
+      "v2": [
+        "July 2023",
+        "This month (July 2023).",
+        "This month (July 2023)."
+      ],
+      "v2_c": [
+        "3 July, 2023",
+        "July 2023",
+        "July 2023"
+      ]
+    },
+    {
+      "direction": "better",
+      "mean_delta": 0.5333333333333333,
+      "question": "When Gina has lost her job at Door Dash?",
+      "reference": "January, 2023",
+      "v2": [
+        "March 16, 2023",
+        "this month",
+        "January 2023"
+      ],
+      "v2_c": [
+        "January 2023",
+        "January 2023",
+        "January 2023"
+      ]
+    },
+    {
+      "direction": "better",
+      "mean_delta": 0.3472222222222222,
+      "question": "When did Caroline go biking with friends?",
+      "reference": "The weekend before 13 September 2023",
+      "v2": [
+        "13 September, 2023",
+        "last weekend (on 10 July, 2023)",
+        "Short answer: last weekend (1:56 pm on 8 May, 2023)"
+      ],
+      "v2_c": [
+        "13 September, 2023",
+        "13 September, 2023",
+        "13 September, 2023"
+      ]
+    }
+  ],
+  "v2_mechanics": {
+    "questions": 63,
+    "time applied": 37,
+    "merged note in top-20 pool": 35,
+    "merged note in final top-10": 29,
+    "merged note moved INTO top-10 by time": 0,
+    "merged note moved OUT of top-10 by time": 0,
+    "time skipped (clear semantic winner)": 26,
+    "merged_notes": 33,
+    "mean_age_months_earliest_source": 3.3636363636363638,
+    "mean_age_months_merged_note": 2.008080808080808,
+    "mean_decay_earliest_source": 0.7228774974309371,
+    "mean_decay_merged_note": 0.8260159041302947
+  },
+  "cat2_evidence_in_prompt": {
+    "A-MEM": 0.7407407407407407,
+    "A-MEM + C": 0.7671957671957672,
+    "T-MEM V2": 0.7724867724867724,
+    "T-MEM V2 + C": 0.7671957671957672
+  }
+}
