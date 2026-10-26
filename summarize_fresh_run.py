@@ -54,6 +54,20 @@ def scores(result: dict, subset=None) -> dict:
             "subset_trap_refusal": statistics.mean(
                 classify_cat5(r["prediction"], r["reference"]) == "not_mentioned" for r in sub5) if sub5 else None,
         }
+    per_sample = {}
+    for sample in sorted({k[0] for k in keyed}, key=int):
+        srows = [v for k, v in keyed.items() if k[0] == sample]
+        srefusals = [classify_cat5(r["prediction"], r["reference"]) == "not_mentioned"
+                     for r in result["individual_results"]
+                     if str(r["sample_id"]) == sample and str(r["category"]) == "5"]
+        per_sample[sample] = {
+            "questions": len(srows),
+            "answerable_f1": statistics.mean(f for _, f, c in srows if c != 5),
+            "time_f1": statistics.mean(f for _, f, c in srows if c == 2),
+            "trap_refusal": statistics.mean(srefusals) if srefusals else None,
+            "overall_f1_paper": statistics.mean(f for _, f, _ in srows),
+        }
+    out["per_sample"] = per_sample
     return out | {
         "answerable_f1": statistics.mean(f for _, f, c in rows if c != 5),
         "time_f1": statistics.mean(f for _, f, c in rows if c == 2),
@@ -174,6 +188,18 @@ def main():
             refusal = [per_system[key][sd]["subset_trap_refusal"] for sd in seeds]
             lines.append(f"| {label} | {mean(key, 'subset_answerable_f1'):.3f} | "
                          f"{statistics.mean(refusal):.1%} |")
+
+    samples_seen = sorted(per_system[systems[0][0]][seeds[0]]["per_sample"], key=int)
+    if len(samples_seen) > 1:
+        lines += ["", "## Per sample (average of the runs)", "",
+                  "| Sample | Questions | System | Answerable F1 | Time F1 | Trap refused | Overall F1 (paper) |",
+                  "|---|---|---|---|---|---|---|"]
+        for sample in samples_seen:
+            for key, label in systems:
+                vals = [per_system[key][sd]["per_sample"][sample] for sd in seeds]
+                avg = lambda m: statistics.mean(v[m] for v in vals)  # noqa: E731
+                lines.append(f"| {sample} | {vals[0]['questions']} | {label} | {avg('answerable_f1'):.3f} | "
+                             f"{avg('time_f1'):.3f} | {avg('trap_refusal'):.1%} | {avg('overall_f1_paper'):.3f} |")
 
     lines += ["", "**What the columns mean**",
               "- *Answerable questions*: categories 1–4 (233 questions).",

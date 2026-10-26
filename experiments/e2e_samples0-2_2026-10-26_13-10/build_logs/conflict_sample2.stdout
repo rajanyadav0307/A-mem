@@ -1,0 +1,10 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15034.39it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14451.99it/s]
+Loading retriever from experiments/e2e_samples0-2_2026-10-26_13-10/cache/consolidated/retriever_cache_sample_2.pkl and experiments/e2e_samples0-2_2026-10-26_13-10/cache/consolidated/retriever_cache_embeddings_sample_2.npy
+Loading embeddings from experiments/e2e_samples0-2_2026-10-26_13-10/cache/consolidated/retriever_cache_embeddings_sample_2.npy
+Embeddings shape: (686, 384)
+Loading corpus from experiments/e2e_samples0-2_2026-10-26_13-10/cache/consolidated/retriever_cache_sample_2.pkl
+Loaded corpus with 686 documents
+sample 2: 73 situation notes, 10 timelines, labels {'PROGRESS': 24, 'COMPATIBLE': 18, 'SAME': 2, 'CHANGE': 4}, replaced 4, contradictions 0, new AI calls 718
+log: experiments/e2e_samples0-2_2026-10-26_13-10/build_logs/conflict

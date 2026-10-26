@@ -1,0 +1,667 @@
+{
+  "config": {
+    "topic_threshold": 0.78,
+    "status_duplicate": 0.85,
+    "max_compare": null,
+    "workers": 8
+  },
+  "raw_notes": 663,
+  "state_notes": 73,
+  "timelines": [
+    {
+      "speaker": "John",
+      "topic": "John's daily routine",
+      "notes": [
+        194,
+        254
+      ],
+      "dates": [
+        "7 April 2023",
+        "4 May 2023"
+      ],
+      "statuses": [
+        "part of his routine now",
+        "three times a week"
+      ]
+    },
+    {
+      "speaker": "John",
+      "topic": "John's workout regime",
+      "notes": [
+        388,
+        526
+      ],
+      "dates": [
+        "16 June 2023",
+        "22 July 2023"
+      ],
+      "statuses": [
+        "trying out different workouts",
+        "started a specific activity"
+      ]
+    },
+    {
+      "speaker": "John",
+      "topic": "John's yoga class",
+      "notes": [
+        140,
+        186,
+        188,
+        190,
+        520
+      ],
+      "dates": [
+        "25 February 2023",
+        "7 April 2023",
+        "7 April 2023",
+        "7 April 2023",
+        "22 July 2023"
+      ],
+      "statuses": [
+        "invited to beginner's class",
+        "started a weekend class",
+        "attending classes regularly",
+        "currently attending",
+        "goes to often"
+      ]
+    },
+    {
+      "speaker": "John",
+      "topic": "John's fire-fighting brigade",
+      "notes": [
+        531,
+        646
+      ],
+      "dates": [
+        "31 July 2023",
+        "16 August 2023"
+      ],
+      "statuses": [
+        "just joined",
+        "now part of the brigade"
+      ]
+    },
+    {
+      "speaker": "John",
+      "topic": "John's petition project",
+      "notes": [
+        308,
+        327
+      ],
+      "dates": [
+        "20 May 2023",
+        "25 May 2023"
+      ],
+      "statuses": [
+        "in progress, rewarding but stressful",
+        "gaining support"
+      ]
+    },
+    {
+      "speaker": "John",
+      "topic": "John's run for office",
+      "notes": [
+        126,
+        285
+      ],
+      "dates": [
+        "25 February 2023",
+        "6 May 2023"
+      ],
+      "statuses": [
+        "running for office again",
+        "decided to run again"
+      ]
+    },
+    {
+      "speaker": "John",
+      "topic": "John's job",
+      "notes": [
+        390,
+        392,
+        396,
+        510,
+        563,
+        567
+      ],
+      "dates": [
+        "16 June 2023",
+        "16 June 2023",
+        "16 June 2023",
+        "22 July 2023",
+        "5 August 2023",
+        "5 August 2023"
+      ],
+      "statuses": [
+        "recently promoted at work",
+        "assistant manager",
+        "received promotion",
+        "enjoying his new job",
+        "lost his job",
+        "found a job opportunity"
+      ]
+    },
+    {
+      "speaker": "Maria",
+      "topic": "Maria's aerial yoga class",
+      "notes": [
+        2,
+        376,
+        380
+      ],
+      "dates": [
+        "17 December 2022",
+        "12 June 2023",
+        "12 June 2023"
+      ],
+      "statuses": [
+        "just started",
+        "enjoys aerial yoga",
+        "actively practicing aerial yoga"
+      ]
+    },
+    {
+      "speaker": "Maria",
+      "topic": "Maria's creative writing class",
+      "notes": [
+        125,
+        168
+      ],
+      "dates": [
+        "25 February 2023",
+        "2 April 2023"
+      ],
+      "statuses": [
+        "completed the class",
+        "currently taking class"
+      ]
+    },
+    {
+      "speaker": "Maria",
+      "topic": "Maria's volunteering",
+      "notes": [
+        92,
+        94,
+        127,
+        242,
+        357,
+        517,
+        548,
+        550,
+        582
+      ],
+      "dates": [
+        "28 January 2023",
+        "28 January 2023",
+        "25 February 2023",
+        "18 April 2023",
+        "3 June 2023",
+        "22 July 2023",
+        "3 August 2023",
+        "3 August 2023",
+        "9 August 2023"
+      ],
+      "statuses": [
+        "volunteered at a shelter",
+        "started volunteering",
+        "currently volunteering at shelter",
+        "still volunteering at shelter",
+        "started volunteering at a shelter",
+        "planning to volunteer at shelters",
+        "currently volunteering at shelter",
+        "actively volunteering at shelter",
+        "received a medal"
+      ]
+    }
+  ],
+  "labels": {
+    "PROGRESS": 24,
+    "COMPATIBLE": 18,
+    "SAME": 2,
+    "CHANGE": 4
+  },
+  "replaced": [
+    {
+      "older": 390,
+      "newer": 563,
+      "older_text": "Speaker Johnsays : Yeah, sure thing. I'll let you know. Oh, also...something massive happened since we last spoke. I got promoted at work! It's been a loooong time coming, and I'm over the moon about it!",
+      "newer_text": "Speaker Johnsays : Hey Maria, great chatting with you again! Crazy thing happened since we last talked. I lost my job at the mechanical engineering company. They tanked and it's been really rough. Never saw this coming.",
+      "valid_until": "5 August 2023"
+    },
+    {
+      "older": 392,
+      "newer": 563,
+      "older_text": "Speaker Johnsays : [Image: a photography of a golden trophy on a black surface] Thanks, Maria! I was really excited. It feels like all the hard work I've put in has paid off now that I'm an assistant manager- it's like a stepping stone for bigger things.",
+      "newer_text": "Speaker Johnsays : Hey Maria, great chatting with you again! Crazy thing happened since we last talked. I lost my job at the mechanical engineering company. They tanked and it's been really rough. Never saw this coming.",
+      "valid_until": "5 August 2023"
+    },
+    {
+      "older": 396,
+      "newer": 563,
+      "older_text": "Speaker Johnsays : Yeah, I faced all kinds of hurdles - tech stuff, workplace stuff... but the worst was self-doubt. There were moments when I questioned if I was on the right track. But with support at home and my own grit, I powered through. This promotion is a reward for all the hustle and hardship I put in - a reminder that I'm on the right path.",
+      "newer_text": "Speaker Johnsays : Hey Maria, great chatting with you again! Crazy thing happened since we last talked. I lost my job at the mechanical engineering company. They tanked and it's been really rough. Never saw this coming.",
+      "valid_until": "5 August 2023"
+    },
+    {
+      "older": 510,
+      "newer": 563,
+      "older_text": "Speaker Johnsays : Hi Maria! It's so good to talk again. A lot has changed since last time. I'm really enjoying my new job. My team has been super encouraging and inspiring.",
+      "newer_text": "Speaker Johnsays : Hey Maria, great chatting with you again! Crazy thing happened since we last talked. I lost my job at the mechanical engineering company. They tanked and it's been really rough. Never saw this coming.",
+      "valid_until": "5 August 2023"
+    }
+  ],
+  "contradictions": [],
+  "pairs": [
+    {
+      "timeline": 0,
+      "old": 194,
+      "new": 254,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a specific frequency of the activity mentioned in the older statement, showing an advancement in the routine."
+    },
+    {
+      "timeline": 1,
+      "old": 388,
+      "new": 526,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement adds information about the person's experience with weight training while still being consistent with their interest in staying in shape and trying different workout regimes mentioned in the older statement."
+    },
+    {
+      "timeline": 2,
+      "old": 140,
+      "new": 186,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The person has moved from the intention of attending a yoga class to actually participating in one and experiencing its benefits."
+    },
+    {
+      "timeline": 2,
+      "old": 140,
+      "new": 188,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has started attending yoga classes, which is a progression from their earlier mention of being invited to one."
+    },
+    {
+      "timeline": 2,
+      "old": 140,
+      "new": 190,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement provides additional details about the beginner yoga class mentioned in the older statement without contradicting it."
+    },
+    {
+      "timeline": 2,
+      "old": 140,
+      "new": 520,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from considering joining a beginner's yoga class to regularly attending a yoga studio."
+    },
+    {
+      "timeline": 2,
+      "old": 186,
+      "new": 520,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has continued their yoga practice and found a studio they enjoy, building on their initial experience."
+    },
+    {
+      "timeline": 2,
+      "old": 188,
+      "new": 520,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "Both statements express positive sentiments about the yoga studio and instructors, with the newer statement adding to the description of the atmosphere without contradicting the older one."
+    },
+    {
+      "timeline": 2,
+      "old": 190,
+      "new": 520,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "Both statements describe the same yoga class experience, with the newer one adding details about the studio's atmosphere and instructors without contradicting the earlier statement."
+    },
+    {
+      "timeline": 3,
+      "old": 531,
+      "new": 646,
+      "previous_status": true,
+      "label": "SAME",
+      "reason": "Both statements confirm the person's involvement in the fire-fighting brigade."
+    },
+    {
+      "timeline": 4,
+      "old": 308,
+      "new": 327,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the petition has progressed since the older statement, mentioning ongoing efforts and gaining support."
+    },
+    {
+      "timeline": 5,
+      "old": 126,
+      "new": 285,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a continuation of the plan to run for office, emphasizing the person's commitment despite previous challenges."
+    },
+    {
+      "timeline": 6,
+      "old": 390,
+      "new": 510,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement builds on the older one by expressing enjoyment of the new job after the promotion mentioned previously."
+    },
+    {
+      "timeline": 6,
+      "old": 392,
+      "new": 510,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the person's continued enjoyment and growth in their job since becoming an assistant manager, indicating advancement in their career."
+    },
+    {
+      "timeline": 6,
+      "old": 396,
+      "new": 510,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the person's advancement to a new job and a positive experience, building on the challenges and self-doubt mentioned in the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 390,
+      "new": 563,
+      "previous_status": false,
+      "label": "CHANGE",
+      "reason": "The person was promoted at work in June but lost their job by August, indicating a significant shift in their employment status.",
+      "first_label": "CHANGE",
+      "verified": true,
+      "quote": "I lost my job at the mechanical engineering company."
+    },
+    {
+      "timeline": 6,
+      "old": 392,
+      "new": 563,
+      "previous_status": false,
+      "label": "CHANGE",
+      "reason": "The person's status changed from being an assistant manager to losing their job, indicating that the previous situation is no longer true.",
+      "first_label": "CHANGE",
+      "verified": true,
+      "quote": "I lost my job at the mechanical engineering company."
+    },
+    {
+      "timeline": 6,
+      "old": 396,
+      "new": 563,
+      "previous_status": false,
+      "label": "CHANGE",
+      "reason": "The person went from celebrating a promotion and feeling on the right path to losing their job, indicating a significant shift in their situation.",
+      "first_label": "CHANGE",
+      "verified": true,
+      "quote": "I lost my job at the mechanical engineering company."
+    },
+    {
+      "timeline": 6,
+      "old": 510,
+      "new": 563,
+      "previous_status": true,
+      "label": "CHANGE",
+      "reason": "The newer statement indicates that the person lost their job, which contradicts the earlier statement about enjoying their new job.",
+      "first_label": "CHANGE",
+      "verified": true,
+      "quote": "I lost my job at the mechanical engineering company."
+    },
+    {
+      "timeline": 6,
+      "old": 390,
+      "new": 567,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The person was promoted at work but is now considering a new job opportunity, indicating a shift in their employment situation.",
+      "first_label": "CHANGE",
+      "verified": false,
+      "quote": "NONE"
+    },
+    {
+      "timeline": 6,
+      "old": 392,
+      "new": 567,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The person has moved from being an assistant manager to potentially starting a new job at a tech company, indicating a shift in their career path.",
+      "first_label": "CHANGE",
+      "verified": false,
+      "quote": "NONE"
+    },
+    {
+      "timeline": 6,
+      "old": 396,
+      "new": 567,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a positive development in the person's career, moving from overcoming self-doubt and challenges to finding a job opportunity that aligns with their skills."
+    },
+    {
+      "timeline": 6,
+      "old": 510,
+      "new": 567,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "The person has moved from enjoying their new job to potentially finding a different job opportunity, indicating a shift in their employment status.",
+      "first_label": "CHANGE",
+      "verified": false,
+      "quote": "NONE"
+    },
+    {
+      "timeline": 7,
+      "old": 2,
+      "new": 376,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "Both statements express enjoyment of aerial yoga, with the newer one adding personal insights about finding Zen without contradicting the older statement."
+    },
+    {
+      "timeline": 7,
+      "old": 2,
+      "new": 380,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a continued engagement with aerial yoga, reflecting an advancement in the person's experience and appreciation for the practice since the older statement."
+    },
+    {
+      "timeline": 8,
+      "old": 125,
+      "new": 168,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The person has progressed from taking a creative writing class to taking a poetry class, indicating a continued focus on writing and self-expression."
+    },
+    {
+      "timeline": 9,
+      "old": 92,
+      "new": 127,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates continued involvement in volunteering at a homeless shelter, building on the previous experience shared in the older statement."
+    },
+    {
+      "timeline": 9,
+      "old": 94,
+      "new": 127,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has continued their volunteering efforts, specifically at a homeless shelter, building on their earlier commitment to volunteering."
+    },
+    {
+      "timeline": 9,
+      "old": 92,
+      "new": 242,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's volunteering at the homeless shelter has continued and evolved since the older statement."
+    },
+    {
+      "timeline": 9,
+      "old": 94,
+      "new": 242,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has continued their volunteering efforts, showing advancement in their commitment to helping others."
+    },
+    {
+      "timeline": 9,
+      "old": 127,
+      "new": 242,
+      "previous_status": true,
+      "label": "SAME",
+      "reason": "The newer statement reaffirms the ongoing commitment to volunteering at the homeless shelter mentioned in the older statement."
+    },
+    {
+      "timeline": 9,
+      "old": 92,
+      "new": 357,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "Both statements reflect the person's commitment to volunteering, first with kids and then with dogs, showing a broader engagement in community service without negating the previous involvement."
+    },
+    {
+      "timeline": 9,
+      "old": 94,
+      "new": 357,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement adds information about the person's volunteering at a dog shelter while still aligning with their earlier commitment to volunteering and helping others."
+    },
+    {
+      "timeline": 9,
+      "old": 242,
+      "new": 357,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "Both statements reflect the person's commitment to volunteering, with the newer one adding their involvement at a dog shelter without negating their previous work at the homeless shelter."
+    },
+    {
+      "timeline": 9,
+      "old": 357,
+      "new": 517,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a plan to volunteer at shelters next month, building on the commitment made in the older statement about volunteering at a local dog shelter."
+    },
+    {
+      "timeline": 9,
+      "old": 94,
+      "new": 517,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a plan to expand volunteering efforts, building on the previous commitment to volunteer and help others."
+    },
+    {
+      "timeline": 9,
+      "old": 242,
+      "new": 517,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a plan to continue volunteering, suggesting an expansion of the previous commitment."
+    },
+    {
+      "timeline": 9,
+      "old": 357,
+      "new": 548,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "Both statements reflect the person's commitment to volunteering, with the first focusing on a dog shelter and the second on a homeless shelter, showing a broader engagement in community service."
+    },
+    {
+      "timeline": 9,
+      "old": 94,
+      "new": 548,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement adds information about volunteering at a homeless shelter while still aligning with the theme of helping others expressed in the older statement."
+    },
+    {
+      "timeline": 9,
+      "old": 242,
+      "new": 548,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement confirms the ongoing volunteering at the homeless shelter while also acknowledging the context of helping veterans, adding to the original fact without replacing it."
+    },
+    {
+      "timeline": 9,
+      "old": 517,
+      "new": 548,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The person has moved from planning to volunteer at shelters to actively volunteering at a homeless shelter."
+    },
+    {
+      "timeline": 9,
+      "old": 94,
+      "new": 550,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement builds on the older one by detailing the person's motivation and experience in volunteering, indicating a progression in their involvement and commitment to helping others."
+    },
+    {
+      "timeline": 9,
+      "old": 242,
+      "new": 550,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement provides additional context about the person's motivation and experience while still affirming their ongoing involvement in volunteering at the homeless shelter."
+    },
+    {
+      "timeline": 9,
+      "old": 517,
+      "new": 550,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The OLDER statement expresses a plan to volunteer, while the NEWER statement indicates that the person has already been volunteering for about a year, showing advancement in their involvement."
+    },
+    {
+      "timeline": 9,
+      "old": 550,
+      "new": 582,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement adds the experience of receiving a medal for volunteering at the shelter, which complements the earlier statement about starting to volunteer there."
+    },
+    {
+      "timeline": 9,
+      "old": 94,
+      "new": 582,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows that the person's volunteering efforts have continued and evolved, resulting in recognition for their contributions."
+    },
+    {
+      "timeline": 9,
+      "old": 242,
+      "new": 582,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement adds the detail of receiving a medal for volunteering at the homeless shelter while still affirming the ongoing commitment to volunteering mentioned in the older statement."
+    },
+    {
+      "timeline": 9,
+      "old": 517,
+      "new": 582,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The person initially planned to volunteer at shelters and later reported that they successfully volunteered and received a medal for their efforts."
+    }
+  ],
+  "verification": {
+    "checked": 7,
+    "confirmed": 4
+  },
+  "new_llm_calls": 718,
+  "known_cases": []
+}

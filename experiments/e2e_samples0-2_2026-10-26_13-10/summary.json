@@ -1,0 +1,193 @@
+{
+  "seeds": [
+    "42",
+    "43",
+    "44"
+  ],
+  "per_system": {
+    "amem": {
+      "42": {
+        "per_sample": {
+          "0": {
+            "questions": 199,
+            "answerable_f1": 0.30113152946226257,
+            "time_f1": 0.43556323556323556,
+            "trap_refusal": 0.40425531914893614,
+            "overall_f1_paper": 0.36707400418748043
+          },
+          "1": {
+            "questions": 105,
+            "answerable_f1": 0.3703807267377122,
+            "time_f1": 0.5262820512820513,
+            "trap_refusal": 0.5833333333333334,
+            "overall_f1_paper": 0.38697768616736067
+          },
+          "2": {
+            "questions": 193,
+            "answerable_f1": 0.3930906973460338,
+            "time_f1": 0.4366629255518144,
+            "trap_refusal": 0.6341463414634146,
+            "overall_f1_paper": 0.3898440099890235
+          }
+        },
+        "answerable_f1": 0.3520067982873136,
+        "time_f1": 0.46210080043413376,
+        "trap_refusal": 0.5267857142857143,
+        "overall_f1_paper": 0.3801212833174306,
+        "questions": 497
+      },
+      "43": {
+        "per_sample": {
+          "0": {
+            "questions": 199,
+            "answerable_f1": 0.2683355297125023,
+            "time_f1": 0.3549305799305799,
+            "trap_refusal": 0.425531914893617,
+            "overall_f1_paper": 0.34139688898722215
+          },
+          "1": {
+            "questions": 105,
+            "answerable_f1": 0.3421447374864167,
+            "time_f1": 0.5068681318681318,
+            "trap_refusal": 0.6666666666666666,
+            "overall_f1_paper": 0.34805278017350416
+          },
+          "2": {
+            "questions": 193,
+            "answerable_f1": 0.3893105873642545,
+            "time_f1": 0.4303992303992304,
+            "trap_refusal": 0.6341463414634146,
+            "overall_f1_paper": 0.38741646537156316
+          }
+        },
+        "answerable_f1": 0.33162580138199166,
+        "time_f1": 0.4214642456309123,
+        "trap_refusal": 0.5535714285714286,
+        "overall_f1_paper": 0.360673844352891,
+        "questions": 497
+      },
+      "44": {
+        "per_sample": {
+          "0": {
+            "questions": 199,
+            "answerable_f1": 0.29456305931641635,
+            "time_f1": 0.37438192438192436,
+            "trap_refusal": 0.3617021276595745,
+            "overall_f1_paper": 0.37323098540093824
+          },
+          "1": {
+            "questions": 105,
+            "answerable_f1": 0.3765301297102688,
+            "time_f1": 0.5405677655677655,
+            "trap_refusal": 0.625,
+            "overall_f1_paper": 0.3821977017938091
+          },
+          "2": {
+            "questions": 193,
+            "answerable_f1": 0.4050969248768072,
+            "time_f1": 0.42188552188552186,
+            "trap_refusal": 0.5609756097560976,
+            "overall_f1_paper": 0.40960235264143097
+          }
+        },
+        "answerable_f1": 0.35544742364649806,
+        "time_f1": 0.43664224664224666,
+        "trap_refusal": 0.49107142857142855,
+        "overall_f1_paper": 0.3892494544123397,
+        "questions": 497
+      }
+    },
+    "tmem_complete": {
+      "42": {
+        "per_sample": {
+          "0": {
+            "questions": 199,
+            "answerable_f1": 0.3239269218458746,
+            "time_f1": 0.46625326625326624,
+            "trap_refusal": 0.40425531914893614,
+            "overall_f1_paper": 0.3871200609074017
+          },
+          "1": {
+            "questions": 105,
+            "answerable_f1": 0.34602506597883076,
+            "time_f1": 0.5481684981684982,
+            "trap_refusal": 0.5833333333333334,
+            "overall_f1_paper": 0.365331890724795
+          },
+          "2": {
+            "questions": 193,
+            "answerable_f1": 0.39184433461139484,
+            "time_f1": 0.36741488963711183,
+            "trap_refusal": 0.6097560975609756,
+            "overall_f1_paper": 0.39545686044012274
+          }
+        },
+        "answerable_f1": 0.3553902891578967,
+        "time_f1": 0.4602661535994869,
+        "trap_refusal": 0.5178571428571429,
+        "overall_f1_paper": 0.38575435555657966,
+        "questions": 497
+      },
+      "43": {
+        "per_sample": {
+          "0": {
+            "questions": 199,
+            "answerable_f1": 0.30508746840992523,
+            "time_f1": 0.4044460044460044,
+            "trap_refusal": 0.425531914893617,
+            "overall_f1_paper": 0.3688115897472174
+          },
+          "1": {
+            "questions": 105,
+            "answerable_f1": 0.3860969449071819,
+            "time_f1": 0.6161172161172161,
+            "trap_refusal": 0.5833333333333334,
+            "overall_f1_paper": 0.39624448304095156
+          },
+          "2": {
+            "questions": 193,
+            "answerable_f1": 0.389346204762095,
+            "time_f1": 0.41206776762332314,
+            "trap_refusal": 0.6829268292682927,
+            "overall_f1_paper": 0.3762182642202942
+          }
+        },
+        "answerable_f1": 0.3553968074276073,
+        "time_f1": 0.4678819945486612,
+        "trap_refusal": 0.5535714285714286,
+        "overall_f1_paper": 0.3774835051780945,
+        "questions": 497
+      },
+      "44": {
+        "per_sample": {
+          "0": {
+            "questions": 199,
+            "answerable_f1": 0.3241585407267957,
+            "time_f1": 0.44894114894114895,
+            "trap_refusal": 0.425531914893617,
+            "overall_f1_paper": 0.37983062353758384
+          },
+          "1": {
+            "questions": 105,
+            "answerable_f1": 0.3805862211661495,
+            "time_f1": 0.5895604395604396,
+            "trap_refusal": 0.6666666666666666,
+            "overall_f1_paper": 0.37770763901215515
+          },
+          "2": {
+            "questions": 193,
+            "answerable_f1": 0.37980589146092386,
+            "time_f1": 0.41979049756827536,
+            "trap_refusal": 0.6341463414634146,
+            "overall_f1_paper": 0.3741399843553467
+          }
+        },
+        "answerable_f1": 0.35800020157660123,
+        "time_f1": 0.48081930415263746,
+        "trap_refusal": 0.5535714285714286,
+        "overall_f1_paper": 0.37717225988096054,
+        "questions": 497
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "created": "2026-10-26T13:54:41",
+  "source_cache": "experiments/e2e_samples0-2_2026-10-26_13-10/cache/consolidated",
+  "output_dir": "experiments/e2e_samples0-2_2026-10-26_13-10/cache/conflict",
+  "model": "gpt-4o-mini",
+  "tag": "e2e",
+  "samples": {
+    "2": {
+      "raw_notes": 663,
+      "state_notes": 73,
+      "labels": {
+        "PROGRESS": 24,
+        "COMPATIBLE": 18,
+        "SAME": 2,
+        "CHANGE": 4
+      },
+      "new_llm_calls": 718,
+      "timelines": 10,
+      "replaced": 4,
+      "contradictions": 0,
+      "known_cases": []
+    }
+  }
+}

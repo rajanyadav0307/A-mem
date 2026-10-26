@@ -1,0 +1,1276 @@
+{
+  "config": {
+    "similarity_threshold": 0.8,
+    "max_group_size": 5,
+    "require_same_speaker": true,
+    "embedding_model": "all-MiniLM-L6-v2"
+  },
+  "counts": {
+    "groups": 28,
+    "merged": 23,
+    "different": 4,
+    "rejected": 1,
+    "llm_calls": 69
+  },
+  "groups": [
+    {
+      "indices": [
+        7,
+        229
+      ],
+      "min_similarity": 0.8241574616333186,
+      "mean_similarity": 0.8241574616333186,
+      "sources": [
+        {
+          "index": 7,
+          "timestamp": "11:01 am on 17 December, 2022",
+          "content": "Speaker Johnsays : I'm passionate about improving education and infrastructure in our community. Those are my main focuses."
+        },
+        {
+          "index": 229,
+          "timestamp": "7:34 pm on 18 April, 2023",
+          "content": "Speaker Johnsays : Recently, education reform and infrastructure development. Good access to quality education and updated infrastructure are key to a thriving and successful community. My goal is to get conversations going and get people involved by sharing ideas and taking action. It's really empowering to know I can help make a difference in people's lives."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express John's passion for improving education and infrastructure in the community, emphasizing their importance and his goal of engaging others in these efforts.",
+      "attempts": [
+        {
+          "content": "John is passionate about improving education and infrastructure in the community, emphasizing that good access to quality education and updated infrastructure are key to a thriving community. He aims to initiate conversations and encourage involvement to make a difference in people's lives. This was mentioned on 17 December 2022 and 18 April 2023.",
+          "context": "John's focus on education reform and infrastructure development in the community.",
+          "compression_ratio": 0.7807606263982103,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 663,
+      "consolidated_content": "John is passionate about improving education and infrastructure in the community, emphasizing that good access to quality education and updated infrastructure are key to a thriving community. He aims to initiate conversations and encourage involvement to make a difference in people's lives. This was mentioned on 17 December 2022 and 18 April 2023.",
+      "compression_ratio": 0.7807606263982103
+    },
+    {
+      "indices": [
+        15,
+        643
+      ],
+      "min_similarity": 0.8026433159822798,
+      "mean_similarity": 0.8026433159822798,
+      "sources": [
+        {
+          "index": 15,
+          "timestamp": "11:01 am on 17 December, 2022",
+          "content": "Speaker Johnsays : Got it! Thanks, Maria. I definitely will."
+        },
+        {
+          "index": 643,
+          "timestamp": "3:14 pm on 13 August, 2023",
+          "content": "Speaker Johnsays : Thanks, Maria! I'm off to spend some time with them now. Have a good day!"
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The first note expresses a commitment to do something in the future, while the second note indicates that John is currently spending time with someone.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        23,
+        287,
+        289
+      ],
+      "min_similarity": 0.8129786050978108,
+      "mean_similarity": 0.8264247045267442,
+      "sources": [
+        {
+          "index": 23,
+          "timestamp": "6:10 pm on 22 December, 2022",
+          "content": "Speaker Johnsays : Thanks, Maria. Your encouragement means a lot to me. It's true that with effort and support, we can make a real difference in our community."
+        },
+        {
+          "index": 287,
+          "timestamp": "5:04 pm on 6 May, 2023",
+          "content": "Speaker Johnsays : Maria, your support really means a lot! It's tough, but your kind words give me the motivation to keep going. I've still got a lot to learn, but I'm determined to make a difference. I appreciate your belief in me."
+        },
+        {
+          "index": 289,
+          "timestamp": "5:04 pm on 6 May, 2023",
+          "content": "Speaker Johnsays : Thanks, Maria! Your words really mean something. Sometimes it feels like it's too much, but your encouragement gives me the strength to keep going."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "The notes express similar sentiments of gratitude and encouragement from Maria, emphasizing John's motivation and determination to make a difference.",
+      "attempts": [
+        {
+          "content": "John expressed gratitude for Maria's encouragement, stating it motivates him to keep going and make a difference in the community. He mentioned this on 22 December 2022 and reiterated his appreciation on 6 May 2023.",
+          "context": "John's appreciation for Maria's support and motivation.",
+          "compression_ratio": 0.43,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 664,
+      "consolidated_content": "John expressed gratitude for Maria's encouragement, stating it motivates him to keep going and make a difference in the community. He mentioned this on 22 December 2022 and reiterated his appreciation on 6 May 2023.",
+      "compression_ratio": 0.43
+    },
+    {
+      "indices": [
+        34,
+        638
+      ],
+      "min_similarity": 0.8385773025532298,
+      "mean_similarity": 0.8385773025532298,
+      "sources": [
+        {
+          "index": 34,
+          "timestamp": "6:10 pm on 22 December, 2022",
+          "content": "Speaker Mariasays : Definitely, John. They bring us joy, support, and a feeling of being part of something special. We should cherish every moment with them."
+        },
+        {
+          "index": 638,
+          "timestamp": "3:14 pm on 13 August, 2023",
+          "content": "Speaker Mariasays : Absolutely, John. They're always there for us."
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The first note expresses a sentiment about cherishing moments with loved ones, while the second note emphasizes their constant support, indicating different aspects of the relationship.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        70,
+        472
+      ],
+      "min_similarity": 0.8034869800639441,
+      "mean_similarity": 0.8034869800639441,
+      "sources": [
+        {
+          "index": 70,
+          "timestamp": "7:06 pm on 9 January, 2023",
+          "content": "Speaker Johnsays : Thanks, Maria! I like to just take a look at the sunset- it reminds me to enjoy the small things in life."
+        },
+        {
+          "index": 472,
+          "timestamp": "6:59 pm on 5 July, 2023",
+          "content": "Speaker Johnsays : [Image: a photo of a sunset over the ocean with a sailboat in the distance] Yeah, Maria. Little things like this can make a big impact in how we think. Oh, and here's a pic I got from my walk last week. It always reminds me to take a break, breathe, and appreciate nature."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express the idea of appreciating small things in life, specifically sunsets and nature.",
+      "attempts": [
+        {
+          "content": "John appreciates sunsets as reminders to enjoy the small things in life and take breaks to appreciate nature. He mentioned this on 9 January 2023 and shared a photo of a sunset on 5 July 2023, emphasizing the impact of such moments on our thinking.",
+          "context": "John's reflections on the importance of appreciating nature and small moments in life.",
+          "compression_ratio": 0.6578249336870027,
+          "missing": [
+            "Maria"
+          ],
+          "relative_times": [],
+          "dropped_times": [
+            "last week (said 5 July 2023 -> week)"
+          ],
+          "too_long": []
+        },
+        {
+          "content": "John appreciates sunsets as reminders to enjoy the small things in life. On 9 January 2023, he expressed this sentiment to Maria, and on 5 July 2023, he shared a photo of a sunset over the ocean, emphasizing the importance of taking breaks to appreciate nature.",
+          "context": "John's reflections on the significance of sunsets and nature.",
+          "compression_ratio": 0.6923076923076923,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [
+            "last week (said 5 July 2023 -> week)"
+          ],
+          "too_long": []
+        },
+        {
+          "content": "John appreciates sunsets as reminders to enjoy the small things in life. On 9 January 2023, he expressed this sentiment, and on 5 July 2023, he shared a photo of a sunset over the ocean, emphasizing the importance of taking breaks to appreciate nature.",
+          "context": "John's reflections on the significance of sunsets and nature.",
+          "compression_ratio": 0.6684350132625995,
+          "missing": [
+            "Maria"
+          ],
+          "relative_times": [],
+          "dropped_times": [
+            "last week (said 5 July 2023 -> week)"
+          ],
+          "too_long": []
+        }
+      ],
+      "outcome": "rejected"
+    },
+    {
+      "indices": [
+        80,
+        181,
+        491
+      ],
+      "min_similarity": 0.8272447289386067,
+      "mean_similarity": 0.8690666956443437,
+      "sources": [
+        {
+          "index": 80,
+          "timestamp": "7:06 pm on 9 January, 2023",
+          "content": "Speaker Johnsays : Maria, thank you! Your support means a lot. Let's make some change in our community!"
+        },
+        {
+          "index": 181,
+          "timestamp": "9:36 am on 2 April, 2023",
+          "content": "Speaker Johnsays : Maria, thanks a lot! Your support is really encouraging - I appreciate having you in my corner!"
+        },
+        {
+          "index": 491,
+          "timestamp": "6:29 pm on 7 July, 2023",
+          "content": "Speaker Johnsays : Thanks, Maria. Your support means a lot and it's awesome to have you by my side in our community work. Let's keep going and making great things happen!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "All notes express gratitude towards Maria for her support in community work, with similar sentiments conveyed in different wording.",
+      "attempts": [
+        {
+          "content": "John expressed gratitude to Maria for her support in their community work, stating it means a lot and is encouraging. He mentioned this on 9 January 2023, 2 April 2023, and 7 July 2023.",
+          "context": "John's appreciation for Maria's support in community efforts.",
+          "compression_ratio": 0.5606060606060606,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 665,
+      "consolidated_content": "John expressed gratitude to Maria for her support in their community work, stating it means a lot and is encouraging. He mentioned this on 9 January 2023, 2 April 2023, and 7 July 2023.",
+      "compression_ratio": 0.5606060606060606
+    },
+    {
+      "indices": [
+        84,
+        599
+      ],
+      "min_similarity": 0.8337715720147664,
+      "mean_similarity": 0.8337715720147664,
+      "sources": [
+        {
+          "index": 84,
+          "timestamp": "7:06 pm on 9 January, 2023",
+          "content": "Speaker Johnsays : Yeah, Maria! I couldn't agree more. Thanks for being an awesome friend."
+        },
+        {
+          "index": 599,
+          "timestamp": "8:06 pm on 9 August, 2023",
+          "content": "Speaker Johnsays : Yeah Maria! Friends like you make a big difference. Talk to you later!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express appreciation and friendship without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "John expressed appreciation for Maria's friendship on 9 January 2023, stating she is an awesome friend, and reiterated the importance of friends like her on 9 August 2023, saying they make a big difference.",
+          "context": "John's appreciation for Maria's friendship.",
+          "compression_ratio": 1.4609929078014185,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.46x the length of the notes"
+          ]
+        },
+        {
+          "content": "John expressed gratitude and appreciation for Maria's friendship on 9 January 2023 and again on 9 August 2023, highlighting the positive impact she has on his life.",
+          "context": "John's appreciation for Maria's friendship.",
+          "compression_ratio": 1.1631205673758864,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.16x the length of the notes"
+          ]
+        },
+        {
+          "content": "John expressed gratitude and appreciation for Maria's friendship on 9 January 2023 and again on 9 August 2023, highlighting the positive impact she has on his life.",
+          "context": "John's appreciation for Maria's friendship.",
+          "compression_ratio": 1.1631205673758864,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.16x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 666,
+      "consolidated_content": "John expressed appreciation for Maria's friendship on 9 January 2023, stating she is an awesome friend, and reiterated the importance of friends like her on 9 August 2023, saying they make a big difference.",
+      "compression_ratio": 1.4609929078014185
+    },
+    {
+      "indices": [
+        113,
+        451
+      ],
+      "min_similarity": 0.8474888197983874,
+      "mean_similarity": 0.8474888197983874,
+      "sources": [
+        {
+          "index": 113,
+          "timestamp": "2:33 pm on 5 February, 2023",
+          "content": "Speaker Mariasays : Wow, John, that's incredible! What inspired you to get involved with something like this?"
+        },
+        {
+          "index": 451,
+          "timestamp": "8:43 pm on 3 July, 2023",
+          "content": "Speaker Mariasays : Wow, John! What inspired you to join it?"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express Maria's curiosity about John's inspiration for getting involved in a particular activity, albeit phrased slightly differently.",
+      "attempts": [
+        {
+          "content": "Maria asked John what inspired him to get involved with something like this on 5 February 2023 and again on 3 July 2023.",
+          "context": "Maria's inquiries about John's inspiration for his involvement.",
+          "compression_ratio": 0.9302325581395349,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 667,
+      "consolidated_content": "Maria asked John what inspired him to get involved with something like this on 5 February 2023 and again on 3 July 2023.",
+      "compression_ratio": 0.9302325581395349
+    },
+    {
+      "indices": [
+        121,
+        182,
+        359,
+        620
+      ],
+      "min_similarity": 0.8030559122646984,
+      "mean_similarity": 0.8474427532109283,
+      "sources": [
+        {
+          "index": 121,
+          "timestamp": "2:33 pm on 5 February, 2023",
+          "content": "Speaker Mariasays : No worries, John. Whenever you need help, just let me know."
+        },
+        {
+          "index": 182,
+          "timestamp": "9:36 am on 2 April, 2023",
+          "content": "Speaker Mariasays : No problem, John. Let me know if you need any help. We work well together!"
+        },
+        {
+          "index": 359,
+          "timestamp": "11:51 am on 3 June, 2023",
+          "content": "Speaker Mariasays : Sure thing, John. Let me know if you need any help."
+        },
+        {
+          "index": 620,
+          "timestamp": "12:10 am on 11 August, 2023",
+          "content": "Speaker Mariasays : No worries, John. I'm happy to help. Let me know if you need anything else. Keep going, you can do it!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "All notes express Maria's willingness to help John and convey a similar message of support.",
+      "attempts": [
+        {
+          "content": "Maria offered to help John multiple times, stating on 5 February 2023, 2 April 2023, 3 June 2023, and 11 August 2023 that he should let her know if he needs assistance and encouraging him to keep going.",
+          "context": "Maria's willingness to assist John.",
+          "compression_ratio": 0.7062937062937062,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 668,
+      "consolidated_content": "Maria offered to help John multiple times, stating on 5 February 2023, 2 April 2023, 3 June 2023, and 11 August 2023 that he should let her know if he needs assistance and encouraging him to keep going.",
+      "compression_ratio": 0.7062937062937062
+    },
+    {
+      "indices": [
+        122,
+        360,
+        569,
+        581,
+        658
+      ],
+      "min_similarity": 0.8098043705082276,
+      "mean_similarity": 0.8594387869772117,
+      "sources": [
+        {
+          "index": 122,
+          "timestamp": "2:33 pm on 5 February, 2023",
+          "content": "Speaker Johnsays : Yep, definitely. Your support really means a lot, Maria. Thanks for always being there for me."
+        },
+        {
+          "index": 360,
+          "timestamp": "11:51 am on 3 June, 2023",
+          "content": "Speaker Johnsays : Sure thing, Maria. Thanks for the support! It means a lot to me."
+        },
+        {
+          "index": 569,
+          "timestamp": "5:19 pm on 5 August, 2023",
+          "content": "Speaker Johnsays : Thanks, Maria! I appreciate your support, it really means a lot."
+        },
+        {
+          "index": 581,
+          "timestamp": "5:19 pm on 5 August, 2023",
+          "content": "Speaker Johnsays : Thanks, Maria. Your support means a lot to me. If I need anything, I'll be sure to reach out."
+        },
+        {
+          "index": 658,
+          "timestamp": "11:08 am on 16 August, 2023",
+          "content": "Speaker Johnsays : Thanks for being a part of this with me, Maria. I appreciate your support."
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "The notes express gratitude and appreciation for support without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "John expressed his gratitude to Maria for her support on 5 February 2023, 3 June 2023, 5 August 2023, and 16 August 2023, stating that it means a lot to him and that he appreciates her being there for him.",
+          "context": "John's appreciation for Maria's support.",
+          "compression_ratio": 0.5269922879177378,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 669,
+      "consolidated_content": "John expressed his gratitude to Maria for her support on 5 February 2023, 3 June 2023, 5 August 2023, and 16 August 2023, stating that it means a lot to him and that he appreciates her being there for him.",
+      "compression_ratio": 0.5269922879177378
+    },
+    {
+      "indices": [
+        135,
+        425,
+        622
+      ],
+      "min_similarity": 0.815769098694558,
+      "mean_similarity": 0.8422449673107365,
+      "sources": [
+        {
+          "index": 135,
+          "timestamp": "8:55 pm on 25 February, 2023",
+          "content": "Speaker Mariasays : Thanks, John! Your words mean a lot. It's incredible how much positivity and optimism can impact someone."
+        },
+        {
+          "index": 425,
+          "timestamp": "12:21 am on 27 June, 2023",
+          "content": "Speaker Mariasays : Thanks, John! Your words really mean a lot. It's always nice to know that what I'm doing is making an impact."
+        },
+        {
+          "index": 622,
+          "timestamp": "12:10 am on 11 August, 2023",
+          "content": "Speaker Mariasays : Thanks, John. Your words mean a lot. I'll definitely keep spreading positivity. Take care!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "The notes express gratitude and encouragement without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Maria expressed gratitude to John for his encouraging words on 25 February 2023, 27 June 2023, and 11 August 2023, emphasizing the positive impact of his support and her commitment to spreading positivity.",
+          "context": "Maria's appreciation for John's encouragement and its impact on her.",
+          "compression_ratio": 0.6743421052631579,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 670,
+      "consolidated_content": "Maria expressed gratitude to John for his encouraging words on 25 February 2023, 27 June 2023, and 11 August 2023, emphasizing the positive impact of his support and her commitment to spreading positivity.",
+      "compression_ratio": 0.6743421052631579
+    },
+    {
+      "indices": [
+        165,
+        478
+      ],
+      "min_similarity": 0.8167484039564787,
+      "mean_similarity": 0.8167484039564787,
+      "sources": [
+        {
+          "index": 165,
+          "timestamp": "6:03 pm on 6 March, 2023",
+          "content": "Speaker Johnsays : Wow, Maria! I see, so that's the key to making a difference."
+        },
+        {
+          "index": 478,
+          "timestamp": "6:59 pm on 5 July, 2023",
+          "content": "Speaker Johnsays : Take care, Maria. Catch you soon!"
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The first note expresses an insight about making a difference, while the second note is a casual farewell.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        183,
+        335
+      ],
+      "min_similarity": 0.8247424249301647,
+      "mean_similarity": 0.8247424249301647,
+      "sources": [
+        {
+          "index": 183,
+          "timestamp": "9:36 am on 2 April, 2023",
+          "content": "Speaker Johnsays : Thanks, Maria! Will do. Working together would be great!"
+        },
+        {
+          "index": 335,
+          "timestamp": "1:24 pm on 25 May, 2023",
+          "content": "Speaker Johnsays : No problem, Maria! Working together with passionate people like you is awesome! Let's make a difference."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express John's enthusiasm for working together with Maria, highlighting a shared sentiment about collaboration.",
+      "attempts": [
+        {
+          "content": "John expressed enthusiasm about working together with Maria on 2 April 2023 and reiterated that working with passionate people like her is awesome on 25 May 2023.",
+          "context": "John's collaboration with Maria.",
+          "compression_ratio": 1.0125,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.01x the length of the notes"
+          ]
+        },
+        {
+          "content": "John expressed enthusiasm about working together with Maria on 2 April 2023 and reiterated that collaborating with passionate people like her is awesome on 25 May 2023.",
+          "context": "John's appreciation for collaboration with Maria.",
+          "compression_ratio": 1.05,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.05x the length of the notes"
+          ]
+        },
+        {
+          "content": "John expressed enthusiasm about working together with Maria on 2 April 2023 and reiterated on 25 May 2023 that collaborating with passionate people like her is awesome and aims to make a difference.",
+          "context": "John's appreciation for collaboration with Maria.",
+          "compression_ratio": 1.2375,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.24x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 671,
+      "consolidated_content": "John expressed enthusiasm about working together with Maria on 2 April 2023 and reiterated that working with passionate people like her is awesome on 25 May 2023.",
+      "compression_ratio": 1.0125
+    },
+    {
+      "indices": [
+        215,
+        659
+      ],
+      "min_similarity": 0.8025349499935867,
+      "mean_similarity": 0.8025349499935867,
+      "sources": [
+        {
+          "index": 215,
+          "timestamp": "6:13 pm on 10 April, 2023",
+          "content": "Speaker Mariasays : Thanks, John! It's so great to make a real difference. Seeing the impact and hearing the gratitude fills me with so much joy. The people at the shelter have become like family to me. I feel really blessed to know them."
+        },
+        {
+          "index": 659,
+          "timestamp": "11:08 am on 16 August, 2023",
+          "content": "Speaker Mariasays : Hey John, I'm here for you. Last Friday, I spent some time at the shelter volunteering at the front desk. Seeing the smiles on their faces when they got food or a bed really made me feel good. We have the power to make a difference in people's lives."
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The first note expresses Maria's feelings about her connection to the shelter, while the second note describes a specific volunteering experience and its impact.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        216,
+        245,
+        424
+      ],
+      "min_similarity": 0.8026459200392377,
+      "mean_similarity": 0.8401548871256456,
+      "sources": [
+        {
+          "index": 216,
+          "timestamp": "6:13 pm on 10 April, 2023",
+          "content": "Speaker Johnsays : Wow, Maria, what you're doing is truly amazing. Your kindness ripples and creates such incredible relationships!"
+        },
+        {
+          "index": 245,
+          "timestamp": "7:34 pm on 18 April, 2023",
+          "content": "Speaker Johnsays : It's tough sometimes, but every act of kindness matters. You're so dedicated and inspiring, Maria. Keep going!"
+        },
+        {
+          "index": 424,
+          "timestamp": "12:21 am on 27 June, 2023",
+          "content": "Speaker Johnsays : Maria, that's great! Your way of passing on kindness and positivity is making a big impact on the world. You're really making a difference."
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "The notes consist of praise and encouragement directed towards Maria without presenting distinct facts or events.",
+      "attempts": [
+        {
+          "content": "John praised Maria's kindness and dedication on 10 April 2023, encouraged her on 18 April 2023, and acknowledged her positive impact on the world on 27 June 2023.",
+          "context": "John's encouragement and praise for Maria's acts of kindness.",
+          "compression_ratio": 0.4487534626038781,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 672,
+      "consolidated_content": "John praised Maria's kindness and dedication on 10 April 2023, encouraged her on 18 April 2023, and acknowledged her positive impact on the world on 27 June 2023.",
+      "compression_ratio": 0.4487534626038781
+    },
+    {
+      "indices": [
+        220,
+        571
+      ],
+      "min_similarity": 0.8271482935069355,
+      "mean_similarity": 0.8271482935069355,
+      "sources": [
+        {
+          "index": 220,
+          "timestamp": "6:13 pm on 10 April, 2023",
+          "content": "Speaker Johnsays : Wow, Maria, that's awesome! You made everyone so comfortable and it must have been so rewarding. You're really making a difference!"
+        },
+        {
+          "index": 571,
+          "timestamp": "5:19 pm on 5 August, 2023",
+          "content": "Speaker Johnsays : Wow, Maria! That's great. Glad it was rewarding for you."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express praise and acknowledgment of Maria's positive impact and rewarding experience, albeit with different wording.",
+      "attempts": [
+        {
+          "content": "John praised Maria for making everyone comfortable and noted it must have been rewarding for her. He mentioned this on 10 April 2023 and again on 5 August 2023, expressing gladness for her rewarding experience.",
+          "context": "John's appreciation for Maria's efforts and the impact she has made.",
+          "compression_ratio": 1.1229946524064172,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.12x the length of the notes"
+          ]
+        },
+        {
+          "content": "John praised Maria for making everyone comfortable and found it rewarding. He mentioned this on 10 April 2023 and again on 5 August 2023.",
+          "context": "John's appreciation for Maria's efforts in creating a positive environment.",
+          "compression_ratio": 0.732620320855615,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 673,
+      "consolidated_content": "John praised Maria for making everyone comfortable and found it rewarding. He mentioned this on 10 April 2023 and again on 5 August 2023.",
+      "compression_ratio": 0.732620320855615
+    },
+    {
+      "indices": [
+        224,
+        476,
+        645
+      ],
+      "min_similarity": 0.8422706471286308,
+      "mean_similarity": 0.8572848841466998,
+      "sources": [
+        {
+          "index": 224,
+          "timestamp": "6:13 pm on 10 April, 2023",
+          "content": "Speaker Johnsays : Glad I could help, Maria. Talk to you soon. Stay safe!"
+        },
+        {
+          "index": 476,
+          "timestamp": "6:59 pm on 5 July, 2023",
+          "content": "Speaker Johnsays : Thanks, Maria. Appreciate it. Great talking to you. Gotta go. Stay safe and chat soon!"
+        },
+        {
+          "index": 645,
+          "timestamp": "3:14 pm on 13 August, 2023",
+          "content": "Speaker Johnsays : Thanks, Maria! You too! Stay safe!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "The notes consist of greetings and expressions of appreciation without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "John expressed gratitude and encouragement to Maria on 10 April 2023, 5 July 2023, and 13 August 2023, wishing her to stay safe and looking forward to future conversations.",
+          "context": "John's small talk with Maria over several months.",
+          "compression_ratio": 0.9885057471264368,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 674,
+      "consolidated_content": "John expressed gratitude and encouragement to Maria on 10 April 2023, 5 July 2023, and 13 August 2023, wishing her to stay safe and looking forward to future conversations.",
+      "compression_ratio": 0.9885057471264368
+    },
+    {
+      "indices": [
+        230,
+        655
+      ],
+      "min_similarity": 0.8058327477407663,
+      "mean_similarity": 0.8058327477407663,
+      "sources": [
+        {
+          "index": 230,
+          "timestamp": "7:34 pm on 18 April, 2023",
+          "content": "Speaker Mariasays : Wow, John! Your passion and dedication is inspiring. It's great to see you taking the lead and making a difference. Keep up the amazing work!"
+        },
+        {
+          "index": 655,
+          "timestamp": "11:08 am on 16 August, 2023",
+          "content": "Speaker Mariasays : Awesome, John! Loving your newfound passion. You're doing great things - keep it up! It's wonderful to see everyone coming together for this cause."
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express praise and encouragement towards John without stating distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Maria praised John for his passion and dedication on 18 April 2023, and again on 16 August 2023, expressing admiration for his efforts and the collective support for their cause.",
+          "context": "Maria's encouragement and praise for John's leadership and commitment to a cause.",
+          "compression_ratio": 0.6180555555555556,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 675,
+      "consolidated_content": "Maria praised John for his passion and dedication on 18 April 2023, and again on 16 August 2023, expressing admiration for his efforts and the collective support for their cause.",
+      "compression_ratio": 0.6180555555555556
+    },
+    {
+      "indices": [
+        315,
+        576
+      ],
+      "min_similarity": 0.8069535776590591,
+      "mean_similarity": 0.8069535776590591,
+      "sources": [
+        {
+          "index": 315,
+          "timestamp": "7:38 pm on 20 May, 2023",
+          "content": "Speaker Mariasays : That's great, John! It's awesome that you're doing that."
+        },
+        {
+          "index": 576,
+          "timestamp": "5:19 pm on 5 August, 2023",
+          "content": "Speaker Mariasays : Wow, John, awesome job! Keep doing what you're doing - you're making a real difference!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express encouragement and praise towards John without stating distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Maria praised John for his efforts on 20 May 2023 and again on 5 August 2023, encouraging him to keep making a difference.",
+          "context": "Maria's encouragement and praise for John's impactful work.",
+          "compression_ratio": 0.8531468531468531,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 676,
+      "consolidated_content": "Maria praised John for his efforts on 20 May 2023 and again on 5 August 2023, encouraging him to keep making a difference.",
+      "compression_ratio": 0.8531468531468531
+    },
+    {
+      "indices": [
+        316,
+        324
+      ],
+      "min_similarity": 0.8063289456921452,
+      "mean_similarity": 0.8063289456921452,
+      "sources": [
+        {
+          "index": 316,
+          "timestamp": "7:38 pm on 20 May, 2023",
+          "content": "Speaker Johnsays : I'm really passionate about making sure veterans are supported and valued in our community, so let's make it happen!"
+        },
+        {
+          "index": 324,
+          "timestamp": "7:38 pm on 20 May, 2023",
+          "content": "Speaker Johnsays : Thanks, Maria! Your support means a lot. Together, we can make a difference for our veterans!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express John's commitment to supporting veterans and emphasize the importance of collaboration in making a difference.",
+      "attempts": [
+        {
+          "content": "John is passionate about ensuring veterans are supported and valued in the community and appreciates Maria's support in making a difference for veterans. John expressed this on 20 May 2023.",
+          "context": "John's commitment to supporting veterans in the community.",
+          "compression_ratio": 0.9043062200956937,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 677,
+      "consolidated_content": "John is passionate about ensuring veterans are supported and valued in the community and appreciates Maria's support in making a difference for veterans. John expressed this on 20 May 2023.",
+      "compression_ratio": 0.9043062200956937
+    },
+    {
+      "indices": [
+        339,
+        343
+      ],
+      "min_similarity": 0.824815721503797,
+      "mean_similarity": 0.824815721503797,
+      "sources": [
+        {
+          "index": 339,
+          "timestamp": "1:24 pm on 25 May, 2023",
+          "content": "Speaker Johnsays : Thanks, Maria! It's moments like these that give me hope too."
+        },
+        {
+          "index": 343,
+          "timestamp": "1:24 pm on 25 May, 2023",
+          "content": "Speaker Johnsays : Thanks for letting me help, Maria. It's moments like these that make life worth living."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express gratitude from John to Maria and convey a similar sentiment about hope and the value of moments in life.",
+      "attempts": [
+        {
+          "content": "John expressed gratitude to Maria for allowing him to help and mentioned that moments like these give him hope and make life worth living. On 25 May 2023, John said these sentiments in two separate instances.",
+          "context": "John's appreciation for meaningful moments shared with Maria.",
+          "compression_ratio": 1.4054054054054055,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.41x the length of the notes"
+          ]
+        },
+        {
+          "content": "John expressed gratitude to Maria for allowing him to help, stating that such moments give him hope and make life worth living. On 25 May 2023, he mentioned this sentiment twice.",
+          "context": "John's appreciation for meaningful moments in life.",
+          "compression_ratio": 1.2027027027027026,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.20x the length of the notes"
+          ]
+        },
+        {
+          "content": "John expressed gratitude to Maria for allowing him to help, stating that such moments give him hope and make life worth living. On 25 May 2023, he mentioned this sentiment twice.",
+          "context": "John's appreciation for meaningful moments in life.",
+          "compression_ratio": 1.2027027027027026,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.20x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 678,
+      "consolidated_content": "John expressed gratitude to Maria for allowing him to help and mentioned that moments like these give him hope and make life worth living. On 25 May 2023, John said these sentiments in two separate instances.",
+      "compression_ratio": 1.4054054054054055
+    },
+    {
+      "indices": [
+        342,
+        427
+      ],
+      "min_similarity": 0.9396478502812238,
+      "mean_similarity": 0.9396478502812238,
+      "sources": [
+        {
+          "index": 342,
+          "timestamp": "1:24 pm on 25 May, 2023",
+          "content": "Speaker Mariasays : Thanks, John. I definitely will!"
+        },
+        {
+          "index": 427,
+          "timestamp": "12:21 am on 27 June, 2023",
+          "content": "Speaker Mariasays : Thanks, John! I definitely will. Speak to you soon!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express gratitude from Maria to John and indicate her intention to follow through on something, with the second note being a slight elaboration on the first.",
+      "attempts": [
+        {
+          "content": "Maria expressed her intention to follow up with John. On 25 May 2023, she said, \"Thanks, John. I definitely will!\" and on 27 June 2023, she reiterated, \"Thanks, John! I definitely will. Speak to you soon!\"",
+          "context": "Maria's follow-up communication with John.",
+          "compression_ratio": 2.4698795180722892,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "2.47x the length of the notes"
+          ]
+        },
+        {
+          "content": "Maria thanked John and expressed her intention to follow through. She mentioned this on 25 May 2023 and again on 27 June 2023, stating she would speak to him soon.",
+          "context": "Maria's appreciation and intention to follow through in her conversation with John.",
+          "compression_ratio": 1.963855421686747,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.96x the length of the notes"
+          ]
+        },
+        {
+          "content": "Maria expressed gratitude to John and confirmed she would follow through with her plans. This was mentioned on 25 May 2023 and again on 27 June 2023.",
+          "context": "Maria's plans involving John.",
+          "compression_ratio": 1.7951807228915662,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.80x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 679,
+      "consolidated_content": "Maria expressed her intention to follow up with John. On 25 May 2023, she said, \"Thanks, John. I definitely will!\" and on 27 June 2023, she reiterated, \"Thanks, John! I definitely will. Speak to you soon!\"",
+      "compression_ratio": 2.4698795180722892
+    },
+    {
+      "indices": [
+        345,
+        662
+      ],
+      "min_similarity": 0.811218369051639,
+      "mean_similarity": 0.811218369051639,
+      "sources": [
+        {
+          "index": 345,
+          "timestamp": "1:24 pm on 25 May, 2023",
+          "content": "Speaker Johnsays : Yeah, Maria! We're really making progress towards making a positive impact. I believe in us! See ya!"
+        },
+        {
+          "index": 662,
+          "timestamp": "11:08 am on 16 August, 2023",
+          "content": "Speaker Johnsays : Yeah, Maria, let's keep each other and everyone else motivated to make a difference! Together, our impact will surely last."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express a commitment to making a positive impact and encourage motivation towards that goal.",
+      "attempts": [
+        {
+          "content": "John expressed optimism about making a positive impact and emphasized the importance of motivation in achieving lasting change. On 25 May 2023, John stated they were making progress and believed in their efforts; on 16 August 2023, he encouraged mutual motivation to make a difference.",
+          "context": "John's commitment to making a positive impact and motivating others.",
+          "compression_ratio": 1.2780269058295963,
+          "missing": [
+            "Maria"
+          ],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.28x the length of the notes"
+          ]
+        },
+        {
+          "content": "John expressed confidence in making a positive impact with Maria. He mentioned this on 25 May 2023 and reiterated the importance of motivation on 16 August 2023.",
+          "context": "John's commitment to making a difference with Maria.",
+          "compression_ratio": 0.7219730941704036,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 680,
+      "consolidated_content": "John expressed confidence in making a positive impact with Maria. He mentioned this on 25 May 2023 and reiterated the importance of motivation on 16 August 2023.",
+      "compression_ratio": 0.7219730941704036
+    },
+    {
+      "indices": [
+        361,
+        580
+      ],
+      "min_similarity": 0.8282026512451209,
+      "mean_similarity": 0.8282026512451209,
+      "sources": [
+        {
+          "index": 361,
+          "timestamp": "11:51 am on 3 June, 2023",
+          "content": "Speaker Mariasays : No worries, John. I'm here for you. Take care!"
+        },
+        {
+          "index": 580,
+          "timestamp": "5:19 pm on 5 August, 2023",
+          "content": "Speaker Mariasays : No worries, John. I'm here to support you. If there's anything else I can do, just let me know."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express Maria's support for John, conveying the same sentiment with slight variations in wording.",
+      "attempts": [
+        {
+          "content": "Maria expressed her support for John, stating she is there for him and willing to help. On 3 June 2023, she said, \"I'm here for you. Take care!\" and on 5 August 2023, she added, \"I'm here to support you. If there's anything else I can do, just let me know.\"",
+          "context": "Maria's support for John.",
+          "compression_ratio": 1.822695035460993,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.82x the length of the notes"
+          ]
+        },
+        {
+          "content": "Maria expressed her support for John on 3 June 2023 and reiterated her willingness to help on 5 August 2023, stating that she is there for him and to let her know if he needs anything.",
+          "context": "Maria's support for John.",
+          "compression_ratio": 1.3049645390070923,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.30x the length of the notes"
+          ]
+        },
+        {
+          "content": "Maria expressed her support for John on 3 June 2023 and reiterated her willingness to help on 5 August 2023, stating that she is there for him and to let her know if he needs anything.",
+          "context": "Maria's support for John.",
+          "compression_ratio": 1.3049645390070923,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.30x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 681,
+      "consolidated_content": "Maria expressed her support for John, stating she is there for him and willing to help. On 3 June 2023, she said, \"I'm here for you. Take care!\" and on 5 August 2023, she added, \"I'm here to support you. If there's anything else I can do, just let me know.\"",
+      "compression_ratio": 1.822695035460993
+    },
+    {
+      "indices": [
+        384,
+        642,
+        644
+      ],
+      "min_similarity": 0.8065785272111953,
+      "mean_similarity": 0.8248218626060154,
+      "sources": [
+        {
+          "index": 384,
+          "timestamp": "2:47 pm on 12 June, 2023",
+          "content": "Speaker Mariasays : Wow, that's great to hear, John! Cherish those family time moments!"
+        },
+        {
+          "index": 642,
+          "timestamp": "3:14 pm on 13 August, 2023",
+          "content": "Speaker Mariasays : Sounds like a blast, John! Spending time with family is so important, and that all sounds perfect. Have a great time!"
+        },
+        {
+          "index": 644,
+          "timestamp": "3:14 pm on 13 August, 2023",
+          "content": "Speaker Mariasays : Enjoy your family time, John! Have a great day!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "All notes express encouragement and positivity regarding spending time with family, conveying the same sentiment.",
+      "attempts": [
+        {
+          "content": "Maria expressed the importance of cherishing family time and wished John to enjoy it. On 12 June 2023, she said to cherish those moments; on 13 August 2023, she mentioned it sounds perfect and wished him a great time, and again on the same day, she wished him to enjoy his family time.",
+          "context": "Maria's encouragement for John to value and enjoy family time.",
+          "compression_ratio": 1.2337662337662338,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.23x the length of the notes"
+          ]
+        },
+        {
+          "content": "Maria expressed the importance of cherishing family time with John. She mentioned this on 12 June 2023, 13 August 2023, and again on 13 August 2023.",
+          "context": "Maria's encouragement for John to enjoy family time.",
+          "compression_ratio": 0.6406926406926406,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 682,
+      "consolidated_content": "Maria expressed the importance of cherishing family time with John. She mentioned this on 12 June 2023, 13 August 2023, and again on 13 August 2023.",
+      "compression_ratio": 0.6406926406926406
+    },
+    {
+      "indices": [
+        423,
+        661
+      ],
+      "min_similarity": 0.8675908763627974,
+      "mean_similarity": 0.8675908763627974,
+      "sources": [
+        {
+          "index": 423,
+          "timestamp": "12:21 am on 27 June, 2023",
+          "content": "Speaker Mariasays : Thanks, John! Gonna continue doing it - it's my way of spreading kindness and positivity."
+        },
+        {
+          "index": 661,
+          "timestamp": "11:08 am on 16 August, 2023",
+          "content": "Speaker Mariasays : Yeah, John! Let's keep spreading kindness. It's awesome to know we can bring joy and comfort to those who need it."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express Maria's commitment to spreading kindness and positivity, reinforcing the same idea.",
+      "attempts": [
+        {
+          "content": "Maria expressed her commitment to spreading kindness and positivity. On 27 June 2023, she thanked John and mentioned continuing her efforts, and on 16 August 2023, she reiterated the importance of bringing joy and comfort to those in need.",
+          "context": "Maria's dedication to spreading kindness and positivity.",
+          "compression_ratio": 1.1773399014778325,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.18x the length of the notes"
+          ]
+        },
+        {
+          "content": "Maria expressed her commitment to spreading kindness and positivity. On 27 June 2023, she thanked John and mentioned continuing her efforts, and on 16 August 2023, she reiterated the importance of bringing joy and comfort to others.",
+          "context": "Maria's dedication to spreading kindness.",
+          "compression_ratio": 1.1428571428571428,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.14x the length of the notes"
+          ]
+        },
+        {
+          "content": "Maria expressed her commitment to spreading kindness and positivity. On 27 June 2023, she thanked John and mentioned continuing her efforts; on 16 August 2023, she reiterated the importance of bringing joy and comfort to others.",
+          "context": "Maria's dedication to spreading kindness.",
+          "compression_ratio": 1.1231527093596059,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.12x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 683,
+      "consolidated_content": "Maria expressed her commitment to spreading kindness and positivity. On 27 June 2023, she thanked John and mentioned continuing her efforts, and on 16 August 2023, she reiterated the importance of bringing joy and comfort to those in need.",
+      "compression_ratio": 1.1773399014778325
+    },
+    {
+      "indices": [
+        428,
+        545
+      ],
+      "min_similarity": 0.8577164986543777,
+      "mean_similarity": 0.8577164986543777,
+      "sources": [
+        {
+          "index": 428,
+          "timestamp": "12:21 am on 27 June, 2023",
+          "content": "Speaker Johnsays : That's awesome, Maria! Keep that positivity going and keep making a difference. Take care!"
+        },
+        {
+          "index": 545,
+          "timestamp": "1:59 pm on 31 July, 2023",
+          "content": "Speaker Johnsays : Way to go, Maria! Keep on being positive and making a difference. You're doing great!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express encouragement and praise for Maria's positivity and efforts to make a difference, albeit with slightly different wording.",
+      "attempts": [
+        {
+          "content": "John encouraged Maria to keep her positivity and make a difference. He mentioned this on 27 June 2023 and again on 31 July 2023.",
+          "context": "John's encouragement to Maria regarding her positive impact.",
+          "compression_ratio": 0.7314285714285714,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 684,
+      "consolidated_content": "John encouraged Maria to keep her positivity and make a difference. He mentioned this on 27 June 2023 and again on 31 July 2023.",
+      "compression_ratio": 0.7314285714285714
+    },
+    {
+      "indices": [
+        512,
+        514
+      ],
+      "min_similarity": 0.8239347506204848,
+      "mean_similarity": 0.8239347506204848,
+      "sources": [
+        {
+          "index": 512,
+          "timestamp": "6:21 pm on 22 July, 2023",
+          "content": "Speaker Johnsays : Sounds like you had a great time! What inspired you to go on the hike?"
+        },
+        {
+          "index": 514,
+          "timestamp": "6:21 pm on 22 July, 2023",
+          "content": "Speaker Johnsays : Wow Maria, it sounds like you had a great time! Connecting with good people and taking in the beautiful views really boosts your mood. It's important to make time for yourself and find those special moments of joy. What were some of your best bits from the hike?"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express enthusiasm about Maria's hike and inquire about her experiences, conveying the same sentiment.",
+      "attempts": [
+        {
+          "content": "John expressed enthusiasm about Maria's hike experience, highlighting the importance of connecting with good people and enjoying beautiful views. On 22 July 2023, John asked what inspired Maria to go on the hike and what her best moments were.",
+          "context": "John's conversation with Maria about her hiking experience.",
+          "compression_ratio": 0.7319277108433735,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 685,
+      "consolidated_content": "John expressed enthusiasm about Maria's hike experience, highlighting the importance of connecting with good people and enjoying beautiful views. On 22 July 2023, John asked what inspired Maria to go on the hike and what her best moments were.",
+      "compression_ratio": 0.7319277108433735
+    }
+  ],
+  "sample": 2,
+  "source_cache": "experiments/e2e_samples0-2_2026-10-26_13-10/cache/base",
+  "output_dir": "experiments/e2e_samples0-2_2026-10-26_13-10/cache/consolidated",
+  "model": "gpt-4o-mini",
+  "tag": "e2e",
+  "embedding_recipe": "union",
+  "notes_before": 663,
+  "notes_after": 686,
+  "built_at": "2026-10-26T13:54:34"
+}

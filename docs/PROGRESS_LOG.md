@@ -166,6 +166,21 @@ Newest entries are at the bottom. Times are local (US Central).
 - Zep-style date ranges help less on time questions.
 - Two almost-identical setups differed by 0.018, so small gains need care.
 
+### 2026-10-26 13:10: End-to-end run on samples 0, 1 and 2
+
+- New folder: [experiments/e2e_samples0-2_2026-10-26_13-10/](../experiments/e2e_samples0-2_2026-10-26_13-10/REPORT.md)
+- Samples 0–1 reuse the paper's May 6 memory (copied, checked identical). **Sample 2's memory was built from scratch** (663 notes, 0 errors), then its consolidation and conflict banks.
+- A-MEM vs T-MEM complete (V2 + consolidation + conflict handling), 3 runs each, 497 questions. All checks passed (question counts, no empty answers, right banks loaded).
+
+| Sample | A-MEM → T-MEM, normal questions | A-MEM → T-MEM, time questions |
+|---|---|---|
+| 0 | 0.288 → 0.318 (better 3 of 3) | 0.388 → 0.440 (better 3 of 3) |
+| 1 | 0.363 → 0.371 (better 2 of 3) | 0.525 → 0.585 (better 3 of 3) |
+| 2 (new) | 0.396 → 0.387 (better 1 of 3) | 0.430 → 0.400 (**worse in all 3**) |
+| **All** | **0.346 → 0.356** | **0.440 → 0.470** |
+
+- **Important:** T-MEM helps on samples 0–1, where it was developed, but **not on the new sample 2**. The reason still needs to be found.
+
 ## Things to keep in mind
 
 - **Results vary between runs.** The AI answers a little differently each time, so always compare averages of several runs, never a single run.

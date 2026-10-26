@@ -1,0 +1,67 @@
+{
+  "folder": "experiments/e2e_samples0-2_2026-10-26_13-10",
+  "created_local": "2026-10-26 13:10",
+  "git_commit": "c44dced9837afe47789b9fd5317d1d91afbade3f",
+  "branch": "conflict-handling-support",
+  "model": "gpt-4o-mini (served as gpt-4o-mini-2024-07-18)",
+  "samples": [
+    0,
+    1,
+    2
+  ],
+  "questions": 497,
+  "questions_per_sample": {
+    "0": 199,
+    "1": 105,
+    "2": 193
+  },
+  "retrieve_k": 10,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "systems": {
+    "amem": "A-MEM (May 6 code path), base bank",
+    "tmem_complete": "T-MEM complete: V2 (thesis defaults) + consolidation (v3 settings, primary_expand, cap 1) + conflict handling (annotate_demote, demote_penalty 0.10)"
+  },
+  "temporal_config": {
+    "decay_lambda": 0.1,
+    "blend_alpha": 0.9,
+    "decay_age_unit": "months_equiv",
+    "use_decay_only_temporal": true,
+    "reinforce_beta": 0.5,
+    "link_gamma": 0.3,
+    "update_access_stats": false,
+    "candidate_pool_size": 20,
+    "semantic_anchor_count": 2,
+    "semantic_margin_to_skip_temporal": 0.05,
+    "temporal_score_floor": 0.25,
+    "temporal_categories": [
+      2
+    ]
+  },
+  "memory_banks": {
+    "base": "cache/base: samples 0-1 copied byte-for-byte from cached_memories_robust_openai_gpt-4o-mini (built 2026-05-06); sample 2 built from scratch on 2026-10-26 with build_memory_bank.py (663 notes, 0 warnings/errors, 2507 s)",
+    "consolidated": "cache/consolidated: samples 0-1 copied from the v3 consolidated bank; sample 2 built with build_consolidated_cache.py (v3 settings): 28 groups, 23 merged, 4 kept separate, 1 rejected",
+    "conflict": "cache/conflict: samples 0-1 copied from the conflicts_v1 bank; sample 2 built with build_conflict_bank.py: {\"state_notes\": 73, \"timelines\": 10, \"replaced\": 4, \"contradictions\": 0, \"labels\": {\"PROGRESS\": 24, \"COMPATIBLE\": 18, \"SAME\": 2, \"CHANGE\": 4}}"
+  },
+  "memory_bank_sha256_prefix": {
+    "base/s0": "11b88720fec592b1",
+    "base/s1": "27f75a46513dc7b6",
+    "base/s2": "5888ec0c5405b508",
+    "consolidated/s0": "e1ec98a256d6dd4e",
+    "consolidated/s1": "fd42e62ca478bcc1",
+    "consolidated/s2": "aec82f1026cc93b2",
+    "conflict/s0": "9d730de3ef8452fb",
+    "conflict/s1": "e69d457e28b3b1db",
+    "conflict/s2": "a65628b5d48b7a3d"
+  },
+  "checks": {
+    "copies_identical_to_originals": "samples 0-1 of all three banks compared with cmp: identical",
+    "sample2_notes_match_turns": "663 notes in turn order (note_dia_ids)",
+    "every_result": "497 questions (199/105/193), 0 empty answers, aggregate F1 equals mean of per-question F1",
+    "every_log": "banks loaded (A-MEM 419/369/663 notes, T-MEM 436/385/686), 0 rebuilds, 0 failed answers"
+  },
+  "notes": "Caches and run logs are kept locally (gitignored): cache/, logs/."
+}

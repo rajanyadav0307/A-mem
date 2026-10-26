@@ -1,0 +1,78 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 8226.00it/s]
+[nltk_data] Downloading package punkt to
+[nltk_data]     /Users/rajanyadav/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package wordnet to
+[nltk_data]     /Users/rajanyadav/nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 22103.52it/s]
+
+Sample 0:
+  Total QAs: 199
+  QAs with image evidence: 196
+
+Sample 1:
+  Total QAs: 105
+  QAs with image evidence: 101
+
+Sample 2:
+  Total QAs: 193
+  QAs with image evidence: 193
+
+Sample 3:
+  Total QAs: 260
+  QAs with image evidence: 257
+
+Sample 4:
+  Total QAs: 242
+  QAs with image evidence: 241
+
+Sample 5:
+  Total QAs: 158
+  QAs with image evidence: 156
+
+Sample 6:
+  Total QAs: 190
+  QAs with image evidence: 186
+
+Sample 7:
+  Total QAs: 239
+  QAs with image evidence: 236
+
+Sample 8:
+  Total QAs: 196
+  QAs with image evidence: 191
+
+Sample 9:
+  Total QAs: 204
+  QAs with image evidence: 197
+
+Overall Statistics:
+Total QAs: 1986
+Total QAs with image evidence: 1954
+Average QAs per sample: 198.60
+Min QAs in a sample: 105
+Max QAs in a sample: 260
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 16596.75it/s]
+sample 2: 50/663 turns, 181s
+sample 2: 100/663 turns, 357s
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 8860.36it/s]
+sample 2: 150/663 turns, 541s
+sample 2: 200/663 turns, 730s
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 9046.07it/s]
+sample 2: 250/663 turns, 922s
+sample 2: 300/663 turns, 1102s
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 16674.90it/s]
+sample 2: 350/663 turns, 1288s
+sample 2: 400/663 turns, 1484s
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 10230.49it/s]
+sample 2: 450/663 turns, 1676s
+sample 2: 500/663 turns, 1869s
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18867.68it/s]
+sample 2: 550/663 turns, 2060s
+sample 2: 600/663 turns, 2255s
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20578.92it/s]
+sample 2: 650/663 turns, 2457s
+sample 2: 663/663 turns, 2507s
+sample 2: built 663 notes in 2507s, 0 warnings/errors

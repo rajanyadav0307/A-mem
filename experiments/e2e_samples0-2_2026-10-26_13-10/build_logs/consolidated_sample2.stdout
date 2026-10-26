@@ -1,0 +1,9 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 8701.70it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20457.11it/s]
+Loading retriever from experiments/e2e_samples0-2_2026-10-26_13-10/cache/base/retriever_cache_sample_2.pkl and experiments/e2e_samples0-2_2026-10-26_13-10/cache/base/retriever_cache_embeddings_sample_2.npy
+Loading embeddings from experiments/e2e_samples0-2_2026-10-26_13-10/cache/base/retriever_cache_embeddings_sample_2.npy
+Embeddings shape: (663, 384)
+Loading corpus from experiments/e2e_samples0-2_2026-10-26_13-10/cache/base/retriever_cache_sample_2.pkl
+Loaded corpus with 663 documents
+sample 2: 28 groups -> 23 merged, 4 kept separate, 1 rejected; 69 LLM calls; notes 663 -> 686; log experiments/e2e_samples0-2_2026-10-26_13-10/build_logs/consolidation_log_sample_2_e2e.json
