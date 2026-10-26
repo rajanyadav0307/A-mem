@@ -73,7 +73,8 @@ def main():
     parser.add_argument("--samples", type=int, nargs="+", default=[0, 1])
     parser.add_argument("--model", default="gpt-4o-mini")
     parser.add_argument("--tag", default="v1")
-    parser.add_argument("--seed_cache_dir", default=None)
+    parser.add_argument("--seed_cache_dir", nargs="*", default=[],
+                        help="folders with earlier state/pair/verify caches to reuse")
     parser.add_argument("--log_dir", default=None)
     parser.add_argument("--max_compare", type=int, default=None)
     parser.add_argument("--overwrite", action="store_true")
@@ -85,12 +86,13 @@ def main():
     log_dir = args.log_dir or os.path.join("analysis", f"conflict_build_{args.tag}_" +
                                            datetime.now().strftime("%Y-%m-%d_%H-%M"))
     os.makedirs(log_dir, exist_ok=True)
-    if args.seed_cache_dir:
-        for name in os.listdir(args.seed_cache_dir):
-            if name.startswith(("state_cache_sample_", "pair_cache_sample_")) and name.endswith(".json"):
+    for seed_dir in args.seed_cache_dir:
+        for name in os.listdir(seed_dir):
+            if name.startswith(("state_cache_sample_", "pair_cache_sample_", "verify_cache_sample_")) \
+                    and name.endswith(".json"):
                 target = os.path.join(log_dir, name)
                 if not os.path.exists(target):
-                    shutil.copy(os.path.join(args.seed_cache_dir, name), target)
+                    shutil.copy(os.path.join(seed_dir, name), target)
 
     config = ConflictConfig(max_compare=args.max_compare)
     llm = RobustLLMController("openai", args.model).llm

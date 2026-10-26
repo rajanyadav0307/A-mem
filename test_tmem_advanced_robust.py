@@ -217,6 +217,7 @@ def evaluate_dataset(
     consolidated_score_penalty: float = 0.0,
     conflict_mode: str = "off",
     demote_penalty: float = 0.10,
+    timeline_date_style: str = "single",
     seed: Optional[int] = None,
     run_tag: Optional[str] = None,
 ):
@@ -277,6 +278,7 @@ def evaluate_dataset(
         agent.memory_system.consolidated_score_penalty = consolidated_score_penalty
         agent.memory_system.conflict_mode = conflict_mode
         agent.memory_system.demote_penalty = demote_penalty
+        agent.memory_system.timeline_date_style = timeline_date_style
 
         memory_cache_file = os.path.join(memories_dir, f"memory_cache_sample_{sample_idx}.pkl")
         retriever_cache_file = os.path.join(memories_dir, f"retriever_cache_sample_{sample_idx}.pkl")
@@ -428,6 +430,7 @@ def evaluate_dataset(
     if conflict_mode != "off":
         final_results["conflict_mode"] = conflict_mode
         final_results["demote_penalty"] = demote_penalty
+        final_results["timeline_date_style"] = timeline_date_style
     if seed is not None:
         final_results["seed"] = seed
     eval_logger.info("Error number: %d", error_num)
@@ -493,6 +496,8 @@ def main():
     parser.add_argument("--conflict_mode", type=str, default="off",
                         choices=["off", "annotate", "demote", "annotate_demote", "timeline_only", "date_range"],
                         help="How retrieval uses conflict handling (default: off)")
+    parser.add_argument("--timeline_date_style", type=str, default="single", choices=["single", "two_dates"],
+                        help="Timeline labels: date said only (single) or said-on plus happened (two_dates)")
     parser.add_argument("--demote_penalty", type=float, default=0.10,
                         help="Score penalty for replaced notes on 'now' questions")
     parser.add_argument("--seed", type=int, default=None,
@@ -565,6 +570,7 @@ def main():
         consolidated_score_penalty=args.consolidated_score_penalty,
         conflict_mode=args.conflict_mode,
         demote_penalty=args.demote_penalty,
+        timeline_date_style=args.timeline_date_style,
         seed=args.seed,
         run_tag=args.run_tag,
     )

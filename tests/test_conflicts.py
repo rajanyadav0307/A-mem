@@ -276,3 +276,46 @@ def test_date_range_style(tmp_path):
     assert "memory timeline" not in system.render_notes([1])  # not in a timeline
     system.current_question = "Is Jon currently running a studio?"
     assert system.conflict_penalties().sum() == 0
+
+
+# ---------------------------------------------------------------------------
+# Two dates per timeline step: said on, and happened
+# ---------------------------------------------------------------------------
+
+def test_happened_around_resolves_relative_times():
+    from memory_consolidation import happened_around
+    said = "2:31 pm on 3 August, 2023"
+    assert happened_around("I started volunteering here about a year ago", said) == "around August 2022"
+    assert happened_around("I got Coco two weeks ago", said) == "two weeks before 3 August 2023"
+    assert happened_around("Last week I graduated", said) == "the week before 3 August 2023"
+    assert happened_around("Yesterday was great", said) == "2 August 2023"
+    assert happened_around("I ran a race last Saturday", said) == "the Saturday before 3 August 2023"
+    assert happened_around("Next month I have a show", said) == "September 2023"
+    assert happened_around("I got Max 10 years ago", said) == "2013"
+    assert happened_around("We went camping last summer", said) == "summer 2022"
+    assert happened_around("I signed up for a class", said) is None
+    assert happened_around("Last week", None) is None
+
+
+def test_detection_sets_event_time(tmp_path):
+    system = make_system()
+    list(system.memories.values())[2].content = "Speaker Jonsays : running my own studio since last week"
+    detect_and_apply(system, ScriptedLLM(), WordEncoder(), str(tmp_path), 0,
+                     ConflictConfig(topic_threshold=0.5, status_duplicate=0.99, workers=1))
+    notes = list(system.memories.values())
+    assert notes[2].event_time == "the week before 8 February 2023"
+    assert notes[0].event_time is None
+
+
+def test_two_dates_style_in_labels(tmp_path):
+    system = make_system()
+    list(system.memories.values())[0].content = "Speaker Jonsays : searching for a studio since last week"
+    detect_and_apply(system, ScriptedLLM(), WordEncoder(), str(tmp_path), 0,
+                     ConflictConfig(topic_threshold=0.5, status_duplicate=0.99, workers=1))
+    system.conflict_mode = "annotate"
+    single = system.render_notes([2])
+    assert "before: searching for a studio (1 February 2023)" in single
+    system.timeline_date_style = "two_dates"
+    two = system.render_notes([2])
+    assert "step 2 of 3 (said on 8 February 2023)" in two
+    assert "before: searching for a studio (said on 1 February 2023; happened: the week before 1 February 2023)" in two

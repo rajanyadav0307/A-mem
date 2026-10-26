@@ -297,6 +297,7 @@ class RobustMemoryNote:
     valid_until: Optional[str] = None      # date a newer note replaced this one (CHANGE)
     superseded_by: Optional[int] = None    # position of that newer note
     conflicts_with: tuple = ()             # positions of notes this one contradicts
+    event_time: Optional[str] = None       # when it happened, from a relative time ("the week before 9 June 2023")
 
     def __init__(self,
                  content: str,
@@ -422,6 +423,11 @@ class RobustAgenticMemorySystem:
     conflict_mode: str = "off"
     demote_penalty: float = 0.10
     current_question: Optional[str] = None  # set by the QA agent before retrieval
+    # How timeline labels give dates:
+    #   single    - the date each step was said, e.g. "(28 January 2023)" (first version)
+    #   two_dates - "said on <date>" plus "happened: <event_time>" when the note
+    #               has a relative time ("about a year ago" -> "around August 2022")
+    timeline_date_style: str = "single"
 
     def __init__(self,
                  model_name: str = 'all-MiniLM-L6-v2',
@@ -704,12 +710,14 @@ class RobustAgenticMemorySystem:
             steps = timelines[note.timeline_id]
             k = steps.index(i)
             text = f"{note.timeline_topic}, step {k + 1} of {len(steps)}"
+            if self.timeline_date_style == "two_dates":
+                text += f" ({self._step_dates(note)})"
             if k > 0:
                 prev = notes[steps[k - 1]]
-                text += f"; before: {prev.timeline_status} ({self._short_date(prev.timestamp)})"
+                text += f"; before: {prev.timeline_status} ({self._step_dates(prev)})"
             if k + 1 < len(steps):
                 nxt = notes[steps[k + 1]]
-                text += f"; after: {nxt.timeline_status} ({self._short_date(nxt.timestamp)})"
+                text += f"; after: {nxt.timeline_status} ({self._step_dates(nxt)})"
             parts.append(text)
         if self.conflict_mode == "timeline_only":
             return (" memory timeline: " + parts[0]) if parts else ""
@@ -721,6 +729,15 @@ class RobustAgenticMemorySystem:
                 parts.append(f"CONFLICTS with what was said on {self._short_date(notes[other].timestamp)}: "
                              f"\"{notes[other].timeline_status or notes[other].content[:80]}\"")
         return (" memory timeline: " + " | ".join(parts)) if parts else ""
+
+    def _step_dates(self, note) -> str:
+        """Date text for one timeline step, following ``timeline_date_style``."""
+        said = self._short_date(note.timestamp)
+        if self.timeline_date_style != "two_dates":
+            return said
+        if note.event_time:
+            return f"said on {said}; happened: {note.event_time}"
+        return f"said on {said}"
 
     def conflict_penalties(self) -> np.ndarray:
         """Score penalty per note position (zeros unless demotion applies).

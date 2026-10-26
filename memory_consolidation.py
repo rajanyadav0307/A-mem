@@ -15,7 +15,7 @@ merge steps. Prompts and parsers live in ``llm_text_parsers.py``.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timedelta
 import re
 from typing import Dict, Iterable, List, Optional, Sequence
 
@@ -323,6 +323,77 @@ _NUMBER_WORDS = {"a": 1, "one": 1, "a couple of": 2, "couple of": 2, "two": 2, "
 def _shift_month(year: int, month: int, delta: int) -> tuple:
     index = year * 12 + (month - 1) + delta
     return index // 12, index % 12 + 1
+
+
+_WEEKDAY_NAMES = ("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
+_SEASONS = ("summer", "winter", "spring", "fall", "autumn")
+
+
+def _day(d: datetime) -> str:
+    return f"{d.day} {d.strftime('%B')} {d.year}"
+
+
+def _count(word: str) -> Optional[int]:
+    if word.isdigit():
+        return int(word)
+    return _NUMBER_WORDS.get(word)
+
+
+def happened_around(text: str, said_at: Optional[str]) -> Optional[str]:
+    """When the event in ``text`` happened, from its first relative time phrase.
+
+    Uses the date the note was said (``said_at``) as the anchor and answers in
+    LoCoMo-like wording, for example "7 May 2023" (yesterday), "the week before
+    9 June 2023" (last week), "the Friday before 15 July 2023" (last Friday),
+    "August 2023" (next month), "around August 2022" (about a year ago),
+    "2013" (10 years ago). Returns None if there is no relative phrase or the
+    date cannot be read.
+    """
+    when = parse_timestamp(said_at)
+    phrases = relative_times(text or "")
+    if when is None or not phrases:
+        return None
+    phrase = phrases[0]
+    said = _day(when)
+    one_day = timedelta(days=1)
+    simple = {"yesterday": _day(when - one_day), "last night": _day(when - one_day),
+              "tonight": said, "tomorrow": _day(when + one_day)}
+    if phrase in simple:
+        return simple[phrase]
+    match = re.match(r"(next|last|this|coming|past)\s+(\w+)$", phrase)
+    if match:
+        rel, unit = match.groups()
+        later = rel in ("next", "coming")
+        if unit in ("week", "weekend"):
+            if rel == "this":
+                return f"the {unit} of {said}"
+            return f"the {unit} {'after' if later else 'before'} {said}"
+        if unit == "month":
+            year, month = _shift_month(when.year, when.month, {"next": 1, "coming": 1, "this": 0}.get(rel, -1))
+            return f"{_MONTHS[month - 1]} {year}"
+        if unit == "year":
+            return str(when.year + {"next": 1, "coming": 1, "this": 0}.get(rel, -1))
+        if unit in _SEASONS:
+            return f"{unit} {when.year - 1 if rel in ('last', 'past') else when.year}"
+        if unit in _WEEKDAY_NAMES:
+            return f"the {unit.capitalize()} {'after' if later or rel == 'this' else 'before'} {said}"
+        return None
+    match = re.match(r"(.+?)\s+(day|week|month|year)s?\s+ago$", phrase)
+    if match:
+        word, unit = match.groups()
+        n = _count(word)
+        if n is None:  # "a few", "few"
+            return f"a few {unit}s before {said}"
+        if unit == "day":
+            return _day(when - timedelta(days=n))
+        if unit == "week":
+            return f"the week before {said}" if n == 1 else f"{word} weeks before {said}"
+        if unit == "month":
+            year, month = _shift_month(when.year, when.month, -n)
+            return f"{_MONTHS[month - 1]} {year}"
+        if unit == "year":
+            return f"around {_MONTHS[when.month - 1]} {when.year - 1}" if n == 1 else str(when.year - n)
+    return None
 
 
 def expected_resolution(phrase: str, said_at: Optional[str]) -> Optional[List[str]]:

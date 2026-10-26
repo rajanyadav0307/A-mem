@@ -42,7 +42,7 @@ from llm_text_parsers import (
     parse_conflict_verify,
     parse_state_extract,
 )
-from memory_consolidation import note_speaker, parse_timestamp
+from memory_consolidation import happened_around, note_speaker, parse_timestamp
 from memory_layer_robust import RobustAgenticMemorySystem
 
 SPEAKER_PREFIX = re.compile(r"^Speaker\s+.+?says\s*:\s*")
@@ -197,6 +197,7 @@ def detect_and_apply(
             notes[i].timeline_id = t_id
             notes[i].timeline_topic = tl["topic"]
             notes[i].timeline_status = states[i]["status"] or states[i]["topic"]
+            notes[i].event_time = happened_around(note_body(notes[i].content), notes[i].timestamp)
     # Transition label of each note vs the previous distinct status
     for p in pairs:
         if p["previous_status"]:
