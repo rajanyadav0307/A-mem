@@ -95,6 +95,26 @@ Strength: **Strong** = we found no close prior work. **Moderate** = close prior 
 
 ---
 
+## 7. Results of the section 6 comparisons (2026-10-26)
+
+Folder: [experiments/fresh_run_2026-10-26_10-45_ch_comparisons/](../experiments/fresh_run_2026-10-26_10-45_ch_comparisons/REPORT.md). Samples 0–1, 3 runs per setup, run in waves by seed. All setups use V2 + consolidation.
+
+| Group (near-identical setups combined) | Answerable F1 | Time F1 |
+|---|---|---|
+| No conflict labels (reference + demote only) | 0.328 | 0.455 |
+| Our labels (annotate, annotate + demote) | 0.333 | 0.478 |
+| Timelines only (Theanine-style) | 0.341 | 0.493 |
+| Date ranges only (Zep-style) | 0.340 | 0.466 |
+
+**What this means for novelty:**
+- The gain from conflict handling on LoCoMo comes from **showing timelines**. That idea is closest to **Theanine**, which does at least as well as our full version.
+- Our distinctive parts (OUTDATED / CONFLICT labels, demotion only for "now" questions) show **no measurable benefit on samples 0–1**, which have very few real replacements (9 notes) and "now" questions (5).
+- So the paper should **not** claim that typed changes or targeted demotion improve LoCoMo. These remain design contributions to test on data with real replacements (for example LongMemEval knowledge-update questions, as future work).
+- The timeline gain is a real, repeatable signal (time questions +0.02 to +0.04 in every run). But it should be presented as building on Theanine-style timelines, not as a new idea.
+- **Noise warning:** two setups that give the AI almost identical prompts differed by 0.018 F1 in all 3 runs, so small "3 of 3" results are not proof.
+
+---
+
 ## References
 
 - Generative Agents: Park et al., UIST 2023

@@ -1,0 +1,45 @@
+{
+  "folder": "experiments/fresh_run_2026-10-26_10-45_ch_comparisons",
+  "created_local": "2026-10-26 10:45",
+  "git_commit": "aadd9560749df280d1d886e7bcd83b75b2662a18",
+  "branch": "conflict-handling-support",
+  "model": "gpt-4o-mini (served as gpt-4o-mini-2024-07-18)",
+  "samples": [
+    0,
+    1
+  ],
+  "questions": 304,
+  "retrieve_k": 10,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "purpose": "Novelty check section 6: which part of conflict handling helps, and how it compares with Theanine-style timelines and Zep-style date ranges",
+  "common": "T-MEM V2 (thesis defaults) + consolidation (v3, primary_expand, cap 1); all runs together in one batch",
+  "systems": {
+    "tmem_v2_consolidated": "reference: V2 + C, conflict handling off (step 3), v3 bank",
+    "tmem_v2_ch_annotate_demote": "conflict_mode annotate_demote (our step 4 setting)",
+    "tmem_v2_ch_annotate": "conflict_mode annotate (labels only, no demotion)",
+    "tmem_v2_ch_demote": "conflict_mode demote (demotion only, no labels)",
+    "tmem_v2_ch_timeline_only": "conflict_mode timeline_only (Theanine-style: timelines, no OUTDATED/CONFLICT labels, no demotion)",
+    "tmem_v2_ch_date_range": "conflict_mode date_range (Zep-style: 'valid <from> - <until|present>' only, no demotion)"
+  },
+  "memory_banks": {
+    "consolidated": "cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3",
+    "conflict": "cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3_conflicts_v1"
+  },
+  "memory_bank_sha256_prefix": {
+    "cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3/s0": "e1ec98a256d6dd4e",
+    "cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3/s1": "fd42e62ca478bcc1",
+    "cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3_conflicts_v1/s0": "9d730de3ef8452fb",
+    "cached_memories_robust_openai_gpt-4o-mini_consolidated_tau0.80_v3_conflicts_v1/s1": "e69d457e28b3b1db"
+  },
+  "first_try": {
+    "started_local": "2026-10-26 10:45",
+    "stopped_local": "2026-10-26 12:30",
+    "reason": "18 runs in parallel ran out of memory (11 GB swap); about 100 of 304 questions done per run; no results kept",
+    "logs": "logs/aborted_10-45/ (not committed)"
+  },
+  "waves": "restarted in 3 waves, one seed per wave, all 6 setups of a seed run together; times in waves.json"
+}

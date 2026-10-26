@@ -157,6 +157,15 @@ Newest entries are at the bottom. Times are local (US Central).
 - **Closest work:** Theanine (memory timelines), Zep (invalid dates), Cognis and Mem0 (current vs historical questions), ROAM and LightMem (consolidation).
 - Doc: [TMEM_NOVELTY_CHECK.md](TMEM_NOVELTY_CHECK.md)
 
+### 2026-10-26: Conflict handling compared with prior ideas
+
+- Ran 6 setups, 3 runs each, in 3 waves (one seed per wave). The first try ran all 18 at once, ran out of memory, and was stopped.
+- Folder: [experiments/fresh_run_2026-10-26_10-45_ch_comparisons/](../experiments/fresh_run_2026-10-26_10-45_ch_comparisons/REPORT.md)
+- **Main finding:** the gain comes from **showing timelines** (time questions +0.02 to +0.04). A Theanine-style "timelines only" version does as well as our full version.
+- Our extra parts (OUTDATED labels, lowering old notes) show no clear benefit on samples 0–1, because there are very few real replacements there.
+- Zep-style date ranges help less on time questions.
+- Two almost-identical setups differed by 0.018, so small gains need care.
+
 ## Things to keep in mind
 
 - **Results vary between runs.** The AI answers a little differently each time, so always compare averages of several runs, never a single run.
