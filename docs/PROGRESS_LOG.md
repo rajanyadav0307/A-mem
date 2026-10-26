@@ -181,6 +181,15 @@ Newest entries are at the bottom. Times are local (US Central).
 
 - **Important:** T-MEM helps on samples 0–1, where it was developed, but **not on the new sample 2**. The reason still needs to be found.
 
+### 2026-10-26: Why T-MEM doesn't help sample 2
+
+- Studied the saved runs only (no AI calls). Write-up: [ANALYSIS_SAMPLE2.md](../experiments/e2e_samples0-2_2026-10-26_13-10/ANALYSIS_SAMPLE2.md)
+- **Not retrieval:** every setup finds the same evidence for sample 2's time questions. T-MEM changes what the prompt *shows*, not what it *finds*.
+- **Timelines rarely apply:** only 3 of 27 time questions in sample 2 touch a timeline (17 of 26 in sample 1).
+- **Real flaw found:** timeline labels show the date something was *said*, not when it *happened*. For example, "started volunteering (28 Jan 2023)" when she really started around Aug 2022. Sample 2 asks mostly about past events like this.
+- Other losses are normal answer variation on a small set (27 questions).
+- **Fix to try next:** give each timeline step two dates, "said on" and "happened around".
+
 ## Things to keep in mind
 
 - **Results vary between runs.** The AI answers a little differently each time, so always compare averages of several runs, never a single run.

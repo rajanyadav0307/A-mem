@@ -1,0 +1,174 @@
+{
+  "seeds": [
+    "42",
+    "43",
+    "44"
+  ],
+  "samples": {
+    "0": {
+      "time_questions": 37,
+      "groups": {
+        "not in a timeline": {
+          "n": 28,
+          "mean_delta": 0.07583094815237672
+        },
+        "relative time": {
+          "n": 30,
+          "mean_delta": 0.03696121779455113
+        },
+        "no relative time": {
+          "n": 7,
+          "mean_delta": 0.11427540713255
+        },
+        "in a timeline": {
+          "n": 9,
+          "mean_delta": -0.023833573833573825
+        }
+      },
+      "prompts": {
+        "A-MEM": {
+          "evidence": 0.7477477477477478,
+          "notes": 51.351351351351354,
+          "merged": 0,
+          "timeline_labels": 0,
+          "outdated": 0
+        },
+        "T-MEM": {
+          "evidence": 0.7567567567567568,
+          "notes": 50.270270270270274,
+          "merged": 0.8018018018018018,
+          "timeline_labels": 2.7117117117117115,
+          "outdated": 0.9459459459459459
+        }
+      },
+      "retrieval_question_query": {
+        "A-MEM": {
+          "evidence": 0.6756756756756757,
+          "time_skipped": 0
+        },
+        "V2": {
+          "evidence": 0.6756756756756757,
+          "time_skipped": 10
+        },
+        "V2 + C": {
+          "evidence": 0.6756756756756757,
+          "time_skipped": 14
+        },
+        "V2 + C + CH (demote)": {
+          "evidence": 0.6756756756756757,
+          "time_skipped": 14
+        }
+      }
+    },
+    "1": {
+      "time_questions": 26,
+      "groups": {
+        "in a timeline": {
+          "n": 17,
+          "mean_delta": 0.09393090569561159
+        },
+        "relative time": {
+          "n": 15,
+          "mean_delta": 0.011534391534391541
+        },
+        "no relative time": {
+          "n": 11,
+          "mean_delta": 0.1261904761904762
+        },
+        "not in a timeline": {
+          "n": 9,
+          "mean_delta": -0.003968253968253966
+        }
+      },
+      "prompts": {
+        "A-MEM": {
+          "evidence": 0.7692307692307693,
+          "notes": 50.85897435897436,
+          "merged": 0,
+          "timeline_labels": 0,
+          "outdated": 0
+        },
+        "T-MEM": {
+          "evidence": 0.7564102564102564,
+          "notes": 48.92307692307692,
+          "merged": 0.8461538461538461,
+          "timeline_labels": 23.307692307692307,
+          "outdated": 1.1538461538461537
+        }
+      },
+      "retrieval_question_query": {
+        "A-MEM": {
+          "evidence": 0.7692307692307693,
+          "time_skipped": 0
+        },
+        "V2": {
+          "evidence": 0.7692307692307693,
+          "time_skipped": 8
+        },
+        "V2 + C": {
+          "evidence": 0.7692307692307693,
+          "time_skipped": 12
+        },
+        "V2 + C + CH (demote)": {
+          "evidence": 0.7692307692307693,
+          "time_skipped": 12
+        }
+      }
+    },
+    "2": {
+      "time_questions": 27,
+      "groups": {
+        "not in a timeline": {
+          "n": 24,
+          "mean_delta": -0.028577441077441076
+        },
+        "no relative time": {
+          "n": 4,
+          "mean_delta": 0.027777777777777776
+        },
+        "relative time": {
+          "n": 23,
+          "mean_delta": -0.03992094861660079
+        },
+        "in a timeline": {
+          "n": 3,
+          "mean_delta": -0.04040404040404041
+        }
+      },
+      "prompts": {
+        "A-MEM": {
+          "evidence": 0.7469135802469136,
+          "notes": 49.7037037037037,
+          "merged": 0,
+          "timeline_labels": 0,
+          "outdated": 0
+        },
+        "T-MEM": {
+          "evidence": 0.7160493827160493,
+          "notes": 48.592592592592595,
+          "merged": 0.8518518518518519,
+          "timeline_labels": 6.901234567901234,
+          "outdated": 0.14814814814814814
+        }
+      },
+      "retrieval_question_query": {
+        "A-MEM": {
+          "evidence": 0.7407407407407407,
+          "time_skipped": 0
+        },
+        "V2": {
+          "evidence": 0.7407407407407407,
+          "time_skipped": 8
+        },
+        "V2 + C": {
+          "evidence": 0.7407407407407407,
+          "time_skipped": 8
+        },
+        "V2 + C + CH (demote)": {
+          "evidence": 0.7407407407407407,
+          "time_skipped": 8
+        }
+      }
+    }
+  }
+}
