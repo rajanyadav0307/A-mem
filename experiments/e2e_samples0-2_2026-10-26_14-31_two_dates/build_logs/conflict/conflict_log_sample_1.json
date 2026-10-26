@@ -1,0 +1,4965 @@
+{
+  "config": {
+    "topic_threshold": 0.78,
+    "status_duplicate": 0.85,
+    "max_compare": null,
+    "workers": 8
+  },
+  "raw_notes": 369,
+  "state_notes": 93,
+  "timelines": [
+    {
+      "speaker": "Gina",
+      "topic": "Gina's dance studio",
+      "notes": [
+        30,
+        36,
+        191,
+        234,
+        236
+      ],
+      "dates": [
+        "29 January 2023",
+        "29 January 2023",
+        "11 May 2023",
+        "13 June 2023",
+        "13 June 2023"
+      ],
+      "statuses": [
+        "searching for a location",
+        "not yet completed",
+        "opened",
+        "prepping for opening",
+        "opened and supporting dancers"
+      ]
+    },
+    {
+      "speaker": "Gina",
+      "topic": "Gina's job",
+      "notes": [
+        2,
+        103,
+        111,
+        145,
+        179,
+        337
+      ],
+      "dates": [
+        "20 January 2023",
+        "16 March 2023",
+        "16 March 2023",
+        "3 April 2023",
+        "25 April 2023",
+        "21 July 2023"
+      ],
+      "statuses": [
+        "lost her job",
+        "lost her job",
+        "running successfully",
+        "seeing more sales",
+        "lost her job",
+        "had tough times"
+      ]
+    },
+    {
+      "speaker": "Gina",
+      "topic": "Gina's fashion piece",
+      "notes": [
+        77,
+        312
+      ],
+      "dates": [
+        "8 February 2023",
+        "9 July 2023"
+      ],
+      "statuses": [
+        "found a cool new item",
+        "noticed by fashion editors"
+      ]
+    },
+    {
+      "speaker": "Gina",
+      "topic": "Gina's design internship",
+      "notes": [
+        203,
+        212
+      ],
+      "dates": [
+        "11 May 2023",
+        "27 May 2023"
+      ],
+      "statuses": [
+        "interviewed yesterday",
+        "accepted for internship"
+      ]
+    },
+    {
+      "speaker": "Gina",
+      "topic": "Gina's store",
+      "notes": [
+        28,
+        45,
+        47,
+        49,
+        59,
+        81,
+        105,
+        120,
+        122,
+        124,
+        139,
+        143,
+        147,
+        177,
+        255,
+        261
+      ],
+      "dates": [
+        "29 January 2023",
+        "1 February 2023",
+        "1 February 2023",
+        "1 February 2023",
+        "4 February 2023",
+        "8 February 2023",
+        "16 March 2023",
+        "23 March 2023",
+        "23 March 2023",
+        "23 March 2023",
+        "3 April 2023",
+        "3 April 2023",
+        "3 April 2023",
+        "25 April 2023",
+        "16 June 2023",
+        "16 June 2023"
+      ],
+      "statuses": [
+        "launched an ad campaign",
+        "expanding after wholesaler reply",
+        "opened and designed",
+        "opened and styled",
+        "doing great",
+        "just teamed up with artist",
+        "opened",
+        "business is open",
+        "going good",
+        "always working on brand image",
+        "running promotions to attract customers",
+        "adding dance-inspired items",
+        "focused on building customer base",
+        "recently started",
+        "growing the customer base",
+        "opened and doing great"
+      ]
+    },
+    {
+      "speaker": "Jon",
+      "topic": "Jon's dance studio",
+      "notes": [
+        3,
+        5,
+        23,
+        31,
+        33,
+        44,
+        66,
+        70,
+        80,
+        86,
+        98,
+        125,
+        148,
+        152,
+        162,
+        164,
+        170,
+        190,
+        192,
+        198,
+        202,
+        206,
+        233,
+        235,
+        258,
+        276,
+        344,
+        346,
+        361
+      ],
+      "dates": [
+        "20 January 2023",
+        "20 January 2023",
+        "20 January 2023",
+        "29 January 2023",
+        "29 January 2023",
+        "1 February 2023",
+        "4 February 2023",
+        "4 February 2023",
+        "8 February 2023",
+        "8 February 2023",
+        "8 February 2023",
+        "23 March 2023",
+        "3 April 2023",
+        "3 April 2023",
+        "9 April 2023",
+        "9 April 2023",
+        "9 April 2023",
+        "11 May 2023",
+        "11 May 2023",
+        "11 May 2023",
+        "11 May 2023",
+        "11 May 2023",
+        "13 June 2023",
+        "13 June 2023",
+        "16 June 2023",
+        "19 June 2023",
+        "21 July 2023",
+        "21 July 2023",
+        "23 July 2023"
+      ],
+      "statuses": [
+        "starting a dance studio",
+        "wanting to start",
+        "finishing up choreography",
+        "searching for a location",
+        "checking size and quality",
+        "searching for a location",
+        "searching for a location",
+        "preparing for competition",
+        "opened and thriving",
+        "aiming to make it work",
+        "needs hard work",
+        "teaching students",
+        "expanding social media presence",
+        "bringing performances and judging",
+        "opened and running",
+        "determined to make it work",
+        "enjoying it with friends",
+        "looking up",
+        "starting a business",
+        "opened and teaching others",
+        "progress updates expected",
+        "practicing regularly",
+        "prepping for the studio",
+        "opened",
+        "started posting online",
+        "still working on opening",
+        "need help with marketing strategies",
+        "looking to improve visibility",
+        "not yet opened"
+      ]
+    },
+    {
+      "speaker": "Jon",
+      "topic": "Jon's business",
+      "notes": [
+        1,
+        60,
+        68,
+        110,
+        138,
+        176,
+        180,
+        217,
+        219,
+        223,
+        256,
+        274,
+        303,
+        315,
+        336,
+        342
+      ],
+      "dates": [
+        "20 January 2023",
+        "4 February 2023",
+        "4 February 2023",
+        "16 March 2023",
+        "3 April 2023",
+        "25 April 2023",
+        "25 April 2023",
+        "27 May 2023",
+        "27 May 2023",
+        "27 May 2023",
+        "16 June 2023",
+        "19 June 2023",
+        "21 June 2023",
+        "9 July 2023",
+        "21 July 2023",
+        "21 July 2023"
+      ],
+      "statuses": [
+        "starting his own business",
+        "putting in a lot of work",
+        "working on it",
+        "starting his business",
+        "helping it grow",
+        "possible leads from fair",
+        "having trouble with it",
+        "hoping for tips",
+        "trying out new strategies",
+        "wrapping up the plan",
+        "promoting his business",
+        "still working on it",
+        "investing time in it",
+        "started learning tools",
+        "determined to make it work",
+        "sprucing up and tweaking"
+      ]
+    }
+  ],
+  "labels": {
+    "PROGRESS": 488,
+    "COMPATIBLE": 73,
+    "CHANGE": 5,
+    "SAME": 1
+  },
+  "replaced": [
+    {
+      "older": 148,
+      "newer": 192,
+      "older_text": "Speaker Jonsays : Thanks, Gina! I'm expanding my dance studio's social media presence and offering workshops and classes to local schools and centers. I'm also hosting a dance competition next month to showcase local talent and bring more attention to my studio. All the work's paying off - I'm seeing progress and the dancers are so excited. It's such a great feeling to give a place where people can express themselves through dance!",
+      "newer_text": "Speaker Jonsays : Thanks! Losing my job gave me the push to finally start my dream business: my own dance studio! Now I'm stepping into the unknown and hoping for the best.",
+      "valid_until": "11 May 2023"
+    },
+    {
+      "older": 152,
+      "newer": 192,
+      "older_text": "Speaker Jonsays : [Image: a photo of a group of dancers on a stage with a man in the middle of the group] Thanks, Gina! My dance studio and some other schools are bringing their best moves for an awesome night of performances and judging. It'll be super creative and fun. Come join us!",
+      "newer_text": "Speaker Jonsays : Thanks! Losing my job gave me the push to finally start my dream business: my own dance studio! Now I'm stepping into the unknown and hoping for the best.",
+      "valid_until": "11 May 2023"
+    },
+    {
+      "older": 59,
+      "newer": 261,
+      "older_text": "Speaker Ginasays : Hey Jon! The store's doing great! It's a wild ride. How's the biz?",
+      "newer_text": "Speaker Ginasays : Ha, yeah, Jon. I've been one 'cause I lost my job. I opened an online clothing store and it's been great! Being my own boss and doing something I love is awesome.",
+      "valid_until": "16 June 2023"
+    },
+    {
+      "older": 80,
+      "newer": 276,
+      "older_text": "Speaker Jonsays : Thanks, Gina! I love running my own studio. It's great having the freedom to create a space and help dancers of all ages and levels express themselves. I'm super thrilled about dancing each day and seeing my students progress. It's so fulfilling.",
+      "newer_text": "Speaker Jonsays : Thanks, Gina. Still working on opening a dance studio.",
+      "valid_until": "19 June 2023"
+    }
+  ],
+  "contradictions": [],
+  "pairs": [
+    {
+      "timeline": 0,
+      "old": 30,
+      "new": 191,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement acknowledges the person's progress in opening their own dance studio since the older statement inquired about finding a location."
+    },
+    {
+      "timeline": 0,
+      "old": 36,
+      "new": 191,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement acknowledges the person's progress in opening their own dance studio, building on the excitement expressed in the older statement about the studio's development."
+    },
+    {
+      "timeline": 0,
+      "old": 30,
+      "new": 234,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from discussing the search for a dance studio to actively preparing for its opening, showing advancement in their plans."
+    },
+    {
+      "timeline": 0,
+      "old": 36,
+      "new": 234,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has made progress in their plans by starting a business and preparing for the dance studio, building on the excitement expressed in the older statement."
+    },
+    {
+      "timeline": 0,
+      "old": 191,
+      "new": 234,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement acknowledges the person's progress in starting their own business while also asking about preparations for the dance studio, indicating advancement from the initial inspiration."
+    },
+    {
+      "timeline": 0,
+      "old": 30,
+      "new": 236,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio is moving forward from the initial search for a location to the establishment of a supportive environment for dancers."
+    },
+    {
+      "timeline": 0,
+      "old": 36,
+      "new": 236,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio project has advanced from excitement about its potential to a focus on its purpose and support for dancers."
+    },
+    {
+      "timeline": 0,
+      "old": 191,
+      "new": 236,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the studio is now being established as a supportive environment for dancers, showing advancement from the initial inspiration expressed in the older statement."
+    },
+    {
+      "timeline": 1,
+      "old": 2,
+      "new": 103,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement acknowledges the job loss at Door Dash while also indicating that there is some good news to share, adding to the context without contradicting the older statement."
+    },
+    {
+      "timeline": 1,
+      "old": 103,
+      "new": 145,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from a tough situation after losing their job to successfully growing their customer base and seeing increased sales."
+    },
+    {
+      "timeline": 1,
+      "old": 111,
+      "new": 145,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the business is experiencing growth and success, building on the earlier acknowledgment of the ups and downs of running the business."
+    },
+    {
+      "timeline": 1,
+      "old": 103,
+      "new": 179,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a shift from losing a job to taking control of one's destiny, suggesting a forward movement in the person's situation."
+    },
+    {
+      "timeline": 1,
+      "old": 111,
+      "new": 179,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a progression from losing a job to taking control of destiny by starting a business, building on the experience mentioned in the older statement."
+    },
+    {
+      "timeline": 1,
+      "old": 145,
+      "new": 179,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a shift from focusing on sales and customer growth to taking control of personal circumstances after losing a job, indicating a progression in the person's journey."
+    },
+    {
+      "timeline": 1,
+      "old": 179,
+      "new": 337,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing journey of the same person as they navigate challenges in their business after taking control of their destiny."
+    },
+    {
+      "timeline": 1,
+      "old": 111,
+      "new": 337,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement adds detail about the challenges faced in running the business while still affirming the overall positive experience mentioned in the older statement."
+    },
+    {
+      "timeline": 1,
+      "old": 145,
+      "new": 337,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the challenges faced in sourcing trendy pieces, indicating a progression from initial success to overcoming hurdles in business growth."
+    },
+    {
+      "timeline": 2,
+      "old": 77,
+      "new": 312,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The person has moved from finding a new fashion piece for their store to gaining recognition from fashion editors, indicating advancement in their fashion career."
+    },
+    {
+      "timeline": 3,
+      "old": 203,
+      "new": 212,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "The person was previously pursuing a design internship but has now been accepted for a fashion internship, indicating a shift in their internship status.",
+      "first_label": "CHANGE",
+      "verified": false,
+      "quote": "NONE"
+    },
+    {
+      "timeline": 4,
+      "old": 28,
+      "new": 45,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has made progress in expanding their clothing store by successfully contacting wholesalers, building on the initial launch of their ad campaign."
+    },
+    {
+      "timeline": 4,
+      "old": 28,
+      "new": 47,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows the advancement of the clothing store initiative by sharing a visual representation of the designed space, indicating progress since the ad campaign launch."
+    },
+    {
+      "timeline": 4,
+      "old": 28,
+      "new": 49,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing development of the clothing store, detailing the progress made in creating a cozy and stylish environment after launching the ad campaign."
+    },
+    {
+      "timeline": 4,
+      "old": 28,
+      "new": 59,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the clothing store has progressed from launching an ad campaign to experiencing success in the business."
+    },
+    {
+      "timeline": 4,
+      "old": 45,
+      "new": 59,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the clothing store is now successfully operating, showing advancement from the initial excitement of expanding the store."
+    },
+    {
+      "timeline": 4,
+      "old": 47,
+      "new": 59,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the store has continued to thrive since the older statement, showing advancement in the situation."
+    },
+    {
+      "timeline": 4,
+      "old": 49,
+      "new": 59,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the store is now successfully operating, building on the previous effort to create a cozy and stylish environment."
+    },
+    {
+      "timeline": 4,
+      "old": 28,
+      "new": 81,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has made advancements in their business by launching an online store and collaborating with a local artist, building on the initial excitement expressed in the older statement about launching an ad campaign for their clothing store."
+    },
+    {
+      "timeline": 4,
+      "old": 45,
+      "new": 81,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates further development in the person's business efforts, expanding from wholesaling to collaborating with a local artist for online designs."
+    },
+    {
+      "timeline": 4,
+      "old": 47,
+      "new": 81,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement adds information about the person's online store and collaboration with a local artist while still being consistent with their previous focus on design and customer experience."
+    },
+    {
+      "timeline": 4,
+      "old": 49,
+      "new": 81,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has continued to develop their business by working on an online store and collaborating with a local artist, building on the cozy and stylish environment they previously created."
+    },
+    {
+      "timeline": 4,
+      "old": 59,
+      "new": 81,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement adds information about the person's online store and collaboration with a local artist while still acknowledging the success of the store mentioned in the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 28,
+      "new": 105,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the clothing store has officially opened, showing advancement from the initial plan of launching an ad campaign."
+    },
+    {
+      "timeline": 4,
+      "old": 45,
+      "new": 105,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The older statement discusses the expansion of the clothing store, while the newer statement announces the opening of the online store, indicating a progression in the person's business plans."
+    },
+    {
+      "timeline": 4,
+      "old": 47,
+      "new": 105,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from designing a physical clothing store to opening an online clothes store, indicating advancement in their business plans."
+    },
+    {
+      "timeline": 4,
+      "old": 49,
+      "new": 105,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has progressed from creating a physical store to launching an online clothes store, indicating advancement in their business endeavors."
+    },
+    {
+      "timeline": 4,
+      "old": 59,
+      "new": 105,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from discussing the success of their store to launching an online clothes store, indicating advancement in their business endeavors."
+    },
+    {
+      "timeline": 4,
+      "old": 81,
+      "new": 105,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the online store has officially opened, showing advancement from the earlier stage of working hard on it and teaming up with a local artist."
+    },
+    {
+      "timeline": 4,
+      "old": 28,
+      "new": 120,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing journey of the clothing store, indicating that the business has continued to develop since the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 45,
+      "new": 120,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing journey of the online clothing store, indicating growth and challenges since the initial excitement of expanding the business."
+    },
+    {
+      "timeline": 4,
+      "old": 47,
+      "new": 120,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's online clothing store has evolved from just a design space to an operational business, reflecting growth and development."
+    },
+    {
+      "timeline": 4,
+      "old": 49,
+      "new": 120,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing journey of running the online clothing store, indicating growth and development since the older statement about creating a cozy physical space for customers."
+    },
+    {
+      "timeline": 4,
+      "old": 59,
+      "new": 120,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the online clothing store has evolved from being described as \"doing great\" to being characterized as a \"roller coaster but rewarding,\" showing a progression in the experience of running the business."
+    },
+    {
+      "timeline": 4,
+      "old": 81,
+      "new": 120,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the online clothing store has progressed from just teaming up with a local artist to experiencing the ups and downs of running a business."
+    },
+    {
+      "timeline": 4,
+      "old": 105,
+      "new": 120,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the online clothing store is now operational and experiencing challenges, showing advancement from the initial announcement of its opening."
+    },
+    {
+      "timeline": 4,
+      "old": 28,
+      "new": 122,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the clothing store is now operational and thriving, showing advancement from the initial launch mentioned in the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 45,
+      "new": 122,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the clothing store is now operational and thriving, building on the earlier excitement about expanding the store."
+    },
+    {
+      "timeline": 4,
+      "old": 47,
+      "new": 122,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the store is operational and the person is actively managing it while keeping up with fashion trends, showing advancement from the initial design phase mentioned in the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 49,
+      "new": 122,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the store is now successfully operating and the person is actively keeping up with fashion trends, building on the previous effort to create a cozy and stylish environment."
+    },
+    {
+      "timeline": 4,
+      "old": 59,
+      "new": 122,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the store is still doing well but has evolved to include a focus on keeping up with fashion trends, showing advancement in the business's operations."
+    },
+    {
+      "timeline": 4,
+      "old": 81,
+      "new": 122,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the online store is now operational and the person is actively keeping up with fashion trends, showing advancement from the initial announcement of teaming up with a local artist."
+    },
+    {
+      "timeline": 4,
+      "old": 105,
+      "new": 122,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the online clothes store is now operational and the person is actively managing it, showing advancement from the initial announcement of its opening."
+    },
+    {
+      "timeline": 4,
+      "old": 28,
+      "new": 124,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects ongoing efforts to build the brand and relationships, indicating advancement in the business journey since the launch of the ad campaign."
+    },
+    {
+      "timeline": 4,
+      "old": 45,
+      "new": 124,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects ongoing efforts to build relationships and brand image, indicating advancement in the person's business journey since the older statement about expanding their clothing store."
+    },
+    {
+      "timeline": 4,
+      "old": 47,
+      "new": 124,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "Both statements reflect the person's ongoing efforts in building their store's brand and creating an inviting atmosphere for customers."
+    },
+    {
+      "timeline": 4,
+      "old": 49,
+      "new": 124,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement discusses building relationships and brand image, which complements the older statement about creating a cozy and stylish environment for customers without contradicting it."
+    },
+    {
+      "timeline": 4,
+      "old": 59,
+      "new": 124,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing efforts to improve the store's brand and relationships, building on the positive status mentioned in the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 81,
+      "new": 124,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively working on building relationships and brand image for their store, showing advancement from their earlier mention of launching the online store."
+    },
+    {
+      "timeline": 4,
+      "old": 105,
+      "new": 124,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing development of the online clothes store, focusing on building relationships and brand image after its launch."
+    },
+    {
+      "timeline": 4,
+      "old": 28,
+      "new": 139,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing efforts and adaptations in the person's business journey since launching the ad campaign mentioned in the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 45,
+      "new": 139,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing efforts to attract customers and adapt the business strategy after the initial success of expanding the clothing store mentioned in the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 47,
+      "new": 139,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively working on their business and adapting to challenges since the older statement about their store design."
+    },
+    {
+      "timeline": 4,
+      "old": 49,
+      "new": 139,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing development of the business, indicating efforts to attract customers after establishing the store's style and ambiance."
+    },
+    {
+      "timeline": 4,
+      "old": 59,
+      "new": 139,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken further steps to improve their business since the older statement, reflecting a progression in their efforts."
+    },
+    {
+      "timeline": 4,
+      "old": 81,
+      "new": 139,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's efforts in their online store have evolved to include new offers and promotions, showing advancement from their previous mention of working hard on the store."
+    },
+    {
+      "timeline": 4,
+      "old": 105,
+      "new": 139,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the online store is now operational and the person is actively working on promotions to attract customers, showing advancement from the initial excitement of opening the store."
+    },
+    {
+      "timeline": 4,
+      "old": 120,
+      "new": 139,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken new actions to improve their business since the older statement, showing advancement in their efforts."
+    },
+    {
+      "timeline": 4,
+      "old": 122,
+      "new": 139,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken further steps to attract customers and adapt their business strategy since the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 124,
+      "new": 139,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken further steps to attract customers to their online store, building on their previous focus on relationships and brand image."
+    },
+    {
+      "timeline": 4,
+      "old": 28,
+      "new": 143,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expands on the older one by expressing the person's passion for dance and fashion, which complements their ongoing efforts to grow their clothing store."
+    },
+    {
+      "timeline": 4,
+      "old": 45,
+      "new": 143,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the advancement of the person's plans to expand their clothing store by incorporating dance-inspired items, building on the excitement expressed in the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 47,
+      "new": 143,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expands on the person's passion for dance and fashion, complementing the previous mention of their clothing store design without contradicting it."
+    },
+    {
+      "timeline": 4,
+      "old": 49,
+      "new": 143,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "Both statements reflect the person's creative approach to their business, with the first focusing on the store's ambiance and the second on incorporating dance and fashion into their offerings."
+    },
+    {
+      "timeline": 4,
+      "old": 59,
+      "new": 143,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expands on the older one by expressing a passion for dance and fashion while still acknowledging the success of the store."
+    },
+    {
+      "timeline": 4,
+      "old": 81,
+      "new": 143,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expands on the older one by expressing a passion for combining dance and fashion, which aligns with the ongoing development of the online store mentioned previously."
+    },
+    {
+      "timeline": 4,
+      "old": 105,
+      "new": 143,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expands on the older one by expressing the person's passion for dance and fashion while confirming that their online store is still open and evolving."
+    },
+    {
+      "timeline": 4,
+      "old": 120,
+      "new": 143,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expands on the older one by expressing the person's passion for dance and fashion while still acknowledging the challenges of running the clothing store."
+    },
+    {
+      "timeline": 4,
+      "old": 122,
+      "new": 143,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expands on the person's passion for fashion by incorporating dance, while still acknowledging their ongoing efforts in running the store."
+    },
+    {
+      "timeline": 4,
+      "old": 124,
+      "new": 143,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expands on the older one by expressing the person's passion for dance and fashion while still focusing on building relationships and a brand image for their store."
+    },
+    {
+      "timeline": 4,
+      "old": 28,
+      "new": 147,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement builds on the older one by detailing further plans and actions to grow the clothing store, indicating progress in the business strategy."
+    },
+    {
+      "timeline": 4,
+      "old": 45,
+      "new": 147,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is building on their previous success by planning to expand their marketing efforts after successfully connecting with wholesalers."
+    },
+    {
+      "timeline": 4,
+      "old": 47,
+      "new": 147,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates plans for future marketing efforts to build the customer base, showing advancement from the initial design and setup of the store mentioned in the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 49,
+      "new": 147,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a plan to expand the store's reach and customer base, building on the established cozy and stylish atmosphere mentioned in the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 59,
+      "new": 147,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively planning to expand their business efforts, building on the success mentioned in the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 81,
+      "new": 147,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a progression in the person's plans for their online store, building on the previous mention of working hard on it and collaborating with a local artist."
+    },
+    {
+      "timeline": 4,
+      "old": 105,
+      "new": 147,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the online clothes store is now operational and the person is actively working on strategies to grow their customer base, showing advancement from the initial announcement of opening the store."
+    },
+    {
+      "timeline": 4,
+      "old": 120,
+      "new": 147,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows the person has developed plans to promote their store further, indicating growth from their initial experience of starting the business."
+    },
+    {
+      "timeline": 4,
+      "old": 122,
+      "new": 147,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has developed plans to expand their business efforts since the older statement, showing a progression in their approach to running the store."
+    },
+    {
+      "timeline": 4,
+      "old": 124,
+      "new": 147,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows a development in the person's plans for building their store's brand and customer base, expanding on the earlier focus on relationships and brand image."
+    },
+    {
+      "timeline": 4,
+      "old": 28,
+      "new": 177,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully launched their online clothing store since the older statement about starting an ad campaign for their clothing store."
+    },
+    {
+      "timeline": 4,
+      "old": 45,
+      "new": 177,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from expanding their clothing store to starting an online clothing store, indicating advancement in their business efforts."
+    },
+    {
+      "timeline": 4,
+      "old": 47,
+      "new": 177,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement introduces the person's online clothing store while still acknowledging their previous work in designing a physical clothing store, allowing both to coexist."
+    },
+    {
+      "timeline": 4,
+      "old": 49,
+      "new": 177,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement introduces a new venture of starting an online clothing store while the older statement discusses the design of a physical store, allowing both to coexist without conflict."
+    },
+    {
+      "timeline": 4,
+      "old": 59,
+      "new": 177,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's situation has advanced from discussing the store's success to starting their own online clothing store."
+    },
+    {
+      "timeline": 4,
+      "old": 81,
+      "new": 177,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from working hard on their online store to successfully starting their own online clothing store."
+    },
+    {
+      "timeline": 4,
+      "old": 105,
+      "new": 177,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the online clothing store has been launched and is now operational, showing advancement from the initial announcement."
+    },
+    {
+      "timeline": 4,
+      "old": 120,
+      "new": 177,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has progressed from discussing the challenges of starting an online clothing store to actively running one and celebrating its success."
+    },
+    {
+      "timeline": 4,
+      "old": 122,
+      "new": 177,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from discussing their existing clothing store to starting a new online clothing store, indicating advancement in their business endeavors."
+    },
+    {
+      "timeline": 4,
+      "old": 124,
+      "new": 177,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from focusing on building relationships and brand image to actively starting their own online clothing store, indicating progress in their business endeavors."
+    },
+    {
+      "timeline": 4,
+      "old": 139,
+      "new": 177,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's business efforts have progressed, as they have launched their own online clothing store since the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 143,
+      "new": 177,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps to start their own online clothing store, building on their previous passion for dance and fashion."
+    },
+    {
+      "timeline": 4,
+      "old": 147,
+      "new": 177,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The person has moved from planning to actively running their own online clothing store."
+    },
+    {
+      "timeline": 4,
+      "old": 28,
+      "new": 255,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from launching an ad campaign for their clothing store to actively working on growing their online store and customer base."
+    },
+    {
+      "timeline": 4,
+      "old": 45,
+      "new": 255,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from expanding their clothing store to working on growing their online store and customer base."
+    },
+    {
+      "timeline": 4,
+      "old": 47,
+      "new": 255,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is now working on growing their online store, showing advancement from simply designing a physical space to expanding their business online."
+    },
+    {
+      "timeline": 4,
+      "old": 49,
+      "new": 255,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is now focusing on growing their online store, which shows advancement from their previous efforts in creating a cozy physical space for customers."
+    },
+    {
+      "timeline": 4,
+      "old": 59,
+      "new": 255,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from having a successful store to actively working on growing an online store and customer base."
+    },
+    {
+      "timeline": 4,
+      "old": 81,
+      "new": 255,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's efforts on their online store have continued and evolved, focusing on growing the customer base since the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 105,
+      "new": 255,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the online store is now operational and the person is actively working on growing their customer base, showing advancement from the initial launch."
+    },
+    {
+      "timeline": 4,
+      "old": 120,
+      "new": 255,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's online clothing store is now in a phase of growth and customer base expansion, building on the earlier acknowledgment of the challenges faced in starting the business."
+    },
+    {
+      "timeline": 4,
+      "old": 122,
+      "new": 255,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has progressed from running a physical store to working on growing an online store, reflecting advancement in their business efforts."
+    },
+    {
+      "timeline": 4,
+      "old": 124,
+      "new": 255,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a continuation and advancement in the person's efforts to grow their online store, building on the earlier focus on brand image and relationships."
+    },
+    {
+      "timeline": 4,
+      "old": 139,
+      "new": 255,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is continuing to work on their online store and is focused on growing their customer base, showing advancement from their previous efforts."
+    },
+    {
+      "timeline": 4,
+      "old": 143,
+      "new": 255,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively working on their online store and growing their customer base, building on their earlier passion for dance and fashion."
+    },
+    {
+      "timeline": 4,
+      "old": 147,
+      "new": 255,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing efforts to grow the customer base for the online store, building on the plans mentioned in the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 177,
+      "new": 255,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the online store has progressed from being started to actively working on growing the customer base."
+    },
+    {
+      "timeline": 4,
+      "old": 28,
+      "new": 261,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully transitioned from launching an ad campaign to running an online clothing store after losing their job, showing advancement in their business journey."
+    },
+    {
+      "timeline": 4,
+      "old": 45,
+      "new": 261,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully transitioned from expanding their clothing store to running an online clothing store after losing their job, showing advancement in their entrepreneurial journey."
+    },
+    {
+      "timeline": 4,
+      "old": 47,
+      "new": 261,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person transitioned from designing a clothing store to running their own online clothing store, indicating a progression in their career."
+    },
+    {
+      "timeline": 4,
+      "old": 49,
+      "new": 261,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The person transitioned from running a physical store to opening an online clothing store after losing their job.",
+      "first_label": "CHANGE",
+      "verified": false,
+      "quote": "NONE"
+    },
+    {
+      "timeline": 4,
+      "old": 59,
+      "new": 261,
+      "previous_status": false,
+      "label": "CHANGE",
+      "reason": "The person transitioned from working at a store to opening an online clothing store after losing their job, indicating a significant change in their employment status.",
+      "first_label": "CHANGE",
+      "verified": true,
+      "quote": "I lost my job. I opened an online clothing store"
+    },
+    {
+      "timeline": 4,
+      "old": 81,
+      "new": 261,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has progressed from just teaming up with a local artist for their online store to successfully running the store and enjoying being their own boss after losing their job."
+    },
+    {
+      "timeline": 4,
+      "old": 105,
+      "new": 261,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the online clothing store has been successfully launched and is now operational, reflecting progress from the initial announcement of its opening."
+    },
+    {
+      "timeline": 4,
+      "old": 120,
+      "new": 261,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from losing their job to successfully running an online clothing store, building on the earlier sentiment of starting a business."
+    },
+    {
+      "timeline": 4,
+      "old": 122,
+      "new": 261,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has transitioned from discussing their store's operations to successfully running their own online clothing store after losing their job, showing advancement in their situation."
+    },
+    {
+      "timeline": 4,
+      "old": 124,
+      "new": 261,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has transitioned from focusing on building relationships and a brand image for their store to successfully opening and running an online clothing store."
+    },
+    {
+      "timeline": 4,
+      "old": 139,
+      "new": 261,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully transitioned from facing challenges in starting their business to thriving as a business owner after losing their job."
+    },
+    {
+      "timeline": 4,
+      "old": 143,
+      "new": 261,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has progressed from expressing a passion for dance and fashion to successfully opening an online clothing store that incorporates those interests."
+    },
+    {
+      "timeline": 4,
+      "old": 177,
+      "new": 261,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully transitioned from starting an online clothing store to actively running it and enjoying the experience."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 31,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to start a dance studio has advanced to actively searching for a location."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 31,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively searching for a location for their dance studio, showing advancement in their plan to teach others about dancing."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 31,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The person has moved from rehearsing with a group of dancers to actively searching for a dance studio, indicating advancement in their dance-related endeavors."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 33,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio plan has advanced to the stage of finding a suitable location and considering specific details about the studio."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 33,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to start a dance studio has advanced to the stage of considering location and specific requirements for the studio."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 33,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement discusses the logistics of a dance space while the older statement focuses on rehearsing and preparing for a performance, both related to dance activities."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 44,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is still pursuing their passion for dance and is actively searching for a location to open the dance studio, showing advancement from the initial plan."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 44,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is still pursuing their goal of opening a dance studio, showing advancement in their journey since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 44,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from rehearsing with a group of dancers and preparing for a festival to actively searching for a place to open their own dance studio, indicating a progression in their dance journey."
+    },
+    {
+      "timeline": 5,
+      "old": 31,
+      "new": 44,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates continued efforts in searching for a dance studio, showing that the situation has evolved since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 44,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is still searching for a place to open their dance studio, suggesting they are actively working towards the goal mentioned in the older statement about finding a suitable location."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 66,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to start a dance studio is advancing from the initial idea to actively searching for a location."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 66,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to start a dance studio is advancing from the initial idea to actively searching for a location."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 66,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The search for a dance studio location indicates a step forward in the person's plans related to dance, building on the earlier mention of rehearsing and preparing for performances."
+    },
+    {
+      "timeline": 5,
+      "old": 44,
+      "new": 66,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing efforts in the search for a dance studio location, showing advancement from the initial determination expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 66,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the search for a dance studio location is ongoing, building on the earlier focus on specific requirements for the studio."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 70,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from starting a dance studio to preparing for a dance competition, indicating advancement in their dancing journey."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 70,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively preparing for a dance competition, which shows advancement in their journey towards sharing their passion for dance and potentially opening a studio."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 70,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a progression from rehearsing for a festival to preparing for a dance competition, showing advancement in the person's dance activities."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 70,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is preparing for a dance competition, which is a progression from their earlier focus on finding a suitable dance space."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 80,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the successful transition from planning to actually running the dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 80,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the successful realization of the plan to start a dance studio mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 80,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the person's advancement from rehearsing with a small group of dancers to running their own studio and helping students progress."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 80,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the search for a dance studio location has successfully progressed to running a studio."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 80,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully transitioned from planning to running their own dance studio, reflecting progress in their situation."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 80,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the person's advancement from preparing for a dance competition to running their own dance studio, indicating a progression in their dance journey."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 86,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has progressed from starting a dance studio to actively pursuing turning their dancing passion into a business, reflecting growth and development in their plans."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 86,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps towards turning their passion for dancing into a business, building on their earlier desire to start a dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 86,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a progression from rehearsing and performing in a group to pursuing a business venture based on dancing passion."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 86,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from searching for a dance studio to actively pursuing their passion for dancing as a business."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 86,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a progression from discussing the need for a suitable dance space to actively pursuing a business based on dancing, indicating growth and development in the person's journey."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 86,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a progression from preparing for a dance competition to pursuing a business in dancing, reflecting growth and a shift in focus."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 98,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively working on their dance studio and business ventures, showing advancement from the initial plan to start the studio."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 98,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively working towards their dream of opening a dance studio, building on the passion expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 98,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing commitment to dance and business ventures, indicating advancement from rehearsing for a festival to focusing on long-term dreams and hard work."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 98,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the search for a dance studio has progressed to a point where the speaker is motivated and committed to their dreams, building on the determination expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 98,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively pursuing their dream of opening a dance studio, building on the earlier discussion about the importance of the dance floor and location."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 98,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the person's ongoing commitment to their dance goals and acknowledges support while indicating they are actively working towards their dreams since the dance competition mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 125,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows that the dance studio has been established and is now actively teaching students, reflecting progress from the initial plan to start the studio."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 125,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the advancement of the plan to start a dance studio, showing that the person is now teaching and helping students succeed."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 125,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "Both statements reflect the person's involvement in dance, with the older one focusing on their own rehearsals and upcoming performance, while the newer one highlights their role as a teacher and the success of their students."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 125,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from searching for a dance studio location to successfully teaching and motivating students in dance classes."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 125,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the advancement of the dance classes and the success of the students, indicating that the plans discussed in the older statement have been implemented and are yielding positive results."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 125,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the person's growth from preparing for a dance competition to now teaching and motivating students in dance."
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 125,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement builds on the older one by expressing continued enthusiasm for teaching and highlights the success of students, without contradicting the earlier sentiments."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 125,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the person's advancement from taking risks to actively teaching and supporting others in their dance journey."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 125,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the person's ongoing commitment to their dance studio and business ventures, showing growth and success in helping their students achieve their goals."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 148,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows that the dance studio has been established and is now expanding its activities and community engagement since the initial announcement of starting it."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 148,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows that the plan to start a dance studio has advanced to actively running the studio and engaging with the community."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 148,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects an advancement in the person's dance activities, moving from rehearsing for a festival to expanding their dance studio and hosting a competition."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 148,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the search for a dance studio location has progressed to successfully running the studio and expanding its activities."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 148,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio is expanding and hosting events, showing advancement from the initial focus on finding a suitable space with a good dance floor."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 148,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from preparing for a dance competition to actively hosting one and expanding their dance studio's activities."
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 148,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement builds on the older one by showing the expansion of the dance studio's activities and outreach, indicating growth and development in the same overall endeavor."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 148,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows the person actively developing their dance business, building on their earlier commitment to turn their passion into a successful venture."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 148,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows advancements in the person's plans for their dance studio, indicating that they are actively working towards their dreams mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 125,
+      "new": 148,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the advancement of the dance studio's activities and initiatives since the older statement, indicating growth and development in the same context of supporting students and promoting dance."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 152,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio has been established and is now hosting performances, showing advancement from the initial plan to start the studio."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 152,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to start a dance studio has progressed to hosting performances and involving other schools."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 152,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance projects have advanced to a performance event, building on the plans mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 152,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the search for a dance studio location has progressed to the point of hosting performances, suggesting that the studio has been found and is now operational."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 152,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio has progressed from planning to hosting an event featuring performances and judging."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 152,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance competition the person was preparing for has occurred and highlights the event's success and participation."
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 152,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio is now hosting a performance event, showing advancement in the activities and opportunities available since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 152,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows advancement in the person's journey from pursuing a passion for dance to actively participating in performances and events related to their dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 152,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's dance studio is actively involved in performances, showing advancement in their dreams and business ventures since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 125,
+      "new": 152,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio is moving forward with an upcoming performance event, building on the motivation and success mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 162,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio has been established and is actively running, showing advancement from the initial plan to start it."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 162,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows that the plan to start a dance studio has advanced to actually running the studio and teaching students."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 162,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has transitioned from rehearsing with a small group of dancers to turning their love of dance into a business and teaching students."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 162,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from searching for a dance studio location to successfully running a dance studio with students."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 162,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully turned their passion for dance into a business and is actively working with students, showing advancement from the initial planning stage mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 162,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has progressed from preparing for a dance competition to turning their passion for dance into a business and teaching students."
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 162,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing development of the studio and the dancer's journey, indicating growth and progress since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 162,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows that the person's plan to turn their passion for dance into a business has advanced, as they are now actively teaching and seeing success with their students."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 162,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows that the person's efforts in pursuing their dance studio and business ventures have advanced, as they are now actively working with students and seeing positive results."
+    },
+    {
+      "timeline": 5,
+      "old": 125,
+      "new": 162,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken their passion for dance and turned it into a business, showing advancement from simply teaching to entrepreneurship."
+    },
+    {
+      "timeline": 5,
+      "old": 148,
+      "new": 162,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing development of the dance studio and the success of the students, building on the plans mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 152,
+      "new": 162,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's involvement in dance has evolved from organizing performances to actively running a dance studio and teaching students."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 164,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio plan has advanced from the initial idea to actively working on making it successful after losing a job."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 164,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively pursuing their goal of starting a dance studio, showing advancement from their initial passion expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 164,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The person has transitioned from rehearsing with a group of dancers to focusing on making a dance studio work after losing their job.",
+      "first_label": "CHANGE",
+      "verified": false,
+      "quote": "NONE"
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 164,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the search for a dance studio has progressed to the point of determination to make it work, following the initial search mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 164,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a shift from searching for a studio to actively pursuing the establishment of a dance studio after losing a job, showing advancement in the same overall goal."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 164,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The person has transitioned from preparing for a dance competition to focusing on making their dance studio work after losing their job.",
+      "first_label": "CHANGE",
+      "verified": false,
+      "quote": "NONE"
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 164,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a shift from losing a job to actively pursuing the goal of running a successful studio, building on the fulfillment expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 164,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from the initial plan of turning their dancing passion into a business to actively working on making the studio successful."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 164,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a progression in the person's journey towards establishing their dance studio, indicating a shift from a challenging situation to a renewed determination to pursue their dreams."
+    },
+    {
+      "timeline": 5,
+      "old": 125,
+      "new": 164,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a shift from losing a job to pursuing a passion, indicating growth and determination in the same context of teaching dance."
+    },
+    {
+      "timeline": 5,
+      "old": 148,
+      "new": 164,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement adds a personal context about the speaker's motivation and determination to succeed with the dance studio, which complements the earlier update on their activities and progress."
+    },
+    {
+      "timeline": 5,
+      "old": 152,
+      "new": 164,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "Both statements reflect the person's involvement in dance and their commitment to their studio, with the newer statement adding context about their motivation following job loss."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 170,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the advancement of the person's plan to open a dance studio and their continued passion for dancing since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 170,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement reflects a shared appreciation for dance and adds personal experience without contradicting the older statement about starting a dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 170,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement reflects a personal connection to dance while acknowledging the ongoing involvement in dance projects mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 170,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from searching for a dance studio location to successfully enjoying dance with their own studio."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 170,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement reflects a personal connection to dance while acknowledging the importance of the dance space mentioned in the older statement, adding emotional depth without contradicting the logistical considerations."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 170,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement reflects a shared appreciation for dance while acknowledging the ongoing enjoyment and personal connection to it, complementing the excitement expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 170,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement adds personal reflections and memories about dance while still expressing the joy of running the studio mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 170,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement reflects a shared appreciation for dance while acknowledging the progress made since the older statement about pursuing a dancing business."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 170,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "Both statements express the person's passion for dance and appreciation for support, with the newer statement adding personal memories and current enjoyment without contradicting the older one."
+    },
+    {
+      "timeline": 5,
+      "old": 125,
+      "new": 170,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement reflects a continued appreciation for dance and personal growth while acknowledging the support from Gina, complementing the sentiments expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 148,
+      "new": 170,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement reflects a personal connection to dance while acknowledging the ongoing efforts and developments mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 152,
+      "new": 170,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement reflects a personal connection to dance while acknowledging the upcoming performances mentioned in the older statement, adding depth without contradicting or replacing the earlier message."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 190,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio project is advancing since the initial announcement of starting it."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 190,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to start a dance studio is actively being worked on and is progressing since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 190,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing work on the dance studio, suggesting advancement from the previous activities mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 190,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the search for a dance studio has progressed to a more positive status, suggesting that the person is still working on it and things are improving."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 190,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio project is advancing since the last update, suggesting improvements or developments since the initial discussion."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 190,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing work and improvement in the dance studio, suggesting progress from the anticipation of the dance competition mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 190,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing work and improvement in the dance studio, building on the fulfillment expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 190,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's efforts to establish a dance studio are advancing positively since the older statement expressed their determination to turn their dancing passion into a business."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 190,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is still working on the dance studio and that things are improving, showing advancement from their previous commitment to their dreams."
+    },
+    {
+      "timeline": 5,
+      "old": 125,
+      "new": 190,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio project is advancing positively since the older statement, which focused on the success of students and teaching."
+    },
+    {
+      "timeline": 5,
+      "old": 148,
+      "new": 190,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing work and improvement at the dance studio since the older statement, suggesting that the plans have advanced."
+    },
+    {
+      "timeline": 5,
+      "old": 152,
+      "new": 190,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing work and improvement at the dance studio since the event mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 162,
+      "new": 190,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio project is continuing to develop positively since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 164,
+      "new": 190,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's efforts with the dance studio are continuing and improving since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 170,
+      "new": 190,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing work and improvement on the dance studio, building on the positive sentiments expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 192,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from the initial idea of starting a dance studio to actually pursuing it as a response to losing their job."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 192,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken action towards their goal of starting a dance studio, moving from a desire to a concrete plan."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 192,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The person transitioned from rehearsing with a group of dancers to starting their own dance studio, indicating a significant shift in their professional situation.",
+      "first_label": "CHANGE",
+      "verified": false,
+      "quote": "NONE"
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 192,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from searching for a dance studio location to actually starting their own dance studio business."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 192,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from discussing the requirements for a dance studio to actively pursuing their dream of starting their own dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 192,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The person's situation has changed from preparing for a dance competition to losing their job and starting a dance studio, indicating a shift in their focus and goals.",
+      "first_label": "CHANGE",
+      "verified": false,
+      "quote": "NONE"
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 192,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a transition from losing a job to successfully starting and running a dance studio, showing advancement in the person's journey."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 192,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the advancement of the person's plan from aiming to turn their dancing passion into a business to actually starting their own dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 192,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has transitioned from planning to actively starting their dream business, which is their dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 125,
+      "new": 192,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a transition from teaching dance to starting a dance studio, showing advancement in the person's career goals."
+    },
+    {
+      "timeline": 5,
+      "old": 148,
+      "new": 192,
+      "previous_status": false,
+      "label": "CHANGE",
+      "reason": "The newer statement indicates that the person lost their job and is now starting a dance studio, which replaces the previous status of already running a dance studio.",
+      "first_label": "CHANGE",
+      "verified": true,
+      "quote": "Losing my job gave me the push to finally start my dream business: my own dance studio!"
+    },
+    {
+      "timeline": 5,
+      "old": 152,
+      "new": 192,
+      "previous_status": false,
+      "label": "CHANGE",
+      "reason": "The person transitioned from being involved in a dance studio to starting their own dance studio, indicating a significant change in their professional situation.",
+      "first_label": "CHANGE",
+      "verified": true,
+      "quote": "Losing my job gave me the push to finally start my dream business: my own dance studio!"
+    },
+    {
+      "timeline": 5,
+      "old": 162,
+      "new": 192,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has transitioned from working on their dance studio to officially starting it as a business after losing their job, showing advancement in their plans."
+    },
+    {
+      "timeline": 5,
+      "old": 164,
+      "new": 192,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from the determination to make the studio work to actually starting their dream business."
+    },
+    {
+      "timeline": 5,
+      "old": 170,
+      "new": 192,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has transitioned from enjoying dance and reminiscing about lessons to actively pursuing their dream of owning a dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 198,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully established their dance studio and is now teaching, moving forward from their initial plan to start one."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 198,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully achieved their goal of opening a dance studio and is now living their dream, showing advancement from their initial plan."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 198,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "Both statements reflect the person's passion for dancing, with the first discussing group rehearsals and upcoming performances, while the second highlights their achievement of owning a dance studio and teaching."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 198,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from searching for a dance studio location to successfully owning and teaching at their own studio."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 198,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully achieved their goal of having their own dance studio since the older statement expressed the need for a suitable space."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 198,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has progressed from preparing for a dance competition to owning a dance studio and teaching others."
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 198,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "Both statements express the person's passion for dancing and teaching, with the newer statement adding a sense of fulfillment without contradicting the older one."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 198,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully transitioned from aspiring to have a dance business to actually owning a dance studio and teaching others."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 198,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully achieved their dream of owning a dance studio, building on their earlier commitment to work hard towards that goal."
+    },
+    {
+      "timeline": 5,
+      "old": 125,
+      "new": 198,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "Both statements express the person's passion for dancing and teaching, with the newer statement adding the detail of owning a dance studio while still reflecting the motivation from helping students succeed."
+    },
+    {
+      "timeline": 5,
+      "old": 148,
+      "new": 198,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expresses the person's passion for dancing and owning a studio, which complements the earlier statement about expanding their studio and engaging with the community."
+    },
+    {
+      "timeline": 5,
+      "old": 152,
+      "new": 198,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "Both statements reflect the person's passion for dance, with the older one discussing an event and the newer one expressing their fulfillment in teaching dance."
+    },
+    {
+      "timeline": 5,
+      "old": 162,
+      "new": 198,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's journey in establishing their dance studio has advanced from planning to successfully living their dream."
+    },
+    {
+      "timeline": 5,
+      "old": 164,
+      "new": 198,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the advancement of the person's situation from determination to actively living their dream of owning a dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 170,
+      "new": 198,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "Both statements express the person's passion for dance and their fulfillment in having a dance studio, with the newer statement building on the joy expressed in the older one."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 202,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio plan is advancing, as the person is now in the process of updating others on its progress."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 202,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to start a dance studio is moving forward, as the person is providing an update on its progress."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 202,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing developments related to the dance studio, suggesting progress from the previous mention of rehearsing and choreography for a festival."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 202,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the search for a dance studio has progressed, suggesting that the person is now receiving help and is making advancements towards establishing the studio."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 202,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that there has been advancement in the plans for the dance studio since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 202,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing involvement with dance, suggesting progress in the dance studio situation following the upcoming competition mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 202,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing developments in the dance studio, suggesting that the situation has advanced since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 202,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's plan to establish a dance studio is advancing, following their earlier commitment to turn their dancing passion into a business."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 202,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that there has been advancement in the dance studio project since the older statement expressed determination to pursue it."
+    },
+    {
+      "timeline": 5,
+      "old": 125,
+      "new": 202,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing support and updates regarding the dance studio, suggesting advancement from the previous motivation expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 148,
+      "new": 202,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing developments in the dance studio's progress since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 152,
+      "new": 202,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing developments related to the dance studio mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 162,
+      "new": 202,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing development and updates regarding the dance studio, building on the initial announcement of starting the business."
+    },
+    {
+      "timeline": 5,
+      "old": 164,
+      "new": 202,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is making progress with their dance studio, building on their earlier determination to pursue their passion after losing their job."
+    },
+    {
+      "timeline": 5,
+      "old": 170,
+      "new": 202,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing development regarding the dance studio, building on the previous expression of enjoyment and connection to dance."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 206,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement about practicing dance routines complements the older statement about starting a dance studio, showing ongoing engagement with dance."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 206,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement reflects ongoing engagement with dance, which aligns with the older statement about the person's passion for dancing and desire to teach others."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 206,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing practice and development in dance, building on the previous mention of rehearsing and preparing for a performance."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 206,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from searching for a dance studio to actively practicing dance routines, showing advancement in their journey."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 206,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has been actively practicing dance routines, suggesting advancement in their dance activities since the older statement about needing a suitable dance floor."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 206,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement reflects ongoing practice and motivation in dance, which complements the excitement expressed in the older statement about an upcoming competition."
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 206,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement about practicing dance routines complements the older statement about running a studio and helping students, showing continued engagement with dance."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 206,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has been actively practicing dance routines, showing advancement in their goal of turning their dancing passion into a business."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 206,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has continued to work towards their dance goals, building on their earlier commitment to their dreams and hard work."
+    },
+    {
+      "timeline": 5,
+      "old": 125,
+      "new": 206,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement reflects the person's ongoing engagement with dance, which complements their earlier motivation from teaching dance to students."
+    },
+    {
+      "timeline": 5,
+      "old": 148,
+      "new": 206,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement reflects the person's ongoing engagement with dance, which complements their previous efforts to promote dance through their studio and events."
+    },
+    {
+      "timeline": 5,
+      "old": 152,
+      "new": 206,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement about practicing dance routines complements the older statement about the upcoming dance performances without contradicting or replacing it."
+    },
+    {
+      "timeline": 5,
+      "old": 162,
+      "new": 206,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "Both statements reflect the person's engagement with dance, with the newer statement adding personal practice to the ongoing business venture mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 164,
+      "new": 206,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps to practice dance routines, showing advancement in their pursuit of what they love after losing their job."
+    },
+    {
+      "timeline": 5,
+      "old": 170,
+      "new": 206,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement about practicing dance routines complements the older statement about the importance of dance in their life without contradicting or replacing it."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to start a dance studio has advanced to the preparation stage."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to start a dance studio has advanced to a stage of preparation."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates an increased commitment to dance, suggesting that the plans mentioned in the older statement have advanced."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the search for a dance studio has progressed to the preparation phase, showing advancement in the plan."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's preparations for the dance studio have advanced since the older statement about the importance of the studio's features."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates an increased commitment to dance preparation, suggesting growth from the earlier excitement about the upcoming competition."
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's involvement with their dance studio has intensified since the older statement, suggesting growth in their commitment and preparation."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's plans for their dance studio have advanced since expressing their determination to turn their dancing passion into a business."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's efforts towards their dance studio have intensified since the older statement, showing advancement in their plans."
+    },
+    {
+      "timeline": 5,
+      "old": 125,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates an increased commitment to the dance studio, building on the motivation expressed in the older statement about helping students succeed."
+    },
+    {
+      "timeline": 5,
+      "old": 148,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates an increased level of preparation and commitment to the dance studio, building on the previous efforts mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 152,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is now more focused on their dance studio, suggesting an advancement in their involvement since the older statement about the performances."
+    },
+    {
+      "timeline": 5,
+      "old": 162,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's preparations for the dance studio have intensified since the older statement, showing advancement in their plans."
+    },
+    {
+      "timeline": 5,
+      "old": 164,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's preparations for the dance studio have intensified since the older statement, showing advancement in their plans."
+    },
+    {
+      "timeline": 5,
+      "old": 170,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's involvement with their dance studio has intensified since the older statement, showing advancement in their commitment to dance."
+    },
+    {
+      "timeline": 5,
+      "old": 190,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates an increased level of preparation for the dance studio, suggesting advancement from the previous status."
+    },
+    {
+      "timeline": 5,
+      "old": 192,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively preparing for their dance studio, showing advancement from the initial plan of starting it."
+    },
+    {
+      "timeline": 5,
+      "old": 198,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively preparing for their dance studio, suggesting advancement in their plans since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 202,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's efforts towards the dance studio have intensified since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 206,
+      "new": 233,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates an advancement in the person's commitment to dance, building on their previous practice."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the successful opening and operation of the dance studio mentioned in the older statement, indicating advancement in the plan."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the successful opening of the dance studio mentioned in the older statement, indicating that the plan has moved forward."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the advancement of the person's dance activities from rehearsing with a small group to opening a dance studio and working with young dancers."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the search for a dance studio location has progressed to successfully opening and operating the studio."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the advancement of the dance studio project from planning and considerations about the space to actually opening and operating it, highlighting the positive experiences gained."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the person's growth in the dance community, transitioning from preparing for a competition to opening a dance studio and mentoring young dancers."
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing development and positive experiences of running the dance studio, building on the fulfillment expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the successful advancement of the person's plan to turn their dancing passion into a business by opening a dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the advancement of the person's plans, showing that they have opened the dance studio and are actively working with young dancers since the older statement expressed their commitment to starting the studio."
+    },
+    {
+      "timeline": 5,
+      "old": 125,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing development of the dance studio and the continued success and inspiration derived from working with young dancers, building on the motivation expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 148,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing development and positive experiences at the dance studio since the older statement, indicating growth and continued engagement with the dancers."
+    },
+    {
+      "timeline": 5,
+      "old": 152,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing development and positive experiences in the dance studio since the initial announcement of performances."
+    },
+    {
+      "timeline": 5,
+      "old": 162,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing development and positive experiences of running the dance studio since the older statement about starting the business."
+    },
+    {
+      "timeline": 5,
+      "old": 164,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the advancement of the person's journey from starting the dance studio to actively engaging with young dancers and creating a supportive environment."
+    },
+    {
+      "timeline": 5,
+      "old": 170,
+      "new": 235,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "Both statements express a love for dance and the importance of the dance studio, with the newer statement building on the experience of running the studio and working with young dancers."
+    },
+    {
+      "timeline": 5,
+      "old": 190,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio project has advanced to the point of opening and actively working with dancers, building on the previous update about working on the studio."
+    },
+    {
+      "timeline": 5,
+      "old": 192,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the successful establishment and positive experiences of the dance studio, indicating progress from the initial plan to start the business."
+    },
+    {
+      "timeline": 5,
+      "old": 198,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing development and positive experiences in running the dance studio since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 202,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio has opened and is actively inspiring young dancers, showing advancement from the initial plan mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 206,
+      "new": 235,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the advancement of the person's involvement in dance from practicing routines to opening a dance studio and working with young dancers."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps to promote their dance studio by sharing videos, showing advancement from their initial plan to start the studio."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps towards their goal of starting a dance studio by promoting their dance videos on social media, showing advancement in their plans."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps to promote their dance projects on social media, building on their earlier plans to perform at a festival."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from searching for a dance studio location to actively promoting their dance videos on social media, indicating advancement in their journey."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps to promote their dance activities on social media, building on their earlier focus on finding a suitable dance space."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps to promote their dancing skills on social media since preparing for the dance competition mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps to enhance their studio's visibility through social media, building on their earlier enthusiasm for running the studio and helping dancers."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows advancement in the person's plan to turn their dancing passion into a business by actively engaging with social media and sharing dance videos."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows advancement in the person's efforts towards their dance studio and business ventures by implementing social media strategies, building on the commitment expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 125,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken action based on the motivation and support mentioned in the older statement, showing advancement in their social media engagement with dance videos."
+    },
+    {
+      "timeline": 5,
+      "old": 148,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the efforts to enhance social media presence have progressed to posting dance videos, which is a continuation of the plans mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 152,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps to promote their dance activities on social media, building on the excitement from the performances mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 162,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps to promote their dance business through social media, building on their earlier commitment to developing their dance studio and teaching."
+    },
+    {
+      "timeline": 5,
+      "old": 164,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps to promote their dance videos on social media, building on their earlier determination to pursue their passion after losing their job."
+    },
+    {
+      "timeline": 5,
+      "old": 170,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows that the person has taken action based on their previous feelings about dance, indicating growth and development in their engagement with it."
+    },
+    {
+      "timeline": 5,
+      "old": 190,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps to promote their dance studio through social media, showing advancement from their previous efforts."
+    },
+    {
+      "timeline": 5,
+      "old": 192,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows advancement in the person's journey of starting their dance studio by actively promoting it on social media."
+    },
+    {
+      "timeline": 5,
+      "old": 198,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps to promote their dance studio by sharing videos, building on their previous passion for dance and teaching."
+    },
+    {
+      "timeline": 5,
+      "old": 202,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken action based on the advice received, showing advancement in their plans for the dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 206,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken action by posting dance videos on social media, building on their earlier practice of dance routines."
+    },
+    {
+      "timeline": 5,
+      "old": 233,
+      "new": 258,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken action based on their preparation for the dance studio, showing advancement in their efforts."
+    },
+    {
+      "timeline": 5,
+      "old": 235,
+      "new": 258,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows advancement in the plan to promote the dance studio through social media, building on the inspiration and commitment expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to open a dance studio is still in progress, building on the initial announcement of starting one."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to open a dance studio is still in progress since the older statement expressed the desire to start one."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a continued pursuit of a goal related to dance, building on the previous involvement in dance projects."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the search for a dance studio has progressed to the point of actively working on opening one."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to open a dance studio is still ongoing, suggesting advancement from the initial considerations mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from preparing for a dance competition to working on opening a dance studio, indicating advancement in their dance-related goals."
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 276,
+      "previous_status": false,
+      "label": "CHANGE",
+      "reason": "The older statement indicates that the person is running a dance studio, while the newer statement suggests they are still in the process of opening one, indicating a shift in status.",
+      "first_label": "CHANGE",
+      "verified": true,
+      "quote": "Still working on opening a dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively working on their plan to open a dance studio, showing advancement from their previous goal of turning their dancing passion into a business."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is still working towards opening the dance studio, showing advancement in their plans since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 125,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to open a dance studio is still ongoing, showing advancement from the previous motivation expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 148,
+      "new": 276,
+      "previous_status": false,
+      "label": "CHANGE",
+      "reason": "The newer statement indicates that the plan to open a dance studio is still ongoing, suggesting that the previous accomplishments mentioned are no longer relevant or have not been achieved.",
+      "first_label": "CHANGE",
+      "verified": true,
+      "quote": "Still working on opening a dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 152,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to open a dance studio is still ongoing, suggesting advancement from the previous involvement in performances."
+    },
+    {
+      "timeline": 5,
+      "old": 162,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to open a dance studio is still ongoing, suggesting advancement from the initial excitement about the students and the studio."
+    },
+    {
+      "timeline": 5,
+      "old": 164,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing efforts towards opening the dance studio, building on the determination expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 170,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to open a dance studio is still ongoing, showing advancement from the previous expression of enjoyment in dance and the intention to have a studio."
+    },
+    {
+      "timeline": 5,
+      "old": 190,
+      "new": 276,
+      "previous_status": false,
+      "label": "SAME",
+      "reason": "Both statements indicate that the person is still working on opening a dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 192,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to open a dance studio is still in progress since the older statement expressed the intention to start one."
+    },
+    {
+      "timeline": 5,
+      "old": 198,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to open a dance studio is still in progress, whereas the older statement claimed that the person was already living their dream by having a dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 202,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing efforts towards opening the dance studio, suggesting advancement from the previous update."
+    },
+    {
+      "timeline": 5,
+      "old": 206,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is still pursuing their goal of opening a dance studio, building on their previous practice of dance routines."
+    },
+    {
+      "timeline": 5,
+      "old": 233,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is still working towards opening the dance studio, suggesting advancement from the initial preparation mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 235,
+      "new": 276,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the process of opening the dance studio is still ongoing, suggesting movement forward from the previous statement."
+    },
+    {
+      "timeline": 5,
+      "old": 258,
+      "new": 276,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is still pursuing their goal of opening a dance studio, building on their previous engagement with social media and dance videos."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio plan has advanced to the stage of seeking marketing strategies, showing development from the initial idea."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively seeking help to market their dance studio, showing that their plan to start the studio has advanced since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 344,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement discusses marketing strategies for the dance studio, which complements the older statement about rehearsing and performing with dancers without contradicting or replacing it."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the search for a dance studio location has progressed to the point of needing marketing strategies, suggesting that a location has likely been found."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a progression from discussing the physical space of the dance studio to seeking marketing strategies for promoting it."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from preparing for a dance competition to seeking marketing strategies for their dance studio, indicating growth in their involvement in the dance community."
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a progression in the dance studio's development, focusing on marketing strategies to reach a target audience, building on the fulfillment expressed in the older statement about running the studio."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved forward from their initial plan of starting a dance business to actively seeking marketing strategies for their dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a progression in the person's journey, as they are now seeking marketing strategies to further develop their dance studio and business ventures."
+    },
+    {
+      "timeline": 5,
+      "old": 125,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a progression in the person's goals, moving from celebrating student success to seeking marketing strategies to further enhance the dance studio's reach."
+    },
+    {
+      "timeline": 5,
+      "old": 148,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a continued effort to improve the dance studio's marketing, building on the previous initiatives mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 152,
+      "new": 344,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement seeks marketing advice for the dance studio, which aligns with the ongoing activities mentioned in the older statement about performances and creativity."
+    },
+    {
+      "timeline": 5,
+      "old": 162,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from establishing their dance studio and teaching students to seeking marketing strategies to grow their business."
+    },
+    {
+      "timeline": 5,
+      "old": 164,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from establishing their dance studio after losing their job to seeking marketing strategies to grow the business."
+    },
+    {
+      "timeline": 5,
+      "old": 170,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a shift from personal enjoyment of dance to seeking assistance in promoting the dance studio, showing advancement in their professional journey."
+    },
+    {
+      "timeline": 5,
+      "old": 190,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio project has advanced to the stage of needing marketing strategies, showing development from just working on it."
+    },
+    {
+      "timeline": 5,
+      "old": 192,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from starting their dance studio to seeking marketing strategies to promote it, indicating advancement in their business journey."
+    },
+    {
+      "timeline": 5,
+      "old": 198,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a focus on marketing strategies to grow the dance studio, showing advancement in the business since the older statement about living the dream of owning it."
+    },
+    {
+      "timeline": 5,
+      "old": 202,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio project has advanced to the point where marketing strategies are now needed, building on the earlier mention of progress."
+    },
+    {
+      "timeline": 5,
+      "old": 206,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from practicing dance routines to seeking marketing strategies for their dance studio, indicating a progression in their involvement with dance."
+    },
+    {
+      "timeline": 5,
+      "old": 233,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively seeking help to advance their marketing strategies for the dance studio, showing progress from simply prepping for it."
+    },
+    {
+      "timeline": 5,
+      "old": 235,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a progression in the dance studio's development, focusing on marketing strategies after establishing the studio as a supportive environment for dancers."
+    },
+    {
+      "timeline": 5,
+      "old": 258,
+      "new": 344,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a progression in the person's efforts to promote their dance videos by seeking further marketing strategies for their dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 276,
+      "new": 344,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively seeking marketing strategies to promote the dance studio, showing advancement in their plans since the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 346,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio plan has advanced to the point of seeking help with content creation and social media management."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 346,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a step forward in the plan to start a dance studio by seeking help with content and social media management."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 346,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expresses a desire for collaboration in managing social media for the dance studio, which complements the ongoing dance projects mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 346,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the search for a dance studio location has progressed to the point of seeking help with content and social media management, suggesting that a location has likely been found."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 346,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a move forward in the plan to establish the dance studio by seeking help with content and social media management, building on the earlier discussion about the studio's location and features."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 346,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expresses a desire for collaboration in content creation while the older statement focuses on preparing for a dance competition, allowing both to coexist without conflict."
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 346,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expresses a desire for collaboration in enhancing the dance studio while still reflecting the enthusiasm for running the studio mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 346,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a step forward in the person's journey to turn their dancing passion into a business by seeking help with content and social media for their dance studio."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 346,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a step forward in developing the dance studio by seeking help with content and social media management, building on the commitment expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 125,
+      "new": 346,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expresses a desire for collaboration in managing social media, which complements the older statement about motivating students and supporting their goals in dance."
+    },
+    {
+      "timeline": 5,
+      "old": 148,
+      "new": 346,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expresses a desire for collaboration on social media content, building on the efforts mentioned in the older statement without contradicting or replacing them."
+    },
+    {
+      "timeline": 5,
+      "old": 152,
+      "new": 346,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a progression from organizing a performance event to seeking assistance in promoting the dance studio through social media."
+    },
+    {
+      "timeline": 5,
+      "old": 162,
+      "new": 346,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a development in the dance studio venture, as the person is now seeking help to enhance their social media presence, suggesting growth in their business efforts."
+    },
+    {
+      "timeline": 5,
+      "old": 164,
+      "new": 346,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from determination to actively seeking help to enhance their dance studio, showing progress in their efforts."
+    },
+    {
+      "timeline": 5,
+      "old": 170,
+      "new": 346,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expresses a desire to enhance the dance studio experience, building on the positive feelings about dance shared in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 190,
+      "new": 346,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a progression in the dance studio project, moving from just working on it to seeking help for content creation and social media management."
+    },
+    {
+      "timeline": 5,
+      "old": 192,
+      "new": 346,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is now seeking assistance to enhance their dance studio, showing advancement from the initial idea of starting the business."
+    },
+    {
+      "timeline": 5,
+      "old": 198,
+      "new": 346,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expresses a desire for collaboration in enhancing the dance studio, which aligns with the older statement about owning and teaching at the studio."
+    },
+    {
+      "timeline": 5,
+      "old": 202,
+      "new": 346,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a further development in the dance studio project, specifically seeking help with content creation and social media management."
+    },
+    {
+      "timeline": 5,
+      "old": 206,
+      "new": 346,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement builds on the older one by expressing a desire to collaborate on social media content related to dance, while still acknowledging the ongoing practice of dance routines."
+    },
+    {
+      "timeline": 5,
+      "old": 233,
+      "new": 346,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a progression from simply prepping for the dance studio to actively seeking help to enhance its social media presence."
+    },
+    {
+      "timeline": 5,
+      "old": 235,
+      "new": 346,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a step forward in developing the dance studio by seeking help with content and social media management, building on the earlier commitment to support and encourage dancers."
+    },
+    {
+      "timeline": 5,
+      "old": 258,
+      "new": 346,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a further development in the person's engagement with social media and dance content creation, building on the initial action mentioned in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 276,
+      "new": 346,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to open a dance studio has advanced to seeking help with content and social media management."
+    },
+    {
+      "timeline": 5,
+      "old": 3,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio is moving closer to opening and welcoming dancers, building on the initial plan to start the studio."
+    },
+    {
+      "timeline": 5,
+      "old": 5,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to start a dance studio has advanced towards the goal of welcoming dancers."
+    },
+    {
+      "timeline": 5,
+      "old": 23,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a development in the person's plans, moving from rehearsing with a small group to preparing to welcome dancers of all ages and backgrounds at their studio."
+    },
+    {
+      "timeline": 5,
+      "old": 66,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the search for a dance studio has progressed to the point of anticipation for welcoming dancers, following the determination expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 33,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan for the studio has advanced from the initial considerations of location and features to the anticipation of welcoming dancers."
+    },
+    {
+      "timeline": 5,
+      "old": 70,
+      "new": 361,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "Both statements reflect the person's involvement in dance, with the older one focusing on an upcoming competition and the newer one expressing excitement about future opportunities at their studio."
+    },
+    {
+      "timeline": 5,
+      "old": 80,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the studio is not yet welcoming dancers, suggesting that the plan to do so has moved forward since the older statement where the studio is already running."
+    },
+    {
+      "timeline": 5,
+      "old": 86,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's plan to turn their dancing passion into a business has advanced to the point of preparing to welcome dancers to their studio."
+    },
+    {
+      "timeline": 5,
+      "old": 98,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's plans for their dance studio have advanced towards the goal of welcoming dancers, building on the commitment expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 125,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's plans for their studio have advanced since the older statement, reflecting ongoing motivation and future aspirations."
+    },
+    {
+      "timeline": 5,
+      "old": 148,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the studio is moving towards welcoming dancers of all ages and backgrounds, building on the previous efforts to expand its social media presence and host events."
+    },
+    {
+      "timeline": 5,
+      "old": 152,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio is evolving to welcome a broader range of dancers, building on the previous event's success."
+    },
+    {
+      "timeline": 5,
+      "old": 162,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the studio is moving towards welcoming dancers of all ages and backgrounds, showing advancement from the initial focus on training students."
+    },
+    {
+      "timeline": 5,
+      "old": 164,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the advancement of the person's plans for the studio, indicating they are now motivated and looking forward to welcoming dancers, building on the determination expressed in the older statement."
+    },
+    {
+      "timeline": 5,
+      "old": 170,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's studio is moving forward to welcome dancers of all ages and backgrounds, building on the joy expressed in the older statement about their dance experiences."
+    },
+    {
+      "timeline": 5,
+      "old": 190,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio project has advanced towards the goal of welcoming dancers, building on the previous update about working on the studio."
+    },
+    {
+      "timeline": 5,
+      "old": 192,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's plan to start a dance studio has advanced to the point of anticipating welcoming dancers, showing progress from the initial idea."
+    },
+    {
+      "timeline": 5,
+      "old": 198,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio is moving closer to opening and welcoming dancers, building on the earlier statement about having the studio."
+    },
+    {
+      "timeline": 5,
+      "old": 202,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio project has advanced from planning to the anticipation of welcoming dancers."
+    },
+    {
+      "timeline": 5,
+      "old": 206,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a development in the person's dance journey, moving from practicing routines to anticipating the opening of a studio for dancers."
+    },
+    {
+      "timeline": 5,
+      "old": 233,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's preparations for the dance studio have advanced towards the goal of welcoming dancers."
+    },
+    {
+      "timeline": 5,
+      "old": 235,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the dance studio is moving towards welcoming dancers of all ages and backgrounds, building on the earlier commitment to support and encourage young dancers."
+    },
+    {
+      "timeline": 5,
+      "old": 258,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing development of the person's dance journey and plans for their studio, building on the initial excitement from posting dance videos."
+    },
+    {
+      "timeline": 5,
+      "old": 276,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan to open a dance studio is moving forward with motivation and anticipation for welcoming dancers."
+    },
+    {
+      "timeline": 5,
+      "old": 344,
+      "new": 361,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a positive development in the person's journey towards opening the dance studio, indicating motivation and anticipation for welcoming dancers, building on the earlier request for marketing advice."
+    },
+    {
+      "timeline": 5,
+      "old": 346,
+      "new": 361,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the advancement of the plan to create a welcoming dance studio, indicating that the initial efforts are leading towards a successful outcome."
+    },
+    {
+      "timeline": 6,
+      "old": 1,
+      "new": 60,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has actively been working on their business since losing their job, showing advancement in their plans."
+    },
+    {
+      "timeline": 6,
+      "old": 1,
+      "new": 68,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The person has moved from losing their job to actively working on their own business while also pursuing their passion for dancing."
+    },
+    {
+      "timeline": 6,
+      "old": 1,
+      "new": 110,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the person's advancement from losing their job to actively pursuing their dream of starting a business."
+    },
+    {
+      "timeline": 6,
+      "old": 60,
+      "new": 110,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has transitioned from working on their business to actively living their dreams and facing new challenges, showing advancement in their situation."
+    },
+    {
+      "timeline": 6,
+      "old": 68,
+      "new": 110,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the person's journey from losing a job to starting a business, indicating advancement in their plans related to dancing and entrepreneurship."
+    },
+    {
+      "timeline": 6,
+      "old": 110,
+      "new": 138,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing development of the person's business and their positive outlook, indicating progress since losing their job."
+    },
+    {
+      "timeline": 6,
+      "old": 60,
+      "new": 138,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has made a decision to help their business grow, showing advancement from their earlier commitment to work hard despite obstacles."
+    },
+    {
+      "timeline": 6,
+      "old": 68,
+      "new": 138,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has made a tough decision to help their business grow, suggesting advancement in their entrepreneurial journey since the older statement about working on their business."
+    },
+    {
+      "timeline": 6,
+      "old": 110,
+      "new": 176,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows advancement in the person's business journey, highlighting participation in a fair and gaining leads, building on the initial struggle mentioned in the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 60,
+      "new": 176,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's efforts in their business have progressed to showcasing their studio at a fair and gaining potential leads."
+    },
+    {
+      "timeline": 6,
+      "old": 68,
+      "new": 176,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates advancement in the person's business efforts and experiences since the older statement about working on their business and dance routines."
+    },
+    {
+      "timeline": 6,
+      "old": 138,
+      "new": 176,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects advancements in the person's business efforts, indicating they have taken steps to promote their studio and gained potential leads since the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 110,
+      "new": 180,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement acknowledges the challenges of running a business while also expressing a need for motivation, which aligns with the older statement about facing challenges in starting a business."
+    },
+    {
+      "timeline": 6,
+      "old": 60,
+      "new": 180,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement acknowledges the challenges faced in business while also expressing admiration for perseverance, which complements the older statement about working hard despite obstacles."
+    },
+    {
+      "timeline": 6,
+      "old": 68,
+      "new": 180,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is still working on their business but is facing challenges, showing a progression from initial enthusiasm to dealing with setbacks."
+    },
+    {
+      "timeline": 6,
+      "old": 138,
+      "new": 180,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement acknowledges the challenges faced in business while also expressing admiration for taking risks, which complements the older statement's focus on growth and positivity despite difficulties."
+    },
+    {
+      "timeline": 6,
+      "old": 110,
+      "new": 217,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively seeking knowledge to improve their business, showing advancement from their initial struggles."
+    },
+    {
+      "timeline": 6,
+      "old": 60,
+      "new": 217,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively seeking knowledge to improve their business, showing advancement from their earlier determination to succeed despite obstacles."
+    },
+    {
+      "timeline": 6,
+      "old": 68,
+      "new": 217,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "Both statements reflect the person's ongoing commitment to their business and passion for dancing, with the newer statement adding their current reading for business improvement without negating their previous activities."
+    },
+    {
+      "timeline": 6,
+      "old": 138,
+      "new": 217,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement adds information about the person's current efforts to improve their business while still acknowledging the challenges mentioned in the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 176,
+      "new": 217,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement about reading \"The Lean Startup\" adds to the older experience of attending a fair by indicating a desire to improve and gain more knowledge for the business."
+    },
+    {
+      "timeline": 6,
+      "old": 180,
+      "new": 217,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively seeking solutions and improving their situation by reading a book for business advice, building on their previous struggle with motivation."
+    },
+    {
+      "timeline": 6,
+      "old": 110,
+      "new": 219,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the person's ongoing development in building their business, indicating they are actively applying lessons learned since losing their job."
+    },
+    {
+      "timeline": 6,
+      "old": 60,
+      "new": 219,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects an evolution in the person's approach to their business, indicating they are now focusing on efficiency and customer feedback, building on their earlier determination to succeed despite obstacles."
+    },
+    {
+      "timeline": 6,
+      "old": 68,
+      "new": 219,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a shift towards building a focused business, suggesting advancement from the earlier focus on dance routines to a broader entrepreneurial goal."
+    },
+    {
+      "timeline": 6,
+      "old": 138,
+      "new": 219,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects an evolution in the person's approach to business, indicating they are now focusing on building efficiency and adapting based on customer feedback, which builds on their earlier commitment to growth."
+    },
+    {
+      "timeline": 6,
+      "old": 176,
+      "new": 219,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a development in the person's business approach by emphasizing the importance of customer feedback, building on the earlier realization of the challenges in running a successful business."
+    },
+    {
+      "timeline": 6,
+      "old": 180,
+      "new": 219,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a shift from seeking motivation during setbacks to actively implementing strategies for building a business based on customer feedback."
+    },
+    {
+      "timeline": 6,
+      "old": 110,
+      "new": 223,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has advanced from starting their business to actively working on a business plan and seeking investors."
+    },
+    {
+      "timeline": 6,
+      "old": 60,
+      "new": 223,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the business plan is being finalized and investors are being sought, showing advancement from the initial effort mentioned in the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 68,
+      "new": 223,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates advancement in the business plan and pursuit of investors, building on the earlier mention of working on the business."
+    },
+    {
+      "timeline": 6,
+      "old": 138,
+      "new": 223,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from handling changes in their business to actively wrapping up a business plan and seeking investors, showing advancement in their entrepreneurial journey."
+    },
+    {
+      "timeline": 6,
+      "old": 176,
+      "new": 223,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the business plan has advanced from showcasing the studio to actively seeking investors, reflecting growth in the business endeavor."
+    },
+    {
+      "timeline": 6,
+      "old": 180,
+      "new": 223,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from seeking motivation for their business project to actively wrapping up their business plan and seeking investors."
+    },
+    {
+      "timeline": 6,
+      "old": 110,
+      "new": 256,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has made progress in promoting their business since starting it, reflecting ongoing development from the initial challenges mentioned in the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 60,
+      "new": 256,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's efforts in promoting their business have advanced since the older statement about working hard on it."
+    },
+    {
+      "timeline": 6,
+      "old": 68,
+      "new": 256,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from working on their business to actively promoting it, showing advancement in their entrepreneurial efforts."
+    },
+    {
+      "timeline": 6,
+      "old": 138,
+      "new": 256,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has continued to promote their business, showing advancement from their earlier acknowledgment of handling changes and aiming for growth."
+    },
+    {
+      "timeline": 6,
+      "old": 176,
+      "new": 256,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has continued to promote their business and is seeking further advice, showing advancement from their previous experience at the fair."
+    },
+    {
+      "timeline": 6,
+      "old": 180,
+      "new": 256,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from seeking advice on motivation to actively promoting their business, showing advancement in their business project."
+    },
+    {
+      "timeline": 6,
+      "old": 217,
+      "new": 256,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from reading about starting a business to actively promoting their business, indicating advancement in their entrepreneurial journey."
+    },
+    {
+      "timeline": 6,
+      "old": 219,
+      "new": 256,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from planning to actively promoting their business, showing advancement in their efforts."
+    },
+    {
+      "timeline": 6,
+      "old": 223,
+      "new": 256,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The person has moved from wrapping up the business plan and seeking investors to actively promoting the business, indicating advancement in their entrepreneurial journey."
+    },
+    {
+      "timeline": 6,
+      "old": 110,
+      "new": 274,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing efforts in the business, suggesting advancement since the initial challenges mentioned in the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 60,
+      "new": 274,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates continued work on the business and suggests a development in the person's journey, including a trip to clear their mind."
+    },
+    {
+      "timeline": 6,
+      "old": 68,
+      "new": 274,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing work on the business, suggesting progress since the older statement mentioned working on it as well."
+    },
+    {
+      "timeline": 6,
+      "old": 138,
+      "new": 274,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing work on the business, suggesting that the initial challenges mentioned have progressed to a point where the person is actively managing their business and taking time for personal rejuvenation."
+    },
+    {
+      "timeline": 6,
+      "old": 176,
+      "new": 274,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing efforts in the business, suggesting that the situation has continued to develop since the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 180,
+      "new": 274,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is still working on their business project, suggesting they have continued to pursue their goals since the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 217,
+      "new": 274,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is still working on their business, suggesting they have continued their efforts since reading \"The Lean Startup.\""
+    },
+    {
+      "timeline": 6,
+      "old": 219,
+      "new": 274,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is still working on their business, suggesting advancement from their initial thoughts about building it."
+    },
+    {
+      "timeline": 6,
+      "old": 223,
+      "new": 274,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing work on the business, suggesting advancement from the initial stage of seeking investors."
+    },
+    {
+      "timeline": 6,
+      "old": 256,
+      "new": 274,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates ongoing work on the business and a personal trip, suggesting advancement in the situation since the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 110,
+      "new": 303,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects ongoing efforts and optimism about the business, indicating advancement from the initial challenges mentioned in the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 60,
+      "new": 303,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has faced challenges since losing their job but is still committed to their business, showing a progression in their situation and efforts."
+    },
+    {
+      "timeline": 6,
+      "old": 68,
+      "new": 303,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The person has transitioned from working on their business and dance routines to losing their job, indicating a significant shift in their situation.",
+      "first_label": "CHANGE",
+      "verified": false,
+      "quote": "NONE"
+    },
+    {
+      "timeline": 6,
+      "old": 138,
+      "new": 303,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a continuation of the plan to invest in the business, indicating that the situation has evolved from a tough decision to actively working on the business after losing a job."
+    },
+    {
+      "timeline": 6,
+      "old": 176,
+      "new": 303,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is now investing time in their business after previously showcasing it at a fair, showing a progression in their entrepreneurial journey."
+    },
+    {
+      "timeline": 6,
+      "old": 180,
+      "new": 303,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from seeking advice on motivation to actively investing time in their business after losing their job."
+    },
+    {
+      "timeline": 6,
+      "old": 217,
+      "new": 303,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from reading about starting a business to actively investing time in their own business after losing their job."
+    },
+    {
+      "timeline": 6,
+      "old": 219,
+      "new": 303,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from contemplating building a business to actively investing time in it after losing their job."
+    },
+    {
+      "timeline": 6,
+      "old": 223,
+      "new": 303,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has transitioned from preparing a business plan to actively investing time in their business after losing their job."
+    },
+    {
+      "timeline": 6,
+      "old": 256,
+      "new": 303,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is continuing to invest time in their business after initially promoting it, showing advancement in their situation."
+    },
+    {
+      "timeline": 6,
+      "old": 274,
+      "new": 303,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a shift from losing a job to focusing on building a business, showing advancement in their situation."
+    },
+    {
+      "timeline": 6,
+      "old": 110,
+      "new": 315,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing journey of starting the business, indicating growth and development since the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 60,
+      "new": 315,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the person's continued efforts and growth in their business journey after losing their job, indicating advancement from planning to actively pursuing their business dreams."
+    },
+    {
+      "timeline": 6,
+      "old": 68,
+      "new": 315,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The person has transitioned from working on dance routines to pursuing their business dreams after losing their job, indicating a shift in focus and circumstances.",
+      "first_label": "CHANGE",
+      "verified": false,
+      "quote": "NONE"
+    },
+    {
+      "timeline": 6,
+      "old": 138,
+      "new": 315,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a progression from dealing with challenges in business growth to actively pursuing business dreams and learning new skills after losing a job."
+    },
+    {
+      "timeline": 6,
+      "old": 176,
+      "new": 315,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a progression from showcasing the studio at a fair to actively pursuing business dreams and learning new skills to advance the business."
+    },
+    {
+      "timeline": 6,
+      "old": 180,
+      "new": 315,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a progression from seeking motivation during setbacks to actively pursuing business dreams and learning new skills after losing a job."
+    },
+    {
+      "timeline": 6,
+      "old": 217,
+      "new": 315,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from reading about starting a business to actively pursuing their business dreams and learning necessary skills."
+    },
+    {
+      "timeline": 6,
+      "old": 219,
+      "new": 315,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the advancement of the person's business journey from planning to actively pursuing their entrepreneurial dreams after losing their job."
+    },
+    {
+      "timeline": 6,
+      "old": 223,
+      "new": 315,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from planning and seeking investors to actively pursuing their business dreams and learning necessary skills after losing their job."
+    },
+    {
+      "timeline": 6,
+      "old": 256,
+      "new": 315,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has transitioned from promoting their business to actively learning marketing tools to advance their business, showing development in their entrepreneurial journey."
+    },
+    {
+      "timeline": 6,
+      "old": 274,
+      "new": 315,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has transitioned from losing their job to actively pursuing their business dreams, showing advancement in their situation."
+    },
+    {
+      "timeline": 6,
+      "old": 303,
+      "new": 315,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a progression from simply coping with job loss to actively pursuing business goals and learning new skills to advance that business."
+    },
+    {
+      "timeline": 6,
+      "old": 110,
+      "new": 336,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing journey of running a business, indicating that the person has moved from starting their business to actively managing it while still facing challenges."
+    },
+    {
+      "timeline": 6,
+      "old": 60,
+      "new": 336,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is still working on their business and has progressed to seeking advice on overcoming challenges."
+    },
+    {
+      "timeline": 6,
+      "old": 68,
+      "new": 336,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has progressed from working on their business to actively running it, while still expressing their passion for dancing."
+    },
+    {
+      "timeline": 6,
+      "old": 138,
+      "new": 336,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects ongoing challenges and determination in running the business, indicating that the situation has evolved since the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 176,
+      "new": 336,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing challenges and determination in running the business, indicating a progression from showcasing the studio to actively managing it."
+    },
+    {
+      "timeline": 6,
+      "old": 180,
+      "new": 336,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from seeking advice on motivation to actively running their business and seeking advice on tackling challenges."
+    },
+    {
+      "timeline": 6,
+      "old": 217,
+      "new": 336,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from reading about starting a business to actively running one and seeking advice on overcoming challenges."
+    },
+    {
+      "timeline": 6,
+      "old": 219,
+      "new": 336,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing journey of running a business, indicating that the initial thoughts about building a focused business have evolved into actively facing challenges and seeking advice."
+    },
+    {
+      "timeline": 6,
+      "old": 223,
+      "new": 336,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from planning and seeking investors to actively running the business and facing challenges."
+    },
+    {
+      "timeline": 6,
+      "old": 256,
+      "new": 336,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects an ongoing journey in business, indicating that the person has continued to face challenges and seek advice since the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 274,
+      "new": 336,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from working on their business to actively running it and facing challenges."
+    },
+    {
+      "timeline": 6,
+      "old": 303,
+      "new": 336,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from losing their job to actively running a business, showing advancement in their situation."
+    },
+    {
+      "timeline": 6,
+      "old": 315,
+      "new": 336,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing journey of running a business, indicating that the person has moved from learning tools to actively managing the business and seeking advice on overcoming challenges."
+    },
+    {
+      "timeline": 6,
+      "old": 110,
+      "new": 342,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively improving their business plan and expanding their efforts, showing advancement from their initial struggles mentioned in the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 60,
+      "new": 342,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has advanced their business efforts by refining their business plan and developing an online platform since the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 68,
+      "new": 342,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates advancements in the person's business plans and projects related to dancing, building on the passion expressed in the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 138,
+      "new": 342,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps to improve their business plan and pitch, building on the positive outlook expressed in the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 176,
+      "new": 342,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively improving their business plan and expanding their efforts, building on the experiences and insights gained from the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 180,
+      "new": 342,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows that the person has taken steps to improve their business plan and is actively working on a project, indicating advancement from their previous struggles."
+    },
+    {
+      "timeline": 6,
+      "old": 217,
+      "new": 342,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps to improve their business plan and pitch, building on their earlier intention to seek tips from \"The Lean Startup.\""
+    },
+    {
+      "timeline": 6,
+      "old": 219,
+      "new": 342,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps to improve their business plan and pitch, building on the ideas discussed in the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 223,
+      "new": 342,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has made advancements in their business plan and is actively working on additional elements to attract investors."
+    },
+    {
+      "timeline": 6,
+      "old": 256,
+      "new": 342,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps to improve their business plan and marketing efforts since the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 274,
+      "new": 342,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has advanced their business efforts by refining their plan and developing an online platform since the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 303,
+      "new": 342,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps to improve their business plan and pitch, showing advancement from their previous situation of struggling after losing their job."
+    },
+    {
+      "timeline": 6,
+      "old": 315,
+      "new": 342,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has advanced their business efforts by refining their business plan and developing an online platform since the initial decision to pursue their business dreams."
+    }
+  ],
+  "verification": {
+    "checked": 13,
+    "confirmed": 5
+  },
+  "new_llm_calls": 0,
+  "known_cases": [
+    {
+      "old_text": "on the hunt for the ideal spot for my dance studio",
+      "new_text": "I love running my own studio",
+      "expected": [
+        "PROGRESS"
+      ],
+      "result": "found",
+      "labels_into_newer": [
+        "PROGRESS"
+      ]
+    },
+    {
+      "old_text": "I love running my own studio",
+      "new_text": "Still working on opening a dance studio",
+      "expected": [
+        "CHANGE",
+        "CONTRADICTION"
+      ],
+      "result": "found",
+      "labels_into_newer": [
+        "CHANGE",
+        "PROGRESS",
+        "SAME"
+      ]
+    },
+    {
+      "old_text": "lost my job at Door Dash",
+      "new_text": "ad campaign for my clothing store",
+      "expected": [
+        "CHANGE",
+        "PROGRESS"
+      ],
+      "result": "different topics"
+    }
+  ]
+}

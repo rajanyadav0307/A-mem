@@ -1,0 +1,879 @@
+{
+  "config": {
+    "topic_threshold": 0.78,
+    "status_duplicate": 0.85,
+    "max_compare": null,
+    "workers": 8
+  },
+  "raw_notes": 419,
+  "state_notes": 52,
+  "timelines": [
+    {
+      "speaker": "Caroline",
+      "topic": "Caroline's art show",
+      "notes": [
+        185,
+        303
+      ],
+      "dates": [
+        "17 July 2023",
+        "25 August 2023"
+      ],
+      "statuses": [
+        "planning for next month",
+        "planning for next month"
+      ]
+    },
+    {
+      "speaker": "Caroline",
+      "topic": "Caroline's painting activity",
+      "notes": [
+        275,
+        366
+      ],
+      "dates": [
+        "25 August 2023",
+        "13 October 2023"
+      ],
+      "statuses": [
+        "busy painting",
+        "trying out abstract stuff"
+      ]
+    },
+    {
+      "speaker": "Caroline",
+      "topic": "Caroline's adoption",
+      "notes": [
+        25,
+        27,
+        29,
+        31,
+        33,
+        143,
+        253,
+        354,
+        356,
+        404,
+        406
+      ],
+      "dates": [
+        "25 May 2023",
+        "25 May 2023",
+        "25 May 2023",
+        "25 May 2023",
+        "25 May 2023",
+        "15 July 2023",
+        "23 August 2023",
+        "13 October 2023",
+        "13 October 2023",
+        "22 October 2023",
+        "22 October 2023"
+      ],
+      "statuses": [
+        "researching adoption agencies",
+        "researching agencies",
+        "researching agencies",
+        "up for the challenge",
+        "planning to provide home",
+        "determined to adopt",
+        "applied to agencies",
+        "contacted mentor for advice",
+        "starting the process",
+        "passed interviews",
+        "hopes to adopt children"
+      ]
+    },
+    {
+      "speaker": "Caroline",
+      "topic": "Caroline's counseling career",
+      "notes": [
+        68,
+        70,
+        78,
+        94,
+        112,
+        114
+      ],
+      "dates": [
+        "27 June 2023",
+        "27 June 2023",
+        "3 July 2023",
+        "6 July 2023",
+        "12 July 2023",
+        "12 July 2023"
+      ],
+      "statuses": [
+        "looking into counseling",
+        "still figuring out details",
+        "still thinking about it",
+        "looking into counseling",
+        "looking into options",
+        "looking into options"
+      ]
+    },
+    {
+      "speaker": "Melanie",
+      "topic": "Melanie's pottery class",
+      "notes": [
+        79,
+        83,
+        87,
+        136,
+        233,
+        235,
+        274,
+        341,
+        361
+      ],
+      "dates": [
+        "3 July 2023",
+        "3 July 2023",
+        "3 July 2023",
+        "15 July 2023",
+        "17 August 2023",
+        "17 August 2023",
+        "25 August 2023",
+        "13 September 2023",
+        "13 October 2023"
+      ],
+      "statuses": [
+        "signed up for class",
+        "completed a project",
+        "starting a new activity",
+        "completed with kids",
+        "completed another project",
+        "completed a project",
+        "started a class",
+        "created and shared a photo",
+        "took a break from pottery"
+      ]
+    },
+    {
+      "speaker": "Melanie",
+      "topic": "Melanie's pets",
+      "notes": [
+        123,
+        256
+      ],
+      "dates": [
+        "12 July 2023",
+        "23 August 2023"
+      ],
+      "statuses": [
+        "owns a dog and cat",
+        "got another cat named Bailey"
+      ]
+    }
+  ],
+  "labels": {
+    "PROGRESS": 65,
+    "COMPATIBLE": 6,
+    "CHANGE": 5
+  },
+  "replaced": [
+    {
+      "older": 79,
+      "newer": 361,
+      "older_text": "Speaker Melaniesays : [Image: a photo of a person holding a frisbee in their hand] Wow, Caroline! That's great! I just signed up for a pottery class yesterday. It's like therapy for me, letting me express myself and get creative. Have you found any activities that make you feel the same way?",
+      "newer_text": "Speaker Melaniesays : Thanks for the tip, Caroline. Doing research and readying myself emotionally makes sense. I'll do that. BTW, recently I had a setback. Last month I got hurt and had to take a break from pottery, which I use for self-expression and peace.",
+      "valid_until": "13 October 2023"
+    },
+    {
+      "older": 235,
+      "newer": 361,
+      "older_text": "Speaker Melaniesays : [Image: a photo of a bowl with a colorful design on it] Here it is. Pretty proud of it! It was a great experience. Thoughts?",
+      "newer_text": "Speaker Melaniesays : Thanks for the tip, Caroline. Doing research and readying myself emotionally makes sense. I'll do that. BTW, recently I had a setback. Last month I got hurt and had to take a break from pottery, which I use for self-expression and peace.",
+      "valid_until": "13 October 2023"
+    },
+    {
+      "older": 136,
+      "newer": 361,
+      "older_text": "Speaker Melaniesays : [Image: a photography of a group of children making clay sculptures in a classroom] Hey Caroline, it's been super busy here. So much since we talked! Last Fri I finally took my kids to a pottery workshop. We all made our own pots, it was fun and therapeutic!",
+      "newer_text": "Speaker Melaniesays : Thanks for the tip, Caroline. Doing research and readying myself emotionally makes sense. I'll do that. BTW, recently I had a setback. Last month I got hurt and had to take a break from pottery, which I use for self-expression and peace.",
+      "valid_until": "13 October 2023"
+    },
+    {
+      "older": 274,
+      "newer": 361,
+      "older_text": "Speaker Melaniesays : Yeah, I made it in pottery class yesterday. I love it! Pottery's so relaxing and creative. Have you tried it yet?",
+      "newer_text": "Speaker Melaniesays : Thanks for the tip, Caroline. Doing research and readying myself emotionally makes sense. I'll do that. BTW, recently I had a setback. Last month I got hurt and had to take a break from pottery, which I use for self-expression and peace.",
+      "valid_until": "13 October 2023"
+    },
+    {
+      "older": 341,
+      "newer": 361,
+      "older_text": "Speaker Melaniesays : [Image: a photo of a group of bowls and a starfish on a white surface] Seven years now, and I've finally found my real muses: painting and pottery. It's so calming and satisfying. Check out my pottery creation in the pic!",
+      "newer_text": "Speaker Melaniesays : Thanks for the tip, Caroline. Doing research and readying myself emotionally makes sense. I'll do that. BTW, recently I had a setback. Last month I got hurt and had to take a break from pottery, which I use for self-expression and peace.",
+      "valid_until": "13 October 2023"
+    }
+  ],
+  "contradictions": [],
+  "pairs": [
+    {
+      "timeline": 0,
+      "old": 185,
+      "new": 303,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the plan for the LGBTQ art show is still in motion and happening next month, building on the excitement expressed in the older statement."
+    },
+    {
+      "timeline": 1,
+      "old": 275,
+      "new": 366,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expresses admiration for the painting mentioned in the older statement while also sharing the speaker's own artistic experiences, which complements rather than contradicts the earlier comment."
+    },
+    {
+      "timeline": 2,
+      "old": 25,
+      "new": 143,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's commitment to adopting has deepened and progressed after attending a council meeting, building on their earlier desire to create a loving home for children."
+    },
+    {
+      "timeline": 2,
+      "old": 29,
+      "new": 143,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a continued commitment to adoption, building on the earlier support for LGBTQ+ adoption initiatives."
+    },
+    {
+      "timeline": 2,
+      "old": 31,
+      "new": 143,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's journey towards adoption has advanced, showing increased determination and involvement since the older statement."
+    },
+    {
+      "timeline": 2,
+      "old": 33,
+      "new": 143,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a continued commitment to adopting and creating a loving home, building on the intention expressed in the older statement."
+    },
+    {
+      "timeline": 2,
+      "old": 25,
+      "new": 253,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken a significant step forward in their plan to adopt by applying to adoption agencies, building on their earlier desire to have a family."
+    },
+    {
+      "timeline": 2,
+      "old": 29,
+      "new": 253,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken actionable steps towards adoption since expressing support for LGBTQ+ adoption in the older statement."
+    },
+    {
+      "timeline": 2,
+      "old": 31,
+      "new": 253,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken concrete steps towards their goal of becoming a parent by applying to adoption agencies, building on their earlier expression of desire to create a family."
+    },
+    {
+      "timeline": 2,
+      "old": 33,
+      "new": 253,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken significant steps towards their goal of providing a loving home, moving from expressing intent to actively applying to adoption agencies."
+    },
+    {
+      "timeline": 2,
+      "old": 143,
+      "new": 253,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken a significant step forward in their journey towards adoption since expressing their determination to adopt in the older statement."
+    },
+    {
+      "timeline": 2,
+      "old": 25,
+      "new": 354,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps towards their goal of adoption by seeking advice, showing advancement in their plan to become a mom."
+    },
+    {
+      "timeline": 2,
+      "old": 29,
+      "new": 354,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from considering adoption to actively seeking advice and preparing to become a mom."
+    },
+    {
+      "timeline": 2,
+      "old": 31,
+      "new": 354,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps towards their goal of adoption by seeking advice, showing advancement in their plan to become a parent."
+    },
+    {
+      "timeline": 2,
+      "old": 33,
+      "new": 354,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken steps towards adoption and is now ready to become a mom, building on the earlier commitment to provide a loving home for kids."
+    },
+    {
+      "timeline": 2,
+      "old": 143,
+      "new": 354,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken further steps towards adoption by seeking advice, showing advancement in their plans since the older statement."
+    },
+    {
+      "timeline": 2,
+      "old": 253,
+      "new": 354,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken further steps in their adoption journey by contacting a mentor for advice, building on their earlier decision to apply to adoption agencies."
+    },
+    {
+      "timeline": 2,
+      "old": 25,
+      "new": 356,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is moving forward in their adoption journey, expressing excitement about starting the process after previously researching adoption agencies."
+    },
+    {
+      "timeline": 2,
+      "old": 29,
+      "new": 356,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is moving forward with their adoption plans, expressing excitement about starting the process after previously highlighting their support for LGBTQ+ adoption."
+    },
+    {
+      "timeline": 2,
+      "old": 31,
+      "new": 356,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is moving forward in their adoption journey, expressing excitement about starting this new chapter after previously stating their intention to adopt as a single parent."
+    },
+    {
+      "timeline": 2,
+      "old": 33,
+      "new": 356,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is now actively starting the adoption process, moving forward from their previous intention to provide a safe and loving home."
+    },
+    {
+      "timeline": 2,
+      "old": 143,
+      "new": 356,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is now actively starting the adoption process, building on their previous determination to adopt expressed in the older statement."
+    },
+    {
+      "timeline": 2,
+      "old": 253,
+      "new": 356,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved forward in their adoption journey, expressing excitement about starting the process after applying to adoption agencies."
+    },
+    {
+      "timeline": 2,
+      "old": 25,
+      "new": 404,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has advanced from researching adoption agencies to successfully passing interviews, moving closer to their goal of having a family."
+    },
+    {
+      "timeline": 2,
+      "old": 29,
+      "new": 404,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully advanced in their adoption journey since expressing their support for an inclusive agency."
+    },
+    {
+      "timeline": 2,
+      "old": 31,
+      "new": 404,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully advanced in their goal of adopting a family since expressing their initial desire to become a single parent."
+    },
+    {
+      "timeline": 2,
+      "old": 33,
+      "new": 404,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully advanced in their goal of adopting children, building on the commitment expressed in the older statement."
+    },
+    {
+      "timeline": 2,
+      "old": 143,
+      "new": 404,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a significant advancement in the adoption process, moving from inspiration to successfully passing agency interviews."
+    },
+    {
+      "timeline": 2,
+      "old": 253,
+      "new": 404,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully advanced in the adoption process by passing interviews, building on the initial step of applying to adoption agencies mentioned in the older statement."
+    },
+    {
+      "timeline": 2,
+      "old": 354,
+      "new": 404,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully advanced in their adoption journey by passing the agency interviews, building on their earlier intention to become a mom."
+    },
+    {
+      "timeline": 2,
+      "old": 356,
+      "new": 404,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully advanced in the adoption process by passing the agency interviews, building on their earlier excitement about adopting."
+    },
+    {
+      "timeline": 2,
+      "old": 25,
+      "new": 406,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a continued commitment to building a family through adoption, showing that the person's plans have advanced since the older statement."
+    },
+    {
+      "timeline": 2,
+      "old": 29,
+      "new": 406,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a personal evolution towards the goal of building a family through adoption, expanding on the initial support for LGBTQ+ adoption mentioned in the older statement."
+    },
+    {
+      "timeline": 2,
+      "old": 31,
+      "new": 406,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects an advancement in the person's journey towards building a family, emphasizing their commitment to adoption and creating a loving home for children."
+    },
+    {
+      "timeline": 2,
+      "old": 33,
+      "new": 406,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a development in the person's intentions regarding family and adoption, building upon the commitment expressed in the older statement."
+    },
+    {
+      "timeline": 2,
+      "old": 143,
+      "new": 406,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a continued commitment to adoption and building a family, indicating that the person's plans have advanced since the older statement."
+    },
+    {
+      "timeline": 2,
+      "old": 253,
+      "new": 406,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the person's continued commitment to adoption and their evolving thoughts about building a family since their initial application to adoption agencies."
+    },
+    {
+      "timeline": 2,
+      "old": 354,
+      "new": 406,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from seeking advice about adoption to actively expressing their desire to build a family through adoption."
+    },
+    {
+      "timeline": 2,
+      "old": 356,
+      "new": 406,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "Both statements express a desire to adopt and provide a loving home for children, with the newer statement expanding on the emotional significance of family and the motivation behind adoption."
+    },
+    {
+      "timeline": 3,
+      "old": 68,
+      "new": 78,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's interest in counseling and mental health has developed further, showing motivation and excitement to pursue this career path."
+    },
+    {
+      "timeline": 3,
+      "old": 70,
+      "new": 78,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows a development in the person's motivation and commitment to helping the trans community through counseling and mental health support."
+    },
+    {
+      "timeline": 3,
+      "old": 68,
+      "new": 94,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has continued to explore and deepen their interest in counseling and mental health work since the older statement."
+    },
+    {
+      "timeline": 3,
+      "old": 70,
+      "new": 94,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has continued to explore their interest in counseling and mental health work since the older statement, showing advancement in their plans."
+    },
+    {
+      "timeline": 3,
+      "old": 78,
+      "new": 94,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken further steps in exploring counseling and mental health work since expressing their initial motivation in the older statement."
+    },
+    {
+      "timeline": 3,
+      "old": 94,
+      "new": 112,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates continued efforts in pursuing counseling and mental health jobs, showing advancement from the initial exploration mentioned in the older statement."
+    },
+    {
+      "timeline": 3,
+      "old": 70,
+      "new": 112,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively pursuing counseling and mental health jobs, building on their previous interest in supporting trans people's mental health."
+    },
+    {
+      "timeline": 3,
+      "old": 78,
+      "new": 112,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is actively looking into counseling and mental health jobs, showing advancement from their previous motivation to pursue this path."
+    },
+    {
+      "timeline": 3,
+      "old": 94,
+      "new": 114,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from simply looking into counseling to actively pursuing it as a career option, reflecting growth in their plans."
+    },
+    {
+      "timeline": 3,
+      "old": 70,
+      "new": 114,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a development in the person's journey towards a counseling career, building on their earlier interest in supporting trans people's mental health."
+    },
+    {
+      "timeline": 3,
+      "old": 78,
+      "new": 114,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken further steps towards pursuing a career in counseling and mental health, building on their earlier motivation to help others."
+    },
+    {
+      "timeline": 4,
+      "old": 79,
+      "new": 136,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from signing up for a pottery class to actively participating in a pottery workshop with their kids."
+    },
+    {
+      "timeline": 4,
+      "old": 83,
+      "new": 136,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has progressed from making a bowl in class to taking their kids to a pottery workshop where they all made pots."
+    },
+    {
+      "timeline": 4,
+      "old": 87,
+      "new": 136,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken action by attending a pottery workshop with their kids, moving forward from their excitement about pottery expressed in the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 79,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has completed another pottery project, showing advancement in their engagement with pottery since signing up for the class."
+    },
+    {
+      "timeline": 4,
+      "old": 83,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has completed another pottery project, showing advancement in their pottery skills since the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 87,
+      "new": 233,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has completed another pottery project, showing advancement in their pottery journey since the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 136,
+      "new": 233,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has continued to engage with pottery, completing another project since the initial workshop mentioned in the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 79,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows the completion of the pottery class mentioned in the older statement, indicating progress in the person's creative activities."
+    },
+    {
+      "timeline": 4,
+      "old": 87,
+      "new": 235,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement shows that the person's pottery journey has advanced from excitement about the experience to successfully creating a bowl they are proud of."
+    },
+    {
+      "timeline": 4,
+      "old": 136,
+      "new": 235,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the outcome of the pottery workshop mentioned in the older statement, showing that the experience has progressed from making pots to completing and being proud of a specific piece."
+    },
+    {
+      "timeline": 4,
+      "old": 79,
+      "new": 274,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from signing up for a pottery class to actually making pottery, indicating advancement in their experience."
+    },
+    {
+      "timeline": 4,
+      "old": 235,
+      "new": 274,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement adds detail about the pottery class experience without contradicting the pride expressed in the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 87,
+      "new": 274,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from expressing excitement about pottery to actively participating in a pottery class and enjoying it."
+    },
+    {
+      "timeline": 4,
+      "old": 136,
+      "new": 274,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement expresses enjoyment of pottery class, which aligns with the older statement about attending a pottery workshop, adding a personal experience without contradicting the previous one."
+    },
+    {
+      "timeline": 4,
+      "old": 79,
+      "new": 341,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has continued to engage with pottery and has expanded their creative pursuits to include painting, showing growth from their earlier experience."
+    },
+    {
+      "timeline": 4,
+      "old": 235,
+      "new": 341,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a development in the person's artistic journey, highlighting a deeper connection to painting and pottery since the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 87,
+      "new": 341,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has developed their interest in pottery further and found inspiration in it over time."
+    },
+    {
+      "timeline": 4,
+      "old": 136,
+      "new": 341,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a deeper commitment to pottery and painting, indicating growth from the initial pottery workshop experience mentioned in the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 274,
+      "new": 341,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a continued engagement with pottery and painting, showing growth in the person's artistic journey since the older statement."
+    },
+    {
+      "timeline": 4,
+      "old": 79,
+      "new": 361,
+      "previous_status": false,
+      "label": "CHANGE",
+      "reason": "The newer statement indicates that the person experienced a setback and had to take a break from pottery, which contrasts with the earlier statement where they were actively participating in pottery for self-expression.",
+      "first_label": "CHANGE",
+      "verified": true,
+      "quote": "Last month I got hurt and had to take a break from pottery"
+    },
+    {
+      "timeline": 4,
+      "old": 235,
+      "new": 361,
+      "previous_status": false,
+      "label": "CHANGE",
+      "reason": "The person was previously engaged in pottery and expressing pride in their work, but now they have experienced a setback that has interrupted their practice.",
+      "first_label": "CHANGE",
+      "verified": true,
+      "quote": "Last month I got hurt and had to take a break from pottery"
+    },
+    {
+      "timeline": 4,
+      "old": 87,
+      "new": 361,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement indicates a setback in the person's pottery journey, contrasting with the excitement expressed in the older statement about pursuing pottery.",
+      "first_label": "CHANGE",
+      "verified": false,
+      "quote": "NONE"
+    },
+    {
+      "timeline": 4,
+      "old": 136,
+      "new": 361,
+      "previous_status": false,
+      "label": "CHANGE",
+      "reason": "The person initially enjoyed pottery as a therapeutic activity but later experienced a setback that prevented them from practicing it.",
+      "first_label": "CHANGE",
+      "verified": true,
+      "quote": "Last month I got hurt and had to take a break from pottery"
+    },
+    {
+      "timeline": 4,
+      "old": 274,
+      "new": 361,
+      "previous_status": false,
+      "label": "CHANGE",
+      "reason": "The person initially expressed enjoyment of pottery, but later mentioned a setback due to an injury that required a break from it, indicating a change in their situation.",
+      "first_label": "CHANGE",
+      "verified": true,
+      "quote": "Last month I got hurt and had to take a break from pottery"
+    },
+    {
+      "timeline": 4,
+      "old": 341,
+      "new": 361,
+      "previous_status": true,
+      "label": "CHANGE",
+      "reason": "The newer statement indicates a setback in the person's pottery practice, which contrasts with the earlier positive experience of finding peace and satisfaction in pottery.",
+      "first_label": "CHANGE",
+      "verified": true,
+      "quote": "Last month I got hurt and had to take a break from pottery"
+    },
+    {
+      "timeline": 5,
+      "old": 123,
+      "new": 256,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement adds information about a second cat named Bailey while still acknowledging the first cat and dog mentioned in the older statement."
+    }
+  ],
+  "verification": {
+    "checked": 6,
+    "confirmed": 5
+  },
+  "new_llm_calls": 0,
+  "known_cases": [
+    {
+      "old_text": "Researching adoption agencies",
+      "new_text": "first step towards becoming a mom",
+      "expected": [
+        "PROGRESS"
+      ],
+      "result": "found",
+      "labels_into_newer": [
+        "PROGRESS"
+      ]
+    },
+    {
+      "old_text": "first step towards becoming a mom",
+      "new_text": "passed the adoption agency interviews",
+      "expected": [
+        "PROGRESS"
+      ],
+      "result": "found",
+      "labels_into_newer": [
+        "PROGRESS"
+      ]
+    },
+    {
+      "old_text": "signed up for a pottery class",
+      "new_text": "made this bowl in my class",
+      "expected": [
+        "COMPATIBLE",
+        "PROGRESS",
+        "SAME"
+      ],
+      "result": "not compared",
+      "labels_into_newer": []
+    }
+  ]
+}

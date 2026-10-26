@@ -190,6 +190,23 @@ Newest entries are at the bottom. Times are local (US Central).
 - Other losses are normal answer variation on a small set (27 questions).
 - **Fix to try next:** give each timeline step two dates, "said on" and "happened around".
 
+### 2026-10-26 14:31: Fix: timeline labels with two dates
+
+- Each timeline step now says when it was **said** and, if the note gives a relative time, when it **happened** (for example "said on 3 August 2023; happened: around August 2022").
+- Conflict banks rebuilt for samples 0–2 with 0 new AI calls. Only the new dates changed.
+- Ran A-MEM, T-MEM (old one-date labels) and T-MEM (new two-date labels) together, 3 runs each, samples 0–2 (497 questions). All checks passed.
+- Folder: [experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/](../experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/REPORT.md)
+
+| System | Normal questions | Time questions |
+|---|---|---|
+| A-MEM | 0.355 | 0.440 |
+| T-MEM, one date | 0.356 | 0.459 |
+| **T-MEM, two dates** | **0.365** | **0.498** |
+
+- Two dates beat A-MEM on time questions in **all 3 runs** (+0.058), and fixed the sample 2 time-question drop (now +0.030 vs A-MEM).
+- Not from copying the answer wording (checked).
+- Still open: sample 2's normal questions don't improve.
+
 ## Things to keep in mind
 
 - **Results vary between runs.** The AI answers a little differently each time, so always compare averages of several runs, never a single run.

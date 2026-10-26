@@ -1,0 +1,46 @@
+{
+  "folder": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates",
+  "created_local": "2026-10-26 14:31",
+  "git_commit": "c8dfdad76722559285c0a74559840fd87e18c9f0",
+  "branch": "conflict-handling-support",
+  "model": "gpt-4o-mini (served as gpt-4o-mini-2024-07-18)",
+  "samples": [
+    0,
+    1,
+    2
+  ],
+  "questions": 497,
+  "questions_per_sample": {
+    "0": 199,
+    "1": 105,
+    "2": 193
+  },
+  "retrieve_k": 10,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "systems": {
+    "amem": "A-MEM (May 6 code path), base bank",
+    "tmem_complete_single": "T-MEM complete, timeline labels with one date (date said), as in the previous run",
+    "tmem_complete_two_dates": "T-MEM complete, timeline labels with two dates: said on + happened (from relative times)"
+  },
+  "tmem_complete_settings": "V2 thesis defaults + consolidation (v3 settings, primary_expand, cap 1) + conflict handling (annotate_demote, demote_penalty 0.10)",
+  "memory_banks": {
+    "base": "copied from experiments/e2e_samples0-2_2026-10-26_13-10/cache/base (checked identical)",
+    "consolidated": "copied from experiments/e2e_samples0-2_2026-10-26_13-10/cache/consolidated (checked identical)",
+    "conflict": "rebuilt with event_time ('happened') for samples 0-2, reusing cached AI answers (0 new calls); all other fields identical to the previous conflict bank; retriever files identical"
+  },
+  "memory_bank_sha256_prefix": {
+    "base/s0": "11b88720fec592b1",
+    "base/s1": "27f75a46513dc7b6",
+    "base/s2": "5888ec0c5405b508",
+    "consolidated/s0": "e1ec98a256d6dd4e",
+    "consolidated/s1": "fd42e62ca478bcc1",
+    "consolidated/s2": "aec82f1026cc93b2",
+    "conflict/s0": "1e56b339f9f580be",
+    "conflict/s1": "60e6feb3f5c33c2d",
+    "conflict/s2": "17053435f4aa6012"
+  }
+}
