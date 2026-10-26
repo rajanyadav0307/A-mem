@@ -70,7 +70,12 @@ def main():
                         help="earlier run folders to take missing systems from")
     parser.add_argument("--subset", default=None,
                         help="JSON with a fixed question subset (e.g. analysis/conflict_timeline_questions.json)")
+    parser.add_argument("--systems", nargs="*", default=None,
+                        help='systems to report as "key=label"; the first is the reference (default: the 4 steps)')
+    parser.add_argument("--vs_first", action="store_true",
+                        help="compare every system with the first one, instead of each step with the step before")
     args = parser.parse_args()
+    systems_wanted = [tuple(x.split("=", 1)) for x in args.systems] if args.systems else SYSTEMS
 
     manifest = json.load(open(os.path.join(args.dir, "manifest.json"), encoding="utf-8"))
     started = open(os.path.join(args.dir, "started_at.txt")).read().strip() if os.path.exists(
@@ -83,7 +88,7 @@ def main():
         subset_info = json.load(open(args.subset, encoding="utf-8"))
         subset = [(str(q["sample"]), q["question_index"]) for q in subset_info["questions"]]
     per_system, source_of = {}, {}
-    for key, _ in SYSTEMS:
+    for key, _ in systems_wanted:
         files = []
         for folder in [args.dir] + list(args.include_from):
             files = sorted(glob.glob(os.path.join(folder, "results", f"{key}_seed*.json")))
@@ -101,11 +106,11 @@ def main():
             runs[seed] = scores(result, subset)
         per_system[key] = runs
 
-    systems = [(k, label) for k, label in SYSTEMS if k in per_system]
+    systems = [(k, label) for k, label in systems_wanted if k in per_system]
     seeds = sorted(per_system[systems[0][0]])
     for key, runs in per_system.items():
         if sorted(runs) != seeds:
-            raise SystemExit(f"{key} has seeds {sorted(runs)}, A-MEM has {seeds}")
+            raise SystemExit(f"{key} has seeds {sorted(runs)}, {systems[0][0]} has {seeds}")
 
     def mean(key, metric):
         return statistics.mean(per_system[key][s][metric] for s in seeds)
@@ -130,21 +135,27 @@ def main():
         lines.append(f"| {i} | {label} | {mean(key, 'answerable_f1'):.3f} | {mean(key, 'time_f1'):.3f} | "
                      f"{mean(key, 'trap_refusal'):.1%} | {mean(key, 'overall_f1_paper'):.3f} |")
 
-    lines += ["", "## Gain over A-MEM", "",
+    base_key, base_label = systems[0]
+    lines += ["", f"## Gain over {base_label}", "",
               "| System | Answerable questions | Time questions | Trap refusals |", "|---|---|---|---|"]
     for key, label in systems[1:]:
-        lines.append(f"| {label} | {mean(key, 'answerable_f1') - mean('amem', 'answerable_f1'):+.3f} | "
-                     f"{mean(key, 'time_f1') - mean('amem', 'time_f1'):+.3f} | "
-                     f"{(mean(key, 'trap_refusal') - mean('amem', 'trap_refusal')) * 100:+.1f} points |")
+        lines.append(f"| {label} | {mean(key, 'answerable_f1') - mean(base_key, 'answerable_f1'):+.3f} | "
+                     f"{mean(key, 'time_f1') - mean(base_key, 'time_f1'):+.3f} | "
+                     f"{(mean(key, 'trap_refusal') - mean(base_key, 'trap_refusal')) * 100:+.1f} points |")
 
-    lines += ["", "## Each step vs the step before (matching runs)", "",
-              "Change in answerable F1 for each seed; the last column counts the runs where the step helped.", "",
-              "| Step | " + " | ".join(f"Seed {sd}" for sd in seeds) + " | Mean change | Runs better |",
-              "|---|" + "---|" * (len(seeds) + 2)]
-    for (prev, _), (key, label) in zip(systems, systems[1:]):
-        deltas = [per_system[key][sd]["answerable_f1"] - per_system[prev][sd]["answerable_f1"] for sd in seeds]
-        lines.append(f"| {label} | " + " | ".join(f"{d:+.3f}" for d in deltas) +
-                     f" | {statistics.mean(deltas):+.3f} | {sum(d > 0 for d in deltas)} of {len(deltas)} |")
+    pairs = [(base_key, k, label) for k, label in systems[1:]] if args.vs_first else \
+        [(prev, k, label) for (prev, _), (k, label) in zip(systems, systems[1:])]
+    title = f"Each setup vs {base_label} (matching runs)" if args.vs_first else \
+        "Each step vs the step before (matching runs)"
+    for metric, metric_name in (("answerable_f1", "answerable F1"), ("time_f1", "time F1")):
+        lines += ["", f"## {title}: {metric_name}", "",
+                  f"Change in {metric_name} for each seed; the last column counts the runs where it helped.", "",
+                  "| Setup | " + " | ".join(f"Seed {sd}" for sd in seeds) + " | Mean change | Runs better |",
+                  "|---|" + "---|" * (len(seeds) + 2)]
+        for prev, key, label in pairs:
+            deltas = [per_system[key][sd][metric] - per_system[prev][sd][metric] for sd in seeds]
+            lines.append(f"| {label} | " + " | ".join(f"{d:+.3f}" for d in deltas) +
+                         f" | {statistics.mean(deltas):+.3f} | {sum(d > 0 for d in deltas)} of {len(deltas)} |")
 
     lines += ["", "## Each run", "",
               "| System | Seed | Answerable F1 | Time F1 | Trap refused | Overall F1 |", "|---|---|---|---|---|---|"]
