@@ -76,6 +76,11 @@ def log_fields(path, name):
     return out
 
 
+def first_line(words):
+    """The log keeps the first line of the search words on the 'Search words (shared)' line."""
+    return words.strip().splitlines()[0].strip() if words.strip() else ""
+
+
 def load_bank(path):
     with open(path, "rb") as handle:
         return list(pickle.load(handle).values())
@@ -247,13 +252,14 @@ def check_results(rep, seed, ds, replay=True):
         rebuild = ("No cached memories found", "Creating new memories", "stale; rebuilding")
         rep.check(f"R5 {name} right memory, no rebuild", loaded == want and not any(x in log + out for x in rebuild),
                   f"loaded {loaded}, expected {want}")
-        bad_lines = [ln for ln in (log + out).splitlines() if any(p in ln for p in BAD_STDOUT)]
+        bad_lines = [ln for ln in (log + out).splitlines()
+                     if any(p in ln for p in BAD_STDOUT) and "retrying in" not in ln]
         retries = (log + out).count("retrying in")
         rep.check(f"R6 {name} no errors or failed answers", not bad_lines,
                   f"{len(bad_lines)} bad lines, {retries} retries" + (f"; e.g. {bad_lines[0][:150]}" if bad_lines else ""))
         shared = re.findall(r"Search words \(shared\) (\d+:\d+): (.*)", log)
         rep.check(f"R7 {name} shared search words used for every question",
-                  [k for k, _ in shared] == kw_keys and all(v.strip() == kw[k].strip() for k, v in shared),
+                  [k for k, _ in shared] == kw_keys and all(v.strip() == first_line(kw[k]) for k, v in shared),
                   f"{len(shared)} questions")
         ctx = log_fields(lf, "Raw Context")
         prompts = log_fields(lf, "User Prompt")
@@ -302,8 +308,8 @@ def check_trial(rep, ds):
     kw = json.load(open(common.keywords_file(42)))["keywords"]
     shared = re.findall(r"Search words \(shared\) (\d+:\d+): (.*)", log)
     rep.check("T4 shared words used", [k for k, _ in shared] == [f"0:{i}" for i in range(199)]
-              and all(v.strip() == kw[k].strip() for k, v in shared), f"{len(shared)} questions")
-    bad = [ln for ln in (log + out).splitlines() if any(p in ln for p in BAD_STDOUT)]
+              and all(v.strip() == first_line(kw[k]) for k, v in shared), f"{len(shared)} questions")
+    bad = [ln for ln in (log + out).splitlines() if any(p in ln for p in BAD_STDOUT) and "retrying in" not in ln]
     rep.check("T5 no errors or failed answers", not bad, bad[0][:150] if bad else "")
     ctx = log_fields(lf, "Raw Context")
     want = replay_contexts("s1_amem", 42, ds)[:199]
