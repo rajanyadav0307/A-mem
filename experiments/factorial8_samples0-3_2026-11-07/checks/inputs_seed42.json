@@ -1,0 +1,104 @@
+{
+ "what": "inputs",
+ "seed": 42,
+ "ok": true,
+ "items": [
+  {
+   "check": "I1 bank memory_cache_sample_0.pkl",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "I1 bank retriever_cache_sample_0.pkl",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "I1 bank retriever_cache_embeddings_sample_0.npy",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "I1 bank memory_cache_sample_1.pkl",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "I1 bank retriever_cache_sample_1.pkl",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "I1 bank retriever_cache_embeddings_sample_1.npy",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "I1 bank memory_cache_sample_2.pkl",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "I1 bank retriever_cache_sample_2.pkl",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "I1 bank retriever_cache_embeddings_sample_2.npy",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "I1 bank memory_cache_sample_3.pkl",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "I1 bank retriever_cache_sample_3.pkl",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "I1 bank retriever_cache_embeddings_sample_3.npy",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "I2 keywords fingerprint",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/keywords/keywords_seed42.json"
+  },
+  {
+   "check": "I2b search words for all 757 questions, none empty",
+   "ok": true,
+   "detail": "757 entries"
+  },
+  {
+   "check": "I3 code unchanged since the frozen commit",
+   "ok": true,
+   "detail": "frozen 08a2cefc0b, HEAD c5eba8e45e"
+  },
+  {
+   "check": "I4 API key present",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "I5 free disk >= 15 GB",
+   "ok": true,
+   "detail": "110 GB"
+  },
+  {
+   "check": "I6 on mains power",
+   "ok": true,
+   "detail": "Now drawing from 'AC Power'"
+  },
+  {
+   "check": "I7 no result files for this seed yet",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "when": "2026-11-07T13:34:17",
+ "code_commit": "c5eba8e45eaaada95106ab16f7c400a24b9a1184"
+}

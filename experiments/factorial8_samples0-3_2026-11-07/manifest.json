@@ -1292,6 +1292,41 @@
     "--output",
     "experiments/factorial8_samples0-3_2026-11-07/trial/s1_amem_seed42_sample0.json"
    ]
+  },
+  {
+   "stage": "wave",
+   "seed": 42,
+   "started": "2026-11-07T13:34:17",
+   "finished": "2026-11-07T13:52:11",
+   "minutes": 17.9,
+   "exit_codes": {
+    "s1_amem": 0,
+    "s2_t": 0,
+    "s3_c": 0,
+    "s4_h": 0,
+    "s5_tc": 0,
+    "s6_th": 0,
+    "s7_ch": 0,
+    "s8_tch": 0
+   },
+   "failed": []
+  },
+  {
+   "stage": "wave",
+   "seed": 42,
+   "when": "2026-11-07T13:55:04",
+   "invalidated": true,
+   "reason": "result checks failed (R2, R6, R9): rate limit reached; see invalid/*_seed42_attempt1/reason.txt",
+   "moved_to": [
+    "experiments/factorial8_samples0-3_2026-11-07/invalid/s1_amem_seed42_attempt1",
+    "experiments/factorial8_samples0-3_2026-11-07/invalid/s2_t_seed42_attempt1",
+    "experiments/factorial8_samples0-3_2026-11-07/invalid/s3_c_seed42_attempt1",
+    "experiments/factorial8_samples0-3_2026-11-07/invalid/s4_h_seed42_attempt1",
+    "experiments/factorial8_samples0-3_2026-11-07/invalid/s5_tc_seed42_attempt1",
+    "experiments/factorial8_samples0-3_2026-11-07/invalid/s6_th_seed42_attempt1",
+    "experiments/factorial8_samples0-3_2026-11-07/invalid/s7_ch_seed42_attempt1",
+    "experiments/factorial8_samples0-3_2026-11-07/invalid/s8_tch_seed42_attempt1"
+   ]
   }
  ],
  "changes": [

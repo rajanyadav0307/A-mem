@@ -1,0 +1,4 @@
+Wave 1 (seed 42) failed result checks: rate limit 2,000,000 tokens/min reached with 8 setups in parallel; some answers empty after all retries; OpenAI retry jitter shifted the trap-answer order.
+R2 s1_amem seed 42 no empty answers: 4 empty
+R6 s1_amem seed 42 no errors or failed answers: 8 bad lines, 74 retries; e.g. ERROR:amem_robust:LLM call get_completion failed after 3 attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini-2024-07
+R9 seed 42 trap answer order identical in all 8 setups (trap order shifted by OpenAI retry jitter)

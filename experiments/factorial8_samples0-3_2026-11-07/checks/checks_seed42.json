@@ -1,0 +1,434 @@
+{
+ "what": "results",
+ "seed": 42,
+ "ok": false,
+ "items": [
+  {
+   "check": "R0 s1_amem seed 42 files",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/results/s1_amem_seed42.json"
+  },
+  {
+   "check": "R1 s1_amem seed 42 757 questions in dataset order",
+   "ok": true,
+   "detail": "757 rows"
+  },
+  {
+   "check": "R2 s1_amem seed 42 no empty answers",
+   "ok": false,
+   "detail": "4 empty"
+  },
+  {
+   "check": "R3 s1_amem seed 42 settings match the setup",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R4 s1_amem seed 42 saved F1 = mean of question F1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R5 s1_amem seed 42 right memory, no rebuild",
+   "ok": true,
+   "detail": "loaded [436, 385, 686, 655], expected [436, 385, 686, 655]"
+  },
+  {
+   "check": "R6 s1_amem seed 42 no errors or failed answers",
+   "ok": false,
+   "detail": "8 bad lines, 74 retries; e.g. ERROR:amem_robust:LLM call get_completion failed after 3 attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini-2024-07"
+  },
+  {
+   "check": "R7 s1_amem seed 42 shared search words used for every question",
+   "ok": true,
+   "detail": "757 questions"
+  },
+  {
+   "check": "R8 s1_amem seed 42 labels and merged notes only where switched on",
+   "ok": true,
+   "detail": "timeline 0, happened 0, merged 0 of 757 contexts"
+  },
+  {
+   "check": "R11 s1_amem seed 42 replay: logged notes = offline notes",
+   "ok": true,
+   "detail": "0 differ"
+  },
+  {
+   "check": "R0 s2_t seed 42 files",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/results/s2_t_seed42.json"
+  },
+  {
+   "check": "R1 s2_t seed 42 757 questions in dataset order",
+   "ok": true,
+   "detail": "757 rows"
+  },
+  {
+   "check": "R2 s2_t seed 42 no empty answers",
+   "ok": false,
+   "detail": "4 empty"
+  },
+  {
+   "check": "R3 s2_t seed 42 settings match the setup",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R4 s2_t seed 42 saved F1 = mean of question F1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R5 s2_t seed 42 right memory, no rebuild",
+   "ok": true,
+   "detail": "loaded [436, 385, 686, 655], expected [436, 385, 686, 655]"
+  },
+  {
+   "check": "R6 s2_t seed 42 no errors or failed answers",
+   "ok": false,
+   "detail": "8 bad lines, 77 retries; e.g. ERROR:amem_robust:LLM call get_completion failed after 3 attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini-2024-07"
+  },
+  {
+   "check": "R7 s2_t seed 42 shared search words used for every question",
+   "ok": true,
+   "detail": "757 questions"
+  },
+  {
+   "check": "R8 s2_t seed 42 labels and merged notes only where switched on",
+   "ok": true,
+   "detail": "timeline 0, happened 0, merged 0 of 757 contexts"
+  },
+  {
+   "check": "R11 s2_t seed 42 replay: logged notes = offline notes",
+   "ok": true,
+   "detail": "0 differ"
+  },
+  {
+   "check": "R0 s3_c seed 42 files",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/results/s3_c_seed42.json"
+  },
+  {
+   "check": "R1 s3_c seed 42 757 questions in dataset order",
+   "ok": true,
+   "detail": "757 rows"
+  },
+  {
+   "check": "R2 s3_c seed 42 no empty answers",
+   "ok": false,
+   "detail": "3 empty"
+  },
+  {
+   "check": "R3 s3_c seed 42 settings match the setup",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R4 s3_c seed 42 saved F1 = mean of question F1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R5 s3_c seed 42 right memory, no rebuild",
+   "ok": true,
+   "detail": "loaded [436, 385, 686, 655], expected [436, 385, 686, 655]"
+  },
+  {
+   "check": "R6 s3_c seed 42 no errors or failed answers",
+   "ok": false,
+   "detail": "6 bad lines, 67 retries; e.g. ERROR:amem_robust:LLM call get_completion failed after 3 attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini-2024-07"
+  },
+  {
+   "check": "R7 s3_c seed 42 shared search words used for every question",
+   "ok": true,
+   "detail": "757 questions"
+  },
+  {
+   "check": "R8 s3_c seed 42 labels and merged notes only where switched on",
+   "ok": true,
+   "detail": "timeline 0, happened 0, merged 552 of 757 contexts"
+  },
+  {
+   "check": "R11 s3_c seed 42 replay: logged notes = offline notes",
+   "ok": true,
+   "detail": "0 differ"
+  },
+  {
+   "check": "R0 s4_h seed 42 files",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/results/s4_h_seed42.json"
+  },
+  {
+   "check": "R1 s4_h seed 42 757 questions in dataset order",
+   "ok": true,
+   "detail": "757 rows"
+  },
+  {
+   "check": "R2 s4_h seed 42 no empty answers",
+   "ok": false,
+   "detail": "6 empty"
+  },
+  {
+   "check": "R3 s4_h seed 42 settings match the setup",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R4 s4_h seed 42 saved F1 = mean of question F1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R5 s4_h seed 42 right memory, no rebuild",
+   "ok": true,
+   "detail": "loaded [436, 385, 686, 655], expected [436, 385, 686, 655]"
+  },
+  {
+   "check": "R6 s4_h seed 42 no errors or failed answers",
+   "ok": false,
+   "detail": "12 bad lines, 103 retries; e.g. ERROR:amem_robust:LLM call get_completion failed after 3 attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini-2024-07"
+  },
+  {
+   "check": "R7 s4_h seed 42 shared search words used for every question",
+   "ok": true,
+   "detail": "757 questions"
+  },
+  {
+   "check": "R8 s4_h seed 42 labels and merged notes only where switched on",
+   "ok": true,
+   "detail": "timeline 578, happened 379, merged 0 of 757 contexts"
+  },
+  {
+   "check": "R11 s4_h seed 42 replay: logged notes = offline notes",
+   "ok": true,
+   "detail": "0 differ"
+  },
+  {
+   "check": "R0 s5_tc seed 42 files",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/results/s5_tc_seed42.json"
+  },
+  {
+   "check": "R1 s5_tc seed 42 757 questions in dataset order",
+   "ok": true,
+   "detail": "757 rows"
+  },
+  {
+   "check": "R2 s5_tc seed 42 no empty answers",
+   "ok": false,
+   "detail": "2 empty"
+  },
+  {
+   "check": "R3 s5_tc seed 42 settings match the setup",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R4 s5_tc seed 42 saved F1 = mean of question F1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R5 s5_tc seed 42 right memory, no rebuild",
+   "ok": true,
+   "detail": "loaded [436, 385, 686, 655], expected [436, 385, 686, 655]"
+  },
+  {
+   "check": "R6 s5_tc seed 42 no errors or failed answers",
+   "ok": false,
+   "detail": "4 bad lines, 50 retries; e.g. ERROR:amem_robust:LLM call get_completion failed after 3 attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini-2024-07"
+  },
+  {
+   "check": "R7 s5_tc seed 42 shared search words used for every question",
+   "ok": true,
+   "detail": "757 questions"
+  },
+  {
+   "check": "R8 s5_tc seed 42 labels and merged notes only where switched on",
+   "ok": true,
+   "detail": "timeline 0, happened 0, merged 554 of 757 contexts"
+  },
+  {
+   "check": "R11 s5_tc seed 42 replay: logged notes = offline notes",
+   "ok": true,
+   "detail": "0 differ"
+  },
+  {
+   "check": "R0 s6_th seed 42 files",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/results/s6_th_seed42.json"
+  },
+  {
+   "check": "R1 s6_th seed 42 757 questions in dataset order",
+   "ok": true,
+   "detail": "757 rows"
+  },
+  {
+   "check": "R2 s6_th seed 42 no empty answers",
+   "ok": false,
+   "detail": "9 empty"
+  },
+  {
+   "check": "R3 s6_th seed 42 settings match the setup",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R4 s6_th seed 42 saved F1 = mean of question F1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R5 s6_th seed 42 right memory, no rebuild",
+   "ok": true,
+   "detail": "loaded [436, 385, 686, 655], expected [436, 385, 686, 655]"
+  },
+  {
+   "check": "R6 s6_th seed 42 no errors or failed answers",
+   "ok": false,
+   "detail": "18 bad lines, 103 retries; e.g. ERROR:amem_robust:LLM call get_completion failed after 3 attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini-2024-07"
+  },
+  {
+   "check": "R7 s6_th seed 42 shared search words used for every question",
+   "ok": true,
+   "detail": "757 questions"
+  },
+  {
+   "check": "R8 s6_th seed 42 labels and merged notes only where switched on",
+   "ok": true,
+   "detail": "timeline 577, happened 380, merged 0 of 757 contexts"
+  },
+  {
+   "check": "R11 s6_th seed 42 replay: logged notes = offline notes",
+   "ok": true,
+   "detail": "0 differ"
+  },
+  {
+   "check": "R0 s7_ch seed 42 files",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/results/s7_ch_seed42.json"
+  },
+  {
+   "check": "R1 s7_ch seed 42 757 questions in dataset order",
+   "ok": true,
+   "detail": "757 rows"
+  },
+  {
+   "check": "R2 s7_ch seed 42 no empty answers",
+   "ok": false,
+   "detail": "8 empty"
+  },
+  {
+   "check": "R3 s7_ch seed 42 settings match the setup",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R4 s7_ch seed 42 saved F1 = mean of question F1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R5 s7_ch seed 42 right memory, no rebuild",
+   "ok": true,
+   "detail": "loaded [436, 385, 686, 655], expected [436, 385, 686, 655]"
+  },
+  {
+   "check": "R6 s7_ch seed 42 no errors or failed answers",
+   "ok": false,
+   "detail": "16 bad lines, 117 retries; e.g. ERROR:amem_robust:LLM call get_completion failed after 3 attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini-2024-07"
+  },
+  {
+   "check": "R7 s7_ch seed 42 shared search words used for every question",
+   "ok": true,
+   "detail": "757 questions"
+  },
+  {
+   "check": "R8 s7_ch seed 42 labels and merged notes only where switched on",
+   "ok": true,
+   "detail": "timeline 584, happened 368, merged 552 of 757 contexts"
+  },
+  {
+   "check": "R11 s7_ch seed 42 replay: logged notes = offline notes",
+   "ok": true,
+   "detail": "0 differ"
+  },
+  {
+   "check": "R0 s8_tch seed 42 files",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/results/s8_tch_seed42.json"
+  },
+  {
+   "check": "R1 s8_tch seed 42 757 questions in dataset order",
+   "ok": true,
+   "detail": "757 rows"
+  },
+  {
+   "check": "R2 s8_tch seed 42 no empty answers",
+   "ok": false,
+   "detail": "3 empty"
+  },
+  {
+   "check": "R3 s8_tch seed 42 settings match the setup",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R4 s8_tch seed 42 saved F1 = mean of question F1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R5 s8_tch seed 42 right memory, no rebuild",
+   "ok": true,
+   "detail": "loaded [436, 385, 686, 655], expected [436, 385, 686, 655]"
+  },
+  {
+   "check": "R6 s8_tch seed 42 no errors or failed answers",
+   "ok": false,
+   "detail": "6 bad lines, 77 retries; e.g. ERROR:amem_robust:LLM call get_completion failed after 3 attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini-2024-07"
+  },
+  {
+   "check": "R7 s8_tch seed 42 shared search words used for every question",
+   "ok": true,
+   "detail": "757 questions"
+  },
+  {
+   "check": "R8 s8_tch seed 42 labels and merged notes only where switched on",
+   "ok": true,
+   "detail": "timeline 583, happened 369, merged 554 of 757 contexts"
+  },
+  {
+   "check": "R11 s8_tch seed 42 replay: logged notes = offline notes",
+   "ok": true,
+   "detail": "0 differ"
+  },
+  {
+   "check": "R9 seed 42 trap answer order identical in all 8 setups",
+   "ok": false,
+   "detail": "173 trap questions"
+  },
+  {
+   "check": "R10 seed 42 non-time questions: s2_t = s1_amem",
+   "ok": true,
+   "detail": "0 of 627 differ"
+  },
+  {
+   "check": "R10 seed 42 non-time questions: s5_tc = s3_c",
+   "ok": true,
+   "detail": "0 of 627 differ"
+  },
+  {
+   "check": "R10 seed 42 non-time questions: s6_th = s4_h",
+   "ok": true,
+   "detail": "0 of 627 differ"
+  },
+  {
+   "check": "R10 seed 42 non-time questions: s8_tch = s7_ch",
+   "ok": true,
+   "detail": "0 of 627 differ"
+  }
+ ],
+ "when": "2026-11-07T13:53:51",
+ "code_commit": "c5eba8e45eaaada95106ab16f7c400a24b9a1184"
+}
