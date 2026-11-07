@@ -1449,6 +1449,174 @@
     }
    ],
    "finished": "2026-11-07T14:42:36"
+  },
+  {
+   "stage": "wave",
+   "seed": 43,
+   "started": "2026-11-07T14:45:08",
+   "halves": [
+    {
+     "setups": [
+      "s5_tc",
+      "s6_th",
+      "s7_ch",
+      "s8_tch"
+     ],
+     "started": "2026-11-07T14:45:08",
+     "finished": "2026-11-07T14:59:04",
+     "minutes": 13.9,
+     "exit_codes": {
+      "s5_tc": 0,
+      "s6_th": 0,
+      "s7_ch": 0,
+      "s8_tch": 0
+     }
+    },
+    {
+     "setups": [
+      "s1_amem",
+      "s2_t",
+      "s3_c",
+      "s4_h"
+     ],
+     "started": "2026-11-07T14:59:04",
+     "finished": "2026-11-07T15:13:23",
+     "minutes": 14.3,
+     "exit_codes": {
+      "s1_amem": 0,
+      "s2_t": 0,
+      "s3_c": 0,
+      "s4_h": 0
+     }
+    }
+   ],
+   "finished": "2026-11-07T15:15:04"
+  },
+  {
+   "stage": "wave",
+   "seed": 44,
+   "started": "2026-11-07T15:15:04",
+   "halves": [
+    {
+     "setups": [
+      "s1_amem",
+      "s2_t",
+      "s3_c",
+      "s4_h"
+     ],
+     "started": "2026-11-07T15:15:04",
+     "finished": "2026-11-07T15:29:33",
+     "minutes": 14.5,
+     "exit_codes": {
+      "s1_amem": 0,
+      "s2_t": 0,
+      "s3_c": 0,
+      "s4_h": 0
+     }
+    },
+    {
+     "setups": [
+      "s5_tc",
+      "s6_th",
+      "s7_ch",
+      "s8_tch"
+     ],
+     "started": "2026-11-07T15:29:33",
+     "finished": "2026-11-07T15:43:20",
+     "minutes": 13.8,
+     "exit_codes": {
+      "s5_tc": 0,
+      "s6_th": 0,
+      "s7_ch": 0,
+      "s8_tch": 0
+     }
+    }
+   ],
+   "finished": "2026-11-07T15:45:00"
+  },
+  {
+   "stage": "wave",
+   "seed": 45,
+   "started": "2026-11-07T15:45:00",
+   "halves": [
+    {
+     "setups": [
+      "s5_tc",
+      "s6_th",
+      "s7_ch",
+      "s8_tch"
+     ],
+     "started": "2026-11-07T15:45:00",
+     "finished": "2026-11-07T15:58:26",
+     "minutes": 13.4,
+     "exit_codes": {
+      "s5_tc": 0,
+      "s6_th": 0,
+      "s7_ch": 0,
+      "s8_tch": 0
+     }
+    },
+    {
+     "setups": [
+      "s1_amem",
+      "s2_t",
+      "s3_c",
+      "s4_h"
+     ],
+     "started": "2026-11-07T15:58:26",
+     "finished": "2026-11-07T16:13:16",
+     "minutes": 14.8,
+     "exit_codes": {
+      "s1_amem": 0,
+      "s2_t": 0,
+      "s3_c": 0,
+      "s4_h": 0
+     }
+    }
+   ],
+   "finished": "2026-11-07T16:14:58"
+  },
+  {
+   "stage": "wave",
+   "seed": 46,
+   "started": "2026-11-07T16:14:58",
+   "halves": [
+    {
+     "setups": [
+      "s1_amem",
+      "s2_t",
+      "s3_c",
+      "s4_h"
+     ],
+     "started": "2026-11-07T16:14:58",
+     "finished": "2026-11-07T16:29:36",
+     "minutes": 14.6,
+     "exit_codes": {
+      "s1_amem": 0,
+      "s2_t": 0,
+      "s3_c": 0,
+      "s4_h": 0
+     }
+    },
+    {
+     "setups": [
+      "s5_tc",
+      "s6_th",
+      "s7_ch",
+      "s8_tch"
+     ],
+     "started": "2026-11-07T16:29:36",
+     "finished": "2026-11-07T16:43:52",
+     "minutes": 14.3,
+     "exit_codes": {
+      "s5_tc": 0,
+      "s6_th": 0,
+      "s7_ch": 0,
+      "s8_tch": 0
+     }
+    }
+   ],
+   "finished": "2026-11-07T16:45:13"
   }
  ],
  "changes": [

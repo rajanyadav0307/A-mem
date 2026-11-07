@@ -1,0 +1,434 @@
+{
+ "what": "results",
+ "seed": 46,
+ "ok": true,
+ "items": [
+  {
+   "check": "R0 s1_amem seed 46 files",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/results/s1_amem_seed46.json"
+  },
+  {
+   "check": "R1 s1_amem seed 46 757 questions in dataset order",
+   "ok": true,
+   "detail": "757 rows"
+  },
+  {
+   "check": "R2 s1_amem seed 46 no empty answers",
+   "ok": true,
+   "detail": "0 empty"
+  },
+  {
+   "check": "R3 s1_amem seed 46 settings match the setup",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R4 s1_amem seed 46 saved F1 = mean of question F1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R5 s1_amem seed 46 right memory, no rebuild",
+   "ok": true,
+   "detail": "loaded [436, 385, 686, 655], expected [436, 385, 686, 655]"
+  },
+  {
+   "check": "R6 s1_amem seed 46 no errors or failed answers",
+   "ok": true,
+   "detail": "0 bad lines, 0 retries"
+  },
+  {
+   "check": "R7 s1_amem seed 46 shared search words used for every question",
+   "ok": true,
+   "detail": "757 questions"
+  },
+  {
+   "check": "R8 s1_amem seed 46 labels and merged notes only where switched on",
+   "ok": true,
+   "detail": "timeline 0, happened 0, merged 0 of 757 contexts"
+  },
+  {
+   "check": "R11 s1_amem seed 46 replay: logged notes = offline notes",
+   "ok": true,
+   "detail": "0 differ"
+  },
+  {
+   "check": "R0 s2_t seed 46 files",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/results/s2_t_seed46.json"
+  },
+  {
+   "check": "R1 s2_t seed 46 757 questions in dataset order",
+   "ok": true,
+   "detail": "757 rows"
+  },
+  {
+   "check": "R2 s2_t seed 46 no empty answers",
+   "ok": true,
+   "detail": "0 empty"
+  },
+  {
+   "check": "R3 s2_t seed 46 settings match the setup",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R4 s2_t seed 46 saved F1 = mean of question F1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R5 s2_t seed 46 right memory, no rebuild",
+   "ok": true,
+   "detail": "loaded [436, 385, 686, 655], expected [436, 385, 686, 655]"
+  },
+  {
+   "check": "R6 s2_t seed 46 no errors or failed answers",
+   "ok": true,
+   "detail": "0 bad lines, 0 retries"
+  },
+  {
+   "check": "R7 s2_t seed 46 shared search words used for every question",
+   "ok": true,
+   "detail": "757 questions"
+  },
+  {
+   "check": "R8 s2_t seed 46 labels and merged notes only where switched on",
+   "ok": true,
+   "detail": "timeline 0, happened 0, merged 0 of 757 contexts"
+  },
+  {
+   "check": "R11 s2_t seed 46 replay: logged notes = offline notes",
+   "ok": true,
+   "detail": "0 differ"
+  },
+  {
+   "check": "R0 s3_c seed 46 files",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/results/s3_c_seed46.json"
+  },
+  {
+   "check": "R1 s3_c seed 46 757 questions in dataset order",
+   "ok": true,
+   "detail": "757 rows"
+  },
+  {
+   "check": "R2 s3_c seed 46 no empty answers",
+   "ok": true,
+   "detail": "0 empty"
+  },
+  {
+   "check": "R3 s3_c seed 46 settings match the setup",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R4 s3_c seed 46 saved F1 = mean of question F1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R5 s3_c seed 46 right memory, no rebuild",
+   "ok": true,
+   "detail": "loaded [436, 385, 686, 655], expected [436, 385, 686, 655]"
+  },
+  {
+   "check": "R6 s3_c seed 46 no errors or failed answers",
+   "ok": true,
+   "detail": "0 bad lines, 0 retries"
+  },
+  {
+   "check": "R7 s3_c seed 46 shared search words used for every question",
+   "ok": true,
+   "detail": "757 questions"
+  },
+  {
+   "check": "R8 s3_c seed 46 labels and merged notes only where switched on",
+   "ok": true,
+   "detail": "timeline 0, happened 0, merged 553 of 757 contexts"
+  },
+  {
+   "check": "R11 s3_c seed 46 replay: logged notes = offline notes",
+   "ok": true,
+   "detail": "0 differ"
+  },
+  {
+   "check": "R0 s4_h seed 46 files",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/results/s4_h_seed46.json"
+  },
+  {
+   "check": "R1 s4_h seed 46 757 questions in dataset order",
+   "ok": true,
+   "detail": "757 rows"
+  },
+  {
+   "check": "R2 s4_h seed 46 no empty answers",
+   "ok": true,
+   "detail": "0 empty"
+  },
+  {
+   "check": "R3 s4_h seed 46 settings match the setup",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R4 s4_h seed 46 saved F1 = mean of question F1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R5 s4_h seed 46 right memory, no rebuild",
+   "ok": true,
+   "detail": "loaded [436, 385, 686, 655], expected [436, 385, 686, 655]"
+  },
+  {
+   "check": "R6 s4_h seed 46 no errors or failed answers",
+   "ok": true,
+   "detail": "0 bad lines, 0 retries"
+  },
+  {
+   "check": "R7 s4_h seed 46 shared search words used for every question",
+   "ok": true,
+   "detail": "757 questions"
+  },
+  {
+   "check": "R8 s4_h seed 46 labels and merged notes only where switched on",
+   "ok": true,
+   "detail": "timeline 574, happened 372, merged 0 of 757 contexts"
+  },
+  {
+   "check": "R11 s4_h seed 46 replay: logged notes = offline notes",
+   "ok": true,
+   "detail": "0 differ"
+  },
+  {
+   "check": "R0 s5_tc seed 46 files",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/results/s5_tc_seed46.json"
+  },
+  {
+   "check": "R1 s5_tc seed 46 757 questions in dataset order",
+   "ok": true,
+   "detail": "757 rows"
+  },
+  {
+   "check": "R2 s5_tc seed 46 no empty answers",
+   "ok": true,
+   "detail": "0 empty"
+  },
+  {
+   "check": "R3 s5_tc seed 46 settings match the setup",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R4 s5_tc seed 46 saved F1 = mean of question F1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R5 s5_tc seed 46 right memory, no rebuild",
+   "ok": true,
+   "detail": "loaded [436, 385, 686, 655], expected [436, 385, 686, 655]"
+  },
+  {
+   "check": "R6 s5_tc seed 46 no errors or failed answers",
+   "ok": true,
+   "detail": "0 bad lines, 0 retries"
+  },
+  {
+   "check": "R7 s5_tc seed 46 shared search words used for every question",
+   "ok": true,
+   "detail": "757 questions"
+  },
+  {
+   "check": "R8 s5_tc seed 46 labels and merged notes only where switched on",
+   "ok": true,
+   "detail": "timeline 0, happened 0, merged 555 of 757 contexts"
+  },
+  {
+   "check": "R11 s5_tc seed 46 replay: logged notes = offline notes",
+   "ok": true,
+   "detail": "0 differ"
+  },
+  {
+   "check": "R0 s6_th seed 46 files",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/results/s6_th_seed46.json"
+  },
+  {
+   "check": "R1 s6_th seed 46 757 questions in dataset order",
+   "ok": true,
+   "detail": "757 rows"
+  },
+  {
+   "check": "R2 s6_th seed 46 no empty answers",
+   "ok": true,
+   "detail": "0 empty"
+  },
+  {
+   "check": "R3 s6_th seed 46 settings match the setup",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R4 s6_th seed 46 saved F1 = mean of question F1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R5 s6_th seed 46 right memory, no rebuild",
+   "ok": true,
+   "detail": "loaded [436, 385, 686, 655], expected [436, 385, 686, 655]"
+  },
+  {
+   "check": "R6 s6_th seed 46 no errors or failed answers",
+   "ok": true,
+   "detail": "0 bad lines, 0 retries"
+  },
+  {
+   "check": "R7 s6_th seed 46 shared search words used for every question",
+   "ok": true,
+   "detail": "757 questions"
+  },
+  {
+   "check": "R8 s6_th seed 46 labels and merged notes only where switched on",
+   "ok": true,
+   "detail": "timeline 574, happened 372, merged 0 of 757 contexts"
+  },
+  {
+   "check": "R11 s6_th seed 46 replay: logged notes = offline notes",
+   "ok": true,
+   "detail": "0 differ"
+  },
+  {
+   "check": "R0 s7_ch seed 46 files",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/results/s7_ch_seed46.json"
+  },
+  {
+   "check": "R1 s7_ch seed 46 757 questions in dataset order",
+   "ok": true,
+   "detail": "757 rows"
+  },
+  {
+   "check": "R2 s7_ch seed 46 no empty answers",
+   "ok": true,
+   "detail": "0 empty"
+  },
+  {
+   "check": "R3 s7_ch seed 46 settings match the setup",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R4 s7_ch seed 46 saved F1 = mean of question F1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R5 s7_ch seed 46 right memory, no rebuild",
+   "ok": true,
+   "detail": "loaded [436, 385, 686, 655], expected [436, 385, 686, 655]"
+  },
+  {
+   "check": "R6 s7_ch seed 46 no errors or failed answers",
+   "ok": true,
+   "detail": "0 bad lines, 0 retries"
+  },
+  {
+   "check": "R7 s7_ch seed 46 shared search words used for every question",
+   "ok": true,
+   "detail": "757 questions"
+  },
+  {
+   "check": "R8 s7_ch seed 46 labels and merged notes only where switched on",
+   "ok": true,
+   "detail": "timeline 575, happened 361, merged 553 of 757 contexts"
+  },
+  {
+   "check": "R11 s7_ch seed 46 replay: logged notes = offline notes",
+   "ok": true,
+   "detail": "0 differ"
+  },
+  {
+   "check": "R0 s8_tch seed 46 files",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/results/s8_tch_seed46.json"
+  },
+  {
+   "check": "R1 s8_tch seed 46 757 questions in dataset order",
+   "ok": true,
+   "detail": "757 rows"
+  },
+  {
+   "check": "R2 s8_tch seed 46 no empty answers",
+   "ok": true,
+   "detail": "0 empty"
+  },
+  {
+   "check": "R3 s8_tch seed 46 settings match the setup",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R4 s8_tch seed 46 saved F1 = mean of question F1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "R5 s8_tch seed 46 right memory, no rebuild",
+   "ok": true,
+   "detail": "loaded [436, 385, 686, 655], expected [436, 385, 686, 655]"
+  },
+  {
+   "check": "R6 s8_tch seed 46 no errors or failed answers",
+   "ok": true,
+   "detail": "0 bad lines, 0 retries"
+  },
+  {
+   "check": "R7 s8_tch seed 46 shared search words used for every question",
+   "ok": true,
+   "detail": "757 questions"
+  },
+  {
+   "check": "R8 s8_tch seed 46 labels and merged notes only where switched on",
+   "ok": true,
+   "detail": "timeline 575, happened 361, merged 555 of 757 contexts"
+  },
+  {
+   "check": "R11 s8_tch seed 46 replay: logged notes = offline notes",
+   "ok": true,
+   "detail": "0 differ"
+  },
+  {
+   "check": "R9 seed 46 trap answer order = the fixed per-question order, in all 8 setups",
+   "ok": true,
+   "detail": "173 trap questions; mismatches {'s1_amem': 0, 's2_t': 0, 's3_c': 0, 's4_h': 0, 's5_tc': 0, 's6_th': 0, 's7_ch': 0, 's8_tch': 0}"
+  },
+  {
+   "check": "R10 seed 46 non-time questions: s2_t = s1_amem",
+   "ok": true,
+   "detail": "0 of 627 differ"
+  },
+  {
+   "check": "R10 seed 46 non-time questions: s5_tc = s3_c",
+   "ok": true,
+   "detail": "0 of 627 differ"
+  },
+  {
+   "check": "R10 seed 46 non-time questions: s6_th = s4_h",
+   "ok": true,
+   "detail": "0 of 627 differ"
+  },
+  {
+   "check": "R10 seed 46 non-time questions: s8_tch = s7_ch",
+   "ok": true,
+   "detail": "0 of 627 differ"
+  }
+ ],
+ "when": "2026-11-07T16:45:12",
+ "code_commit": "8d5d61b5c4411ac3a47ef191a3dc4797fa641cb4"
+}
