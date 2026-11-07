@@ -1,0 +1,109 @@
+{
+ "what": "keywords",
+ "seed": null,
+ "ok": true,
+ "items": [
+  {
+   "check": "K0 seed 42 file",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/keywords/keywords_seed42.json"
+  },
+  {
+   "check": "K1 seed 42 all 757 questions",
+   "ok": true,
+   "detail": "757 entries"
+  },
+  {
+   "check": "K2 seed 42 no empty words",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "K3 seed 42 fingerprint in manifest",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "K0 seed 43 file",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/keywords/keywords_seed43.json"
+  },
+  {
+   "check": "K1 seed 43 all 757 questions",
+   "ok": true,
+   "detail": "757 entries"
+  },
+  {
+   "check": "K2 seed 43 no empty words",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "K3 seed 43 fingerprint in manifest",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "K0 seed 44 file",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/keywords/keywords_seed44.json"
+  },
+  {
+   "check": "K1 seed 44 all 757 questions",
+   "ok": true,
+   "detail": "757 entries"
+  },
+  {
+   "check": "K2 seed 44 no empty words",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "K3 seed 44 fingerprint in manifest",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "K0 seed 45 file",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/keywords/keywords_seed45.json"
+  },
+  {
+   "check": "K1 seed 45 all 757 questions",
+   "ok": true,
+   "detail": "757 entries"
+  },
+  {
+   "check": "K2 seed 45 no empty words",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "K3 seed 45 fingerprint in manifest",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "K0 seed 46 file",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/keywords/keywords_seed46.json"
+  },
+  {
+   "check": "K1 seed 46 all 757 questions",
+   "ok": true,
+   "detail": "757 entries"
+  },
+  {
+   "check": "K2 seed 46 no empty words",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "K3 seed 46 fingerprint in manifest",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "when": "2026-11-07T13:25:03",
+ "code_commit": "90ffe29bf49668d0caedb38651f4a079231a2ac3"
+}

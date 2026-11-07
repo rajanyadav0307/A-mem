@@ -1227,7 +1227,43 @@
   "2": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/cache/conflict",
   "3": "experiments/factorial8_samples0-3_2026-11-07/cache/build_sample3/conflict"
  },
- "keywords": {},
+ "keywords": {
+  "42": {
+   "file": "experiments/factorial8_samples0-3_2026-11-07/keywords/keywords_seed42.json",
+   "sha256": "b3177fecb34a933790dacc1f3e3da170d9e644d8e8060bad3267ee741c94e311",
+   "questions": 757,
+   "made_with": "90ffe29bf49668d0caedb38651f4a079231a2ac3",
+   "finished": "2026-11-07T13:20:27"
+  },
+  "43": {
+   "file": "experiments/factorial8_samples0-3_2026-11-07/keywords/keywords_seed43.json",
+   "sha256": "3a2b262eb44b6134bc46c482fd97def8c223c879c2030cd3590f9c5cefd369f3",
+   "questions": 757,
+   "made_with": "90ffe29bf49668d0caedb38651f4a079231a2ac3",
+   "finished": "2026-11-07T13:21:31"
+  },
+  "44": {
+   "file": "experiments/factorial8_samples0-3_2026-11-07/keywords/keywords_seed44.json",
+   "sha256": "c7872d2db4df171a4db5a75a8a79f76e1fc4ee3f5e269ee4253949e285b44d64",
+   "questions": 757,
+   "made_with": "90ffe29bf49668d0caedb38651f4a079231a2ac3",
+   "finished": "2026-11-07T13:22:34"
+  },
+  "45": {
+   "file": "experiments/factorial8_samples0-3_2026-11-07/keywords/keywords_seed45.json",
+   "sha256": "60ed8ebdec05fc42e86389d1b445e0316668c5f6fff337d1f0509751756f67b1",
+   "questions": 757,
+   "made_with": "90ffe29bf49668d0caedb38651f4a079231a2ac3",
+   "finished": "2026-11-07T13:23:46"
+  },
+  "46": {
+   "file": "experiments/factorial8_samples0-3_2026-11-07/keywords/keywords_seed46.json",
+   "sha256": "58c93ee0a088f6daa1e26a992cc903bfe393a763bcdeaf9decd1ba8b890fb5dc",
+   "questions": 757,
+   "made_with": "90ffe29bf49668d0caedb38651f4a079231a2ac3",
+   "finished": "2026-11-07T13:24:51"
+  }
+ },
  "attempts": [],
  "changes": [
   {
