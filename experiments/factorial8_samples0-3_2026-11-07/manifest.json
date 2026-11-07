@@ -1264,7 +1264,36 @@
    "finished": "2026-11-07T13:24:51"
   }
  },
- "attempts": [],
+ "attempts": [
+  {
+   "stage": "trial",
+   "started": "2026-11-07T13:26:54",
+   "finished": "2026-11-07T13:31:03",
+   "exit_code": 0,
+   "command": [
+    "/Users/rajanyadav/Desktop/Projects/A-mem/.venv/bin/python",
+    "test_advanced_robust.py",
+    "--model",
+    "gpt-4o-mini-2024-07-18",
+    "--backend",
+    "openai",
+    "--ratio",
+    "0.1",
+    "--retrieve_k",
+    "10",
+    "--memories_dir",
+    "experiments/factorial8_samples0-3_2026-11-07/cache/shared",
+    "--seed",
+    "42",
+    "--run_tag",
+    "f8_trial",
+    "--keywords_file",
+    "experiments/factorial8_samples0-3_2026-11-07/keywords/keywords_seed42.json",
+    "--output",
+    "experiments/factorial8_samples0-3_2026-11-07/trial/s1_amem_seed42_sample0.json"
+   ]
+  }
+ ],
  "changes": [
   {
    "when": "2026-11-07 Stage 0",

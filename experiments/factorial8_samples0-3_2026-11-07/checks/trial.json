@@ -1,0 +1,44 @@
+{
+ "what": "trial",
+ "seed": null,
+ "ok": true,
+ "items": [
+  {
+   "check": "T0 trial files",
+   "ok": true,
+   "detail": "experiments/factorial8_samples0-3_2026-11-07/trial"
+  },
+  {
+   "check": "T1 199 questions in dataset order",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "T2 no empty answers",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "T3 settings",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "T4 shared words used",
+   "ok": true,
+   "detail": "199 questions"
+  },
+  {
+   "check": "T5 no errors or failed answers",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "T6 replay: logged notes = offline notes",
+   "ok": true,
+   "detail": "0 differ"
+  }
+ ],
+ "when": "2026-11-07T13:31:34",
+ "code_commit": "0548a4ae653b82ed54f3d6588e42e9bf6ac4e53b"
+}

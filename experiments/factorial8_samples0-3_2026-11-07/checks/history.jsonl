@@ -1,2 +1,4 @@
 {"when": "2026-11-07T13:16:15", "what": "build", "seed": null, "ok": true, "code_commit": "af8f7e852e3dcf677da6bef0eaca5361e38eeeb2", "failed": [], "file": "experiments/factorial8_samples0-3_2026-11-07/checks/build_sample3.json"}
 {"when": "2026-11-07T13:25:03", "what": "keywords", "seed": null, "ok": true, "code_commit": "90ffe29bf49668d0caedb38651f4a079231a2ac3", "failed": [], "file": "experiments/factorial8_samples0-3_2026-11-07/checks/keywords.json"}
+{"when": "2026-11-07T13:25:17", "what": "inputs", "seed": 42, "ok": true, "code_commit": "0548a4ae653b82ed54f3d6588e42e9bf6ac4e53b", "failed": [], "file": "experiments/factorial8_samples0-3_2026-11-07/checks/inputs_seed42.json"}
+{"when": "2026-11-07T13:31:34", "what": "trial", "seed": null, "ok": true, "code_commit": "0548a4ae653b82ed54f3d6588e42e9bf6ac4e53b", "failed": [], "file": "experiments/factorial8_samples0-3_2026-11-07/checks/trial.json"}
