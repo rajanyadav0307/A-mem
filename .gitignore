@@ -24,3 +24,9 @@ cached_memories_*/
 # Large per-experiment logs and caches (results, notes and question plans stay visible)
 experiments/*/logs/
 experiments/*/cache/
+
+# Large run logs from failed attempts and trial runs (results and checks stay visible)
+experiments/*/invalid/*/*.log
+experiments/*/invalid/*/*.stdout
+experiments/*/trial/*.log
+experiments/*/trial/*.stdout

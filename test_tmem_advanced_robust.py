@@ -37,6 +37,7 @@ import time
 import nltk
 
 from load_dataset import load_locomo_dataset
+from shared_keywords import load_keywords_file, lookup_keywords
 from utils import calculate_metrics, aggregate_metrics
 
 
@@ -125,9 +126,14 @@ Keywords:"""
         logger.debug("generate_query_llm response: %s", result)
         return result
 
-    def answer_question(self, question: str, category: int, answer: str) -> tuple:
-        """Generate an answer using the same prompting strategy as robust A-MEM."""
-        keywords = self.generate_query_llm(question)
+    def answer_question(self, question: str, category: int, answer: str, keywords: Optional[str] = None) -> tuple:
+        """Generate an answer using the same prompting strategy as robust A-MEM.
+
+        ``keywords``: shared search words from --keywords_file; when None, they
+        are made with generate_query_llm as in A-MEM.
+        """
+        if keywords is None:
+            keywords = self.generate_query_llm(question)
         self.memory_system.current_question = question  # used only by conflict demotion
         raw_context = self.retrieve_memory(
             keywords,
@@ -220,8 +226,10 @@ def evaluate_dataset(
     timeline_date_style: str = "single",
     seed: Optional[int] = None,
     run_tag: Optional[str] = None,
+    keywords_file: Optional[str] = None,
 ):
     """Evaluate T-MEM on the LoCoMo dataset using the robust A-MEM pipeline."""
+    shared_keywords = load_keywords_file(keywords_file)
     if seed is not None:
         random.seed(seed)
     timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M")
@@ -357,13 +365,17 @@ def evaluate_dataset(
 
         eval_logger.info("Processing sample %d/%d", sample_idx + 1, len(samples))
 
-        for qa in sample.qa:
+        for question_idx, qa in enumerate(sample.qa):
             if int(qa.category) in allow_categories:
                 total_questions += 1
                 category_counts[qa.category] += 1
 
+                keywords = None
+                if shared_keywords is not None:
+                    keywords = lookup_keywords(shared_keywords, sample_idx, question_idx)
+                    eval_logger.info("Search words (shared) %d:%d: %s", sample_idx, question_idx, keywords)
                 prediction, user_prompt, raw_context = agent.answer_question(
-                    qa.question, qa.category, qa.final_answer
+                    qa.question, qa.category, qa.final_answer, keywords=keywords
                 )
                 prediction = parse_plain_text_answer(prediction)
 
@@ -433,6 +445,9 @@ def evaluate_dataset(
         final_results["timeline_date_style"] = timeline_date_style
     if seed is not None:
         final_results["seed"] = seed
+    if shared_keywords is not None:
+        final_results["keywords_file"] = shared_keywords["path"]
+        final_results["keywords_sha256"] = shared_keywords["sha256"]
     eval_logger.info("Error number: %d", error_num)
 
     if output_path:
@@ -504,6 +519,8 @@ def main():
                         help="Seed for the category-5 answer-option order (default: unseeded, as on May 6)")
     parser.add_argument("--run_tag", type=str, default=None,
                         help="Extra tag in the log file name, so parallel runs do not collide")
+    parser.add_argument("--keywords_file", type=str, default=None,
+                        help="Shared search words per question (see shared_keywords.py); default: generate them")
 
     parser.add_argument("--decay_lambda", type=float, default=0.1,
                         help="Lambda in exp(-lambda * age)")
@@ -573,6 +590,7 @@ def main():
         timeline_date_style=args.timeline_date_style,
         seed=args.seed,
         run_tag=args.run_tag,
+        keywords_file=args.keywords_file,
     )
 
 

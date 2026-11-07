@@ -32,6 +32,7 @@ from tqdm import tqdm
 from utils import calculate_metrics, aggregate_metrics
 from datetime import datetime
 import time
+from shared_keywords import load_keywords_file, lookup_keywords
 
 # Download required NLTK data
 try:
@@ -107,9 +108,14 @@ Keywords:"""
         logger.debug("generate_query_llm response: %s", result)
         return result
 
-    def answer_question(self, question: str, category: int, answer: str) -> tuple:
-        """Generate answer for a question — plain text, no JSON schema."""
-        keywords = self.generate_query_llm(question)
+    def answer_question(self, question: str, category: int, answer: str, keywords: str = None) -> tuple:
+        """Generate answer for a question — plain text, no JSON schema.
+
+        ``keywords``: shared search words from --keywords_file; when None, A-MEM
+        makes its own with generate_query_llm (the original behaviour).
+        """
+        if keywords is None:
+            keywords = self.generate_query_llm(question)
         self.memory_system.current_question = question  # used only by conflict demotion
         raw_context = self.retrieve_memory(keywords, k=self.retrieve_k)
         context = raw_context
@@ -187,8 +193,10 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
                      consolidated_score_penalty: float = 0.0,
                      conflict_mode: str = "off", demote_penalty: float = 0.10,
                      timeline_date_style: str = "single",
-                     seed: Optional[int] = None, run_tag: Optional[str] = None):
+                     seed: Optional[int] = None, run_tag: Optional[str] = None,
+                     keywords_file: Optional[str] = None):
     """Evaluate the robust agent on the LoComo dataset."""
+    shared_keywords = load_keywords_file(keywords_file)
     if seed is not None:
         random.seed(seed)
     timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M")
@@ -316,13 +324,17 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
 
         eval_logger.info(f"Processing sample {sample_idx + 1}/{len(samples)}")
 
-        for qa in sample.qa:
+        for question_idx, qa in enumerate(sample.qa):
             if int(qa.category) in allow_categories:
                 total_questions += 1
                 category_counts[qa.category] += 1
 
+                keywords = None
+                if shared_keywords is not None:
+                    keywords = lookup_keywords(shared_keywords, sample_idx, question_idx)
+                    eval_logger.info(f"Search words (shared) {sample_idx}:{question_idx}: {keywords}")
                 prediction, user_prompt, raw_context = agent.answer_question(
-                    qa.question, qa.category, qa.final_answer
+                    qa.question, qa.category, qa.final_answer, keywords=keywords
                 )
 
                 # Parse the prediction (handles both JSON and plain text)
@@ -381,6 +393,9 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
         final_results["timeline_date_style"] = timeline_date_style
     if seed is not None:
         final_results["seed"] = seed
+    if shared_keywords is not None:
+        final_results["keywords_file"] = shared_keywords["path"]
+        final_results["keywords_sha256"] = shared_keywords["sha256"]
     eval_logger.info(f"Error number: {error_num}")
 
     if output_path:
@@ -447,6 +462,8 @@ def main():
                         help="Seed for the category-5 answer-option order (default: unseeded, as on May 6)")
     parser.add_argument("--run_tag", type=str, default=None,
                         help="Extra tag in the log file name, so parallel runs do not collide")
+    parser.add_argument("--keywords_file", type=str, default=None,
+                        help="Shared search words per question (see shared_keywords.py); default: generate them")
     args = parser.parse_args()
 
     if args.ratio <= 0.0 or args.ratio > 1.0:
@@ -464,7 +481,7 @@ def main():
         consolidated_score_penalty=args.consolidated_score_penalty,
         conflict_mode=args.conflict_mode, demote_penalty=args.demote_penalty,
         timeline_date_style=args.timeline_date_style,
-        seed=args.seed, run_tag=args.run_tag,
+        seed=args.seed, run_tag=args.run_tag, keywords_file=args.keywords_file,
     )
 
 
