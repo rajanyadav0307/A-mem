@@ -126,6 +126,7 @@ def wave(seed):
 
 
 if __name__ == "__main__":
+    common.keep_awake()
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=int, choices=common.SEEDS)
     parser.add_argument("--trial", action="store_true")

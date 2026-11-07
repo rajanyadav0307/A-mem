@@ -30,6 +30,7 @@ from test_advanced_robust import RobustAdvancedMemAgent  # noqa: E402
 
 
 def main():
+    common.keep_awake()
     parser = argparse.ArgumentParser()
     parser.add_argument("--seeds", type=int, nargs="+", required=True)
     parser.add_argument("--workers", type=int, default=8)

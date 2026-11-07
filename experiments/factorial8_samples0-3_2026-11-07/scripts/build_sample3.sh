@@ -16,6 +16,7 @@ MODEL="gpt-4o-mini-2024-07-18"
 
 if [ -e "$B" ]; then echo "STOP: $B exists; nothing is overwritten"; exit 1; fi
 mkdir -p "$B/logs/conflict" "$EXP/build_logs"
+caffeinate -dims -w $$ &   # keep the computer awake until this script ends
 set -a; . ./.env; set +a
 export HF_HUB_OFFLINE=1
 

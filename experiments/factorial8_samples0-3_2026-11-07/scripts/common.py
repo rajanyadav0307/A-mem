@@ -56,6 +56,11 @@ TEMPORAL_DEFAULTS = {  # thesis V2 defaults, as written by the T-MEM evaluator i
 }
 
 
+def keep_awake():
+    """Keep the Mac awake (no idle, display or system sleep) until this process ends."""
+    subprocess.Popen(["caffeinate", "-dims", "-w", str(os.getpid())])
+
+
 def setup_flags(setup: str):
     return SETUPS[setup]
 
