@@ -1,0 +1,22 @@
+{
+  "created": "2026-11-07T13:15:07",
+  "source_cache": "experiments/factorial8_samples0-3_2026-11-07/cache/build_sample3/consolidated",
+  "output_dir": "experiments/factorial8_samples0-3_2026-11-07/cache/build_sample3/conflict",
+  "model": "gpt-4o-mini-2024-07-18",
+  "tag": "f8",
+  "samples": {
+    "3": {
+      "raw_notes": 629,
+      "state_notes": 52,
+      "labels": {
+        "PROGRESS": 70,
+        "COMPATIBLE": 7
+      },
+      "new_llm_calls": 706,
+      "timelines": 9,
+      "replaced": 0,
+      "contradictions": 0,
+      "known_cases": []
+    }
+  }
+}

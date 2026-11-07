@@ -1,0 +1,1623 @@
+{
+  "config": {
+    "similarity_threshold": 0.8,
+    "max_group_size": 5,
+    "require_same_speaker": true,
+    "embedding_model": "all-MiniLM-L6-v2"
+  },
+  "counts": {
+    "groups": 34,
+    "merged": 26,
+    "different": 8,
+    "rejected": 0,
+    "llm_calls": 88
+  },
+  "groups": [
+    {
+      "indices": [
+        0,
+        23
+      ],
+      "min_similarity": 0.9046673353921135,
+      "mean_similarity": 0.9046673353921135,
+      "sources": [
+        {
+          "index": 0,
+          "timestamp": "7:31 pm on 21 January, 2022",
+          "content": "Speaker Natesays : Hey Joanna! Long time no see! What's up? Anything fun going on?"
+        },
+        {
+          "index": 23,
+          "timestamp": "2:01 pm on 23 January, 2022",
+          "content": "Speaker Natesays : Hi Joanna! Long time no see! What's been going on? You sound excited!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes are greetings and inquiries about Joanna's well-being without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Nate greeted Joanna on 21 January 2022 asking what was up and followed up on 23 January 2022 expressing excitement about her news.",
+          "context": "Nate's small talk with Joanna.",
+          "compression_ratio": 0.9848484848484849,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 629,
+      "consolidated_content": "Nate greeted Joanna on 21 January 2022 asking what was up and followed up on 23 January 2022 expressing excitement about her news.",
+      "compression_ratio": 0.9848484848484849
+    },
+    {
+      "indices": [
+        2,
+        357
+      ],
+      "min_similarity": 0.8344312404341624,
+      "mean_similarity": 0.8344312404341624,
+      "sources": [
+        {
+          "index": 2,
+          "timestamp": "7:31 pm on 21 January, 2022",
+          "content": "Speaker Natesays : Hey Joanna! That's cool! I won my first video game tournament last week - so exciting!"
+        },
+        {
+          "index": 357,
+          "timestamp": "10:57 am on 22 August, 2022",
+          "content": "Speaker Natesays : Woah Joanna, I won an international tournament yesterday! It was wild. Gaming has brought me so much success and now I'm able to make a living at something I'm passionate about - I'm loving it."
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The first note mentions winning a local tournament, while the second note refers to winning an international tournament, indicating different events.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        21,
+        416
+      ],
+      "min_similarity": 0.8143780690787323,
+      "mean_similarity": 0.8143780690787323,
+      "sources": [
+        {
+          "index": 21,
+          "timestamp": "7:31 pm on 21 January, 2022",
+          "content": "Speaker Joannasays : No problem, Nate! Let me know if you like it!"
+        },
+        {
+          "index": 416,
+          "timestamp": "1:43 pm on 14 September, 2022",
+          "content": "Speaker Joannasays : Glad to help, Nate. Let me know if you try it. I'm sure you'll enjoy it. It was great chatting."
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express encouragement and support to Nate without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Joanna expressed encouragement to Nate on 21 January 2022, saying to let her know if he liked it, and on 14 September 2022, she reiterated her support, stating she was glad to help and was sure he would enjoy it.",
+          "context": "Joanna's encouragement and support for Nate regarding trying something new.",
+          "compression_ratio": 1.5142857142857142,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.51x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna encouraged Nate on 21 January 2022 to let her know if he liked something, and on 14 September 2022 she expressed gladness to help and suggested he would enjoy it, inviting him to share his experience.",
+          "context": "Joanna's encouragement and support for Nate regarding trying something new.",
+          "compression_ratio": 1.4785714285714286,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.48x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna expressed encouragement to Nate on 21 January 2022, saying to let her know if he liked it, and reiterated her support on 14 September 2022, suggesting he would enjoy it and that she was glad to help.",
+          "context": "Joanna's supportive comments to Nate regarding trying something new.",
+          "compression_ratio": 1.4714285714285715,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.47x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 630,
+      "consolidated_content": "Joanna expressed encouragement to Nate on 21 January 2022, saying to let her know if he liked it, and on 14 September 2022, she reiterated her support, stating she was glad to help and was sure he would enjoy it.",
+      "compression_ratio": 1.5142857142857142
+    },
+    {
+      "indices": [
+        22,
+        198
+      ],
+      "min_similarity": 0.8828431238731477,
+      "mean_similarity": 0.8828431238731477,
+      "sources": [
+        {
+          "index": 22,
+          "timestamp": "2:01 pm on 23 January, 2022",
+          "content": "Speaker Joannasays : Hey Nate! Haven't talked in a few days. Crazy things happened to me!"
+        },
+        {
+          "index": 198,
+          "timestamp": "3:35 pm on 12 May, 2022",
+          "content": "Speaker Joannasays : Hey Nate! Great to hear from you! Quite a week since we last talked - something awesome happened to me!"
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The notes refer to different events or experiences that occurred at different times.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        29,
+        49,
+        336
+      ],
+      "min_similarity": 0.8464220570897854,
+      "mean_similarity": 0.8704127645890144,
+      "sources": [
+        {
+          "index": 29,
+          "timestamp": "2:01 pm on 23 January, 2022",
+          "content": "Speaker Natesays : Congrats, Joanna! That sounds like a wild experience. Rock on and I hope they love it!"
+        },
+        {
+          "index": 49,
+          "timestamp": "2:01 pm on 23 January, 2022",
+          "content": "Speaker Natesays : Wow, Joanna, that sounds amazing! Keep doing what you love!"
+        },
+        {
+          "index": 336,
+          "timestamp": "2:34 pm on 10 July, 2022",
+          "content": "Speaker Natesays : Wow, Joanna! It sounds awesome. I'm so excited to see how it all plays out!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "The notes consist of praise and encouragement directed towards Joanna without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Nate expressed excitement and encouragement to Joanna about her experiences on 23 January 2022 and 10 July 2022, praising her for doing what she loves and anticipating how it will all play out.",
+          "context": "Nate's support and enthusiasm for Joanna's endeavors.",
+          "compression_ratio": 0.8772727272727273,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 631,
+      "consolidated_content": "Nate expressed excitement and encouragement to Joanna about her experiences on 23 January 2022 and 10 July 2022, praising her for doing what she loves and anticipating how it will all play out.",
+      "compression_ratio": 0.8772727272727273
+    },
+    {
+      "indices": [
+        53,
+        347
+      ],
+      "min_similarity": 0.822556211945692,
+      "mean_similarity": 0.822556211945692,
+      "sources": [
+        {
+          "index": 53,
+          "timestamp": "9:27 am on 7 February, 2022",
+          "content": "Speaker Joannasays : Thanks Nate, your support really means a lot. I put a lot of effort into it and I'm crossing my fingers. What about you? Anything new and exciting happening in your life?"
+        },
+        {
+          "index": 347,
+          "timestamp": "6:12 pm on 14 August, 2022",
+          "content": "Speaker Joannasays : Thanks, Nate! Really appreciate your kind words. It's knowing that my writing can make a difference that keeps me going, even on tough days. So glad to have this outlet to share my stories and hopefully have an impact. How about you? Anything new since we last talked?"
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The notes express different sentiments and experiences related to Joanna's writing and personal updates, indicating distinct conversations.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        71,
+        372
+      ],
+      "min_similarity": 0.8658275905053388,
+      "mean_similarity": 0.8658275905053388,
+      "sources": [
+        {
+          "index": 71,
+          "timestamp": "9:27 am on 7 February, 2022",
+          "content": "Speaker Joannasays : Sounds great! Let me know what you think of it when your done!"
+        },
+        {
+          "index": 372,
+          "timestamp": "10:57 am on 22 August, 2022",
+          "content": "Speaker Joannasays : That's a great one! Let me know what you think when your finished!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express encouragement for sharing thoughts on something after completion, despite slight wording differences.",
+      "attempts": [
+        {
+          "content": "Joanna expressed enthusiasm about a project and requested feedback upon completion. This was mentioned on 7 February 2022 and again on 22 August 2022.",
+          "context": "Joanna's interest in receiving updates on a project.",
+          "compression_ratio": 1.171875,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.17x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna expressed enthusiasm about a project and requested feedback upon its completion on 7 February 2022 and again on 22 August 2022.",
+          "context": "Joanna's interest in receiving updates on a project.",
+          "compression_ratio": 1.046875,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.05x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna expressed enthusiasm about a certain topic and requested feedback once it was completed on 7 February 2022 and again on 22 August 2022.",
+          "context": "Joanna's interest in receiving feedback on a specific topic.",
+          "compression_ratio": 1.109375,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.11x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 632,
+      "consolidated_content": "Joanna expressed enthusiasm about a project and requested feedback upon completion. This was mentioned on 7 February 2022 and again on 22 August 2022.",
+      "compression_ratio": 1.171875
+    },
+    {
+      "indices": [
+        74,
+        141
+      ],
+      "min_similarity": 0.9392182448239665,
+      "mean_similarity": 0.9392182448239665,
+      "sources": [
+        {
+          "index": 74,
+          "timestamp": "9:27 am on 7 February, 2022",
+          "content": "Speaker Natesays : You too, take care!"
+        },
+        {
+          "index": 141,
+          "timestamp": "7:37 pm on 15 April, 2022",
+          "content": "Speaker Natesays : Take care!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express a similar sentiment of well-wishing without conveying distinct facts.",
+      "attempts": [
+        {
+          "content": "Nate wished someone to take care on 7 February 2022 and again on 15 April 2022.",
+          "context": "Nate's expressions of care in small talk.",
+          "compression_ratio": 2.7241379310344827,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "2.72x the length of the notes"
+          ]
+        },
+        {
+          "content": "Nate wished someone to take care on 7 February 2022 and again on 15 April 2022.",
+          "context": "Nate's expressions of care in small talk.",
+          "compression_ratio": 2.7241379310344827,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "2.72x the length of the notes"
+          ]
+        },
+        {
+          "content": "Nate wished someone to take care on 7 February 2022 and again on 15 April 2022.",
+          "context": "Nate's expressions of care in small talk.",
+          "compression_ratio": 2.7241379310344827,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "2.72x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 633,
+      "consolidated_content": "Nate wished someone to take care on 7 February 2022 and again on 15 April 2022.",
+      "compression_ratio": 2.7241379310344827
+    },
+    {
+      "indices": [
+        75,
+        115
+      ],
+      "min_similarity": 0.8270299054727618,
+      "mean_similarity": 0.8270299054727618,
+      "sources": [
+        {
+          "index": 75,
+          "timestamp": "9:27 am on 7 February, 2022",
+          "content": "Speaker Joannasays : Later, take care!"
+        },
+        {
+          "index": 115,
+          "timestamp": "6:59 pm on 18 March, 2022",
+          "content": "Speaker Joannasays : Always good to hear! See you later!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express friendly sentiments and farewells without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Joanna expressed care on 7 February 2022 and shared that it was always good to hear from the other person on 18 March 2022.",
+          "context": "Joanna's friendly remarks in conversation.",
+          "compression_ratio": 2.3653846153846154,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "2.37x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna expressed care on 7 February 2022 and shared that it was always good to hear from the other person on 18 March 2022.",
+          "context": "Joanna's friendly interactions.",
+          "compression_ratio": 2.3653846153846154,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "2.37x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna expressed care on 7 February 2022 and shared that it was always good to hear from the other person on 18 March 2022.",
+          "context": "Joanna's friendly remarks in conversation.",
+          "compression_ratio": 2.3653846153846154,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "2.37x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 634,
+      "consolidated_content": "Joanna expressed care on 7 February 2022 and shared that it was always good to hear from the other person on 18 March 2022.",
+      "compression_ratio": 2.3653846153846154
+    },
+    {
+      "indices": [
+        81,
+        161,
+        312
+      ],
+      "min_similarity": 0.8088891040539807,
+      "mean_similarity": 0.841154420289202,
+      "sources": [
+        {
+          "index": 81,
+          "timestamp": "1:07 pm on 25 February, 2022",
+          "content": "Speaker Joannasays : Yeah, definitely! I'm keen to try your recipe. Always up for something sweet."
+        },
+        {
+          "index": 161,
+          "timestamp": "6:44 pm on 17 April, 2022",
+          "content": "Speaker Joannasays : Wow, sounds delicious! I'm going to try making it tonight! Thank you for sharing the recipe!"
+        },
+        {
+          "index": 312,
+          "timestamp": "10:55 am on 24 June, 2022",
+          "content": "Speaker Joannasays : Mm, yum! Can you give me the recipe for that? It sounds like it'd be a good recipe!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "All notes express Joanna's interest in trying a recipe, indicating a consistent theme of enthusiasm for cooking.",
+      "attempts": [
+        {
+          "content": "Joanna is keen to try a recipe and has expressed interest in making it on multiple occasions. On 25 February 2022, she said she was up for something sweet; on 17 April 2022, she mentioned she would try making it that night; and on 24 June 2022, she asked for the recipe because it sounded good.",
+          "context": "Joanna's interest in a specific recipe.",
+          "compression_ratio": 1.1666666666666667,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.17x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna expressed interest in trying a recipe for something sweet. On 25 February 2022, she said she was keen to try it; on 17 April 2022, she mentioned she would make it that night; and on 24 June 2022, she asked for the recipe.",
+          "context": "Joanna's enthusiasm for a sweet recipe.",
+          "compression_ratio": 0.9047619047619048,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 635,
+      "consolidated_content": "Joanna expressed interest in trying a recipe for something sweet. On 25 February 2022, she said she was keen to try it; on 17 April 2022, she mentioned she would make it that night; and on 24 June 2022, she asked for the recipe.",
+      "compression_ratio": 0.9047619047619048
+    },
+    {
+      "indices": [
+        111,
+        121,
+        138,
+        258,
+        318
+      ],
+      "min_similarity": 0.8513314214273054,
+      "mean_similarity": 0.9135004465079775,
+      "sources": [
+        {
+          "index": 111,
+          "timestamp": "6:59 pm on 18 March, 2022",
+          "content": "Speaker Joannasays : Thanks so much, Nate! Your support means a lot. I'll keep working at it and hopefully the next steps will become clearer soon."
+        },
+        {
+          "index": 121,
+          "timestamp": "1:43 pm on 24 March, 2022",
+          "content": "Speaker Joannasays : Thanks, Nate! Your support means a lot. I'll make sure to keep you updated. Anything new on your end?"
+        },
+        {
+          "index": 138,
+          "timestamp": "7:37 pm on 15 April, 2022",
+          "content": "Speaker Joannasays : Cheers, Nate! Your support means a lot. I'll definitely keep you updated."
+        },
+        {
+          "index": 258,
+          "timestamp": "3:00 pm on 25 May, 2022",
+          "content": "Speaker Joannasays : Thanks, Nate! Your support is greatly appreciated. I'll make sure to keep you updated."
+        },
+        {
+          "index": 318,
+          "timestamp": "10:55 am on 24 June, 2022",
+          "content": "Speaker Joannasays : Thanks Nate! Your support is greatly appreciated. I'll make sure to keep you updated."
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "All notes express gratitude towards Nate for his support and indicate that Joanna will keep him updated, with slight variations in wording.",
+      "attempts": [
+        {
+          "content": "Joanna expressed gratitude for Nate's support and stated she would keep him updated. This was mentioned on 18 March 2022, 24 March 2022, 15 April 2022, 25 May 2022, and 24 June 2022.",
+          "context": "Joanna's appreciation for Nate's support and her commitment to provide updates.",
+          "compression_ratio": 0.386411889596603,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 636,
+      "consolidated_content": "Joanna expressed gratitude for Nate's support and stated she would keep him updated. This was mentioned on 18 March 2022, 24 March 2022, 15 April 2022, 25 May 2022, and 24 June 2022.",
+      "compression_ratio": 0.386411889596603
+    },
+    {
+      "indices": [
+        114,
+        257
+      ],
+      "min_similarity": 0.8237058222432614,
+      "mean_similarity": 0.8237058222432614,
+      "sources": [
+        {
+          "index": 114,
+          "timestamp": "6:59 pm on 18 March, 2022",
+          "content": "Speaker Natesays : Glad to hear my support makes a difference, Joanna. I'm here for you!"
+        },
+        {
+          "index": 257,
+          "timestamp": "3:00 pm on 25 May, 2022",
+          "content": "Speaker Natesays : Can't wait to see it, Joanna! I'm here to support you."
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express support and encouragement to Joanna without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Nate expressed his support for Joanna on 18 March 2022, stating it makes a difference, and again on 25 May 2022, expressing excitement to see her progress.",
+          "context": "Nate's encouragement and support for Joanna.",
+          "compression_ratio": 1.2601626016260163,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.26x the length of the notes"
+          ]
+        },
+        {
+          "content": "Nate expressed his support for Joanna on 18 March 2022 and mentioned he was excited to see her progress on 25 May 2022.",
+          "context": "Nate's encouragement and support for Joanna.",
+          "compression_ratio": 0.967479674796748,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 637,
+      "consolidated_content": "Nate expressed his support for Joanna on 18 March 2022 and mentioned he was excited to see her progress on 25 May 2022.",
+      "compression_ratio": 0.967479674796748
+    },
+    {
+      "indices": [
+        116,
+        142,
+        218,
+        471,
+        490
+      ],
+      "min_similarity": 0.8213833403456865,
+      "mean_similarity": 0.8703487167928439,
+      "sources": [
+        {
+          "index": 116,
+          "timestamp": "1:43 pm on 24 March, 2022",
+          "content": "Speaker Natesays : Hey Joanna! Long time no talk, how's it going? Crazy stuff's been happening since we last chatted."
+        },
+        {
+          "index": 142,
+          "timestamp": "6:44 pm on 17 April, 2022",
+          "content": "Speaker Natesays : Hey Joanna! Haven't talked with you in a while - how's it going?"
+        },
+        {
+          "index": 218,
+          "timestamp": "7:49 pm on 20 May, 2022",
+          "content": "Speaker Natesays : Hey Joanna! How've you been? Been a busy week since we talked."
+        },
+        {
+          "index": 471,
+          "timestamp": "2:01 pm on 21 October, 2022",
+          "content": "Speaker Natesays : Hey Joanna, what's been up? Haven't seen you since we last talked."
+        },
+        {
+          "index": 490,
+          "timestamp": "8:16 pm on 25 October, 2022",
+          "content": "Speaker Natesays : Hey Joanna, what's been up since we last chatted? How's it going?"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "All notes consist of greetings and inquiries about well-being without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Nate reached out to Joanna on 24 March 2022, 17 April 2022, 20 May 2022, 21 October 2022, and 25 October 2022, each time asking how she has been and mentioning that it had been a while since they last talked.",
+          "context": "Nate's greetings and inquiries about Joanna's well-being over several months.",
+          "compression_ratio": 0.5859154929577465,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 638,
+      "consolidated_content": "Nate reached out to Joanna on 24 March 2022, 17 April 2022, 20 May 2022, 21 October 2022, and 25 October 2022, each time asking how she has been and mentioning that it had been a while since they last talked.",
+      "compression_ratio": 0.5859154929577465
+    },
+    {
+      "indices": [
+        117,
+        219
+      ],
+      "min_similarity": 0.8072516865733932,
+      "mean_similarity": 0.8072516865733932,
+      "sources": [
+        {
+          "index": 117,
+          "timestamp": "1:43 pm on 24 March, 2022",
+          "content": "Speaker Joannasays : Hey Nate! Been quite a ride - in a good way - had an audition yesterday for a writing gig."
+        },
+        {
+          "index": 219,
+          "timestamp": "7:49 pm on 20 May, 2022",
+          "content": "Speaker Joannasays : Hey Nate! Just finished something - pretty wild journey!"
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The first note mentions an audition for a writing gig, while the second note refers to finishing something without specifying what it is.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        127,
+        262,
+        331,
+        339,
+        486
+      ],
+      "min_similarity": 0.8027146799693332,
+      "mean_similarity": 0.839273102564585,
+      "sources": [
+        {
+          "index": 127,
+          "timestamp": "1:43 pm on 24 March, 2022",
+          "content": "Speaker Joannasays : Thanks Nate! Appreciate your kind words and support. Let's keep going for our dreams and work hard. Catch you later!"
+        },
+        {
+          "index": 262,
+          "timestamp": "5:44 pm on 3 June, 2022",
+          "content": "Speaker Joannasays : Thanks, Nate. It can feel like a step back sometimes. But I appreciate your kind words and encouragement."
+        },
+        {
+          "index": 331,
+          "timestamp": "2:34 pm on 10 July, 2022",
+          "content": "Speaker Joannasays : Thanks, Nate! Your encouragement really means a lot to me. You're the best for supporting me in my writing journey."
+        },
+        {
+          "index": 339,
+          "timestamp": "2:34 pm on 10 July, 2022",
+          "content": "Speaker Joannasays : Thanks, Nate! Your belief in me means a lot. I'll keep doing my best. Thanks for the support!"
+        },
+        {
+          "index": 486,
+          "timestamp": "2:01 pm on 21 October, 2022",
+          "content": "Speaker Joannasays : Thanks, Nate! Your encouragement really means a lot. I'm gonna keep pushing forward and believing in myself."
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "The notes express gratitude and encouragement towards Nate without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Joanna expressed gratitude to Nate for his encouragement and support on multiple occasions, stating on 24 March 2022 that she appreciated his kind words, on 3 June 2022 that it sometimes felt like a step back but valued his encouragement, on 10 July 2022 that his belief in her meant a lot, and on 21 October 2022 that she would keep pushing forward thanks to his support.",
+          "context": "Joanna's appreciation for Nate's encouragement in her writing journey.",
+          "compression_ratio": 0.6927374301675978,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 639,
+      "consolidated_content": "Joanna expressed gratitude to Nate for his encouragement and support on multiple occasions, stating on 24 March 2022 that she appreciated his kind words, on 3 June 2022 that it sometimes felt like a step back but valued his encouragement, on 10 July 2022 that his belief in her meant a lot, and on 21 October 2022 that she would keep pushing forward thanks to his support.",
+      "compression_ratio": 0.6927374301675978
+    },
+    {
+      "indices": [
+        128,
+        397,
+        417,
+        613
+      ],
+      "min_similarity": 0.8820926679706942,
+      "mean_similarity": 0.9202006108525409,
+      "sources": [
+        {
+          "index": 128,
+          "timestamp": "1:43 pm on 24 March, 2022",
+          "content": "Speaker Natesays : Bye Joanna! Take care!"
+        },
+        {
+          "index": 397,
+          "timestamp": "6:03 pm on 5 September, 2022",
+          "content": "Speaker Natesays : Bye Joanna! Good luck!"
+        },
+        {
+          "index": 417,
+          "timestamp": "1:43 pm on 14 September, 2022",
+          "content": "Speaker Natesays : Thanks Joanna! I will. Bye!"
+        },
+        {
+          "index": 613,
+          "timestamp": "5:54 pm on 9 November, 2022",
+          "content": "Speaker Natesays : Bye Joanna!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "The notes consist of various farewells and expressions of goodwill towards Joanna without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Nate said goodbye and offered encouragement to Joanna on 24 March 2022, 5 September 2022, and 14 September 2022, and thanked her on 14 September 2022, with another goodbye on 9 November 2022.",
+          "context": "Nate's small talk with Joanna including farewells and well wishes.",
+          "compression_ratio": 2.3292682926829267,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "2.33x the length of the notes"
+          ]
+        },
+        {
+          "content": "Nate said goodbye and wished Joanna well on 24 March 2022, 5 September 2022, and 9 November 2022, and thanked her on 14 September 2022.",
+          "context": "Nate's farewell messages to Joanna.",
+          "compression_ratio": 1.646341463414634,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.65x the length of the notes"
+          ]
+        },
+        {
+          "content": "Nate said goodbye to Joanna on 24 March 2022, wished her good luck on 5 September 2022, thanked her on 14 September 2022, and said goodbye again on 9 November 2022.",
+          "context": "Nate's small talk with Joanna.",
+          "compression_ratio": 2.0,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "2.00x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 640,
+      "consolidated_content": "Nate said goodbye and offered encouragement to Joanna on 24 March 2022, 5 September 2022, and 14 September 2022, and thanked her on 14 September 2022, with another goodbye on 9 November 2022.",
+      "compression_ratio": 2.3292682926829267
+    },
+    {
+      "indices": [
+        140,
+        303,
+        470
+      ],
+      "min_similarity": 0.8788347535057225,
+      "mean_similarity": 0.9139607161079875,
+      "sources": [
+        {
+          "index": 140,
+          "timestamp": "7:37 pm on 15 April, 2022",
+          "content": "Speaker Joannasays : Totally! Bye Nate!"
+        },
+        {
+          "index": 303,
+          "timestamp": "2:12 pm on 5 June, 2022",
+          "content": "Speaker Joannasays : Bye Nate!"
+        },
+        {
+          "index": 470,
+          "timestamp": "10:58 am on 9 October, 2022",
+          "content": "Speaker Joannasays : See ya Nate!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "The notes consist of casual farewells to Nate without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Joanna said \"Totally! Bye Nate!\" on 15 April 2022, \"Bye Nate!\" on 5 June 2022, and \"See ya Nate!\" on 9 October 2022.",
+          "context": "Joanna's small talk farewells to Nate.",
+          "compression_ratio": 2.9743589743589745,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "2.97x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna said goodbye to Nate on 15 April 2022, 5 June 2022, and 9 October 2022.",
+          "context": "Joanna's farewells to Nate.",
+          "compression_ratio": 2.0,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "2.00x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna said \"Totally! Bye Nate!\" on 15 April 2022, \"Bye Nate!\" on 5 June 2022, and \"See ya Nate!\" on 9 October 2022.",
+          "context": "Joanna's farewells to Nate.",
+          "compression_ratio": 2.9743589743589745,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "2.97x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 641,
+      "consolidated_content": "Joanna said \"Totally! Bye Nate!\" on 15 April 2022, \"Bye Nate!\" on 5 June 2022, and \"See ya Nate!\" on 9 October 2022.",
+      "compression_ratio": 2.9743589743589745
+    },
+    {
+      "indices": [
+        158,
+        350
+      ],
+      "min_similarity": 0.8598080535709184,
+      "mean_similarity": 0.8598080535709184,
+      "sources": [
+        {
+          "index": 158,
+          "timestamp": "6:44 pm on 17 April, 2022",
+          "content": "Speaker Natesays : Thanks! It's dairy-free and so easy. Wanna get the recipe?"
+        },
+        {
+          "index": 350,
+          "timestamp": "6:12 pm on 14 August, 2022",
+          "content": "Speaker Natesays : I've been really into making this lately - it's creamy, rich, dairy-free and a new recipe! Wanna try it? I can share the recipe with you if you'd like!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes discuss dairy-free recipes and the willingness to share them, indicating a similar fact about cooking.",
+      "attempts": [
+        {
+          "content": "Nate has been making a creamy, rich, dairy-free recipe and is willing to share it. He mentioned this on 17 April 2022 and again on 14 August 2022.",
+          "context": "Nate's dairy-free recipe.",
+          "compression_ratio": 0.6985645933014354,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 642,
+      "consolidated_content": "Nate has been making a creamy, rich, dairy-free recipe and is willing to share it. He mentioned this on 17 April 2022 and again on 14 August 2022.",
+      "compression_ratio": 0.6985645933014354
+    },
+    {
+      "indices": [
+        159,
+        535
+      ],
+      "min_similarity": 0.8289062675047693,
+      "mean_similarity": 0.8289062675047693,
+      "sources": [
+        {
+          "index": 159,
+          "timestamp": "6:44 pm on 17 April, 2022",
+          "content": "Speaker Joannasays : Sure! I'm lactose intolerant, so I'll just need the dairy-free recipe! "
+        },
+        {
+          "index": 535,
+          "timestamp": "3:56 pm on 4 November, 2022",
+          "content": "Speaker Joannasays : Mmm, that looks delicious! Is it lactose-free by any chance?"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express Joanna's concern about lactose in recipes, indicating her lactose intolerance and preference for lactose-free options.",
+      "attempts": [
+        {
+          "content": "Joanna is lactose intolerant and needs dairy-free recipes. This was mentioned on 17 April 2022 and again on 4 November 2022 when she inquired if a dish was lactose-free.",
+          "context": "Joanna's dietary restriction regarding lactose.",
+          "compression_ratio": 1.3,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.30x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna is lactose intolerant and needs dairy-free recipes. She mentioned this on 17 April 2022 and inquired about a lactose-free option on 4 November 2022.",
+          "context": "Joanna's dietary restriction regarding lactose.",
+          "compression_ratio": 1.1923076923076923,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.19x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna is lactose intolerant and needs dairy-free recipes. She mentioned this on 17 April 2022 and inquired about a lactose-free option on 4 November 2022.",
+          "context": "Joanna's dietary restriction regarding lactose.",
+          "compression_ratio": 1.1923076923076923,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.19x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 643,
+      "consolidated_content": "Joanna is lactose intolerant and needs dairy-free recipes. This was mentioned on 17 April 2022 and again on 4 November 2022 when she inquired if a dish was lactose-free.",
+      "compression_ratio": 1.3
+    },
+    {
+      "indices": [
+        164,
+        341
+      ],
+      "min_similarity": 0.8514433139012739,
+      "mean_similarity": 0.8514433139012739,
+      "sources": [
+        {
+          "index": 164,
+          "timestamp": "7:44 pm on 21 April, 2022",
+          "content": "Speaker Joannasays : [Image: a photo of a notebook with a notepad and a piece of paper] Hey Nate! Long time no talk! I wanted to tell ya I just joined a writers group. It's unbelievable--such inspirational people who really get my writing. I'm feeling so motivated and supported, it's like I finally belong somewhere!"
+        },
+        {
+          "index": 341,
+          "timestamp": "6:12 pm on 14 August, 2022",
+          "content": "Speaker Joannasays : [Image: a photo of a notebook with a bunch of stickers on it] Hey Nate, long time no talk! I've been busy with writing projects and really going all out with it. It's been the best thing ever - a mix of highs and lows - and my journal's pretty much my rock. Writing's such a huge part of me now."
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The first note discusses joining a writers group and feeling inspired, while the second note focuses on ongoing writing projects and the personal significance of journaling.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        178,
+        374
+      ],
+      "min_similarity": 0.811635255677452,
+      "mean_similarity": 0.811635255677452,
+      "sources": [
+        {
+          "index": 178,
+          "timestamp": "7:44 pm on 21 April, 2022",
+          "content": "Speaker Joannasays : Heard of that series! It's been on my list forever. Thanks for the recommendation, Nate. I'm definitely going to check it out!"
+        },
+        {
+          "index": 374,
+          "timestamp": "10:57 am on 22 August, 2022",
+          "content": "Speaker Joannasays : Wow, that series looks awesome! I'll have to check it out sometime!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express Joanna's intention to check out the same series, albeit at different times.",
+      "attempts": [
+        {
+          "content": "Joanna plans to check out a series that has been on her list. On 21 April 2022, she mentioned it was on her list forever and thanked Nate for the recommendation; on 22 August 2022, she expressed excitement about the series and stated she would check it out sometime.",
+          "context": "Joanna's interest in a recommended series.",
+          "compression_ratio": 1.378238341968912,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.38x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna plans to check out a series that has been on her list. She mentioned it on 21 April 2022 and again on 22 August 2022, expressing excitement about it both times.",
+          "context": "Joanna's interest in a recommended series.",
+          "compression_ratio": 0.8652849740932642,
+          "missing": [
+            "Nate"
+          ],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        },
+        {
+          "content": "Joanna plans to check out a series recommended by Nate. On 21 April 2022, Joanna mentioned it had been on her list forever; on 22 August 2022, she expressed excitement about it looking awesome.",
+          "context": "Joanna's interest in a series recommended by Nate.",
+          "compression_ratio": 1.0,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 644,
+      "consolidated_content": "Joanna plans to check out a series recommended by Nate. On 21 April 2022, Joanna mentioned it had been on her list forever; on 22 August 2022, she expressed excitement about it looking awesome.",
+      "compression_ratio": 1.0
+    },
+    {
+      "indices": [
+        180,
+        196,
+        355,
+        378
+      ],
+      "min_similarity": 0.8130885345993114,
+      "mean_similarity": 0.8411553487652682,
+      "sources": [
+        {
+          "index": 180,
+          "timestamp": "7:44 pm on 21 April, 2022",
+          "content": "Speaker Joannasays : Thanks Nate! I'll definitely let you know my thoughts. Take care and have a great day!"
+        },
+        {
+          "index": 196,
+          "timestamp": "11:54 am on 2 May, 2022",
+          "content": "Speaker Joannasays : Thanks, Nate! Appreciate all the help. Gonna keep trying new things. See ya later!"
+        },
+        {
+          "index": 355,
+          "timestamp": "6:12 pm on 14 August, 2022",
+          "content": "Speaker Joannasays : Thanks, Nate. I'll keep you posted. Have a great day."
+        },
+        {
+          "index": 378,
+          "timestamp": "10:57 am on 22 August, 2022",
+          "content": "Speaker Joannasays : Thanks, Nate! You too! Have a great day. Take care."
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "All notes express gratitude and well-wishes without conveying distinct facts or plans.",
+      "attempts": [
+        {
+          "content": "Joanna expressed gratitude and encouragement to Nate on 21 April 2022, 2 May 2022, 14 August 2022, and 22 August 2022, wishing him a great day and promising to keep him updated.",
+          "context": "Joanna's appreciation and updates to Nate.",
+          "compression_ratio": 0.6507352941176471,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 645,
+      "consolidated_content": "Joanna expressed gratitude and encouragement to Nate on 21 April 2022, 2 May 2022, 14 August 2022, and 22 August 2022, wishing him a great day and promising to keep him updated.",
+      "compression_ratio": 0.6507352941176471
+    },
+    {
+      "indices": [
+        216,
+        286,
+        396
+      ],
+      "min_similarity": 0.879326099628674,
+      "mean_similarity": 0.9043933388937045,
+      "sources": [
+        {
+          "index": 216,
+          "timestamp": "3:35 pm on 12 May, 2022",
+          "content": "Speaker Joannasays : Sure thing Nate! See you later!"
+        },
+        {
+          "index": 286,
+          "timestamp": "5:44 pm on 3 June, 2022",
+          "content": "Speaker Joannasays : Thanks Nate! See you later!"
+        },
+        {
+          "index": 396,
+          "timestamp": "6:03 pm on 5 September, 2022",
+          "content": "Speaker Joannasays : Got it Nate, I'll see you soon!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "The notes consist of casual expressions of agreement and farewell without conveying distinct facts or plans.",
+      "attempts": [
+        {
+          "content": "Joanna expressed her agreement and gratitude to Nate on 12 May 2022, 3 June 2022, and confirmed plans to see him soon on 5 September 2022.",
+          "context": "Joanna's small talk with Nate.",
+          "compression_ratio": 1.550561797752809,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.55x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna expressed greetings and thanks to Nate on 12 May 2022, 3 June 2022, and confirmed plans to see him soon on 5 September 2022.",
+          "context": "Joanna's interactions with Nate.",
+          "compression_ratio": 1.4719101123595506,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.47x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna expressed greetings and thanks to Nate on 12 May 2022, 3 June 2022, and 5 September 2022, indicating she would see him later or soon.",
+          "context": "Joanna's interactions with Nate.",
+          "compression_ratio": 1.5730337078651686,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.57x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 646,
+      "consolidated_content": "Joanna expressed her agreement and gratitude to Nate on 12 May 2022, 3 June 2022, and confirmed plans to see him soon on 5 September 2022.",
+      "compression_ratio": 1.550561797752809
+    },
+    {
+      "indices": [
+        234,
+        429,
+        522
+      ],
+      "min_similarity": 0.8068782801798738,
+      "mean_similarity": 0.8152673859554792,
+      "sources": [
+        {
+          "index": 234,
+          "timestamp": "7:49 pm on 20 May, 2022",
+          "content": "Speaker Natesays : Well done, Joanna! It takes guts to explore your experiences and feelings. I'm proud of you for staying strong and being true to yourself. Keep it up!"
+        },
+        {
+          "index": 429,
+          "timestamp": "11:15 am on 6 October, 2022",
+          "content": "Speaker Natesays : I'm always here for you, Joanna! You've worked so hard and accomplished a lot – I'm proud. Keep on going!"
+        },
+        {
+          "index": 522,
+          "timestamp": "3:56 pm on 4 November, 2022",
+          "content": "Speaker Natesays : Way to go, Joanna! Putting yourself out there is really brave and winning recognition for your hard work feels great. It's just like when I win a video game tournament - it feels awesome! I'm so proud of you and so glad you're feeling hopeful and inspired."
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "The notes consist of praise and encouragement directed towards Joanna without distinct facts or events being described.",
+      "attempts": [
+        {
+          "content": "Nate praised Joanna for her bravery and accomplishments on 20 May 2022, 6 October 2022, and 4 November 2022, expressing pride in her hard work and encouraging her to keep going.",
+          "context": "Nate's encouragement and support for Joanna's personal growth and achievements.",
+          "compression_ratio": 0.34637964774951074,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 647,
+      "consolidated_content": "Nate praised Joanna for her bravery and accomplishments on 20 May 2022, 6 October 2022, and 4 November 2022, expressing pride in her hard work and encouraging her to keep going.",
+      "compression_ratio": 0.34637964774951074
+    },
+    {
+      "indices": [
+        236,
+        340
+      ],
+      "min_similarity": 0.8551289543522773,
+      "mean_similarity": 0.8551289543522773,
+      "sources": [
+        {
+          "index": 236,
+          "timestamp": "7:49 pm on 20 May, 2022",
+          "content": "Speaker Natesays : No worries, Joanna! Keep going and reach for your dreams. You've got tons of talent and potential!"
+        },
+        {
+          "index": 340,
+          "timestamp": "2:34 pm on 10 July, 2022",
+          "content": "Speaker Natesays : No problem, Joanna. I'm here for you. Your hard work will pay off, I promise. Believe in yourself and your talent - you're incredible!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express encouragement and praise towards Joanna without stating distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Nate encouraged Joanna on 20 May 2022 by praising her talent and potential, and on 10 July 2022 he reassured her that her hard work would pay off and urged her to believe in herself.",
+          "context": "Nate's encouragement and support for Joanna's dreams and hard work.",
+          "compression_ratio": 0.7844827586206896,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 648,
+      "consolidated_content": "Nate encouraged Joanna on 20 May 2022 by praising her talent and potential, and on 10 July 2022 he reassured her that her hard work would pay off and urged her to believe in herself.",
+      "compression_ratio": 0.7844827586206896
+    },
+    {
+      "indices": [
+        247,
+        477
+      ],
+      "min_similarity": 0.8119205510225262,
+      "mean_similarity": 0.8119205510225262,
+      "sources": [
+        {
+          "index": 247,
+          "timestamp": "3:00 pm on 25 May, 2022",
+          "content": "Speaker Natesays : Thanks! It's a stuffed animal to remind you of the good vibes."
+        },
+        {
+          "index": 477,
+          "timestamp": "2:01 pm on 21 October, 2022",
+          "content": "Speaker Natesays : That's so touching! Glad the stuffed animal means so much!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes discuss the significance of a stuffed animal and express appreciation for it.",
+      "attempts": [
+        {
+          "content": "Nate gave a stuffed animal to remind someone of the good vibes. On 25 May 2022, Nate expressed this intention, and on 21 October 2022, he acknowledged how touching it was that the stuffed animal meant so much.",
+          "context": "Nate's gift of a stuffed animal and its significance.",
+          "compression_ratio": 1.7416666666666667,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.74x the length of the notes"
+          ]
+        },
+        {
+          "content": "Nate gave a stuffed animal to remind someone of the good vibes. On 25 May 2022, Nate expressed this intention, and on 21 October 2022, he acknowledged how touching it was that the stuffed animal meant so much.",
+          "context": "Nate's gift of a stuffed animal and its significance.",
+          "compression_ratio": 1.7416666666666667,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.74x the length of the notes"
+          ]
+        },
+        {
+          "content": "Nate gave a stuffed animal to remind someone of the good vibes. On 25 May 2022, Nate expressed this intention, and on 21 October 2022, he acknowledged how touching it was that the stuffed animal meant so much.",
+          "context": "Nate's gift of a stuffed animal and its significance.",
+          "compression_ratio": 1.7416666666666667,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.74x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 649,
+      "consolidated_content": "Nate gave a stuffed animal to remind someone of the good vibes. On 25 May 2022, Nate expressed this intention, and on 21 October 2022, he acknowledged how touching it was that the stuffed animal meant so much.",
+      "compression_ratio": 1.7416666666666667
+    },
+    {
+      "indices": [
+        268,
+        358,
+        428
+      ],
+      "min_similarity": 0.8271836233058063,
+      "mean_similarity": 0.8517587315478732,
+      "sources": [
+        {
+          "index": 268,
+          "timestamp": "5:44 pm on 3 June, 2022",
+          "content": "Speaker Joannasays : Way to go, Nate! Congratulations on your victory in the tournament! It must feel great to be recognized for your gaming skills."
+        },
+        {
+          "index": 358,
+          "timestamp": "10:57 am on 22 August, 2022",
+          "content": "Speaker Joannasays : Congrats, Nate! So proud of you for winning that tournament, that's awesome! Must feel great to turn your passion into a career."
+        },
+        {
+          "index": 428,
+          "timestamp": "11:15 am on 6 October, 2022",
+          "content": "Speaker Joannasays : Thanks Nate! Your words mean a lot. Dedication and late nights got me here, but it was worth it. Just like you with your recent tournament - hard work pays off. I appreciate your support throughout!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "All notes express congratulations to Nate for winning a tournament, highlighting his achievements and the effort involved.",
+      "attempts": [
+        {
+          "content": "Joanna congratulated Nate on his victory in the tournament, expressing pride in his achievement and recognizing the hard work that led to his success. This was mentioned on 3 June 2022, 22 August 2022, and 6 October 2022.",
+          "context": "Joanna's congratulations to Nate for winning a gaming tournament.",
+          "compression_ratio": 0.4878587196467991,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 650,
+      "consolidated_content": "Joanna congratulated Nate on his victory in the tournament, expressing pride in his achievement and recognizing the hard work that led to his success. This was mentioned on 3 June 2022, 22 August 2022, and 6 October 2022.",
+      "compression_ratio": 0.4878587196467991
+    },
+    {
+      "indices": [
+        302,
+        518
+      ],
+      "min_similarity": 0.9300793582415676,
+      "mean_similarity": 0.9300793582415676,
+      "sources": [
+        {
+          "index": 302,
+          "timestamp": "2:12 pm on 5 June, 2022",
+          "content": "Speaker Natesays : Of course! Well see you later Joanna!"
+        },
+        {
+          "index": 518,
+          "timestamp": "8:16 pm on 25 October, 2022",
+          "content": "Speaker Natesays : See you later Joanna!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes express a farewell to Joanna, indicating a similar plan to meet later.",
+      "attempts": [
+        {
+          "content": "Nate said goodbye to Joanna on 5 June 2022 and again on 25 October 2022.",
+          "context": "Nate's farewells to Joanna.",
+          "compression_ratio": 1.2413793103448276,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.24x the length of the notes"
+          ]
+        },
+        {
+          "content": "Nate said goodbye to Joanna on 5 June 2022 and again on 25 October 2022.",
+          "context": "Nate's farewells to Joanna.",
+          "compression_ratio": 1.2413793103448276,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.24x the length of the notes"
+          ]
+        },
+        {
+          "content": "Nate said goodbye to Joanna on 5 June 2022 and again on 25 October 2022.",
+          "context": "Nate's farewells to Joanna.",
+          "compression_ratio": 1.2413793103448276,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.24x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 651,
+      "consolidated_content": "Nate said goodbye to Joanna on 5 June 2022 and again on 25 October 2022.",
+      "compression_ratio": 1.2413793103448276
+    },
+    {
+      "indices": [
+        305,
+        545
+      ],
+      "min_similarity": 0.8097200163108238,
+      "mean_similarity": 0.8097200163108238,
+      "sources": [
+        {
+          "index": 305,
+          "timestamp": "10:55 am on 24 June, 2022",
+          "content": "Speaker Natesays : That's really cool Joanna! I hope it does well, and I've been doing great! The gaming party was a great success! We even played some Chess afterward just for fun."
+        },
+        {
+          "index": 545,
+          "timestamp": "8:10 pm on 7 November, 2022",
+          "content": "Speaker Natesays : Thanks, Joanna! I've been having a blast and preparing for other tournaments, so I've been real busy - but I'm loving it!"
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The first note discusses a successful gaming party and playing Chess, while the second note focuses on Nate's busy schedule preparing for tournaments.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        403,
+        407
+      ],
+      "min_similarity": 0.8101777192922862,
+      "mean_similarity": 0.8101777192922862,
+      "sources": [
+        {
+          "index": 403,
+          "timestamp": "1:43 pm on 14 September, 2022",
+          "content": "Speaker Natesays : [Image: a photography of a bowl of ice cream with a spoon on a table] Coconut milk ice cream is at the top of my list. It's so smooth and creamy with a tropical coconut twist. Plus, it's dairy-free for people who can't have lactose or who want vegan options. Here's a snap of the ice cream I made."
+        },
+        {
+          "index": 407,
+          "timestamp": "1:43 pm on 14 September, 2022",
+          "content": "Speaker Natesays : Coconut milk ice cream is one of my favorites as you might be able to tell, but I also love a dairy-free chocolate mousse. It's super creamy and tastes like the real thing. What's been your favorite dairy-free sweet treat so far?"
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The first note discusses coconut milk ice cream specifically, while the second note mentions both coconut milk ice cream and dairy-free chocolate mousse, introducing a different dessert.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        434,
+        556
+      ],
+      "min_similarity": 0.8679183298670086,
+      "mean_similarity": 0.8679183298670086,
+      "sources": [
+        {
+          "index": 434,
+          "timestamp": "11:15 am on 6 October, 2022",
+          "content": "Speaker Joannasays : Wow, Nate! That's sweet of you! I'll make sure to remember this when I need the encouragement the most."
+        },
+        {
+          "index": 556,
+          "timestamp": "8:10 pm on 7 November, 2022",
+          "content": "Speaker Joannasays : Thanks, Nate! Appreciate the encouragement. I won't give up, I promise! Got it covered!"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes express gratitude and encouragement without conveying distinct facts or events.",
+      "attempts": [
+        {
+          "content": "Joanna expressed gratitude to Nate for his encouragement on 6 October 2022 and reaffirmed her commitment to not give up on 7 November 2022.",
+          "context": "Joanna's appreciation for Nate's encouragement.",
+          "compression_ratio": 0.7315789473684211,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": []
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 652,
+      "consolidated_content": "Joanna expressed gratitude to Nate for his encouragement on 6 October 2022 and reaffirmed her commitment to not give up on 7 November 2022.",
+      "compression_ratio": 0.7315789473684211
+    },
+    {
+      "indices": [
+        480,
+        503
+      ],
+      "min_similarity": 0.8355135244983941,
+      "mean_similarity": 0.8355135244983941,
+      "sources": [
+        {
+          "index": 480,
+          "timestamp": "2:01 pm on 21 October, 2022",
+          "content": "Speaker Joannasays : Same here! So have you been up to anything recenly?"
+        },
+        {
+          "index": 503,
+          "timestamp": "8:16 pm on 25 October, 2022",
+          "content": "Speaker Joannasays : Awesome! Well enough about me, what have you been up to?"
+        }
+      ],
+      "label": "SMALL_TALK",
+      "label_reason": "Both notes consist of casual conversation and inquiries about each other's recent activities without stating distinct facts.",
+      "attempts": [
+        {
+          "content": "Joanna asked about recent activities on 21 October 2022 and again on 25 October 2022 shifted the focus back to the other person.",
+          "context": "Small talk between Joanna and another person regarding their recent activities.",
+          "compression_ratio": 1.1962616822429906,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.20x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna asked about recent activities on 21 October 2022 and again on 25 October 2022, shifting the conversation to inquire about the other person's updates.",
+          "context": "Small talk between Joanna and another person regarding their recent activities.",
+          "compression_ratio": 1.4579439252336448,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.46x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna asked about recent activities on 21 October 2022 and again on 25 October 2022, shifting the conversation to inquire about the other person's updates.",
+          "context": "Small talk between Joanna and another person regarding their recent activities.",
+          "compression_ratio": 1.4579439252336448,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "1.46x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 653,
+      "consolidated_content": "Joanna asked about recent activities on 21 October 2022 and again on 25 October 2022 shifted the focus back to the other person.",
+      "compression_ratio": 1.1962616822429906
+    },
+    {
+      "indices": [
+        523,
+        590
+      ],
+      "min_similarity": 0.8833745056961563,
+      "mean_similarity": 0.8833745056961563,
+      "sources": [
+        {
+          "index": 523,
+          "timestamp": "3:56 pm on 4 November, 2022",
+          "content": "Speaker Joannasays : [Image: a photo of a notebook with a list of things to write] Thanks Nate! Your support and encouragement mean a lot. Writing isn't always easy but moments like these make me appreciate it. I'm so thankful for all the opportunities. Last week, I found these old notebooks with my early writings - it was cool to see how far I've come."
+        },
+        {
+          "index": 590,
+          "timestamp": "5:54 pm on 9 November, 2022",
+          "content": "Speaker Joannasays : [Image: a photo of a pen and notebook on a table with a book] Appreciate you, Nate! Your support and encouragement mean a lot to me. I feel like I just can't stop writing write now!"
+        }
+      ],
+      "label": "DIFFERENT",
+      "label_reason": "The first note reflects on past writings and personal growth, while the second note expresses current enthusiasm for writing without referencing past experiences.",
+      "outcome": "kept_separate"
+    },
+    {
+      "indices": [
+        541,
+        612
+      ],
+      "min_similarity": 0.8858535517603479,
+      "mean_similarity": 0.8858535517603479,
+      "sources": [
+        {
+          "index": 541,
+          "timestamp": "3:56 pm on 4 November, 2022",
+          "content": "Speaker Joannasays : You got it! See you tomorrow!"
+        },
+        {
+          "index": 612,
+          "timestamp": "5:54 pm on 9 November, 2022",
+          "content": "Speaker Joannasays : Alright, see you tomorrow!"
+        }
+      ],
+      "label": "SAME_FACT",
+      "label_reason": "Both notes indicate a plan to meet the next day, albeit with slightly different wording.",
+      "attempts": [
+        {
+          "content": "Joanna confirmed plans to meet the next day. On 4 November 2022, Joanna said, \"See you tomorrow!\" and on 9 November 2022, Joanna reiterated, \"See you tomorrow!\"",
+          "context": "Joanna's plans to meet.",
+          "compression_ratio": 2.909090909090909,
+          "missing": [],
+          "relative_times": [
+            "tomorrow"
+          ],
+          "dropped_times": [],
+          "too_long": [
+            "2.91x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna confirmed plans to meet on 5 November 2022. She mentioned this on 4 November 2022 and again on 9 November 2022.",
+          "context": "Joanna's plans to meet.",
+          "compression_ratio": 2.1454545454545455,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [
+            "tomorrow (said 4 November 2022 -> day)",
+            "tomorrow (said 9 November 2022 -> day)"
+          ],
+          "too_long": [
+            "2.15x the length of the notes"
+          ]
+        },
+        {
+          "content": "Joanna planned to meet the next day. On 4 November 2022, she said they would meet on 5 November 2022; on 9 November 2022, she said they would meet on 10 November 2022.",
+          "context": "Joanna's plans to meet.",
+          "compression_ratio": 3.036363636363636,
+          "missing": [],
+          "relative_times": [],
+          "dropped_times": [],
+          "too_long": [
+            "3.04x the length of the notes"
+          ]
+        }
+      ],
+      "outcome": "merged",
+      "consolidated_index": 654,
+      "consolidated_content": "Joanna planned to meet the next day. On 4 November 2022, she said they would meet on 5 November 2022; on 9 November 2022, she said they would meet on 10 November 2022.",
+      "compression_ratio": 3.036363636363636
+    }
+  ],
+  "sample": 3,
+  "source_cache": "experiments/factorial8_samples0-3_2026-11-07/cache/build_sample3/base",
+  "output_dir": "experiments/factorial8_samples0-3_2026-11-07/cache/build_sample3/consolidated",
+  "model": "gpt-4o-mini-2024-07-18",
+  "tag": "f8",
+  "embedding_recipe": "union",
+  "notes_before": 629,
+  "notes_after": 655,
+  "built_at": "2026-11-07T13:15:03"
+}

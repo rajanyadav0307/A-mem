@@ -1,0 +1,39 @@
+{
+ "what": "build",
+ "seed": null,
+ "ok": true,
+ "items": [
+  {
+   "check": "B0 files",
+   "ok": true,
+   "detail": "{'base': 'experiments/factorial8_samples0-3_2026-11-07/cache/build_sample3/base/memory_cache_sample_3.pkl', 'consolidated': 'experiments/factorial8_samples0-3_2026-11-07/cache/build_sample3/consolidated/memory_cache_sample_3.pkl', 'conflict': 'experiments/factorial8_samples0-3_2026-11-07/cache/build_sample3/conflict/memory_cache_sample_3.pkl'}"
+  },
+  {
+   "check": "B1 629 notes in turn order",
+   "ok": true,
+   "detail": "629 notes, 629 turns"
+  },
+  {
+   "check": "B2 A-MEM notes identical in all 3 banks",
+   "ok": true,
+   "detail": "base 629, consolidated 655, conflict 655"
+  },
+  {
+   "check": "B3 0 build warnings or errors",
+   "ok": true,
+   "detail": "{\"turns\": 629, \"notes\": 629, \"seconds\": 2638, \"finished\": \"2026-11-07T13:13:14\", \"warnings_or_errors\": 0, \"examples\": []}"
+  },
+  {
+   "check": "B4 merged notes and timelines logged",
+   "ok": true,
+   "detail": "merged 26, timelines 9, replaced 0"
+  },
+  {
+   "check": "B5 'happened' dates filled from relative times",
+   "ok": true,
+   "detail": "11 of 35 timeline notes have a 'happened' date"
+  }
+ ],
+ "when": "2026-11-07T13:16:15",
+ "code_commit": "af8f7e852e3dcf677da6bef0eaca5361e38eeeb2"
+}

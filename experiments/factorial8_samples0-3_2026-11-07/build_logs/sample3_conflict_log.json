@@ -1,0 +1,837 @@
+{
+  "config": {
+    "topic_threshold": 0.78,
+    "status_duplicate": 0.85,
+    "max_compare": null,
+    "workers": 8
+  },
+  "raw_notes": 629,
+  "state_notes": 52,
+  "timelines": [
+    {
+      "speaker": "Joanna",
+      "topic": "Joanna's film project",
+      "notes": [
+        28,
+        614
+      ],
+      "dates": [
+        "23 January 2022",
+        "11 November 2022"
+      ],
+      "statuses": [
+        "submitted to film festivals",
+        "filming her own movie"
+      ]
+    },
+    {
+      "speaker": "Joanna",
+      "topic": "Joanna's movie script",
+      "notes": [
+        24,
+        51,
+        93,
+        95,
+        166,
+        304,
+        491,
+        548,
+        570,
+        588
+      ],
+      "dates": [
+        "23 January 2022",
+        "7 February 2022",
+        "25 February 2022",
+        "18 March 2022",
+        "21 April 2022",
+        "24 June 2022",
+        "25 October 2022",
+        "7 November 2022",
+        "7 November 2022",
+        "9 November 2022"
+      ],
+      "statuses": [
+        "completed and printed",
+        "submitted to film festival",
+        "hoping it gets noticed",
+        "completed and awaiting next steps",
+        "working on it",
+        "submitted to a film contest",
+        "shown on the big screen",
+        "hoping to get it on big screen",
+        "completed introduction",
+        "pitched to producers"
+      ]
+    },
+    {
+      "speaker": "Joanna",
+      "topic": "Joanna's writing gig",
+      "notes": [
+        117,
+        164
+      ],
+      "dates": [
+        "24 March 2022",
+        "21 April 2022"
+      ],
+      "statuses": [
+        "auditioned for position",
+        "just joined"
+      ]
+    },
+    {
+      "speaker": "Joanna",
+      "topic": "Joanna's book",
+      "notes": [
+        333,
+        337,
+        426
+      ],
+      "dates": [
+        "10 July 2022",
+        "10 July 2022",
+        "6 October 2022"
+      ],
+      "statuses": [
+        "started writing a book",
+        "never tried publishing a book",
+        "finished writing it"
+      ]
+    },
+    {
+      "speaker": "Joanna",
+      "topic": "Joanna's meetings with producers",
+      "notes": [
+        519,
+        544
+      ],
+      "dates": [
+        "4 November 2022",
+        "7 November 2022"
+      ],
+      "statuses": [
+        "set up meetings",
+        "finished the presentation"
+      ]
+    },
+    {
+      "speaker": "Nate",
+      "topic": "Nate's new dog",
+      "notes": [
+        220,
+        222,
+        245
+      ],
+      "dates": [
+        "20 May 2022",
+        "20 May 2022",
+        "25 May 2022"
+      ],
+      "statuses": [
+        "recently acquired Max",
+        "bringing joy and energy",
+        "got a new stuffed animal"
+      ]
+    },
+    {
+      "speaker": "Nate",
+      "topic": "Nate's video game tournament",
+      "notes": [
+        122,
+        167,
+        185,
+        187,
+        271,
+        419,
+        543
+      ],
+      "dates": [
+        "24 March 2022",
+        "21 April 2022",
+        "2 May 2022",
+        "2 May 2022",
+        "3 June 2022",
+        "6 October 2022",
+        "7 November 2022"
+      ],
+      "statuses": [
+        "currently participating",
+        "preparing for next month",
+        "won second tournament",
+        "participated and succeeded",
+        "participated in a tournament",
+        "won a tournament",
+        "won a tournament"
+      ]
+    },
+    {
+      "speaker": "Nate",
+      "topic": "Nate's gaming party",
+      "notes": [
+        279,
+        357,
+        443,
+        585
+      ],
+      "dates": [
+        "3 June 2022",
+        "22 August 2022",
+        "9 October 2022",
+        "9 November 2022"
+      ],
+      "statuses": [
+        "organizing for two weekends later",
+        "making a living at it",
+        "planned with friends",
+        "considering offers"
+      ]
+    },
+    {
+      "speaker": "Nate",
+      "topic": "Nate's teaching activity",
+      "notes": [
+        348,
+        597
+      ],
+      "dates": [
+        "14 August 2022",
+        "9 November 2022"
+      ],
+      "statuses": [
+        "started teaching people",
+        "starting a new activity"
+      ]
+    }
+  ],
+  "labels": {
+    "PROGRESS": 70,
+    "COMPATIBLE": 7
+  },
+  "replaced": [],
+  "contradictions": [],
+  "pairs": [
+    {
+      "timeline": 0,
+      "old": 28,
+      "new": 614,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from submitting their project to film festivals to actively filming their own movie, showing advancement in their filmmaking journey."
+    },
+    {
+      "timeline": 1,
+      "old": 24,
+      "new": 51,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the ongoing journey of the screenplay from completion to submission and anticipation of its potential success."
+    },
+    {
+      "timeline": 1,
+      "old": 24,
+      "new": 93,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the screenplay has progressed from completion to seeking recognition and potential production."
+    },
+    {
+      "timeline": 1,
+      "old": 51,
+      "new": 93,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a continued hope for the screenplay's success, suggesting that the situation has evolved since the older statement."
+    },
+    {
+      "timeline": 1,
+      "old": 24,
+      "new": 95,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has completed a second screenplay, showing advancement in their writing journey since finishing the first one."
+    },
+    {
+      "timeline": 1,
+      "old": 51,
+      "new": 95,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has completed a second script, showing advancement in their writing journey since the first statement."
+    },
+    {
+      "timeline": 1,
+      "old": 93,
+      "new": 95,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has completed a second script, showing advancement in their writing journey since the older statement."
+    },
+    {
+      "timeline": 1,
+      "old": 24,
+      "new": 166,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from completing their first screenplay to actively working on a new script with a group."
+    },
+    {
+      "timeline": 1,
+      "old": 51,
+      "new": 166,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved on from submitting the screenplay to working on a new script, showing advancement in their creative endeavors."
+    },
+    {
+      "timeline": 1,
+      "old": 93,
+      "new": 166,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has made progress in their screenwriting efforts by working on a specific script, \"Finding Home,\" since the older statement expressed a hope for their screenplay to be noticed."
+    },
+    {
+      "timeline": 1,
+      "old": 95,
+      "new": 166,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from completing their second script to actively working on a new script with a group, showing advancement in their writing journey."
+    },
+    {
+      "timeline": 1,
+      "old": 24,
+      "new": 304,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from completing their screenplay to submitting it for a contest, showing advancement in their writing journey."
+    },
+    {
+      "timeline": 1,
+      "old": 51,
+      "new": 304,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from submitting a screenplay to a film festival to submitting a different screenplay to a film contest, indicating ongoing engagement with their writing."
+    },
+    {
+      "timeline": 1,
+      "old": 93,
+      "new": 304,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has taken further steps by submitting their screenplay to a contest after expressing hope for it to be noticed in the older statement."
+    },
+    {
+      "timeline": 1,
+      "old": 95,
+      "new": 304,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved forward from completing their second script to submitting it to a film contest."
+    },
+    {
+      "timeline": 1,
+      "old": 166,
+      "new": 304,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from working on a screenplay to submitting it to a contest, showing advancement in their creative process."
+    },
+    {
+      "timeline": 1,
+      "old": 24,
+      "new": 491,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from completing their first screenplay to contributing to another script that was shown on the big screen, demonstrating advancement in their screenwriting journey."
+    },
+    {
+      "timeline": 1,
+      "old": 51,
+      "new": 491,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's previous hopes for their screenplay have progressed to a successful screening of another script they contributed to."
+    },
+    {
+      "timeline": 1,
+      "old": 93,
+      "new": 491,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's screenplay aspirations have advanced to a successful outcome, as they have now seen a script they contributed to on the big screen."
+    },
+    {
+      "timeline": 1,
+      "old": 95,
+      "new": 491,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the successful culmination of the anxiety and excitement expressed in the older statement, indicating advancement in the person's journey as a screenwriter."
+    },
+    {
+      "timeline": 1,
+      "old": 166,
+      "new": 491,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from working on a script to having one shown on the big screen, demonstrating advancement in their filmmaking journey."
+    },
+    {
+      "timeline": 1,
+      "old": 304,
+      "new": 491,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's involvement in screenwriting has advanced from submitting a screenplay to having a script shown on the big screen."
+    },
+    {
+      "timeline": 1,
+      "old": 24,
+      "new": 548,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved on from completing their first screenplay to actively writing another script."
+    },
+    {
+      "timeline": 1,
+      "old": 51,
+      "new": 548,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from submitting a screenplay to working on a new movie script, indicating advancement in their creative endeavors."
+    },
+    {
+      "timeline": 1,
+      "old": 93,
+      "new": 548,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from hoping their screenplay gets noticed to actively writing another movie script, showing advancement in their creative endeavors."
+    },
+    {
+      "timeline": 1,
+      "old": 95,
+      "new": 548,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved on to writing another script after completing the second one mentioned in the older statement."
+    },
+    {
+      "timeline": 1,
+      "old": 166,
+      "new": 548,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement introduces a different script project while the older statement discusses a previous script, indicating that both can coexist."
+    },
+    {
+      "timeline": 1,
+      "old": 304,
+      "new": 548,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from submitting a screenplay to actively writing another movie script, showing advancement in their creative endeavors."
+    },
+    {
+      "timeline": 1,
+      "old": 491,
+      "new": 548,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person is continuing to write movie scripts, building on their previous experience of having one shown on the big screen."
+    },
+    {
+      "timeline": 1,
+      "old": 24,
+      "new": 570,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from completing their first screenplay to working on the introduction of their next movie script."
+    },
+    {
+      "timeline": 1,
+      "old": 51,
+      "new": 570,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved forward from submitting a screenplay to working on a new movie script."
+    },
+    {
+      "timeline": 1,
+      "old": 93,
+      "new": 570,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has made progress by completing the introduction to their next movie script since expressing hope for their previous screenplay."
+    },
+    {
+      "timeline": 1,
+      "old": 95,
+      "new": 570,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved forward from finishing their second script to working on the introduction of their next movie script."
+    },
+    {
+      "timeline": 1,
+      "old": 166,
+      "new": 570,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved forward from working on a script about \"Finding Home\" to completing the introduction of their next movie script."
+    },
+    {
+      "timeline": 1,
+      "old": 304,
+      "new": 570,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved forward from submitting a screenplay to working on the introduction of a new movie script."
+    },
+    {
+      "timeline": 1,
+      "old": 491,
+      "new": 570,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved forward to working on a new movie script after the experience of seeing their previous script on the big screen."
+    },
+    {
+      "timeline": 1,
+      "old": 24,
+      "new": 588,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from completing their first screenplay to actively working on another script and pitching it to producers, showing advancement in their screenwriting journey."
+    },
+    {
+      "timeline": 1,
+      "old": 51,
+      "new": 588,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from submitting a screenplay to actively working on another script and pitching it to producers, showing advancement in their filmmaking journey."
+    },
+    {
+      "timeline": 1,
+      "old": 93,
+      "new": 588,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has made progress in their screenwriting efforts by working hard on another script and pitching it to producers, building on their earlier hope of getting noticed."
+    },
+    {
+      "timeline": 1,
+      "old": 95,
+      "new": 588,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved from feeling anxious about their work to successfully pitching a script to producers, showing advancement in their filmmaking journey."
+    },
+    {
+      "timeline": 1,
+      "old": 166,
+      "new": 588,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has advanced from working on a script to pitching it to producers, showing a progression in their creative process."
+    },
+    {
+      "timeline": 1,
+      "old": 304,
+      "new": 588,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has advanced from submitting a screenplay to actively pitching a new script to producers, showing development in their filmmaking efforts."
+    },
+    {
+      "timeline": 1,
+      "old": 491,
+      "new": 588,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has moved forward from having a script shown on screen to actively pitching another script to producers."
+    },
+    {
+      "timeline": 1,
+      "old": 548,
+      "new": 588,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the script has progressed from being written to being pitched to producers, showing advancement in the process."
+    },
+    {
+      "timeline": 1,
+      "old": 570,
+      "new": 588,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the script development has advanced from writing the introduction to pitching it to producers."
+    },
+    {
+      "timeline": 2,
+      "old": 117,
+      "new": 164,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The person has moved from auditioning for a writing gig to actively participating in a writers group, indicating advancement in their writing journey."
+    },
+    {
+      "timeline": 3,
+      "old": 333,
+      "new": 426,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has completed their book, showing advancement from the initial plan to start writing mentioned in the older statement."
+    },
+    {
+      "timeline": 3,
+      "old": 337,
+      "new": 426,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The person has moved from the initial stage of considering publishing a book to actually completing the writing of it."
+    },
+    {
+      "timeline": 4,
+      "old": 519,
+      "new": 544,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has made progress on their presentation for producers since the older statement about setting up meetings with them."
+    },
+    {
+      "timeline": 5,
+      "old": 220,
+      "new": 245,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement introduces a new stuffed animal while still acknowledging the previous addition of the dog, Max."
+    },
+    {
+      "timeline": 5,
+      "old": 222,
+      "new": 245,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement introduces a new stuffed animal while the older statement discusses the joy brought by an adopted pup, allowing both to coexist without contradiction."
+    },
+    {
+      "timeline": 6,
+      "old": 122,
+      "new": 167,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The person has moved from participating in a tournament in March to preparing for their fourth tournament in April, indicating advancement in their gaming activities."
+    },
+    {
+      "timeline": 6,
+      "old": 122,
+      "new": 185,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's gaming focus has advanced from participating in tournaments to winning them."
+    },
+    {
+      "timeline": 6,
+      "old": 167,
+      "new": 185,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's gaming focus has advanced, as they have been practicing and achieving success in tournaments since the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 122,
+      "new": 187,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement adds information about participating in a different tournament while still acknowledging the ongoing involvement in competitive gaming."
+    },
+    {
+      "timeline": 6,
+      "old": 167,
+      "new": 187,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement adds information about participating in a different tournament while still being involved in gaming, which aligns with the older statement about the upcoming tournament."
+    },
+    {
+      "timeline": 6,
+      "old": 122,
+      "new": 271,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a continuation of participation in tournaments, suggesting that the person's involvement has progressed since the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 167,
+      "new": 271,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects a continuation of the person's experience with gaming tournaments, indicating that time has passed since the first tournament mentioned in the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 185,
+      "new": 271,
+      "previous_status": false,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement acknowledges the time since the first tournament while also expressing gratitude for support, which complements the older statement about winning tournaments without contradicting it."
+    },
+    {
+      "timeline": 6,
+      "old": 187,
+      "new": 271,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement reflects the person's continued involvement in tournaments since the first one mentioned in the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 122,
+      "new": 419,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has progressed from participating in a tournament to winning a tournament, indicating advancement in their gaming experience."
+    },
+    {
+      "timeline": 6,
+      "old": 167,
+      "new": 419,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has progressed from preparing for a tournament to winning a significant tournament and achieving financial success from it."
+    },
+    {
+      "timeline": 6,
+      "old": 185,
+      "new": 419,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has continued to succeed in gaming, winning a bigger tournament since the older statement."
+    },
+    {
+      "timeline": 6,
+      "old": 187,
+      "new": 419,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has progressed from participating in a local tournament to winning a larger video game tournament, indicating improvement in their skills and achievements."
+    },
+    {
+      "timeline": 6,
+      "old": 271,
+      "new": 419,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has progressed from participating in tournaments to winning a significant one, reflecting advancement in their gaming achievements."
+    },
+    {
+      "timeline": 6,
+      "old": 122,
+      "new": 543,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a progression from participating in tournaments to achieving victory in one, highlighting an advancement in the person's competitive experience."
+    },
+    {
+      "timeline": 6,
+      "old": 167,
+      "new": 543,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a progression in the person's gaming experience, moving from participating in tournaments to winning one."
+    },
+    {
+      "timeline": 6,
+      "old": 185,
+      "new": 543,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person's success in gaming has advanced, as they won a larger tournament after previously winning smaller ones."
+    },
+    {
+      "timeline": 6,
+      "old": 187,
+      "new": 543,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has progressed from participating in a Street Fighter tournament to winning a Valorant tournament, indicating growth in their competitive gaming experience."
+    },
+    {
+      "timeline": 6,
+      "old": 419,
+      "new": 543,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has continued to participate in video game tournaments and has achieved further success since the older statement."
+    },
+    {
+      "timeline": 7,
+      "old": 279,
+      "new": 357,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The person has progressed from organizing a gaming party to achieving success in gaming by winning an international tournament and making a living from it."
+    },
+    {
+      "timeline": 7,
+      "old": 279,
+      "new": 443,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates that the person has successfully organized and participated in a gaming session after planning it in the older statement."
+    },
+    {
+      "timeline": 7,
+      "old": 357,
+      "new": 443,
+      "previous_status": true,
+      "label": "COMPATIBLE",
+      "reason": "The newer statement adds the experience of making friends and participating in a convention while still enjoying gaming, which aligns with the success mentioned in the older statement."
+    },
+    {
+      "timeline": 7,
+      "old": 279,
+      "new": 585,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The person has moved from organizing a gaming party to considering joining a new gaming team, indicating a progression in their involvement in gaming activities."
+    },
+    {
+      "timeline": 7,
+      "old": 357,
+      "new": 585,
+      "previous_status": false,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a progression in the person's gaming career as they consider joining a new team after achieving success in an international tournament."
+    },
+    {
+      "timeline": 7,
+      "old": 443,
+      "new": 585,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates a step forward in the person's gaming journey by considering joining a new team after previously making friends and planning a gaming session."
+    },
+    {
+      "timeline": 8,
+      "old": 348,
+      "new": 597,
+      "previous_status": true,
+      "label": "PROGRESS",
+      "reason": "The newer statement indicates excitement about starting something new, which suggests a progression from the previous experience of teaching others about dairy-free desserts."
+    }
+  ],
+  "verification": {
+    "checked": 0,
+    "confirmed": 0
+  },
+  "new_llm_calls": 706,
+  "known_cases": []
+}

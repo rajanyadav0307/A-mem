@@ -1205,12 +1205,27 @@
   },
   "experiments/factorial8_samples0-3_2026-11-07/cache/shared/retriever_cache_embeddings_sample_2.npy": {
    "sha256": "fc40e1dfd87dbbb49350b6b35b1ee2a7db4fb238f07a262eda948d7bbd35aeef"
+  },
+  "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_3.pkl": {
+   "sha256": "19b91ca0fcabf4da1e61e23b3149400426ea82f83bbd7619321733ab19050521",
+   "notes": 655,
+   "raw_notes": 629,
+   "merged_notes": 26,
+   "timeline_notes": 35,
+   "happened_dates": 11
+  },
+  "experiments/factorial8_samples0-3_2026-11-07/cache/shared/retriever_cache_sample_3.pkl": {
+   "sha256": "8dca015176bacbc7d1c551a4006790654b84adb3d7f27183b982a122f73b0c30"
+  },
+  "experiments/factorial8_samples0-3_2026-11-07/cache/shared/retriever_cache_embeddings_sample_3.npy": {
+   "sha256": "e20e86b76800db6b383bc461df189fc6b2f7b533791139fe41bd5d0fda4c3f1f"
   }
  },
  "bank_sources": {
   "0": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/cache/conflict",
   "1": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/cache/conflict",
-  "2": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/cache/conflict"
+  "2": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/cache/conflict",
+  "3": "experiments/factorial8_samples0-3_2026-11-07/cache/build_sample3/conflict"
  },
  "keywords": {},
  "attempts": [],
@@ -1240,5 +1255,10 @@
    "what": "PLAN.md: I2b and check history added to section 7; 'Changes to this plan' and the zero-cost rehearsal recorded; plan fingerprint updated",
    "approved": "documentation of the re-verification"
   }
- ]
+ ],
+ "sample3_build": {
+  "base": "5401705b5183867d8cfe2a5301dae768bf6eed1b92f7ff6de29682ac8915f3f7",
+  "consolidated": "30f89085be0dfbb14f4d1ca7b366c0c31c767d84aae1e2e3bc36cced668e905d",
+  "conflict": "19b91ca0fcabf4da1e61e23b3149400426ea82f83bbd7619321733ab19050521"
+ }
 }
