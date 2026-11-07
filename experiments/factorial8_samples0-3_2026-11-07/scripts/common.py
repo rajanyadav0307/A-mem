@@ -48,6 +48,19 @@ SETUPS = {
     "s8_tch": (True, True, True),
 }
 
+# A wave runs in two halves of 4 setups (about 1M tokens/min, half the 2M limit).
+# Half A holds A-MEM and each part alone, so the main comparisons run side by side.
+HALF_A = ("s1_amem", "s2_t", "s3_c", "s4_h")
+HALF_B = ("s5_tc", "s6_th", "s7_ch", "s8_tch")
+# Lines in a run's screen output that mean a question finally failed: stop the half at once.
+FATAL_MARKERS = ("failed after", "answer_question failed", "Traceback")
+
+
+def half_order(seed: int):
+    """Halves alternate their order from run to run: 42, 44, 46 run A first; 43, 45 run B first."""
+    return (HALF_A, HALF_B) if (int(seed) - 42) % 2 == 0 else (HALF_B, HALF_A)
+
+
 TEMPORAL_DEFAULTS = {  # thesis V2 defaults, as written by the T-MEM evaluator into its results
     "decay_lambda": 0.1, "blend_alpha": 0.9, "decay_age_unit": "months_equiv",
     "use_decay_only_temporal": True, "reinforce_beta": 0.5, "link_gamma": 0.3,
@@ -87,7 +100,8 @@ def command(setup: str, seed: int):
     script = "test_tmem_advanced_robust.py" if t else "test_advanced_robust.py"
     cmd = [PY, script, "--model", MODEL, "--backend", "openai", "--ratio", RATIO, "--retrieve_k", RETRIEVE_K,
            "--memories_dir", SHARED_BANK, "--seed", str(seed), "--run_tag", run_tag(setup, seed),
-           "--keywords_file", keywords_file(seed), "--output", result_file(setup, seed)]
+           "--keywords_file", keywords_file(seed), "--trap_order", "per_question",
+           "--output", result_file(setup, seed)]
     if c:
         cmd += ["--consolidation_mode", "primary_expand", "--consolidated_top_k_cap", "1"]
     if h:

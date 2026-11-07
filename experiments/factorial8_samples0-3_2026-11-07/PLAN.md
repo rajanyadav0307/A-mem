@@ -41,7 +41,8 @@ How each T-MEM part changes A-MEM's answers, on its own and in every combination
 | Consolidation (when ON) | `--consolidation_mode primary_expand --consolidated_top_k_cap 1` |
 | Conflict handling (when ON) | `--conflict_mode annotate_demote --demote_penalty 0.10 --timeline_date_style two_dates` |
 | Answer randomness | A-MEM's own: temperature 0.7 (0.5 for trap questions). **Not changed.** |
-| Trap-question answer order | Fixed by seed (`--seed`) |
+| Trap-question answer order | Fixed per question from the seed (`--seed`, `--trap_order per_question`), so API retries cannot change it |
+| Runs side by side | 4 at a time: half A (s1–s4), then half B (s5–s8); half order alternates (seeds 42, 44, 46 start with A; 43, 45 with B) |
 | Search words | Made once per question per run with A-MEM's own prompt, then shared by all 8 setups (section 5) |
 
 ## 3. Inputs: what is reused and what is built
@@ -131,8 +132,8 @@ Money is spent only when the previous gate passes. If any gate fails, everything
 | **1** | Build sample 3: A-MEM notes → merged notes → timelines | ~$0.30 | ~47 min | B1–B5 below |
 | **2** | Make search words: 5 runs × 757 questions (3,785 calls) | ~$0.05 | ~8 min | K1–K3 below |
 | **3** | Trial: `s1_amem`, sample 0 only, seed 42, with the keywords file | ~$0.18 | ~6 min | All result checks pass on the trial |
-| **4** | Wave 1: all 8 setups, seed 42, side by side | ~$5.55 | ~40 min | All result checks pass; real cost on your OpenAI usage page within ±20% of the estimate |
-| **5** | Waves 2–5: seeds 43, 44, 45, 46, one wave at a time | ~$22.20 | ~2 h 40 min | All result checks pass after every wave |
+| **4** | Wave 1: all 8 setups, seed 42, in two halves of 4 | ~$5.55 | ~36 min | All result checks pass; real cost on your OpenAI usage page within ±20% of the estimate |
+| **5** | Waves 2–5: seeds 43, 44, 45, 46, one wave at a time | ~$22.20 | ~2 h 25 min | All result checks pass after every wave |
 | **6** | Final checks across all 40 files, analysis, report, commit | $0 | ~30 min | `checks_all.json` passes |
 | | **Total** | **~$28.30** | **~4 h 50 min** | |
 
@@ -173,11 +174,13 @@ Each redone run, if one is ever needed, costs about $0.69.
 | R6 | 0 errors and 0 failed answers in the log. Any rate-limit retry is counted and reported. |
 | R7 | Every question used the shared search words (757 log lines), with 0 search-word AI calls |
 | R8 | Timeline labels and "happened" dates appear only in setups with conflict handling on. Merged notes appear only in setups with consolidation on. |
-| R9 | Trap-question answer order is identical in all 8 setups for the same seed |
+| R9 | Every trap question shows exactly the fixed per-question answer order, in all 8 setups |
 | R10 | For non-time questions, each "time ranking ON" setup has exactly the same retrieved notes as its "OFF" partner (s2=s1, s5=s3, s6=s4, s8=s7). This is exact now that the search words are shared. |
 | R11 | **Replay:** for every question, the retrieved notes in the log equal what the code gives offline from the same bank and the same search words |
 
-A run that fails any check is moved to `invalid/`, and the pipeline stops. It is redone only after you say so.
+If any check fails, the **whole wave** is moved to `invalid/` automatically, and the pipeline stops. It is redone only after you say so.
+
+**Emergency stop:** while a half runs, the screen output of each run is read every 10 seconds. If any question finally fails ("failed after", "answer_question failed" or a crash), the half is stopped at once, so no more money is spent, and the wave is moved to `invalid/`.
 
 Every check run is also appended to `checks/history.jsonl`, with its time, result and failed checks. That file is never rewritten.
 
@@ -216,9 +219,9 @@ Every check run is also appended to `checks/history.jsonl`, with its time, resul
 **Past speed:** 4, 6, 9 and 12 runs side by side gave 126, 175, 151 and 119 questions per minute in total. The computer, not the API, sets the speed.
 
 **This test:**
-- 8 side by side at about 150 questions per minute.
-- One wave of 6,056 questions takes about 40 minutes (35–50).
-- About 0.95 million tokens per minute, against your limit of 2,000,000 tokens and 5,000 requests per minute.
+- **Measured in wave 1 (2026-11-07):** each run answers about 42 questions per minute, about 250,000 tokens per minute. The speed is set by the API, not the computer. 8 side by side reached the 2,000,000 limit.
+- **Now:** 4 side by side, about 1,000,000 tokens per minute, half the limit.
+- One half of 4 × 757 questions takes about 18 minutes; a wave of two halves, about 36 minutes.
 
 **Keep awake:** each stage runs under `caffeinate`. Keep the lid open and the power connected; on 2026-11-06 a closed lid paused a wave for 18 hours.
 
@@ -258,3 +261,12 @@ All checks passed: B1–B5, K1–K3, T1–T6, and 85 of 85 result checks, includ
 - a wrong setting
 - one changed note in a log
 - a missing search-words entry
+
+**Wave 1, first attempt (2026-11-07), invalid.** All 8 setups side by side reached the 2,000,000 tokens/min limit: the wave took 17.9 minutes, not 40. That left 39 answers empty after all retries (R2, R6). OpenAI's retry jitter draws from Python's shared random generator, which shifted the trap-answer order (R9). All other checks passed, including the replay. The 8 runs are kept in `invalid/*_seed42_attempt1/` with `reason.txt` and are not used. Cost: about $5.60.
+
+Changes made after that attempt, before any further spending:
+
+7. **4 runs side by side, not 8,** in two fixed halves whose order alternates by seed.
+8. **Trap-question answer order fixed per question** from the seed (`--trap_order per_question`, a new evaluator option; the default is unchanged). R9 now checks the exact expected order.
+9. **Emergency stop:** the first finally failed question stops the half at once.
+10. **Automatic invalidation:** if any result check fails, the whole wave moves to `invalid/` (the plan promised this; it was done by hand for the first attempt).

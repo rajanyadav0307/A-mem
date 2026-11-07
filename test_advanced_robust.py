@@ -32,7 +32,7 @@ from tqdm import tqdm
 from utils import calculate_metrics, aggregate_metrics
 from datetime import datetime
 import time
-from shared_keywords import load_keywords_file, lookup_keywords
+from shared_keywords import load_keywords_file, lookup_keywords, trap_draw
 
 # Download required NLTK data
 try:
@@ -108,11 +108,14 @@ Keywords:"""
         logger.debug("generate_query_llm response: %s", result)
         return result
 
-    def answer_question(self, question: str, category: int, answer: str, keywords: str = None) -> tuple:
+    def answer_question(self, question: str, category: int, answer: str, keywords: str = None,
+                        trap_draw: float = None) -> tuple:
         """Generate answer for a question — plain text, no JSON schema.
 
         ``keywords``: shared search words from --keywords_file; when None, A-MEM
         makes its own with generate_query_llm (the original behaviour).
+        ``trap_draw``: fixed draw for the trap-question answer order (--trap_order
+        per_question); when None, random.random() is used as before.
         """
         if keywords is None:
             keywords = self.generate_query_llm(question)
@@ -124,7 +127,8 @@ Keywords:"""
 
         if category == 5:
             answer_tmp = list()
-            if random.random() < 0.5:
+            draw = random.random() if trap_draw is None else trap_draw
+            if draw < 0.5:
                 answer_tmp.append('Not mentioned in the conversation')
                 answer_tmp.append(answer)
             else:
@@ -194,9 +198,11 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
                      conflict_mode: str = "off", demote_penalty: float = 0.10,
                      timeline_date_style: str = "single",
                      seed: Optional[int] = None, run_tag: Optional[str] = None,
-                     keywords_file: Optional[str] = None):
+                     keywords_file: Optional[str] = None, trap_order: str = "sequence"):
     """Evaluate the robust agent on the LoComo dataset."""
     shared_keywords = load_keywords_file(keywords_file)
+    if trap_order == "per_question" and seed is None:
+        raise ValueError("--trap_order per_question needs --seed")
     if seed is not None:
         random.seed(seed)
     timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M")
@@ -333,8 +339,11 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
                 if shared_keywords is not None:
                     keywords = lookup_keywords(shared_keywords, sample_idx, question_idx)
                     eval_logger.info(f"Search words (shared) {sample_idx}:{question_idx}: {keywords}")
+                draw = None
+                if trap_order == "per_question" and int(qa.category) == 5:
+                    draw = trap_draw(seed, sample_idx, question_idx)
                 prediction, user_prompt, raw_context = agent.answer_question(
-                    qa.question, qa.category, qa.final_answer, keywords=keywords
+                    qa.question, qa.category, qa.final_answer, keywords=keywords, trap_draw=draw
                 )
 
                 # Parse the prediction (handles both JSON and plain text)
@@ -396,6 +405,8 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
     if shared_keywords is not None:
         final_results["keywords_file"] = shared_keywords["path"]
         final_results["keywords_sha256"] = shared_keywords["sha256"]
+    if trap_order != "sequence":
+        final_results["trap_order"] = trap_order
     eval_logger.info(f"Error number: {error_num}")
 
     if output_path:
@@ -464,6 +475,9 @@ def main():
                         help="Extra tag in the log file name, so parallel runs do not collide")
     parser.add_argument("--keywords_file", type=str, default=None,
                         help="Shared search words per question (see shared_keywords.py); default: generate them")
+    parser.add_argument("--trap_order", type=str, default="sequence", choices=["sequence", "per_question"],
+                        help="Trap-question answer order: one seeded random sequence (default, as before) "
+                             "or fixed per question from the seed (immune to API-retry jitter)")
     args = parser.parse_args()
 
     if args.ratio <= 0.0 or args.ratio > 1.0:
@@ -482,6 +496,7 @@ def main():
         conflict_mode=args.conflict_mode, demote_penalty=args.demote_penalty,
         timeline_date_style=args.timeline_date_style,
         seed=args.seed, run_tag=args.run_tag, keywords_file=args.keywords_file,
+        trap_order=args.trap_order,
     )
 
 

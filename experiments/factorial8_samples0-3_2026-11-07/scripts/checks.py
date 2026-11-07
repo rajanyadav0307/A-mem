@@ -236,7 +236,8 @@ def check_results(rep, seed, ds, replay=True):
         expect = {"model": common.MODEL, "seed": seed, "memories_dir": common.SHARED_BANK,
                   "keywords_file": common.keywords_file(seed), "keywords_sha256": m["keywords"][str(seed)]["sha256"],
                   "consolidation_mode": "primary_expand" if c else "off", "consolidated_top_k_cap": 1 if c else None,
-                  "consolidated_score_penalty": 0.0, "memory_layer": "tmem_robust" if t else "robust"}
+                  "consolidated_score_penalty": 0.0, "memory_layer": "tmem_robust" if t else "robust",
+                  "trap_order": "per_question"}
         if h:
             expect.update({"conflict_mode": "annotate_demote", "demote_penalty": 0.1, "timeline_date_style": "two_dates"})
         bad = {k: (d.get(k), v) for k, v in expect.items() if d.get(k) != v}
@@ -284,10 +285,17 @@ def check_results(rep, seed, ds, replay=True):
             rep.check(f"R11 {name} replay: logged notes = offline notes", len(ctx) == len(want_ctx) and not diff,
                       f"{len(diff)} differ" + (f", first at question {diff[0]}" if diff else ""))
     if len(traps) == len(common.SETUPS):
-        first = traps["s1_amem"]
-        rep.check(f"R9 seed {seed} trap answer order identical in all 8 setups",
-                  all(v == first for v in traps.values()) and len(first) == sum(1 for o in order if o[2] == 5),
-                  f"{len(first)} trap questions")
+        from shared_keywords import trap_draw
+        nm = "Not mentioned in the conversation"
+        expected = []
+        for s in common.SAMPLES:
+            for i, qa in enumerate(ds[s].qa):
+                if int(qa.category) == 5:
+                    a = qa.final_answer
+                    expected.append(f"{nm} or {a}" if trap_draw(seed, s, i) < 0.5 else f"{a} or {nm}")
+        wrong = {k: sum(x != y for x, y in zip(v, expected)) + abs(len(v) - len(expected)) for k, v in traps.items()}
+        rep.check(f"R9 seed {seed} trap answer order = the fixed per-question order, in all 8 setups",
+                  all(n == 0 for n in wrong.values()), f"{len(expected)} trap questions; mismatches {wrong}")
     if len(contexts) == len(common.SETUPS):
         non_time = [i for i, o in enumerate(order) if o[2] != 2]
         for on, off in (("s2_t", "s1_amem"), ("s5_tc", "s3_c"), ("s6_th", "s4_h"), ("s8_tch", "s7_ch")):

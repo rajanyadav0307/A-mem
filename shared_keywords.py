@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import random
 from typing import Dict, Optional
 
 
@@ -41,6 +42,17 @@ def load_keywords_file(path: Optional[str]) -> Optional[Dict]:
         data["sha256"] = hashlib.sha256(handle.read()).hexdigest()
     data["path"] = path
     return data
+
+
+def trap_draw(seed: int, sample_idx: int, question_idx: int) -> float:
+    """Number in [0, 1) that fixes the answer order of one trap (category 5) question.
+
+    Used with --trap_order per_question: the order depends only on the seed and
+    the question, so API retries (whose jitter draws from Python's shared random
+    generator) cannot shift it, and every setup sees the same order. Below 0.5
+    puts "Not mentioned in the conversation" first, as in the evaluators.
+    """
+    return random.Random(f"{int(seed)}:{int(sample_idx)}:{int(question_idx)}").random()
 
 
 def lookup_keywords(shared: Dict, sample_idx: int, question_idx: int) -> str:

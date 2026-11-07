@@ -101,3 +101,37 @@ def test_empty_entries_are_rejected(tmp_path):
 
 def test_no_file_means_no_shared_words():
     assert load_keywords_file(None) is None
+
+
+# ---- per-question trap order (--trap_order per_question) ----
+
+from shared_keywords import trap_draw  # noqa: E402
+
+
+def test_trap_draw_depends_only_on_seed_and_question():
+    import random
+    a = trap_draw(42, 3, 17)
+    random.random(); random.random()          # other code drawing from the shared generator
+    assert trap_draw(42, 3, 17) == a
+    assert 0 <= a < 1
+    draws = [trap_draw(42, 0, i) for i in range(200)]
+    assert len(set(draws)) == 200 and 70 < sum(d < 0.5 for d in draws) < 130
+    assert trap_draw(43, 3, 17) != a
+
+
+@pytest.mark.parametrize("module_name,class_name", AGENTS)
+def test_trap_draw_fixes_the_answer_order(module_name, class_name):
+    agent = _agent(module_name, class_name)
+    _, first, _ = agent.answer_question("Q?", 5, "old car", keywords="w", trap_draw=0.2)
+    _, second, _ = agent.answer_question("Q?", 5, "old car", keywords="w", trap_draw=0.8)
+    assert "Select the correct answer: Not mentioned in the conversation or old car" in first
+    assert "Select the correct answer: old car or Not mentioned in the conversation" in second
+
+
+@pytest.mark.parametrize("module_name,class_name", AGENTS)
+def test_without_trap_draw_the_shared_generator_is_used_as_before(module_name, class_name, monkeypatch):
+    import random
+    agent = _agent(module_name, class_name)
+    monkeypatch.setattr(random, "random", lambda: 0.9)
+    _, prompt, _ = agent.answer_question("Q?", 5, "old car", keywords="w")
+    assert "Select the correct answer: old car or Not mentioned in the conversation" in prompt
