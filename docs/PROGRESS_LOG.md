@@ -207,6 +207,24 @@ Newest entries are at the bottom. Times are local (US Central).
 - Not from copying the answer wording (checked).
 - Still open: sample 2's normal questions don't improve.
 
+### 2026-11-07: 8-setup test (every on/off combination), samples 0–3, 5 runs
+
+- Every combination of time ranking (T), consolidation (C) and conflict handling (H), on top of the unchanged A-MEM. Samples 0–3 (757 questions). **Sample 3 is the clean test**, never used while building T-MEM. 5 runs each, 40 runs in all.
+- Same input for every setup: one memory bank per sample, shared search words, fixed trap answer order. Plan fixed before results.
+- All checks passed: 426 of 426 across all 40 files, 0 retries. Cost about $34.
+- Folder: [experiments/factorial8_samples0-3_2026-11-07/](../experiments/factorial8_samples0-3_2026-11-07/REPORT.md)
+
+| | Time F1, samples 0–3 | Time F1, sample 3 only |
+|---|---|---|
+| A-MEM | 0.386 | 0.256 |
+| Time ranking only | 0.388 (no real change) | 0.262 (no real change) |
+| Consolidation only | 0.376 (no real change) | 0.238 (**real drop**) |
+| Conflict handling only | **0.423 (real gain)** | 0.268 (no real change) |
+| All three | **0.439 (real gain)** | 0.269 (no real change) |
+
+- **Conflict handling is the part that works.** Time ranking and consolidation show no real effect.
+- **On the clean sample 3, no gain is real.** Gains point the right way but are much smaller.
+
 ## Things to keep in mind
 
 - **Results vary between runs.** The AI answers a little differently each time, so always compare averages of several runs, never a single run.
