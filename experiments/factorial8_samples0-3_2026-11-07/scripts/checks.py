@@ -138,9 +138,11 @@ def check_inputs(rep, seed):
     m = common.load_manifest()
     for s in common.SAMPLES:
         for f in common.bank_files(s):
-            rep.check(f"I1 bank {os.path.basename(f)}", m["banks"].get(f, {}).get("sha256") == common.sha256(f), "")
+            ok = os.path.exists(f) and m["banks"].get(f, {}).get("sha256") == common.sha256(f)
+            rep.check(f"I1 bank {os.path.basename(f)}", ok, "" if os.path.exists(f) else "missing")
     kw = common.keywords_file(seed)
-    rep.check("I2 keywords fingerprint", os.path.exists(kw) and m["keywords"][str(seed)]["sha256"] == common.sha256(kw), kw)
+    rep.check("I2 keywords fingerprint", os.path.exists(kw) and m["keywords"].get(str(seed), {}).get("sha256") == common.sha256(kw),
+              kw if os.path.exists(kw) else f"{kw} missing")
     import subprocess
     same = subprocess.run(["git", "diff", "--quiet", m["code_commit"], "HEAD", "--", "*.py", "*.sh"],
                           cwd=common.REPO).returncode == 0
