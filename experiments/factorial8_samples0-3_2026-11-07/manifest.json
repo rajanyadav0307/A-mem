@@ -3,7 +3,7 @@
  "plan_sha256": "37ec825a92d83d86faef851b72cb5d93dd04e1eb380a9295e5229ffb2c24ca2e",
  "created": "2026-11-07T11:44:56",
  "branch": "2026-11-06",
- "code_commit": "593547ca0061608b5dda008cb8a6ec454516d50d",
+ "code_commit": "244c6f0109de043e97760f1aac494b147ef642e4",
  "model": "gpt-4o-mini-2024-07-18",
  "served_model": {
   "requested": "gpt-4o-mini-2024-07-18",
@@ -1219,6 +1219,11 @@
    "when": "2026-11-07 Stage 0",
    "what": "checks.py: missing input files are reported as FAIL lines instead of a crash; code re-frozen",
    "approved": "bug fix before any spending"
+  },
+  {
+   "when": "2026-11-07 re-verification",
+   "what": "run_wave.py, make_keywords.py and build_sample3.sh start caffeinate themselves, so the computer cannot sleep during a stage; code re-frozen",
+   "approved": "safety fix before any spending"
   }
  ]
 }
