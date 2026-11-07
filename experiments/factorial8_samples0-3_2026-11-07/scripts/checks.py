@@ -148,6 +148,11 @@ def check_inputs(rep, seed):
     kw = common.keywords_file(seed)
     rep.check("I2 keywords fingerprint", os.path.exists(kw) and m["keywords"].get(str(seed), {}).get("sha256") == common.sha256(kw),
               kw if os.path.exists(kw) else f"{kw} missing")
+    if os.path.exists(kw):
+        table = json.load(open(kw)).get("keywords", {})
+        keys = {f"{s}:{i}" for s in common.SAMPLES for i in range(common.QUESTIONS[s])}
+        rep.check("I2b search words for all 757 questions, none empty",
+                  set(table) == keys and all(isinstance(v, str) and v.strip() for v in table.values()), f"{len(table)} entries")
     import subprocess
     same = subprocess.run(["git", "diff", "--quiet", m["code_commit"], "HEAD", "--", "*.py", "*.sh"],
                           cwd=common.REPO).returncode == 0
@@ -348,10 +353,16 @@ def main():
         want = sorted(os.path.basename(common.result_file(s, seed)) for s in common.SETUPS for seed in common.SEEDS)
         rep.check("A1 exactly the 40 planned result files", found == want, f"{len(found)} files")
         out = os.path.join(common.CHECKS_DIR, "checks_all.json")
+    import datetime
+    record = {"what": args.what, "seed": args.seed, "ok": rep.ok, "items": rep.items,
+              "when": datetime.datetime.now().isoformat(timespec="seconds"), "code_commit": common.git_commit()}
     tmp = out + ".tmp"
     with open(tmp, "w", encoding="utf-8") as handle:
-        json.dump({"what": args.what, "seed": args.seed, "ok": rep.ok, "items": rep.items}, handle, indent=1)
+        json.dump(record, handle, indent=1)
     os.replace(tmp, out)
+    with open(os.path.join(common.CHECKS_DIR, "history.jsonl"), "a", encoding="utf-8") as handle:  # never rewritten
+        handle.write(json.dumps({k: record[k] for k in ("when", "what", "seed", "ok", "code_commit")} |
+                                {"failed": [i["check"] for i in rep.items if not i["ok"]], "file": out}) + "\n")
     print(f"{'ALL PASS' if rep.ok else 'FAILED'} ({sum(i['ok'] for i in rep.items)}/{len(rep.items)}) -> {out}")
     sys.exit(0 if rep.ok else 1)
 
