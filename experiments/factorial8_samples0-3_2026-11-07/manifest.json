@@ -3,7 +3,7 @@
  "plan_sha256": "37ec825a92d83d86faef851b72cb5d93dd04e1eb380a9295e5229ffb2c24ca2e",
  "created": "2026-11-07T11:44:56",
  "branch": "2026-11-06",
- "code_commit": null,
+ "code_commit": "c1fcece5cb9d9edf2968b0241bb68417ed2af788",
  "model": "gpt-4o-mini-2024-07-18",
  "served_model": {
   "requested": "gpt-4o-mini-2024-07-18",
