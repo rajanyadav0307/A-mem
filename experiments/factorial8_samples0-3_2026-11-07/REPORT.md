@@ -76,7 +76,7 @@ The average effect of each part (on its own, across the other settings):
 | Consolidation (C) | +0.001 | no | +0.004 | no |
 | **Conflict handling (H)** | **+0.049** | **yes** | **+0.009** | **yes** |
 
-None of the parts work together beyond adding up (no pair or triple interaction is real).
+On all four samples, none of the parts work together beyond adding up (no pair or triple interaction is real).
 
 ### Sample 3 alone (the clean test: 260 questions, 40 time questions)
 
@@ -95,6 +95,7 @@ None of the parts work together beyond adding up (no pair or triple interaction 
 The same pattern as all four samples, but larger:
 - Conflict handling: +0.048 time F1 (real).
 - All three: +0.071 time F1 (real), and +0.016 answerable F1 (not real, p = 0.173).
+- Consolidation and conflict handling work together on answerable questions: +0.010 beyond adding up (C×H, real, Holm p = 0.043). This is the only real interaction in any sample group. It is not real on all four samples (+0.007, p = 0.234) or on sample 3 (+0.000).
 
 ## What this means
 
