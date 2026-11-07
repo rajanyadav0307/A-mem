@@ -154,6 +154,7 @@ Each redone run, if one is ever needed, costs about $0.69.
 
 **Before every wave (inputs)**
 - Bank and keywords fingerprints match `manifest.json`.
+- The seed's search-words file holds all 757 questions, none empty.
 - No Python file has changed since the recorded commit.
 - The API key is present.
 - At least 15 GB of free disk.
@@ -177,6 +178,8 @@ Each redone run, if one is ever needed, costs about $0.69.
 | R11 | **Replay:** for every question, the retrieved notes in the log equal what the code gives offline from the same bank and the same search words |
 
 A run that fails any check is moved to `invalid/`, and the pipeline stops. It is redone only after you say so.
+
+Every check run is also appended to `checks/history.jsonl`, with its time, result and failed checks. That file is never rewritten.
 
 ## 8. Analysis (fixed now, before any results)
 
@@ -231,4 +234,27 @@ Prices assumed: $0.15 per million input tokens and $0.60 per million output toke
 
 ## Changes to this plan
 
-(none yet)
+All of these were made on 2026-11-07, before any money was spent, and are also listed in `manifest.json` → `changes`.
+
+1. **Missing files are reported, not crashed on.** A missing input file is now a FAIL line in the input check, instead of stopping the check script.
+2. **The scripts keep the computer awake.** `run_wave.py`, `make_keywords.py` and `build_sample3.sh` start `caffeinate` themselves, so the computer cannot sleep during a stage.
+3. **R7 and T4 handle multi-line search words.** They compare the first line of the search words, which is what the log line holds.
+4. **R6 and T5 ignore retried calls.** A call that failed once and was retried successfully is no longer counted as an error. A final failure or an empty answer still fails the run.
+5. **New check I2b.** Before a wave, the search-words file must have all 757 questions.
+6. **New `checks/history.jsonl`.** Every check run is appended to it.
+
+**Zero-cost rehearsal (2026-11-07).** Every stage ran with these exact scripts against a fake AI server on this computer, in a throwaway folder that was deleted afterwards:
+- the sample 3 build
+- the search words for all 5 runs
+- the trial
+- one full wave of 8 setups
+- the analysis
+
+All checks passed: B1–B5, K1–K3, T1–T6, and 85 of 85 result checks, including the replay of every one of the 6,056 answers. Failure tests confirmed that the checks catch each of these, and that a crashed run is moved to `invalid/` with its reason:
+- a repeated wave
+- one changed byte in a memory file
+- a changed code file
+- an empty answer
+- a wrong setting
+- one changed note in a log
+- a missing search-words entry

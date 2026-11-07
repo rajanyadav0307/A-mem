@@ -1,6 +1,6 @@
 {
  "plan": "PLAN.md",
- "plan_sha256": "37ec825a92d83d86faef851b72cb5d93dd04e1eb380a9295e5229ffb2c24ca2e",
+ "plan_sha256": "45bcaa8435b3445081b2a70b1a7c09c06e7c0bc852f45be0adb5741a5bb36789",
  "created": "2026-11-07T11:44:56",
  "branch": "2026-11-06",
  "code_commit": "08a2cefc0be090441d54792c897b9ee68a5ecd09",
@@ -1234,6 +1234,11 @@
    "when": "2026-11-07 re-verification",
    "what": "checks.py: I2b (all 757 search words present before a wave) and append-only checks/history.jsonl; code re-frozen",
    "approved": "found in the zero-cost rehearsal, before any spending"
+  },
+  {
+   "when": "2026-11-07 re-verification",
+   "what": "PLAN.md: I2b and check history added to section 7; 'Changes to this plan' and the zero-cost rehearsal recorded; plan fingerprint updated",
+   "approved": "documentation of the re-verification"
   }
  ]
 }
