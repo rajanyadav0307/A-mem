@@ -1,7 +1,7 @@
 {
  "what": "results",
  "seed": 42,
- "ok": false,
+ "ok": true,
  "items": [
   {
    "check": "R0 s1_amem seed 42 files",
@@ -15,8 +15,8 @@
   },
   {
    "check": "R2 s1_amem seed 42 no empty answers",
-   "ok": false,
-   "detail": "4 empty"
+   "ok": true,
+   "detail": "0 empty"
   },
   {
    "check": "R3 s1_amem seed 42 settings match the setup",
@@ -35,8 +35,8 @@
   },
   {
    "check": "R6 s1_amem seed 42 no errors or failed answers",
-   "ok": false,
-   "detail": "8 bad lines, 74 retries; e.g. ERROR:amem_robust:LLM call get_completion failed after 3 attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini-2024-07"
+   "ok": true,
+   "detail": "0 bad lines, 0 retries"
   },
   {
    "check": "R7 s1_amem seed 42 shared search words used for every question",
@@ -65,8 +65,8 @@
   },
   {
    "check": "R2 s2_t seed 42 no empty answers",
-   "ok": false,
-   "detail": "4 empty"
+   "ok": true,
+   "detail": "0 empty"
   },
   {
    "check": "R3 s2_t seed 42 settings match the setup",
@@ -85,8 +85,8 @@
   },
   {
    "check": "R6 s2_t seed 42 no errors or failed answers",
-   "ok": false,
-   "detail": "8 bad lines, 77 retries; e.g. ERROR:amem_robust:LLM call get_completion failed after 3 attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini-2024-07"
+   "ok": true,
+   "detail": "0 bad lines, 0 retries"
   },
   {
    "check": "R7 s2_t seed 42 shared search words used for every question",
@@ -115,8 +115,8 @@
   },
   {
    "check": "R2 s3_c seed 42 no empty answers",
-   "ok": false,
-   "detail": "3 empty"
+   "ok": true,
+   "detail": "0 empty"
   },
   {
    "check": "R3 s3_c seed 42 settings match the setup",
@@ -135,8 +135,8 @@
   },
   {
    "check": "R6 s3_c seed 42 no errors or failed answers",
-   "ok": false,
-   "detail": "6 bad lines, 67 retries; e.g. ERROR:amem_robust:LLM call get_completion failed after 3 attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini-2024-07"
+   "ok": true,
+   "detail": "0 bad lines, 0 retries"
   },
   {
    "check": "R7 s3_c seed 42 shared search words used for every question",
@@ -165,8 +165,8 @@
   },
   {
    "check": "R2 s4_h seed 42 no empty answers",
-   "ok": false,
-   "detail": "6 empty"
+   "ok": true,
+   "detail": "0 empty"
   },
   {
    "check": "R3 s4_h seed 42 settings match the setup",
@@ -185,8 +185,8 @@
   },
   {
    "check": "R6 s4_h seed 42 no errors or failed answers",
-   "ok": false,
-   "detail": "12 bad lines, 103 retries; e.g. ERROR:amem_robust:LLM call get_completion failed after 3 attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini-2024-07"
+   "ok": true,
+   "detail": "0 bad lines, 0 retries"
   },
   {
    "check": "R7 s4_h seed 42 shared search words used for every question",
@@ -215,8 +215,8 @@
   },
   {
    "check": "R2 s5_tc seed 42 no empty answers",
-   "ok": false,
-   "detail": "2 empty"
+   "ok": true,
+   "detail": "0 empty"
   },
   {
    "check": "R3 s5_tc seed 42 settings match the setup",
@@ -235,8 +235,8 @@
   },
   {
    "check": "R6 s5_tc seed 42 no errors or failed answers",
-   "ok": false,
-   "detail": "4 bad lines, 50 retries; e.g. ERROR:amem_robust:LLM call get_completion failed after 3 attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini-2024-07"
+   "ok": true,
+   "detail": "0 bad lines, 0 retries"
   },
   {
    "check": "R7 s5_tc seed 42 shared search words used for every question",
@@ -265,8 +265,8 @@
   },
   {
    "check": "R2 s6_th seed 42 no empty answers",
-   "ok": false,
-   "detail": "9 empty"
+   "ok": true,
+   "detail": "0 empty"
   },
   {
    "check": "R3 s6_th seed 42 settings match the setup",
@@ -285,8 +285,8 @@
   },
   {
    "check": "R6 s6_th seed 42 no errors or failed answers",
-   "ok": false,
-   "detail": "18 bad lines, 103 retries; e.g. ERROR:amem_robust:LLM call get_completion failed after 3 attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini-2024-07"
+   "ok": true,
+   "detail": "0 bad lines, 0 retries"
   },
   {
    "check": "R7 s6_th seed 42 shared search words used for every question",
@@ -315,8 +315,8 @@
   },
   {
    "check": "R2 s7_ch seed 42 no empty answers",
-   "ok": false,
-   "detail": "8 empty"
+   "ok": true,
+   "detail": "0 empty"
   },
   {
    "check": "R3 s7_ch seed 42 settings match the setup",
@@ -335,8 +335,8 @@
   },
   {
    "check": "R6 s7_ch seed 42 no errors or failed answers",
-   "ok": false,
-   "detail": "16 bad lines, 117 retries; e.g. ERROR:amem_robust:LLM call get_completion failed after 3 attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini-2024-07"
+   "ok": true,
+   "detail": "0 bad lines, 0 retries"
   },
   {
    "check": "R7 s7_ch seed 42 shared search words used for every question",
@@ -365,8 +365,8 @@
   },
   {
    "check": "R2 s8_tch seed 42 no empty answers",
-   "ok": false,
-   "detail": "3 empty"
+   "ok": true,
+   "detail": "0 empty"
   },
   {
    "check": "R3 s8_tch seed 42 settings match the setup",
@@ -385,8 +385,8 @@
   },
   {
    "check": "R6 s8_tch seed 42 no errors or failed answers",
-   "ok": false,
-   "detail": "6 bad lines, 77 retries; e.g. ERROR:amem_robust:LLM call get_completion failed after 3 attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini-2024-07"
+   "ok": true,
+   "detail": "0 bad lines, 0 retries"
   },
   {
    "check": "R7 s8_tch seed 42 shared search words used for every question",
@@ -404,9 +404,9 @@
    "detail": "0 differ"
   },
   {
-   "check": "R9 seed 42 trap answer order identical in all 8 setups",
-   "ok": false,
-   "detail": "173 trap questions"
+   "check": "R9 seed 42 trap answer order = the fixed per-question order, in all 8 setups",
+   "ok": true,
+   "detail": "173 trap questions; mismatches {'s1_amem': 0, 's2_t': 0, 's3_c': 0, 's4_h': 0, 's5_tc': 0, 's6_th': 0, 's7_ch': 0, 's8_tch': 0}"
   },
   {
    "check": "R10 seed 42 non-time questions: s2_t = s1_amem",
@@ -429,6 +429,6 @@
    "detail": "0 of 627 differ"
   }
  ],
- "when": "2026-11-07T13:53:51",
- "code_commit": "c5eba8e45eaaada95106ab16f7c400a24b9a1184"
+ "when": "2026-11-07T14:42:35",
+ "code_commit": "1493efae28b5523562be1450fa57248bb32579dc"
 }

@@ -76,7 +76,7 @@
   {
    "check": "I3 code unchanged since the frozen commit",
    "ok": true,
-   "detail": "frozen 08a2cefc0b, HEAD c5eba8e45e"
+   "detail": "frozen b84b89cce5, HEAD 1493efae28"
   },
   {
    "check": "I4 API key present",
@@ -99,6 +99,6 @@
    "detail": ""
   }
  ],
- "when": "2026-11-07T13:34:17",
- "code_commit": "c5eba8e45eaaada95106ab16f7c400a24b9a1184"
+ "when": "2026-11-07T14:11:28",
+ "code_commit": "1493efae28b5523562be1450fa57248bb32579dc"
 }

@@ -1407,6 +1407,48 @@
     "experiments/factorial8_samples0-3_2026-11-07/invalid/s7_ch_seed42_attempt1",
     "experiments/factorial8_samples0-3_2026-11-07/invalid/s8_tch_seed42_attempt1"
    ]
+  },
+  {
+   "stage": "wave",
+   "seed": 42,
+   "started": "2026-11-07T14:11:28",
+   "halves": [
+    {
+     "setups": [
+      "s1_amem",
+      "s2_t",
+      "s3_c",
+      "s4_h"
+     ],
+     "started": "2026-11-07T14:11:28",
+     "finished": "2026-11-07T14:26:27",
+     "minutes": 15.0,
+     "exit_codes": {
+      "s1_amem": 0,
+      "s2_t": 0,
+      "s3_c": 0,
+      "s4_h": 0
+     }
+    },
+    {
+     "setups": [
+      "s5_tc",
+      "s6_th",
+      "s7_ch",
+      "s8_tch"
+     ],
+     "started": "2026-11-07T14:26:27",
+     "finished": "2026-11-07T14:40:56",
+     "minutes": 14.5,
+     "exit_codes": {
+      "s5_tc": 0,
+      "s6_th": 0,
+      "s7_ch": 0,
+      "s8_tch": 0
+     }
+    }
+   ],
+   "finished": "2026-11-07T14:42:36"
   }
  ],
  "changes": [
