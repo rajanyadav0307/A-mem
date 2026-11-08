@@ -1,0 +1,1520 @@
+{
+ "alpha": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/scripts/analyze.py: t['real'] = a < alpha (Holm-adjusted p)",
+  "value": 0.05
+ },
+ "alpha_pct": {
+  "src": "alpha as a percentage",
+  "value": 5.0
+ },
+ "ans_temp": {
+  "src": "test_advanced_robust.py: answer_question, categories 1-4",
+  "value": 0.7
+ },
+ "ans_temp_c5": {
+  "src": "test_advanced_robust.py: --temperature_c5 default",
+  "value": 0.5
+ },
+ "answers_total": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/checks_all.json: R1 rows summed",
+  "value": 30280
+ },
+ "b0_event_dates": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_0.pkl (fingerprint = manifest): raw notes with an event date",
+  "value": 9
+ },
+ "b0_mean_keywords": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_0.pkl (fingerprint = manifest): mean keywords per raw note",
+  "value": 3.579952267303103
+ },
+ "b0_mean_links": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_0.pkl (fingerprint = manifest): mean links per raw note",
+  "value": 4.073985680190931
+ },
+ "b0_mean_tags": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_0.pkl (fingerprint = manifest): mean tags per raw note",
+  "value": 6.749403341288783
+ },
+ "b0_merged": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_0.pkl (fingerprint = manifest): consolidated notes",
+  "value": 17
+ },
+ "b0_notes": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_0.pkl (fingerprint = manifest): all notes",
+  "value": 436
+ },
+ "b0_raw": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_0.pkl (fingerprint = manifest): raw notes",
+  "value": 419
+ },
+ "b0_replaced": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_0.pkl (fingerprint = manifest): raw notes marked replaced",
+  "value": 5
+ },
+ "b0_timeline_notes": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_0.pkl (fingerprint = manifest): raw notes with a timeline",
+  "value": 32
+ },
+ "b0_with_links": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_0.pkl (fingerprint = manifest): raw notes with links",
+  "value": 417
+ },
+ "b1_event_dates": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_1.pkl (fingerprint = manifest): raw notes with an event date",
+  "value": 10
+ },
+ "b1_mean_keywords": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_1.pkl (fingerprint = manifest): mean keywords per raw note",
+  "value": 3.368563685636856
+ },
+ "b1_mean_links": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_1.pkl (fingerprint = manifest): mean links per raw note",
+  "value": 4.170731707317073
+ },
+ "b1_mean_tags": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_1.pkl (fingerprint = manifest): mean tags per raw note",
+  "value": 6.013550135501355
+ },
+ "b1_merged": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_1.pkl (fingerprint = manifest): consolidated notes",
+  "value": 16
+ },
+ "b1_notes": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_1.pkl (fingerprint = manifest): all notes",
+  "value": 385
+ },
+ "b1_raw": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_1.pkl (fingerprint = manifest): raw notes",
+  "value": 369
+ },
+ "b1_replaced": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_1.pkl (fingerprint = manifest): raw notes marked replaced",
+  "value": 4
+ },
+ "b1_timeline_notes": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_1.pkl (fingerprint = manifest): raw notes with a timeline",
+  "value": 76
+ },
+ "b1_with_links": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_1.pkl (fingerprint = manifest): raw notes with links",
+  "value": 366
+ },
+ "b2_event_dates": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_2.pkl (fingerprint = manifest): raw notes with an event date",
+  "value": 5
+ },
+ "b2_mean_keywords": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_2.pkl (fingerprint = manifest): mean keywords per raw note",
+  "value": 3.3665158371040724
+ },
+ "b2_mean_links": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_2.pkl (fingerprint = manifest): mean links per raw note",
+  "value": 4.134238310708899
+ },
+ "b2_mean_tags": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_2.pkl (fingerprint = manifest): mean tags per raw note",
+  "value": 6.177978883861237
+ },
+ "b2_merged": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_2.pkl (fingerprint = manifest): consolidated notes",
+  "value": 23
+ },
+ "b2_notes": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_2.pkl (fingerprint = manifest): all notes",
+  "value": 686
+ },
+ "b2_raw": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_2.pkl (fingerprint = manifest): raw notes",
+  "value": 663
+ },
+ "b2_replaced": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_2.pkl (fingerprint = manifest): raw notes marked replaced",
+  "value": 4
+ },
+ "b2_timeline_notes": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_2.pkl (fingerprint = manifest): raw notes with a timeline",
+  "value": 35
+ },
+ "b2_with_links": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_2.pkl (fingerprint = manifest): raw notes with links",
+  "value": 661
+ },
+ "b3_event_dates": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_3.pkl (fingerprint = manifest): raw notes with an event date",
+  "value": 11
+ },
+ "b3_mean_keywords": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_3.pkl (fingerprint = manifest): mean keywords per raw note",
+  "value": 3.3100158982511925
+ },
+ "b3_mean_links": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_3.pkl (fingerprint = manifest): mean links per raw note",
+  "value": 3.9252782193958664
+ },
+ "b3_mean_tags": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_3.pkl (fingerprint = manifest): mean tags per raw note",
+  "value": 6.017488076311606
+ },
+ "b3_merged": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_3.pkl (fingerprint = manifest): consolidated notes",
+  "value": 26
+ },
+ "b3_notes": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_3.pkl (fingerprint = manifest): all notes",
+  "value": 655
+ },
+ "b3_raw": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_3.pkl (fingerprint = manifest): raw notes",
+  "value": 629
+ },
+ "b3_replaced": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_3.pkl (fingerprint = manifest): raw notes marked replaced",
+  "value": 0
+ },
+ "b3_timeline_notes": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_3.pkl (fingerprint = manifest): raw notes with a timeline",
+  "value": 35
+ },
+ "b3_with_links": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_3.pkl (fingerprint = manifest): raw notes with links",
+  "value": 623
+ },
+ "bad_empty": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/invalid/*_seed42_attempt1/reason.txt: R2 lines summed",
+  "value": 39
+ },
+ "bad_finished": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: attempts, first wave 42",
+  "value": "13:52"
+ },
+ "bad_minutes": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: attempts, first wave 42 minutes",
+  "value": 17.9
+ },
+ "bad_moved": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: attempts, invalidated.when",
+  "value": "13:55"
+ },
+ "bad_started": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: attempts, first wave 42",
+  "value": "13:34"
+ },
+ "boot_reps": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/analysis/summary.json: method.reps",
+  "value": 10000
+ },
+ "boot_seed": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/analysis/summary.json: method.rng_seed",
+  "value": 7
+ },
+ "build_checks": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/build_sample3.json: B1-B5",
+  "value": 5
+ },
+ "c0_DIFFERENT": {
+  "src": "analysis/consolidation_log_sample_0_v3.json: groups labelled DIFFERENT",
+  "value": 5
+ },
+ "c0_SAME_FACT": {
+  "src": "analysis/consolidation_log_sample_0_v3.json: groups labelled SAME_FACT",
+  "value": 10
+ },
+ "c0_SMALL_TALK": {
+  "src": "analysis/consolidation_log_sample_0_v3.json: groups labelled SMALL_TALK",
+  "value": 8
+ },
+ "c0_groups": {
+  "src": "analysis/consolidation_log_sample_0_v3.json: counts.groups",
+  "value": 23
+ },
+ "c0_llm_calls": {
+  "src": "analysis/consolidation_log_sample_0_v3.json: counts.llm_calls",
+  "value": 64
+ },
+ "c0_mean_sources": {
+  "src": "analysis/consolidation_log_sample_0_v3.json: mean source notes per merged group",
+  "value": 2.176470588235294
+ },
+ "c0_merged": {
+  "src": "analysis/consolidation_log_sample_0_v3.json: counts.merged",
+  "value": 17
+ },
+ "c0_merged_small_talk": {
+  "src": "analysis/consolidation_log_sample_0_v3.json: merged groups labelled SMALL_TALK",
+  "value": 8
+ },
+ "c0_rejected": {
+  "src": "analysis/consolidation_log_sample_0_v3.json: counts.rejected",
+  "value": 1
+ },
+ "c1_DIFFERENT": {
+  "src": "analysis/consolidation_log_sample_1_v3.json: groups labelled DIFFERENT",
+  "value": 6
+ },
+ "c1_SAME_FACT": {
+  "src": "analysis/consolidation_log_sample_1_v3.json: groups labelled SAME_FACT",
+  "value": 11
+ },
+ "c1_SMALL_TALK": {
+  "src": "analysis/consolidation_log_sample_1_v3.json: groups labelled SMALL_TALK",
+  "value": 6
+ },
+ "c1_groups": {
+  "src": "analysis/consolidation_log_sample_1_v3.json: counts.groups",
+  "value": 23
+ },
+ "c1_llm_calls": {
+  "src": "analysis/consolidation_log_sample_1_v3.json: counts.llm_calls",
+  "value": 57
+ },
+ "c1_mean_sources": {
+  "src": "analysis/consolidation_log_sample_1_v3.json: mean source notes per merged group",
+  "value": 2.0625
+ },
+ "c1_merged": {
+  "src": "analysis/consolidation_log_sample_1_v3.json: counts.merged",
+  "value": 16
+ },
+ "c1_merged_small_talk": {
+  "src": "analysis/consolidation_log_sample_1_v3.json: merged groups labelled SMALL_TALK",
+  "value": 6
+ },
+ "c1_rejected": {
+  "src": "analysis/consolidation_log_sample_1_v3.json: counts.rejected",
+  "value": 1
+ },
+ "c2_DIFFERENT": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_13-10/build_logs/consolidation_log_sample_2_e2e.json: groups labelled DIFFERENT",
+  "value": 4
+ },
+ "c2_SAME_FACT": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_13-10/build_logs/consolidation_log_sample_2_e2e.json: groups labelled SAME_FACT",
+  "value": 17
+ },
+ "c2_SMALL_TALK": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_13-10/build_logs/consolidation_log_sample_2_e2e.json: groups labelled SMALL_TALK",
+  "value": 7
+ },
+ "c2_groups": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_13-10/build_logs/consolidation_log_sample_2_e2e.json: counts.groups",
+  "value": 28
+ },
+ "c2_llm_calls": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_13-10/build_logs/consolidation_log_sample_2_e2e.json: counts.llm_calls",
+  "value": 69
+ },
+ "c2_mean_sources": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_13-10/build_logs/consolidation_log_sample_2_e2e.json: mean source notes per merged group",
+  "value": 2.4782608695652173
+ },
+ "c2_merged": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_13-10/build_logs/consolidation_log_sample_2_e2e.json: counts.merged",
+  "value": 23
+ },
+ "c2_merged_small_talk": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_13-10/build_logs/consolidation_log_sample_2_e2e.json: merged groups labelled SMALL_TALK",
+  "value": 7
+ },
+ "c2_rejected": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_13-10/build_logs/consolidation_log_sample_2_e2e.json: counts.rejected",
+  "value": 1
+ },
+ "c3_DIFFERENT": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: groups labelled DIFFERENT",
+  "value": 8
+ },
+ "c3_SAME_FACT": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: groups labelled SAME_FACT",
+  "value": 10
+ },
+ "c3_SMALL_TALK": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: groups labelled SMALL_TALK",
+  "value": 16
+ },
+ "c3_groups": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: counts.groups",
+  "value": 34
+ },
+ "c3_llm_calls": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: counts.llm_calls",
+  "value": 88
+ },
+ "c3_mean_sources": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: mean source notes per merged group",
+  "value": 2.730769230769231
+ },
+ "c3_merged": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: counts.merged",
+  "value": 26
+ },
+ "c3_merged_small_talk": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: merged groups labelled SMALL_TALK",
+  "value": 16
+ },
+ "c3_rejected": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: counts.rejected",
+  "value": 0
+ },
+ "c_total_merged": {
+  "src": "sum of counts.merged over the four consolidation logs",
+  "value": 82
+ },
+ "c_total_merged_small_talk": {
+  "src": "sum over the four consolidation logs",
+  "value": 37
+ },
+ "check_first": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/checks_seed42.json",
+  "value": "R0"
+ },
+ "check_kinds": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/checks_seed42.json: kinds of check",
+  "value": 12
+ },
+ "check_last": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/checks_seed42.json",
+  "value": "R11"
+ },
+ "checks_across_files": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/checks_seed42.json: kinds not run per file (R9, R10)",
+  "value": 2
+ },
+ "checks_final": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/checks_all.json: items, all ok",
+  "value": 426
+ },
+ "checks_per_file": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/checks_seed42.json: check kinds run once per result file",
+  "value": 10
+ },
+ "checks_per_wave": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/checks_seed42..46.json: items, all ok",
+  "value": 85
+ },
+ "checks_r10_pairs": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/checks_seed42.json: R10 items",
+  "value": 4
+ },
+ "ci_hi_pct": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/scripts/analyze.py: bootstrap upper percentile",
+  "value": 97.5
+ },
+ "ci_level_pct": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/scripts/analyze.py: interval level",
+  "value": 95.0
+ },
+ "ci_lo_pct": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/scripts/analyze.py: bootstrap lower percentile",
+  "value": 2.5
+ },
+ "code_commit": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: code_commit",
+  "value": "b84b89cc"
+ },
+ "conf_status_duplicate": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_0.json: config.status_duplicate",
+  "value": 0.85
+ },
+ "conf_temperature": {
+  "src": "memory_conflicts.py: llm.get_completion(..., temperature=0.0)",
+  "value": 0.0
+ },
+ "conf_topic_threshold": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_0.json: config.topic_threshold",
+  "value": 0.78
+ },
+ "conflict_labels": {
+  "src": "memory_conflicts.py: module docstring, CONFLICT_CHECK_PROMPT labels",
+  "value": [
+   "SAME",
+   "PROGRESS",
+   "CHANGE",
+   "CONTRADICTION",
+   "COMPATIBLE",
+   "UNRELATED"
+  ]
+ },
+ "cons_attempts": {
+  "src": "memory_consolidation.py: 1 + merge_retries attempts",
+  "value": 3
+ },
+ "cons_cap": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: commands --consolidated_top_k_cap",
+  "value": 1
+ },
+ "cons_max_group": {
+  "src": "analysis/consolidation_log_sample_0_v3.json: config.max_group_size",
+  "value": 5
+ },
+ "cons_retries": {
+  "src": "memory_consolidation.py: consolidate_bank(merge_retries=...)",
+  "value": 2
+ },
+ "cons_temperature": {
+  "src": "memory_consolidation.py: consolidate_bank(temperature=...)",
+  "value": 0.0
+ },
+ "cons_threshold": {
+  "src": "analysis/consolidation_log_sample_0_v3.json: config.similarity_threshold",
+  "value": 0.8
+ },
+ "cpu": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: computer.cpu",
+  "value": "Apple M4"
+ },
+ "d0_cat1": {
+  "src": "data/locomo10.json[0].qa with category 1",
+  "value": 32
+ },
+ "d0_cat2": {
+  "src": "data/locomo10.json[0].qa with category 2",
+  "value": 37
+ },
+ "d0_cat3": {
+  "src": "data/locomo10.json[0].qa with category 3",
+  "value": 13
+ },
+ "d0_cat4": {
+  "src": "data/locomo10.json[0].qa with category 4",
+  "value": 70
+ },
+ "d0_cat5": {
+  "src": "data/locomo10.json[0].qa with category 5",
+  "value": 47
+ },
+ "d0_first_session": {
+  "src": "data/locomo10.json[0].session_1_date_time",
+  "value": "8 May 2023"
+ },
+ "d0_last_session": {
+  "src": "data/locomo10.json[0].session_19_date_time",
+  "value": "22 October 2023"
+ },
+ "d0_questions": {
+  "src": "data/locomo10.json[0].qa",
+  "value": 199
+ },
+ "d0_sessions": {
+  "src": "data/locomo10.json[0].conversation: non-empty session_N lists",
+  "value": 19
+ },
+ "d0_speakers": {
+  "src": "data/locomo10.json[0].conversation speaker_a, speaker_b",
+  "value": "Caroline & Melanie"
+ },
+ "d0_turns": {
+  "src": "data/locomo10.json[0].conversation: dialogue turns in all sessions",
+  "value": 419
+ },
+ "d1_cat1": {
+  "src": "data/locomo10.json[1].qa with category 1",
+  "value": 11
+ },
+ "d1_cat2": {
+  "src": "data/locomo10.json[1].qa with category 2",
+  "value": 26
+ },
+ "d1_cat3": {
+  "src": "data/locomo10.json[1].qa with category 3",
+  "value": 0
+ },
+ "d1_cat4": {
+  "src": "data/locomo10.json[1].qa with category 4",
+  "value": 44
+ },
+ "d1_cat5": {
+  "src": "data/locomo10.json[1].qa with category 5",
+  "value": 24
+ },
+ "d1_first_session": {
+  "src": "data/locomo10.json[1].session_1_date_time",
+  "value": "20 January 2023"
+ },
+ "d1_last_session": {
+  "src": "data/locomo10.json[1].session_19_date_time",
+  "value": "23 July 2023"
+ },
+ "d1_questions": {
+  "src": "data/locomo10.json[1].qa",
+  "value": 105
+ },
+ "d1_sessions": {
+  "src": "data/locomo10.json[1].conversation: non-empty session_N lists",
+  "value": 19
+ },
+ "d1_speakers": {
+  "src": "data/locomo10.json[1].conversation speaker_a, speaker_b",
+  "value": "Jon & Gina"
+ },
+ "d1_turns": {
+  "src": "data/locomo10.json[1].conversation: dialogue turns in all sessions",
+  "value": 369
+ },
+ "d2_cat1": {
+  "src": "data/locomo10.json[2].qa with category 1",
+  "value": 31
+ },
+ "d2_cat2": {
+  "src": "data/locomo10.json[2].qa with category 2",
+  "value": 27
+ },
+ "d2_cat3": {
+  "src": "data/locomo10.json[2].qa with category 3",
+  "value": 8
+ },
+ "d2_cat4": {
+  "src": "data/locomo10.json[2].qa with category 4",
+  "value": 86
+ },
+ "d2_cat5": {
+  "src": "data/locomo10.json[2].qa with category 5",
+  "value": 41
+ },
+ "d2_first_session": {
+  "src": "data/locomo10.json[2].session_1_date_time",
+  "value": "17 December 2022"
+ },
+ "d2_last_session": {
+  "src": "data/locomo10.json[2].session_32_date_time",
+  "value": "16 August 2023"
+ },
+ "d2_questions": {
+  "src": "data/locomo10.json[2].qa",
+  "value": 193
+ },
+ "d2_sessions": {
+  "src": "data/locomo10.json[2].conversation: non-empty session_N lists",
+  "value": 32
+ },
+ "d2_speakers": {
+  "src": "data/locomo10.json[2].conversation speaker_a, speaker_b",
+  "value": "John & Maria"
+ },
+ "d2_turns": {
+  "src": "data/locomo10.json[2].conversation: dialogue turns in all sessions",
+  "value": 663
+ },
+ "d3_cat1": {
+  "src": "data/locomo10.json[3].qa with category 1",
+  "value": 37
+ },
+ "d3_cat2": {
+  "src": "data/locomo10.json[3].qa with category 2",
+  "value": 40
+ },
+ "d3_cat3": {
+  "src": "data/locomo10.json[3].qa with category 3",
+  "value": 11
+ },
+ "d3_cat4": {
+  "src": "data/locomo10.json[3].qa with category 4",
+  "value": 111
+ },
+ "d3_cat5": {
+  "src": "data/locomo10.json[3].qa with category 5",
+  "value": 61
+ },
+ "d3_first_session": {
+  "src": "data/locomo10.json[3].session_1_date_time",
+  "value": "21 January 2022"
+ },
+ "d3_last_session": {
+  "src": "data/locomo10.json[3].session_29_date_time",
+  "value": "11 November 2022"
+ },
+ "d3_questions": {
+  "src": "data/locomo10.json[3].qa",
+  "value": 260
+ },
+ "d3_sessions": {
+  "src": "data/locomo10.json[3].conversation: non-empty session_N lists",
+  "value": 29
+ },
+ "d3_speakers": {
+  "src": "data/locomo10.json[3].conversation speaker_a, speaker_b",
+  "value": "Joanna & Nate"
+ },
+ "d3_turns": {
+  "src": "data/locomo10.json[3].conversation: dialogue turns in all sessions",
+  "value": 629
+ },
+ "d_answerable": {
+  "src": "data/locomo10.json[0..3]: categories 1-4",
+  "value": 584
+ },
+ "d_nontemporal": {
+  "src": "data/locomo10.json[0..3]: all questions except category 2",
+  "value": 627
+ },
+ "d_temporal_share_pct": {
+  "src": "data/locomo10.json[0..3]: category 2 / all questions",
+  "value": 17.17305151915456
+ },
+ "d_total_cat1": {
+  "src": "data/locomo10.json[0..3]: sum over samples 0-3",
+  "value": 111
+ },
+ "d_total_cat2": {
+  "src": "data/locomo10.json[0..3]: sum over samples 0-3",
+  "value": 130
+ },
+ "d_total_cat3": {
+  "src": "data/locomo10.json[0..3]: sum over samples 0-3",
+  "value": 32
+ },
+ "d_total_cat4": {
+  "src": "data/locomo10.json[0..3]: sum over samples 0-3",
+  "value": 311
+ },
+ "d_total_cat5": {
+  "src": "data/locomo10.json[0..3]: sum over samples 0-3",
+  "value": 173
+ },
+ "d_total_questions": {
+  "src": "data/locomo10.json[0..3]: sum over samples 0-3",
+  "value": 757
+ },
+ "d_total_sessions": {
+  "src": "data/locomo10.json[0..3]: sum over samples 0-3",
+  "value": 99
+ },
+ "d_total_turns": {
+  "src": "data/locomo10.json[0..3]: sum over samples 0-3",
+  "value": 2080
+ },
+ "data_conversations": {
+  "src": "data/locomo10.json: number of conversations",
+  "value": 10
+ },
+ "data_file": {
+  "src": "repository file",
+  "value": "data/locomo10.json"
+ },
+ "data_sha256_prefix": {
+  "src": "sha256 of data/locomo10.json",
+  "value": "79fa87e90f040813"
+ },
+ "demote_penalty": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: commands --demote_penalty",
+  "value": 0.1
+ },
+ "dev_banks_date": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/build_summary.json: created",
+  "value": "2026-10-26"
+ },
+ "dev_banks_model": {
+  "src": "same file: model",
+  "value": "gpt-4o-mini"
+ },
+ "embedding_dim": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/retriever_cache_embeddings_sample_0.npy: columns",
+  "value": 384
+ },
+ "ev_cat1_mean": {
+  "src": "data/locomo10.json[0..3].qa category 1: mean evidence turns",
+  "value": 2.8378378378378377
+ },
+ "ev_cat1_two_plus_pct": {
+  "src": "data/locomo10.json[0..3].qa category 1: share with 2+ evidence turns",
+  "value": 96.3963963963964
+ },
+ "ev_cat4_mean": {
+  "src": "data/locomo10.json[0..3].qa category 4: mean evidence turns",
+  "value": 1.0385852090032155
+ },
+ "ev_cat4_two_plus_pct": {
+  "src": "data/locomo10.json[0..3].qa category 4: share with 2+ evidence turns",
+  "value": 3.536977491961415
+ },
+ "evaluator_amem": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: commands, setups with T off",
+  "value": [
+   "test_advanced_robust.py"
+  ]
+ },
+ "evaluator_tmem": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: commands, setups with T on",
+  "value": [
+   "test_tmem_advanced_robust.py"
+  ]
+ },
+ "event_10_years_ago": {
+  "src": "memory_consolidation.py: happened_around('I did it 10 years ago.', '1:00 pm on 9 June, 2023')",
+  "value": "2013"
+ },
+ "event_a_few_weeks_ago": {
+  "src": "memory_consolidation.py: happened_around('I did it a few weeks ago.', '1:00 pm on 9 June, 2023')",
+  "value": "a few weeks before 9 June 2023"
+ },
+ "event_a_year_ago": {
+  "src": "memory_consolidation.py: happened_around('I did it a year ago.', '1:00 pm on 9 June, 2023')",
+  "value": "around June 2022"
+ },
+ "event_anchor": {
+  "src": "anchor date used for the rule table",
+  "value": "9 June 2023"
+ },
+ "event_last_Friday": {
+  "src": "memory_consolidation.py: happened_around('I did it last Friday.', '1:00 pm on 9 June, 2023')",
+  "value": "the Friday before 9 June 2023"
+ },
+ "event_last_month": {
+  "src": "memory_consolidation.py: happened_around('I did it last month.', '1:00 pm on 9 June, 2023')",
+  "value": "May 2023"
+ },
+ "event_last_night": {
+  "src": "memory_consolidation.py: happened_around('I did it last night.', '1:00 pm on 9 June, 2023')",
+  "value": "8 June 2023"
+ },
+ "event_last_summer": {
+  "src": "memory_consolidation.py: happened_around('I did it last summer.', '1:00 pm on 9 June, 2023')",
+  "value": "summer 2022"
+ },
+ "event_last_week": {
+  "src": "memory_consolidation.py: happened_around('I did it last week.', '1:00 pm on 9 June, 2023')",
+  "value": "the week before 9 June 2023"
+ },
+ "event_last_year": {
+  "src": "memory_consolidation.py: happened_around('I did it last year.', '1:00 pm on 9 June, 2023')",
+  "value": "2022"
+ },
+ "event_next_month": {
+  "src": "memory_consolidation.py: happened_around('I did it next month.', '1:00 pm on 9 June, 2023')",
+  "value": "July 2023"
+ },
+ "event_next_week": {
+  "src": "memory_consolidation.py: happened_around('I did it next week.', '1:00 pm on 9 June, 2023')",
+  "value": "the week after 9 June 2023"
+ },
+ "event_next_year": {
+  "src": "memory_consolidation.py: happened_around('I did it next year.', '1:00 pm on 9 June, 2023')",
+  "value": "2024"
+ },
+ "event_rules": {
+  "src": "expressions run through happened_around (inputs of the rule table)",
+  "value": [
+   "yesterday",
+   "last night",
+   "tomorrow",
+   "tonight",
+   "last week",
+   "next week",
+   "last Friday",
+   "next month",
+   "last month",
+   "next year",
+   "last year",
+   "last summer",
+   "three days ago",
+   "two months ago",
+   "a year ago",
+   "10 years ago",
+   "a few weeks ago"
+  ]
+ },
+ "event_three_days_ago": {
+  "src": "memory_consolidation.py: happened_around('I did it three days ago.', '1:00 pm on 9 June, 2023')",
+  "value": "6 June 2023"
+ },
+ "event_tomorrow": {
+  "src": "memory_consolidation.py: happened_around('I did it tomorrow.', '1:00 pm on 9 June, 2023')",
+  "value": "10 June 2023"
+ },
+ "event_tonight": {
+  "src": "memory_consolidation.py: happened_around('I did it tonight.', '1:00 pm on 9 June, 2023')",
+  "value": "9 June 2023"
+ },
+ "event_two_months_ago": {
+  "src": "memory_consolidation.py: happened_around('I did it two months ago.', '1:00 pm on 9 June, 2023')",
+  "value": "April 2023"
+ },
+ "event_yesterday": {
+  "src": "memory_consolidation.py: happened_around('I did it yesterday.', '1:00 pm on 9 June, 2023')",
+  "value": "8 June 2023"
+ },
+ "evolution_calls": {
+  "src": "memory_layer_robust.py: process_memory, language-model calls",
+  "value": 3
+ },
+ "evolution_k": {
+  "src": "memory_layer_robust.py: process_memory, find_related_memories(k=...)",
+  "value": 5
+ },
+ "ex_different_n": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: DIFFERENT group [2, 357]",
+  "value": 2
+ },
+ "ex_different_speaker": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: DIFFERENT group [2, 357]",
+  "value": "Nate"
+ },
+ "ex_event_label": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/logs/s4_h_seed42.log: 'memory timeline:' field of that note",
+  "value": "Joanna's writing gig, step 1 of 2 (said on 24 March 2022; happened: 23 March 2022); after: just joined (said on 21 April 2022)"
+ },
+ "ex_event_note_date": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_3.pkl note 117 timestamp",
+  "value": "24 March 2022"
+ },
+ "ex_event_note_phrase": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/cache/shared/memory_cache_sample_3.pkl note 117 content",
+  "value": "Been quite a ride - in a good way - had an audition yesterday for a writing gig"
+ },
+ "ex_merge_n_sources": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: group [158, 350]",
+  "value": 2
+ },
+ "ex_merge_result": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: group [158, 350] consolidated_content",
+  "value": "Nate has been making a creamy, rich, dairy-free recipe and is willing to share it. He mentioned this on 17 April 2022 and again on 14 August 2022."
+ },
+ "ex_merge_speaker": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: source speaker",
+  "value": "Nate"
+ },
+ "ex_merge_src1_date": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: group [158, 350] source 1 timestamp",
+  "value": "17 April 2022"
+ },
+ "ex_merge_src1_text": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: group [158, 350] source 1 content",
+  "value": "Thanks! It's dairy-free and so easy. Wanna get the recipe?"
+ },
+ "ex_merge_src2_date": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: group [158, 350] source 2 timestamp",
+  "value": "14 August 2022"
+ },
+ "ex_merge_src2_text": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_consolidation_log.json: group [158, 350] source 2 content",
+  "value": "I've been really into making this lately - it's creamy, rich, dairy-free and a new recipe! Wanna try it? I can share the recipe with you if you'd like!"
+ },
+ "ex_tl_script_first": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: timeline 'Joanna's movie script' dates[0]",
+  "value": "23 January 2022"
+ },
+ "ex_tl_script_last": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: timeline 'Joanna's movie script' dates[-1]",
+  "value": "9 November 2022"
+ },
+ "ex_tl_script_n": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: timeline 'Joanna's movie script' notes",
+  "value": 10
+ },
+ "ex_tl_script_topic": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: timelines[].topic",
+  "value": "Joanna's movie script"
+ },
+ "ex_tl_tourn_first": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: timeline 'Nate's video game tournament' dates[0]",
+  "value": "24 March 2022"
+ },
+ "ex_tl_tourn_last": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: timeline 'Nate's video game tournament' dates[-1]",
+  "value": "7 November 2022"
+ },
+ "ex_tl_tourn_n": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: timeline 'Nate's video game tournament' notes",
+  "value": 7
+ },
+ "ex_tl_tourn_topic": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: timelines[].topic",
+  "value": "Nate's video game tournament"
+ },
+ "example_temporal_question": {
+  "src": "data/locomo10.json[0].qa[0] (category 2)",
+  "value": "When did Caroline go to the LGBTQ support group?"
+ },
+ "fam_factorial": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/analysis/summary.json: factorial['samples 0-3'] rows",
+  "value": 14
+ },
+ "fam_main": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/analysis/summary.json: vs_amem rows for s2, s3, s4, s8",
+  "value": 8
+ },
+ "fam_other": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/analysis/summary.json: vs_amem rows for s5, s6, s7",
+  "value": 6
+ },
+ "h0_CHANGE": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_0.json: pairs labelled CHANGE",
+  "value": 5
+ },
+ "h0_COMPATIBLE": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_0.json: pairs labelled COMPATIBLE",
+  "value": 6
+ },
+ "h0_CONTRADICTION": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_0.json: pairs labelled CONTRADICTION",
+  "value": 0
+ },
+ "h0_PROGRESS": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_0.json: pairs labelled PROGRESS",
+  "value": 65
+ },
+ "h0_SAME": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_0.json: pairs labelled SAME",
+  "value": 0
+ },
+ "h0_confirmed": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_0.json: verification.confirmed",
+  "value": 5
+ },
+ "h0_contradictions": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_0.json: contradictions",
+  "value": 0
+ },
+ "h0_new_calls": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_0.json: new_llm_calls",
+  "value": 0
+ },
+ "h0_replaced": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_0.json: replaced",
+  "value": 5
+ },
+ "h0_tagged": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_0.json: state_notes",
+  "value": 52
+ },
+ "h0_timeline_notes": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_0.json: notes in timelines",
+  "value": 32
+ },
+ "h0_timelines": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_0.json: timelines",
+  "value": 6
+ },
+ "h0_verified": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_0.json: verification.checked",
+  "value": 6
+ },
+ "h1_CHANGE": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_1.json: pairs labelled CHANGE",
+  "value": 5
+ },
+ "h1_COMPATIBLE": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_1.json: pairs labelled COMPATIBLE",
+  "value": 73
+ },
+ "h1_CONTRADICTION": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_1.json: pairs labelled CONTRADICTION",
+  "value": 0
+ },
+ "h1_PROGRESS": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_1.json: pairs labelled PROGRESS",
+  "value": 488
+ },
+ "h1_SAME": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_1.json: pairs labelled SAME",
+  "value": 1
+ },
+ "h1_confirmed": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_1.json: verification.confirmed",
+  "value": 5
+ },
+ "h1_contradictions": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_1.json: contradictions",
+  "value": 0
+ },
+ "h1_new_calls": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_1.json: new_llm_calls",
+  "value": 0
+ },
+ "h1_replaced": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_1.json: replaced",
+  "value": 4
+ },
+ "h1_tagged": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_1.json: state_notes",
+  "value": 93
+ },
+ "h1_timeline_notes": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_1.json: notes in timelines",
+  "value": 76
+ },
+ "h1_timelines": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_1.json: timelines",
+  "value": 7
+ },
+ "h1_verified": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_1.json: verification.checked",
+  "value": 13
+ },
+ "h2_CHANGE": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_2.json: pairs labelled CHANGE",
+  "value": 4
+ },
+ "h2_COMPATIBLE": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_2.json: pairs labelled COMPATIBLE",
+  "value": 18
+ },
+ "h2_CONTRADICTION": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_2.json: pairs labelled CONTRADICTION",
+  "value": 0
+ },
+ "h2_PROGRESS": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_2.json: pairs labelled PROGRESS",
+  "value": 24
+ },
+ "h2_SAME": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_2.json: pairs labelled SAME",
+  "value": 2
+ },
+ "h2_confirmed": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_2.json: verification.confirmed",
+  "value": 4
+ },
+ "h2_contradictions": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_2.json: contradictions",
+  "value": 0
+ },
+ "h2_new_calls": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_2.json: new_llm_calls",
+  "value": 0
+ },
+ "h2_replaced": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_2.json: replaced",
+  "value": 4
+ },
+ "h2_tagged": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_2.json: state_notes",
+  "value": 73
+ },
+ "h2_timeline_notes": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_2.json: notes in timelines",
+  "value": 35
+ },
+ "h2_timelines": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_2.json: timelines",
+  "value": 10
+ },
+ "h2_verified": {
+  "src": "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_2.json: verification.checked",
+  "value": 7
+ },
+ "h3_CHANGE": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: pairs labelled CHANGE",
+  "value": 0
+ },
+ "h3_COMPATIBLE": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: pairs labelled COMPATIBLE",
+  "value": 7
+ },
+ "h3_CONTRADICTION": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: pairs labelled CONTRADICTION",
+  "value": 0
+ },
+ "h3_PROGRESS": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: pairs labelled PROGRESS",
+  "value": 70
+ },
+ "h3_SAME": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: pairs labelled SAME",
+  "value": 0
+ },
+ "h3_confirmed": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: verification.confirmed",
+  "value": 0
+ },
+ "h3_contradictions": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: contradictions",
+  "value": 0
+ },
+ "h3_new_calls": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: new_llm_calls",
+  "value": 706
+ },
+ "h3_replaced": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: replaced",
+  "value": 0
+ },
+ "h3_tagged": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: state_notes",
+  "value": 52
+ },
+ "h3_timeline_notes": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: notes in timelines",
+  "value": 35
+ },
+ "h3_timelines": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: timelines",
+  "value": 9
+ },
+ "h3_verified": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_log.json: verification.checked",
+  "value": 0
+ },
+ "h_dev_confirmed": {
+  "src": "sum of verification.confirmed, samples 0-2",
+  "value": 14
+ },
+ "h_dev_replaced": {
+  "src": "sum of replaced, samples 0-2",
+  "value": 13
+ },
+ "h_total_contradictions": {
+  "src": "sum over the four conflict logs",
+  "value": 0
+ },
+ "half_A": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: halves.A",
+  "value": [
+   "s1_amem",
+   "s2_t",
+   "s3_c",
+   "s4_h"
+  ]
+ },
+ "half_B": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: halves.B",
+  "value": [
+   "s5_tc",
+   "s6_th",
+   "s7_ch",
+   "s8_tch"
+  ]
+ },
+ "half_max": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: attempts, halves minutes",
+  "value": 15.0
+ },
+ "half_min": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: attempts, halves minutes",
+  "value": 13.4
+ },
+ "half_size": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: halves.A",
+  "value": 4
+ },
+ "history_words": {
+  "src": "memory_layer_robust.py: HISTORY_WORDS",
+  "value": "\\b(when|before|first|used to|originally|previously|initially|ago|earlier|in (19|20)\\d\\d)\\b"
+ },
+ "kw_calls": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: keywords[].questions summed",
+  "value": 3785
+ },
+ "kw_files": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: keywords",
+  "value": 5
+ },
+ "kw_temp": {
+  "src": "memory_layer_robust.py: RobustOpenAIController.get_completion default temperature (search words call passes none)",
+  "value": 0.7
+ },
+ "memory_gb": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: computer.memory_gb",
+  "value": 16
+ },
+ "model": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: model",
+  "value": "gpt-4o-mini-2024-07-18"
+ },
+ "n_categories": {
+  "src": "data/locomo10.json[0..3]: distinct question categories",
+  "value": 5
+ },
+ "n_conflict_labels": {
+  "src": "memory_conflicts.py: number of labels",
+  "value": 6
+ },
+ "n_dev_samples": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/PLAN.md section 1: samples 0-2 development, sample 3 clean test",
+  "value": 3
+ },
+ "n_groups": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/analysis/summary.json: sample groups",
+  "value": 3
+ },
+ "n_halves": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: halves A and B",
+  "value": 2
+ },
+ "n_levels": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: values each switch takes",
+  "value": 2
+ },
+ "n_modules": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: on/off switches per setup",
+  "value": 3
+ },
+ "n_runs": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: commands",
+  "value": 40
+ },
+ "n_samples": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: samples",
+  "value": 4
+ },
+ "n_seeds": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: seeds",
+  "value": 5
+ },
+ "n_setups": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: setups",
+  "value": 8
+ },
+ "now_q0": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/analysis/extra.json: mechanism.0.now_q / 5 runs",
+  "value": 3
+ },
+ "now_q1": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/analysis/extra.json: mechanism.1.now_q / 5 runs",
+  "value": 2
+ },
+ "now_q2": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/analysis/extra.json: mechanism.2.now_q / 5 runs",
+  "value": 1
+ },
+ "now_q3": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/analysis/extra.json: mechanism.3.now_q / 5 runs",
+  "value": 2
+ },
+ "now_q_temporal": {
+  "src": "data/locomo10.json samples 0-3: category 2 questions matching is_now_question",
+  "value": 1
+ },
+ "now_q_total": {
+  "src": "sum of the four",
+  "value": 8
+ },
+ "now_words": {
+  "src": "memory_layer_robust.py: NOW_WORDS",
+  "value": "\\b(now|currently|current|still|these days|nowadays|at the moment|latest|anymore|any more)\\b"
+ },
+ "offmode_agree": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/PLAN.md: 'checked on N of M questions'",
+  "value": 497
+ },
+ "offmode_total": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/PLAN.md: 'checked on N of M questions'",
+  "value": 497
+ },
+ "plan_commit": {
+  "src": "git log --diff-filter=A experiments/factorial8_samples0-3_2026-11-07/PLAN.md",
+  "value": "c1fcece5"
+ },
+ "plan_date": {
+  "src": "git log experiments/factorial8_samples0-3_2026-11-07/PLAN.md: commit date",
+  "value": "November 7, 2026"
+ },
+ "plan_time": {
+  "src": "git log experiments/factorial8_samples0-3_2026-11-07/PLAN.md: commit time",
+  "value": "11:45"
+ },
+ "poll_seconds": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/scripts/run_wave.py: time.sleep",
+  "value": 10
+ },
+ "prompt_c2": {
+  "src": "test_advanced_robust.py: category 2 prompt",
+  "value": "Use DATE of CONVERSATION to answer with an approximate date."
+ },
+ "prompt_c5_option": {
+  "src": "test_advanced_robust.py: category 5 option",
+  "value": "Not mentioned in the conversation"
+ },
+ "r10_differ_total": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/checks_all.json: R10 details summed",
+  "value": 0
+ },
+ "r10_questions": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/checks_all.json: R10 details",
+  "value": 627
+ },
+ "r11_differ_total": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/checks_all.json: R11 details summed",
+  "value": 0
+ },
+ "r2_empty_total": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/checks_all.json: R2 details summed",
+  "value": 0
+ },
+ "r6_bad_total": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/checks_all.json: R6 bad lines summed",
+  "value": 0
+ },
+ "r6_retries_total": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/checks_all.json: R6 retries summed",
+  "value": 0
+ },
+ "r9_mismatch_total": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/checks_all.json: R9 mismatches summed",
+  "value": 0
+ },
+ "r9_questions": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/checks/checks_all.json: R9 details",
+  "value": 173
+ },
+ "refusal_min_chars": {
+  "src": "analyze_consolidation_qa.py: classify_cat5, words longer than 2 characters",
+  "value": 3
+ },
+ "refusal_phrase": {
+  "src": "analyze_consolidation_qa.py: classify_cat5",
+  "value": "not mentioned"
+ },
+ "refusal_share": {
+  "src": "analyze_consolidation_qa.py: classify_cat5, share of trap words",
+  "value": 0.5
+ },
+ "robust_author": {
+  "src": "git log 0c8039f2: author",
+  "value": "WujiangXu"
+ },
+ "robust_commit": {
+  "src": "git log 0c8039f2",
+  "value": "0c8039f2"
+ },
+ "robust_date": {
+  "src": "git log 0c8039f2: date",
+  "value": "March 5, 2026"
+ },
+ "runs_end": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: attempts, valid waves, last half finished",
+  "value": "16:43"
+ },
+ "s3_base_seconds": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_base_build_report.json: seconds",
+  "value": 2638
+ },
+ "s3_base_warnings": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_base_build_report.json: warnings_or_errors",
+  "value": 0
+ },
+ "s3_build_date": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_build_summary.json: created",
+  "value": "2026-11-07"
+ },
+ "s3_build_minutes": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_started_at.txt and sample3_finished_at.txt",
+  "value": 47.016666666666666
+ },
+ "s3_build_model": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/build_logs/sample3_conflict_build_summary.json: model",
+  "value": "gpt-4o-mini-2024-07-18"
+ },
+ "s3_build_stages": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: sample3_build (one fingerprint per build stage)",
+  "value": 3
+ },
+ "seeds": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: seeds",
+  "value": [
+   42,
+   43,
+   44,
+   45,
+   46
+  ]
+ },
+ "served_check_date": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: served_model.checked",
+  "value": "2026-11-07"
+ },
+ "t_age_days": {
+  "src": "memory_layer_tmem_robust.py: age in days / this value (months_equiv)",
+  "value": 30.0
+ },
+ "t_alpha": {
+  "src": "memory_layer_tmem_robust.py: TemporalRetrievalConfig.blend_alpha",
+  "value": 0.9
+ },
+ "t_anchor": {
+  "src": "memory_layer_tmem_robust.py: TemporalRetrievalConfig.semantic_anchor_count",
+  "value": 2
+ },
+ "t_categories": {
+  "src": "memory_layer_tmem_robust.py: TemporalRetrievalConfig.temporal_categories",
+  "value": [
+   2
+  ]
+ },
+ "t_floor": {
+  "src": "memory_layer_tmem_robust.py: TemporalRetrievalConfig.temporal_score_floor",
+  "value": 0.25
+ },
+ "t_floor_slope": {
+  "src": "1 - temporal_score_floor (memory_layer_tmem_robust.py, _rank_memories_temporally)",
+  "value": 0.75
+ },
+ "t_k": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: commands --retrieve_k",
+  "value": 10
+ },
+ "t_lambda": {
+  "src": "memory_layer_tmem_robust.py: TemporalRetrievalConfig.decay_lambda",
+  "value": 0.1
+ },
+ "t_margin": {
+  "src": "memory_layer_tmem_robust.py: TemporalRetrievalConfig.semantic_margin_to_skip_temporal",
+  "value": 0.05
+ },
+ "t_pool": {
+  "src": "memory_layer_tmem_robust.py: TemporalRetrievalConfig.candidate_pool_size",
+  "value": 20
+ },
+ "t_recency_1": {
+  "src": "exp(-decay_lambda * periods[0])",
+  "value": 0.9048374180359595
+ },
+ "t_recency_6": {
+  "src": "exp(-decay_lambda * periods[1])",
+  "value": 0.5488116360940264
+ },
+ "t_recency_periods": {
+  "src": "periods used in the worked recency example",
+  "value": [
+   1,
+   6
+  ]
+ },
+ "tests_added": {
+  "src": "difference of the two counts",
+  "value": 5
+ },
+ "tests_after_fix": {
+  "src": "git commit message of b84b89cc (pytest tests/ re-run gives the same count)",
+  "value": 63
+ },
+ "tests_stage0": {
+  "src": "git commit message of c1fcece5 (pytest tests/ re-run gives the same count)",
+  "value": 58
+ },
+ "tpm_limit": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/PLAN.md: section 9, token limit",
+  "value": 2000000
+ },
+ "tpm_planned": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/PLAN.md: section 9, 4 side by side",
+  "value": 1000000
+ },
+ "trial_ratio": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: attempts trial command --ratio",
+  "value": 0.1
+ },
+ "trial_samples": {
+  "src": "test_advanced_robust.py: max(1, int(conversations x --ratio)), first samples",
+  "value": 1
+ },
+ "trial_seed": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: attempts trial command --seed",
+  "value": 42
+ },
+ "trial_start": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: attempts trial.started",
+  "value": "13:26"
+ },
+ "waves_date": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: attempts, date of valid waves",
+  "value": "November 7, 2026"
+ },
+ "waves_end": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: attempts, valid waves finished (after their checks)",
+  "value": "16:45"
+ },
+ "waves_start": {
+  "src": "experiments/factorial8_samples0-3_2026-11-07/manifest.json: attempts, valid waves started",
+  "value": "14:11"
+ }
+}

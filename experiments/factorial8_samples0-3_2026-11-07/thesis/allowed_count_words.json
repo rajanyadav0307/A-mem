@@ -1,0 +1,234 @@
+[
+ {
+  "phrase": "All three",
+  "reason": "name of setup s8 (all modules on); module count is n_modules in facts.json"
+ },
+ {
+  "phrase": "all three",
+  "reason": "name of setup s8 (all modules on); module count is n_modules in facts.json"
+ },
+ {
+  "phrase": "two-way interaction",
+  "reason": "design term: interaction of two factors"
+ },
+ {
+  "phrase": "three-way interaction",
+  "reason": "design term: interaction of all three factors (n_modules = 3)"
+ },
+ {
+  "phrase": "four on-minus-off differences",
+  "reason": "design arithmetic: 2^(3-1) = 4 pairs per factor in a 2x2x2 design"
+ },
+ {
+  "phrase": "their own four pairs",
+  "reason": "design arithmetic: 2^(3-1) = 4 pairs per factor"
+ },
+ {
+  "phrase": "the two settings of H",
+  "reason": "design: each factor has n_levels = 2 settings"
+ },
+ {
+  "phrase": "the four settings of the other two modules",
+  "reason": "design arithmetic: 2^2 = 4 settings of the other 3-1 = 2 factors"
+ },
+ {
+  "phrase": "twice the interaction as scaled by Montgomery",
+  "reason": "Equation 5 divides by 2; Montgomery's contrast divides by 4"
+ },
+ {
+  "phrase": "the two modules together",
+  "reason": "a two-way interaction concerns two modules"
+ },
+ {
+  "phrase": "two-module setups",
+  "reason": "setups s5, s6, s7 have two modules on (manifest setups)"
+ },
+ {
+  "phrase": "a difference between two setups",
+  "reason": "generic comparison of a pair of setups"
+ },
+ {
+  "phrase": "The difference between two setups",
+  "reason": "generic comparison of a pair of setups"
+ },
+ {
+  "phrase": "two setups asked the same question",
+  "reason": "generic pair of setups"
+ },
+ {
+  "phrase": "three kinds of answer",
+  "reason": "self-count: the sentence lists three kinds (alone, average, interactions)"
+ },
+ {
+  "phrase": "Four measures enforced the rule",
+  "reason": "self-count: the paragraph lists four measures"
+ },
+ {
+  "phrase": "these two categories",
+  "reason": "self-count: categories 2 and 5, just named"
+ },
+ {
+  "phrase": "the first two",
+  "reason": "self-count: shared search words and fixed option order, just named"
+ },
+ {
+  "phrase": "two overall scores",
+  "reason": "self-count: list items 4 and 5 (two overall scores)"
+ },
+ {
+  "phrase": "Two Overall Scores",
+  "reason": "self-count in a table title: the two overall scores"
+ },
+ {
+  "phrase": "two main measures",
+  "reason": "self-count: answerable F1 and temporal F1"
+ },
+ {
+  "phrase": "the same two measures",
+  "reason": "self-count: answerable F1 and temporal F1"
+ },
+ {
+  "phrase": "Two properties of the data",
+  "reason": "self-count: the paragraph gives First and Second"
+ },
+ {
+  "phrase": "Two mechanisms use the timeline fields",
+  "reason": "self-count: annotation and demotion, named next"
+ },
+ {
+  "phrase": "For the other two labels",
+  "reason": "self-count: SAME_FACT and SMALL_TALK"
+ },
+ {
+  "phrase": "the first three checks",
+  "reason": "self-count: the paragraph describes four checks, the first three hard"
+ },
+ {
+  "phrase": "those three checks",
+  "reason": "self-count: the same three checks"
+ },
+ {
+  "phrase": "Two of the checks bear directly",
+  "reason": "self-count: R11 and R10, named next"
+ },
+ {
+  "phrase": "Three patterns are visible",
+  "reason": "self-count: the paragraph gives three patterns"
+ },
+ {
+  "phrase": "Two features of sample 3",
+  "reason": "self-count: the paragraph gives First and Second"
+ },
+ {
+  "phrase": "the two sample groups",
+  "reason": "self-count: samples 0-2 and sample 3, just named"
+ },
+ {
+  "phrase": "the two rows",
+  "reason": "figure layout: Figure 3 has two rows (make_figs.py plt.subplots(2, 3))"
+ },
+ {
+  "phrase": "the right half of Figure 2",
+  "reason": "figure layout: Figure 2 has two columns (make_figs.py plt.subplots(2, 2))"
+ },
+ {
+  "phrase": "two answer options",
+  "reason": "code: category 5 prompt offers two options (test_advanced_robust.py answer_question)"
+ },
+ {
+  "phrase": "from two options",
+  "reason": "code: category 5 prompt offers two options"
+ },
+ {
+  "phrase": "the two options of a category 5 question",
+  "reason": "code: category 5 prompt offers two options"
+ },
+ {
+  "phrase": "two language-model calls",
+  "reason": "code: generate_query_llm and the answer call (test_advanced_robust.py)"
+ },
+ {
+  "phrase": "two groups are joined",
+  "reason": "code: find_candidate_groups merges pairs of groups"
+ },
+ {
+  "phrase": "a single day",
+  "reason": "code: build_timelines drops clusters from one day"
+ },
+ {
+  "phrase": "two statuses count as the same",
+  "reason": "code: comparison_steps compares pairs of statuses"
+ },
+ {
+  "phrase": "if two confirmed changes point",
+  "reason": "code: detect_and_apply, earliest replacement wins"
+ },
+ {
+  "phrase": "links the two notes",
+  "reason": "code: CONTRADICTION links the pair of notes"
+ },
+ {
+  "phrase": "carries two dates",
+  "reason": "code: timeline_date_style two_dates (said on, happened)"
+ },
+ {
+  "phrase": "the two agreed",
+  "reason": "PLAN.md: the two retrievals (shared bank, A-MEM's own bank) agreed"
+ },
+ {
+  "phrase": "tested two-sided",
+  "reason": "statistics term: two-sided test (analyze.py p = 2 min(...))"
+ },
+ {
+  "phrase": "two-sided p-value is twice the smaller",
+  "reason": "analyze.py bootstrap: p = 2 * min(above, below) + 1/REPS"
+ },
+ {
+  "phrase": "two or more evidence turns",
+  "reason": "definition of ev_cat1_two_plus_pct in facts.py (n >= 2)"
+ },
+ {
+  "phrase": "single-hop",
+  "reason": "question type name (Maharana et al., 2024)"
+ },
+ {
+  "phrase": "Single-hop",
+  "reason": "question type name (Maharana et al., 2024)"
+ },
+ {
+  "phrase": "halves of",
+  "reason": "manifest halves: groups of runs (run_wave.py)"
+ },
+ {
+  "phrase": "the order of the halves",
+  "reason": "manifest halves.order"
+ },
+ {
+  "phrase": "While a half ran",
+  "reason": "manifest halves: one group of runs"
+ },
+ {
+  "phrase": "stopped the half",
+  "reason": "run_wave.py emergency stop of the running group"
+ },
+ {
+  "phrase": "each half took",
+  "reason": "manifest attempts halves minutes"
+ },
+ {
+  "phrase": "half the account's limit",
+  "reason": "PLAN.md section 9; guarded in ch3.js (planned x 2 = limit)"
+ },
+ {
+  "phrase": "It was run twice with identical output",
+  "reason": "REPORT.md Stage 7: two runs byte-identical"
+ },
+ {
+  "phrase": "All Three",
+  "reason": "name of setup s8 in title case (headings, table titles)"
+ },
+ {
+  "phrase": "Two-Module Setups",
+  "reason": "setups s5, s6, s7 have two modules on (manifest setups); title case"
+ }
+]
