@@ -111,6 +111,43 @@ The same pattern as all four samples, but larger:
 - One model (gpt-4o-mini), one dataset (LoCoMo).
 - Holm p-values close to 0.05 depend a little on the random resampling. Re-running the bootstrap with a different random generator kept every "real" result real.
 
+## Stage 7: extra counts for the thesis (added 2026-11-08)
+
+Descriptive only: no tests, not part of the plan. Offline, no AI calls. Numbers: [analysis/extra.json](analysis/extra.json), made by `scripts/extra_analysis.py`.
+
+- **Made twice:** the two runs gave byte-identical files.
+- **Recounted another way:** `scripts/extra_recount.py` reads what the runs actually showed the model (the logged contexts), takes merged notes from the consolidation build logs, averages metrics per question, and computes the time-ranking margin with its own arithmetic. Result: [analysis/extra_recount.json](analysis/extra_recount.json), 0 differences. Run twice, byte-identical.
+
+### What each part changed in the model's context (question × run cases)
+
+| Count | Sample 0 | Sample 1 | Sample 2 | Sample 3 | All |
+|---|---|---|---|---|---|
+| Time questions × runs | 185 | 130 | 135 | 200 | 650 |
+| T: same 10 notes as A-MEM | 132 of 185 (71.4%) | 97 of 130 (74.6%) | 92 of 135 (68.1%) | 150 of 200 (75.0%) | 471 of 650 (72.5%) |
+| T: same 10 notes in the same order | 53 of 185 (28.6%) | 60 of 130 (46.2%) | 36 of 135 (26.7%) | 75 of 200 (37.5%) | 224 of 650 (34.5%) |
+| T: skipped (best note leads by ≥ 0.05) | 26 of 185 (14.1%) | 44 of 130 (33.8%) | 31 of 135 (23.0%) | 63 of 200 (31.5%) | 164 of 650 (25.2%) |
+| T: notes replaced, total | 59 | 33 | 45 | 57 | 194 |
+| H: time contexts with a timeline label | 87 of 185 (47.0%) | 130 of 130 (100.0%) | 135 of 135 (100.0%) | 148 of 200 (74.0%) | 500 of 650 (76.9%) |
+| H: time contexts with an event date | 76 of 185 (41.1%) | 130 of 130 (100.0%) | 31 of 135 (23.0%) | 133 of 200 (66.5%) | 370 of 650 (56.9%) |
+| H: all contexts with a timeline label | 483 of 995 (48.5%) | 525 of 525 (100.0%) | 965 of 965 (100.0%) | 894 of 1,300 (68.8%) | 2,867 of 3,785 (75.7%) |
+| H: all contexts with an OUTDATED label | 153 of 995 (15.4%) | 301 of 525 (57.3%) | 73 of 965 (7.6%) | 0 of 1,300 (0.0%) | 527 of 3,785 (13.9%) |
+| Questions about the present × runs | 15 | 10 | 5 | 10 | 40 |
+| C: s3 contexts with a merged note | 778 of 995 (78.2%) | 401 of 525 (76.4%) | 564 of 965 (58.4%) | 1,015 of 1,300 (78.1%) | 2,758 of 3,785 (72.9%) |
+| C: s3 time contexts with a merged note | 149 of 185 (80.5%) | 111 of 130 (85.4%) | 106 of 135 (78.5%) | 181 of 200 (90.5%) | 547 of 650 (84.2%) |
+
+### Other measures (all 757 questions, mean of the five runs)
+
+| Setup | f1 | exact_match | rougeL_f | bleu1 | meteor | bert_f1 | sbert_similarity |
+|---|---|---|---|---|---|---|---|
+| s1 A-MEM | 0.3373 | 0.1358 | 0.3394 | 0.2926 | 0.2586 | 0.9030 | 0.4952 |
+| s2 T | 0.3354 | 0.1324 | 0.3393 | 0.2897 | 0.2580 | 0.9028 | 0.4937 |
+| s3 C | 0.3322 | 0.1266 | 0.3360 | 0.2860 | 0.2555 | 0.9025 | 0.4909 |
+| s4 H | 0.3414 | 0.1363 | 0.3451 | 0.2913 | 0.2616 | 0.9033 | 0.4962 |
+| s5 T+C | 0.3337 | 0.1279 | 0.3380 | 0.2871 | 0.2547 | 0.9027 | 0.4915 |
+| s6 T+H | 0.3429 | 0.1371 | 0.3472 | 0.2920 | 0.2620 | 0.9036 | 0.4986 |
+| s7 C+H | 0.3390 | 0.1258 | 0.3431 | 0.2846 | 0.2583 | 0.9032 | 0.4921 |
+| s8 all three | 0.3419 | 0.1263 | 0.3451 | 0.2872 | 0.2610 | 0.9032 | 0.4950 |
+
 ## Where things are
 
 | What | Where |
@@ -120,4 +157,5 @@ The same pattern as all four samples, but larger:
 | 40 result files | [results/](results/) |
 | All checks | [checks/](checks/) (`checks_all.json`, `history.jsonl`) |
 | Analysis | [analysis/tables.md](analysis/tables.md), [analysis/summary.json](analysis/summary.json) |
+| Stage 7 extra counts | [analysis/extra.json](analysis/extra.json), check: [analysis/extra_recount.json](analysis/extra_recount.json) |
 | Logs (5 GB) and memory banks | `logs/`, `cache/` (on this computer only, not in git) |
