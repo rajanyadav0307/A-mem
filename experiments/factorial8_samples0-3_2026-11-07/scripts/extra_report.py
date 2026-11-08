@@ -37,11 +37,11 @@ rows = [
 ]
 
 print("## Stage 7: extra counts for the thesis (added 2026-11-08)\n")
-print("Descriptive only: no tests, not part of the plan. Offline, no AI calls. Numbers: "
+print("Descriptive only, no tests. The context counts were not part of the plan; the other measures were named in the plan (section 8) and are averaged here over the five runs. Offline, no AI calls. Numbers: "
       "[analysis/extra.json](analysis/extra.json), made by `scripts/extra_analysis.py`.\n")
 print("- **Made twice:** the two runs gave byte-identical files.")
 print("- **Recounted another way:** `scripts/extra_recount.py` reads what the runs actually showed the model "
-      "(the logged contexts), takes merged notes from the consolidation build logs, averages metrics per question, "
+      "(the logged contexts), matches merged notes block by block against the banks' merged notes, averages metrics per question, "
       "and computes the time-ranking margin with its own arithmetic. Result: "
       "[analysis/extra_recount.json](analysis/extra_recount.json), 0 differences. Run twice, byte-identical.\n")
 print("### What each part changed in the model's context (question × run cases)\n")

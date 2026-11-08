@@ -18,7 +18,7 @@ Every on/off combination of T-MEM's three parts, each added on top of the unchan
 | s7 | off | on | on |
 | s8 (all three) | on | on | on |
 
-- **Questions:** samples 0–3 of LoCoMo, 757 questions. Samples 0–2 are where T-MEM was developed. **Sample 3 is the clean test.** It was never used while T-MEM was being built.
+- **Questions:** samples 0–3 of LoCoMo, 757 questions. Samples 0–2 are where T-MEM was developed. **Sample 3 is the clean test** (as fixed in the plan); its memory bank was built for this experiment.
 - **Runs:** 5 runs per setup (seeds 42–46), 40 runs in all, model `gpt-4o-mini-2024-07-18`.
 - **Same input for every setup:**
   - one memory bank per sample
@@ -29,7 +29,7 @@ Every on/off combination of T-MEM's three parts, each added on top of the unchan
 
 Yes.
 
-- **Checks after each run:** every run passed all 85 result checks, with 0 errors and 0 retries.
+- **Checks after each run:** every wave passed all 85 checks (10 per run, plus R9 and R10 across the wave's runs), with 0 errors and 0 retries.
 - **Final check:** across all 40 files, 426 of 426 checks passed ([checks/checks_all.json](checks/checks_all.json)).
 - **Replay:** for every one of the 30,280 answers, the notes in the log equal the notes the code gives offline.
 - **Time ranking:** it changed nothing outside time questions. For all 627 non-time questions, in all 5 runs, it found exactly the same notes.
@@ -99,7 +99,7 @@ The same pattern as all four samples, but larger:
 
 ## What this means
 
-1. **Conflict handling is the part that works.** It is the only part with a real effect, and it accounts for almost all of T-MEM's gain on time questions. It helps in every run.
+1. **Conflict handling is the part that works.** It is the only part with a real effect, and it accounts for almost all of T-MEM's gain on time questions. It helps in every run on samples 0–3.
 2. **Time ranking (V2) does nothing measurable here.** Its effect is close to zero everywhere: alone, with the other parts, and on every sample group. The earlier V2 gain on samples 0–1 does not appear here. One possible reason is that in earlier tests each setup made its own search words, while here all setups share them. This was not tested directly.
 3. **Consolidation does not help.** Alone it is close to zero, and on the clean test it lowers time F1.
 4. **The gains are much smaller on the clean test.** On sample 3, T-MEM's time gain drops from about +0.05 to about +0.013 and is no longer real. Sample 3 has only 40 time questions, so a small real gain could be missed. But the result does not show that T-MEM's gains carry over to a new conversation.
@@ -113,10 +113,10 @@ The same pattern as all four samples, but larger:
 
 ## Stage 7: extra counts for the thesis (added 2026-11-08)
 
-Descriptive only: no tests, not part of the plan. Offline, no AI calls. Numbers: [analysis/extra.json](analysis/extra.json), made by `scripts/extra_analysis.py`.
+Descriptive only, no tests. The context counts were not part of the plan; the other measures were named in the plan (section 8) and are averaged here over the five runs. Offline, no AI calls. Numbers: [analysis/extra.json](analysis/extra.json), made by `scripts/extra_analysis.py`.
 
 - **Made twice:** the two runs gave byte-identical files.
-- **Recounted another way:** `scripts/extra_recount.py` reads what the runs actually showed the model (the logged contexts), takes merged notes from the consolidation build logs, averages metrics per question, and computes the time-ranking margin with its own arithmetic. Result: [analysis/extra_recount.json](analysis/extra_recount.json), 0 differences. Run twice, byte-identical.
+- **Recounted another way:** `scripts/extra_recount.py` reads what the runs actually showed the model (the logged contexts), matches merged notes block by block against the banks' merged notes, averages metrics per question, and computes the time-ranking margin with its own arithmetic. Result: [analysis/extra_recount.json](analysis/extra_recount.json), 0 differences. Run twice, byte-identical.
 
 ### What each part changed in the model's context (question × run cases)
 

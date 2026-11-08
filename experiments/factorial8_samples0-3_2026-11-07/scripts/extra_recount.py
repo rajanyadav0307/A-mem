@@ -27,10 +27,6 @@ sys.path.insert(0, REPO)  # only so the bank pickles can be loaded; no retrieval
 os.environ.setdefault("HF_HUB_OFFLINE", "1")
 SAMPLES, SEEDS = (0, 1, 2, 3), (42, 43, 44, 45, 46)
 SETUPS = ["s1_amem", "s2_t", "s3_c", "s4_h", "s5_tc", "s6_th", "s7_ch", "s8_tch"]
-BUILD_LOGS = {0: "analysis/consolidation_log_sample_0_v3.json",
-              1: "analysis/consolidation_log_sample_1_v3.json",
-              2: "experiments/e2e_samples0-2_2026-10-26_13-10/build_logs/consolidation_log_sample_2_e2e.json",
-              3: f"{E}/build_logs/sample3_consolidation_log.json"}
 STAMP = re.compile(r"^\d{4}-\d\d-\d\d \d\d:\d\d:\d\d")
 
 
@@ -116,9 +112,12 @@ def main():
     for s in SEEDS:  # every run has the same questions in the same order
         assert [(int(x["sample_id"]), x["question"]) for x in res[s]] == list(zip(sid, qs))
 
-    # merged notes from the consolidation build logs
-    merged = {s: {g["consolidated_content"] for g in json.load(open(BUILD_LOGS[s]))["groups"]
-                  if g.get("outcome") == "merged"} for s in SAMPLES}
+    # merged notes: the rendered blocks of the banks' consolidated notes, matched block by block
+    # (extra_analysis.py instead searches each context for the merged note's text)
+    merged = {}
+    for s in SAMPLES:
+        mem = pickle.load(open(f"{E}/cache/shared/memory_cache_sample_{s}.pkl", "rb"))
+        merged[s] = {render(n) for n in mem.values() if n.note_type == "consolidated"}
 
     # time-ranking margin: own cosine over the raw notes of each shared bank
     from sentence_transformers import SentenceTransformer
@@ -149,7 +148,7 @@ def main():
             m[s]["now_q"] += is_now(qs[i])
             m[s]["h_ctx_with_timeline"] += "memory timeline:" in c4[i]
             m[s]["h_ctx_with_outdated"] += "OUTDATED" in c4[i]
-            has = any(note_content(b) in merged[s] for b in notes(c3[i]))
+            has = any(("talk start time:" + b + ("" if b.endswith("\n") else "\n")) in merged[s] for b in notes(c3[i] + "\n"))
             mc[s]["all"] += 1
             mc[s]["m"] += has
             if cat[i] == 2:
