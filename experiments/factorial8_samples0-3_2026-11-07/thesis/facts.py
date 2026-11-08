@@ -32,8 +32,15 @@ os.environ.setdefault("HF_HUB_OFFLINE", "1")
 import numpy as np  # noqa: E402
 
 E = "experiments/factorial8_samples0-3_2026-11-07"
-SAMPLES = (0, 1, 2, 3)
-SETUPS = ["s1_amem", "s2_t", "s3_c", "s4_h", "s5_tc", "s6_th", "s7_ch", "s8_tch"]
+with open(os.path.join(E, "manifest.json")) as _f:
+    _MAN = json.load(_f)
+SAMPLES = tuple(_MAN["samples"])
+SETUPS = list(_MAN["setups"])
+SEEDS = tuple(_MAN["seeds"])
+DEV = tuple(SAMPLES[:-1])          # PLAN.md section 1: the last sample (3) is the clean test, the others are development
+CODE_FILES = ["memory_layer_robust.py", "memory_layer_tmem_robust.py", "memory_consolidation.py", "memory_conflicts.py",
+              "shared_keywords.py", "test_advanced_robust.py", "test_tmem_advanced_robust.py", "utils.py",
+              "analyze_consolidation_qa.py", "llm_text_parsers.py", "build_consolidated_cache.py", "build_conflict_bank.py"]
 F = {}
 
 
@@ -53,15 +60,21 @@ def jload(path):
         return json.load(f)
 
 
-def date_dmy(text):
-    """'1:56 pm on 8 May, 2023' -> '8 May 2023' (parsed, not retyped)."""
-    for fmt in ("%I:%M %p on %d %B, %Y", "%I:%M %p on %d %b, %Y"):
+def date_us(text):
+    """'1:56 pm on 8 May, 2023' or '8 May 2023' -> 'May 8, 2023' (parsed, not retyped)."""
+    for fmt in ("%I:%M %p on %d %B, %Y", "%I:%M %p on %d %b, %Y", "%d %B %Y"):
         try:
             d = dt.datetime.strptime(text.strip(), fmt)
-            return f"{d.day} {d.strftime('%B')} {d.year}"
+            return f"{d.strftime('%B')} {d.day}, {d.year}"
         except ValueError:
             pass
     raise ValueError(text)
+
+
+def iso_us(text):
+    """'2026-11-07...' -> 'November 7, 2026'."""
+    d = dt.date.fromisoformat(text[:10])
+    return f"{d.strftime('%B')} {d.day}, {d.year}"
 
 
 def speech(content):
@@ -92,8 +105,8 @@ def dataset():
         for c in range(1, 6):
             put(f"d{s}_cat{c}", cats[c], src + f".qa with category {c}")
             tot[f"cat{c}"] += cats[c]
-        put(f"d{s}_first_session", date_dmy(conv[f"session_{sess[0]}_date_time"]), src + f".session_{sess[0]}_date_time")
-        put(f"d{s}_last_session", date_dmy(conv[f"session_{sess[-1]}_date_time"]), src + f".session_{sess[-1]}_date_time")
+        put(f"d{s}_first_session", date_us(conv[f"session_{sess[0]}_date_time"]), src + f".session_{sess[0]}_date_time")
+        put(f"d{s}_last_session", date_us(conv[f"session_{sess[-1]}_date_time"]), src + f".session_{sess[-1]}_date_time")
         tot["sessions"] += len(sess)
         tot["turns"] += turns
         tot["questions"] += len(x["qa"])
@@ -103,7 +116,8 @@ def dataset():
     put("d_answerable", sum(tot[f"cat{c}"] for c in range(1, 5)), f"{path}[0..3]: categories 1-4")
     put("d_nontemporal", tot["questions"] - tot["cat2"], f"{path}[0..3]: all questions except category 2")
     put("d_temporal_share_pct", 100 * tot["cat2"] / tot["questions"], f"{path}[0..3]: category 2 / all questions")
-    ev = {c: [len(q["evidence"]) for s in SAMPLES for q in data[s]["qa"] if int(q["category"]) == c] for c in (1, 4)}
+    turns_of = lambda q: sum(len([t for t in e.split(";") if t.strip()]) for e in q["evidence"])  # an entry may hold several turns, e.g. 'D8:6; D9:17'
+    ev = {c: [turns_of(q) for s in SAMPLES for q in data[s]["qa"] if int(q["category"]) == c] for c in (1, 4)}
     put("ev_cat1_two_plus_pct", 100 * sum(n >= 2 for n in ev[1]) / len(ev[1]), f"{path}[0..3].qa category 1: share with 2+ evidence turns")
     put("ev_cat1_mean", statistics.mean(ev[1]), f"{path}[0..3].qa category 1: mean evidence turns")
     put("ev_cat4_two_plus_pct", 100 * sum(n >= 2 for n in ev[4]) / len(ev[4]), f"{path}[0..3].qa category 4: share with 2+ evidence turns")
@@ -136,6 +150,13 @@ def banks():
         put(f"b{s}_timeline_notes", sum(1 for n in raw if getattr(n, "timeline_id", None) is not None), src + ": raw notes with a timeline")
         put(f"b{s}_event_dates", sum(1 for n in raw if getattr(n, "event_time", None)), src + ": raw notes with an event date")
         put(f"b{s}_replaced", sum(1 for n in raw if getattr(n, "valid_until", None)), src + ": raw notes marked replaced")
+        assert all(n.timeline_id is not None for n in raw if n.event_time), "event dates only on timeline notes"
+        put(f"b{s}_timelines", len({n.timeline_id for n in raw if n.timeline_id is not None}), src + ": distinct timeline_id")
+        put(f"b{s}_contradictions", sum(1 for n in raw if n.conflicts_with), src + ": raw notes with conflicts_with")
+        put(f"b{s}_archived", sum(1 for n in raw if n.status == "archived"), src + ": raw notes archived as sources")
+        put(f"b{s}_mean_sources", statistics.mean(len(n.source_indices) for n in merged), src + ": mean source_indices per merged note")
+        assert sum(len(n.source_indices) for n in merged) == F[f"b{s}_archived"]["value"], "each source archived once"
+        assert all(raw[i].status == "archived" for n in merged for i in n.source_indices)
         emb = np.load(f"{E}/cache/shared/retriever_cache_embeddings_sample_{s}.npy")
         if s == 0:
             put("embedding_dim", int(emb.shape[1]), f"{E}/cache/shared/retriever_cache_embeddings_sample_0.npy: columns")
@@ -143,105 +164,92 @@ def banks():
         assert float(np.max(np.abs(norms - 1))) < 1e-4, "embeddings are normalized"
 
 
-# ---------------------------------------------------------------- build logs
-CONS = {0: "analysis/consolidation_log_sample_0_v3.json",
-        1: "analysis/consolidation_log_sample_1_v3.json",
-        2: "experiments/e2e_samples0-2_2026-10-26_13-10/build_logs/consolidation_log_sample_2_e2e.json",
-        3: f"{E}/build_logs/sample3_consolidation_log.json"}
-CONF = {0: "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_0.json",
-        1: "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_1.json",
-        2: "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/conflict_log_sample_2.json",
-        3: f"{E}/build_logs/sample3_conflict_log.json"}
+# ---------------------------------------------------------------- the sample 3 build (part of this experiment)
+CONS3 = f"{E}/build_logs/sample3_consolidation_log.json"
+CONF3 = f"{E}/build_logs/sample3_conflict_log.json"
 
 
 def build_logs():
-    for s in SAMPLES:
-        x = jload(CONS[s])
-        groups = x["groups"]
-        lab = collections.Counter(g["label"] for g in groups)
-        merged = [g for g in groups if g.get("outcome") == "merged"]
-        assert len(merged) == x["counts"]["merged"] == F[f"b{s}_merged"]["value"], "merges = bank"
-        src = CONS[s]
-        put(f"c{s}_groups", x["counts"]["groups"], src + ": counts.groups")
-        for l in ("SAME_FACT", "SMALL_TALK", "DIFFERENT"):
-            put(f"c{s}_{l}", lab[l], src + f": groups labelled {l}")
-        put(f"c{s}_merged", x["counts"]["merged"], src + ": counts.merged")
-        put(f"c{s}_merged_small_talk", sum(1 for g in merged if g["label"] == "SMALL_TALK"), src + ": merged groups labelled SMALL_TALK")
-        put(f"c{s}_rejected", x["counts"]["rejected"], src + ": counts.rejected")
-        put(f"c{s}_llm_calls", x["counts"]["llm_calls"], src + ": counts.llm_calls")
-        put(f"c{s}_mean_sources", statistics.mean(len(g["indices"]) for g in merged), src + ": mean source notes per merged group")
-        cfg = x["config"]
-        if s == 0:
-            put("cons_threshold", cfg["similarity_threshold"], src + ": config.similarity_threshold")
-            put("cons_max_group", cfg["max_group_size"], src + ": config.max_group_size")
-        else:
-            assert cfg == jload(CONS[0])["config"], "same consolidation settings in every bank"
-    put("c_total_merged", sum(F[f"c{s}_merged"]["value"] for s in SAMPLES), "sum of counts.merged over the four consolidation logs")
-    put("c_total_merged_small_talk", sum(F[f"c{s}_merged_small_talk"]["value"] for s in SAMPLES), "sum over the four consolidation logs")
+    s = SAMPLES[-1]
+    x = jload(CONS3)
+    groups = x["groups"]
+    lab = collections.Counter(g["label"] for g in groups)
+    out = collections.Counter(g["outcome"] for g in groups)
+    merged = [g for g in groups if g["outcome"] == "merged"]
+    assert len(merged) == x["counts"]["merged"] == F[f"b{s}_merged"]["value"], "merges in the log = merged notes in the bank"
+    put("c3_groups", len(groups), CONS3 + ": groups")
+    for l in ("SAME_FACT", "SMALL_TALK", "DIFFERENT"):
+        put(f"c3_{l}", lab[l], CONS3 + f": groups labeled {l}")
+    put("c3_merged", out["merged"], CONS3 + ": groups with outcome merged")
+    put("c3_merged_small_talk", sum(1 for g in merged if g["label"] == "SMALL_TALK"), CONS3 + ": merged groups labeled SMALL_TALK")
+    put("c3_rejected", out["rejected"], CONS3 + ": groups with outcome rejected")
+    put("c3_llm_calls", x["counts"]["llm_calls"], CONS3 + ": counts.llm_calls")
+    assert x["counts"]["llm_calls"] == sum(1 + len(g.get("attempts", [])) for g in groups), "one label call plus one call per merge attempt"
+    put("c3_max_attempts", max(len(g.get("attempts", [])) for g in groups), CONS3 + ": most merge attempts in one group")
+    longer = 0
+    for g in merged:
+        used = [a for a in g["attempts"] if a["content"] == g["consolidated_content"]]
+        assert used, "the merged note is one of the attempts"
+        longer += bool(used[0]["too_long"])
+    put("c3_merged_longer", longer, CONS3 + ": merged notes whose accepted attempt was flagged too_long")
+    cfg = x["config"]
+    put("cons_threshold", cfg["similarity_threshold"], CONS3 + ": config.similarity_threshold")
+    put("cons_max_group", cfg["max_group_size"], CONS3 + ": config.max_group_size")
+    assert cfg["require_same_speaker"] is True
+    put("embedding_model", cfg["embedding_model"], CONS3 + ": config.embedding_model")
 
-    # worked examples from sample 3, found by a word in the log and printed from the log
-    x = jload(CONS[3])
-    ex = [g for g in x["groups"] if g.get("outcome") == "merged" and "creamy, rich, dairy-free" in g["consolidated_content"]]
+    # worked examples, found by a phrase in the log and printed from the log
+    ex = [g for g in merged if "creamy, rich, dairy-free" in g["consolidated_content"]]
     assert len(ex) == 1
     g = ex[0]
+    put("ex_merge_n_sources", len(g["sources"]), CONS3 + f": group {g['indices']}")
     for i, srcn in enumerate(g["sources"], 1):
-        put(f"ex_merge_src{i}_date", date_dmy(srcn["timestamp"]), CONS[3] + f": group {g['indices']} source {i} timestamp")
-        put(f"ex_merge_src{i}_text", speech(srcn["content"]), CONS[3] + f": group {g['indices']} source {i} content")
-    put("ex_merge_n_sources", len(g["sources"]), CONS[3] + f": group {g['indices']}")
-    put("ex_merge_result", g["consolidated_content"], CONS[3] + f": group {g['indices']} consolidated_content")
-    put("ex_merge_speaker", re.match(r"^Speaker\s+(.+?)says", g["sources"][0]["content"]).group(1), CONS[3] + ": source speaker")
-    dif = [g for g in x["groups"] if g["label"] == "DIFFERENT" and any("first video game tournament" in s["content"] for s in g["sources"]) and any("international tournament" in s["content"] for s in g["sources"])]
+        put(f"ex_merge_src{i}_date", date_us(srcn["timestamp"]), CONS3 + f": group {g['indices']} source {i} timestamp")
+        put(f"ex_merge_src{i}_text", speech(srcn["content"]), CONS3 + f": group {g['indices']} source {i} content")
+    put("ex_merge_result", g["consolidated_content"], CONS3 + f": group {g['indices']} consolidated_content")
+    put("ex_merge_speaker", re.match(r"^Speaker\s+(.+?)says", g["sources"][0]["content"]).group(1), CONS3 + ": source speaker")
+    dif = [g for g in groups if g["label"] == "DIFFERENT" and any("first video game tournament" in t["content"] for t in g["sources"])
+           and any("international tournament" in t["content"] for t in g["sources"])]
     assert len(dif) == 1
-    put("ex_different_speaker", re.match(r"^Speaker\s+(.+?)says", dif[0]["sources"][0]["content"]).group(1), CONS[3] + f": DIFFERENT group {dif[0]['indices']}")
-    put("ex_different_n", len(dif[0]["sources"]), CONS[3] + f": DIFFERENT group {dif[0]['indices']}")
+    put("ex_different_speaker", re.match(r"^Speaker\s+(.+?)says", dif[0]["sources"][0]["content"]).group(1), CONS3 + f": DIFFERENT group {dif[0]['indices']}")
+    put("ex_different_n", len(dif[0]["sources"]), CONS3 + f": DIFFERENT group {dif[0]['indices']}")
 
-    for s in SAMPLES:
-        x = jload(CONF[s])
-        lab = collections.Counter(p["label"] for p in x["pairs"])
-        assert lab == collections.Counter(x["labels"]), "pair labels = label counts"
-        src = CONF[s]
-        put(f"h{s}_tagged", x["state_notes"], src + ": state_notes")
-        put(f"h{s}_timelines", len(x["timelines"]), src + ": timelines")
-        put(f"h{s}_timeline_notes", sum(len(t["notes"]) for t in x["timelines"]), src + ": notes in timelines")
-        for l in ("PROGRESS", "COMPATIBLE", "SAME", "CHANGE", "CONTRADICTION"):
-            put(f"h{s}_{l}", lab[l], src + f": pairs labelled {l}")
-        put(f"h{s}_verified", x["verification"]["checked"], src + ": verification.checked")
-        put(f"h{s}_confirmed", x["verification"]["confirmed"], src + ": verification.confirmed")
-        put(f"h{s}_replaced", len(x["replaced"]), src + ": replaced")
-        put(f"h{s}_contradictions", len(x["contradictions"]), src + ": contradictions")
-        put(f"h{s}_new_calls", x["new_llm_calls"], src + ": new_llm_calls")
-        assert F[f"h{s}_replaced"]["value"] == F[f"b{s}_replaced"]["value"], "replaced = bank"
-        assert F[f"h{s}_timeline_notes"]["value"] == F[f"b{s}_timeline_notes"]["value"], "timeline notes = bank"
-        cfg = x["config"]
-        if s == 0:
-            put("conf_topic_threshold", cfg["topic_threshold"], src + ": config.topic_threshold")
-            put("conf_status_duplicate", cfg["status_duplicate"], src + ": config.status_duplicate")
-        else:
-            assert cfg == jload(CONF[0])["config"], "same conflict settings in every bank"
-    put("h_dev_confirmed", sum(F[f"h{s}_confirmed"]["value"] for s in (0, 1, 2)), "sum of verification.confirmed, samples 0-2")
-    put("h_dev_replaced", sum(F[f"h{s}_replaced"]["value"] for s in (0, 1, 2)), "sum of replaced, samples 0-2")
-    put("h_total_contradictions", sum(F[f"h{s}_CONTRADICTION"]["value"] for s in SAMPLES), "sum over the four conflict logs")
-
-    x = jload(CONF[3])
+    x = jload(CONF3)
+    lab = collections.Counter(p["label"] for p in x["pairs"])
+    assert lab == collections.Counter(x["labels"]), "pair labels = label counts"
+    put("h3_tagged", x["state_notes"], CONF3 + ": state_notes")
+    for l in ("PROGRESS", "COMPATIBLE", "SAME", "CHANGE", "CONTRADICTION", "UNRELATED"):
+        put(f"h3_{l}", lab[l], CONF3 + f": comparisons labeled {l}")
+    put("h3_comparisons", sum(lab.values()), CONF3 + ": comparisons")
+    put("h3_verified", x["verification"]["checked"], CONF3 + ": verification.checked")
+    put("h3_new_calls", x["new_llm_calls"], CONF3 + ": new_llm_calls")
+    assert len(x["timelines"]) == F[f"b{s}_timelines"]["value"] and len(x["replaced"]) == F[f"b{s}_replaced"]["value"]
+    assert sum(len(t["notes"]) for t in x["timelines"]) == F[f"b{s}_timeline_notes"]["value"]
+    cfg = x["config"]
+    put("conf_topic_threshold", cfg["topic_threshold"], CONF3 + ": config.topic_threshold")
+    put("conf_status_duplicate", cfg["status_duplicate"], CONF3 + ": config.status_duplicate")
+    put("b_dev_replaced", sum(F[f"b{d}_replaced"]["value"] for d in DEV), "banks of the development samples: replaced notes")
+    put("b_total_contradictions", sum(F[f"b{d}_contradictions"]["value"] for d in SAMPLES), "all banks: notes with conflicts_with")
     tl = {t["topic"]: t for t in x["timelines"]}
     for key, topic in (("script", "Joanna's movie script"), ("tourn", "Nate's video game tournament")):
         t = tl[topic]
-        put(f"ex_tl_{key}_topic", topic, CONF[3] + ": timelines[].topic")
-        put(f"ex_tl_{key}_n", len(t["notes"]), CONF[3] + f": timeline '{topic}' notes")
-        put(f"ex_tl_{key}_first", t["dates"][0], CONF[3] + f": timeline '{topic}' dates[0]")
-        put(f"ex_tl_{key}_last", t["dates"][-1], CONF[3] + f": timeline '{topic}' dates[-1]")
+        put(f"ex_tl_{key}_topic", topic, CONF3 + ": timelines[].topic")
+        put(f"ex_tl_{key}_n", len(t["notes"]), CONF3 + f": timeline '{topic}' notes")
+        put(f"ex_tl_{key}_first", date_us(t["dates"][0]), CONF3 + f": timeline '{topic}' dates[0]")
+        put(f"ex_tl_{key}_last", date_us(t["dates"][-1]), CONF3 + f": timeline '{topic}' dates[-1]")
 
 
 def event_example():
     """The writing-gig label exactly as the model saw it in an s4_h run log, and its source note."""
     import memory_layer_robust  # noqa: F401
     mem = list(pickle.load(open(f"{E}/cache/shared/memory_cache_sample_3.pkl", "rb")).values())
-    x = jload(CONF[3])
+    x = jload(CONF3)
     t = [t for t in x["timelines"] if t["topic"] == "Joanna's writing gig"][0]
     n = mem[t["notes"][0]]
     m = re.search(r"\byesterday\b", n.content)
     assert m
-    put("ex_event_note_date", date_dmy(n.timestamp), f"{E}/cache/shared/memory_cache_sample_3.pkl note {t['notes'][0]} timestamp")
+    put("ex_event_speaker", re.match(r"^Speaker\s+(.+?)says", n.content).group(1), f"{E}/cache/shared/memory_cache_sample_3.pkl note {t['notes'][0]} content")
+    put("ex_event_note_date", date_us(n.timestamp), f"{E}/cache/shared/memory_cache_sample_3.pkl note {t['notes'][0]} timestamp")
     phrase = re.search(r"[^.!?]*\byesterday\b[^.!?]*", speech(n.content)).group(0).strip()
     put("ex_event_note_phrase", phrase, f"{E}/cache/shared/memory_cache_sample_3.pkl note {t['notes'][0]} content")
     pat = re.compile(r"memory timeline: (Joanna's writing gig, step 1 of [^\n]*?)(?=memory |\n|$)")
@@ -252,10 +260,26 @@ def event_example():
                 found.add(mm.group(1).strip())
     assert len(found) == 1, found
     put("ex_event_label", found.pop(), f"{E}/logs/s4_h_seed42.log: 'memory timeline:' field of that note")
+    # every event date stored in the sample 3 bank, with the phrase it came from
+    from memory_consolidation import _RELATIVE_TIME_PATTERN, happened_around
+    from memory_conflicts import note_body
+    rows = []
+    for i, n in enumerate(mem):
+        if n.note_type == "consolidated" or not n.event_time:
+            continue
+        body = note_body(n.content)
+        m = _RELATIVE_TIME_PATTERN.search(body)
+        assert m and happened_around(body, n.timestamp) == n.event_time, f"note {i}: event date reproduces from its first phrase"
+        rows.append([date_us(n.timestamp), m.group(0), n.event_time])
+    assert len(rows) == F["b3_event_dates"]["value"]
+    put("event_rows", rows, f"{E}/cache/shared/memory_cache_sample_3.pkl: raw notes with event_time (said on, first relative phrase, event date); each re-derived by happened_around")
 
 
 # ---------------------------------------------------------------- code
 def code():
+    man = jload(f"{E}/manifest.json")
+    diff = subprocess.run(["git", "diff", "--quiet", man["code_commit"], "--", *CODE_FILES])
+    assert diff.returncode == 0, "code in the working tree differs from the frozen commit"
     from memory_layer_tmem_robust import TemporalRetrievalConfig
     from memory_consolidation import ConsolidationConfig, consolidate_bank, happened_around
     from memory_conflicts import ConflictConfig
@@ -263,6 +287,7 @@ def code():
     import test_advanced_robust as tar
 
     c = TemporalRetrievalConfig()
+    assert c.decay_age_unit == "months_equiv" and c.use_decay_only_temporal is True, "Equation 1 assumptions"
     src = "memory_layer_tmem_robust.py: TemporalRetrievalConfig"
     put("t_lambda", c.decay_lambda, src + ".decay_lambda")
     put("t_alpha", c.blend_alpha, src + ".blend_alpha")
@@ -276,10 +301,6 @@ def code():
     m = re.search(r"days / ([0-9.]+)", tsrc)
     assert m, "age unit"
     put("t_age_days", float(m.group(1)), "memory_layer_tmem_robust.py: age in days / this value (months_equiv)")
-    ex = [1, 6]
-    put("t_recency_periods", ex, "periods used in the worked recency example")
-    put("t_recency_1", math.exp(-c.decay_lambda * ex[0]), "exp(-decay_lambda * periods[0])")
-    put("t_recency_6", math.exp(-c.decay_lambda * ex[1]), "exp(-decay_lambda * periods[1])")
     ks = {c[c.index("--retrieve_k") + 1] for c in jload(f"{E}/manifest.json")["commands"].values()}
     assert len(ks) == 1
     put("t_k", int(ks.pop()), f"{E}/manifest.json: commands --retrieve_k")
@@ -287,15 +308,23 @@ def code():
     cc = ConsolidationConfig()
     assert cc.similarity_threshold == F["cons_threshold"]["value"] and cc.max_group_size == F["cons_max_group"]["value"]
     sig = inspect.signature(consolidate_bank)
-    put("cons_temperature", sig.parameters["temperature"].default, "memory_consolidation.py: consolidate_bank(temperature=...)")
-    put("cons_retries", sig.parameters["merge_retries"].default, "memory_consolidation.py: consolidate_bank(merge_retries=...)")
-    put("cons_attempts", 1 + sig.parameters["merge_retries"].default, "memory_consolidation.py: 1 + merge_retries attempts")
+    put("cons_temperature", sig.parameters["temperature"].default, "memory_consolidation.py: consolidate_bank(temperature=...); build_consolidated_cache.py passes none")
+    bsrc = open("build_consolidated_cache.py").read()
+    assert "temperature=" not in bsrc.split("consolidate_bank(", 1)[1].split(")", 1)[0]
+    r = int(re.search(r'"--merge_retries", type=int, default=(\d+)', bsrc).group(1))
+    assert "--merge_retries" not in open(f"{E}/scripts/build_sample3.sh").read(), "the sample 3 build used the default"
+    put("cons_retries", r, "build_consolidated_cache.py: --merge_retries default, used by scripts/build_sample3.sh")
+    assert F["c3_max_attempts"]["value"] <= 1 + r
+    import memory_consolidation as mc
+    probs = re.findall(r'"(\w+)": ', inspect.getsource(mc._merge_problems).split("return", 1)[1])
+    put("n_merge_checks", len(set(probs)), "memory_consolidation.py: distinct keys returned by _merge_problems")
+    put("merge_hard_checks", len(set(probs)) - 1, "memory_consolidation.py: consolidate_bank hard_ok uses all keys except too_long")
+    assert "too_long" in probs and 'hard_ok = not (problems["missing"] or problems["relative_times"] or problems["dropped_times"])' in inspect.getsource(consolidate_bank)
 
     cf = ConflictConfig()
     assert cf.topic_threshold == F["conf_topic_threshold"]["value"] and cf.status_duplicate == F["conf_status_duplicate"]["value"]
-    csrc = inspect.getsource(sys.modules["memory_conflicts"])
-    assert "temperature=0.0" in csrc
-    put("conf_temperature", 0.0, "memory_conflicts.py: llm.get_completion(..., temperature=0.0)")
+    csrc = inspect.getsource(sys.modules["memory_conflicts"].cached_calls)
+    put("conf_temperature", float(re.search(r"get_completion\(kp\[1\], temperature=([0-9.]+)\)", csrc).group(1)), "memory_conflicts.py: cached_calls, get_completion(temperature=...)")
 
     put("now_words", mlr.NOW_WORDS.pattern, "memory_layer_robust.py: NOW_WORDS")
     put("history_words", mlr.HISTORY_WORDS.pattern, "memory_layer_robust.py: HISTORY_WORDS")
@@ -312,17 +341,6 @@ def code():
     put("prompt_c2", re.search(r"(Use DATE of CONVERSATION to answer with an approximate date\.)", asrc).group(1), "test_advanced_robust.py: category 2 prompt")
     put("prompt_c5_option", re.search(r"'(Not mentioned in the conversation)'", asrc).group(1), "test_advanced_robust.py: category 5 option")
 
-    # event-date rules: run the function on each expression, said on 9 June 2023
-    said = "1:00 pm on 9 June, 2023"
-    put("event_anchor", date_dmy(said), "anchor date used for the rule table")
-    rules = ["yesterday", "last night", "tomorrow", "tonight", "last week", "next week", "last Friday",
-             "next month", "last month", "next year", "last year", "last summer", "three days ago",
-             "two months ago", "a year ago", "10 years ago", "a few weeks ago"]
-    put("event_rules", rules, "expressions run through happened_around (inputs of the rule table)")
-    for r in rules:
-        out = happened_around(f"I did it {r}.", said)
-        assert out, r
-        put("event_" + re.sub(r"\W+", "_", r), out, f"memory_consolidation.py: happened_around('I did it {r}.', '{said}')")
 
 
 # ---------------------------------------------------------------- git, plan, manifest, checks
@@ -348,9 +366,6 @@ def history():
         put(key, int(re.search(r"(\d+) pass", msg).group(1)), f"git commit message of {c} (pytest tests/ re-run gives the same count)")
     put("tests_added", F["tests_after_fix"]["value"] - F["tests_stage0"]["value"], "difference of the two counts")
     txt = open(plan).read()
-    m = re.search(r"checked on (\d+) of (\d+) questions", txt)
-    put("offmode_agree", int(m.group(1)), f"{plan}: 'checked on N of M questions'")
-    put("offmode_total", int(m.group(2)), f"{plan}: 'checked on N of M questions'")
     m = re.search(r"reached the ([\d,]+) limit", txt)
     put("tpm_limit", int(m.group(1).replace(",", "")), f"{plan}: section 9, token limit")
     m = re.search(r"4 side by side, about ([\d,]+) tokens per minute", txt)
@@ -362,7 +377,7 @@ def manifest():
     src = f"{E}/manifest.json"
     put("model", man["model"], src + ": model")
     assert man["served_model"]["served"] == man["model"]
-    put("served_check_date", man["served_model"]["checked"][:10], src + ": served_model.checked")
+    put("served_check_date", iso_us(man["served_model"]["checked"]), src + ": served_model.checked")
     put("seeds", man["seeds"], src + ": seeds")
     put("n_seeds", len(man["seeds"]), src + ": seeds")
     put("n_setups", len(man["setups"]), src + ": setups")
@@ -379,7 +394,7 @@ def manifest():
     put("cpu", man["computer"]["cpu"], src + ": computer.cpu")
     put("memory_gb", man["computer"]["memory_gb"], src + ": computer.memory_gb")
     put("kw_files", len(man["keywords"]), src + ": keywords")
-    put("kw_calls", sum(v["questions"] for v in man["keywords"].values()), src + ": keywords[].questions summed")
+    put("kw_entries", sum(v["questions"] for v in man["keywords"].values()), src + ": keywords[].questions summed (one entry per question and run)")
     att = man["attempts"]
     trial = [a for a in att if a["stage"] == "trial"][0]
     put("trial_start", trial["started"][11:16], src + ": attempts trial.started")
@@ -405,12 +420,13 @@ def manifest():
     tc = trial["command"]
     put("trial_seed", int(tc[tc.index("--seed") + 1]), src + ": attempts trial command --seed")
     put("trial_ratio", float(tc[tc.index("--ratio") + 1]), src + ": attempts trial command --ratio")
-    put("trial_samples", max(1, int(float(tc[tc.index("--ratio") + 1]) * F["data_conversations"]["value"])), "test_advanced_robust.py: max(1, int(conversations x --ratio)), first samples")
+    tr = jload(tc[tc.index("--output") + 1])["individual_results"]
+    put("trial_samples", len({int(r["sample_id"]) for r in tr}), "trial output file: distinct sample_id")
+    put("trial_sample", min(int(r["sample_id"]) for r in tr), "trial output file: sample_id")
     put("half_size", len(man["halves"]["A"]), src + ": halves.A")
     wd = {a["started"][:10] for a in waves}
     assert len(wd) == 1
-    d = dt.date.fromisoformat(wd.pop())
-    put("waves_date", f"{d.strftime('%B')} {d.day}, {d.year}", src + ": attempts, date of valid waves")
+    put("waves_date", iso_us(wd.pop()), src + ": attempts, date of valid waves")
     b0 = jload(f"{E}/build_logs/sample3_base_build_report.json")["3"]
     put("s3_base_seconds", b0["seconds"], f"{E}/build_logs/sample3_base_build_report.json: seconds")
     put("s3_base_warnings", b0["warnings_or_errors"], f"{E}/build_logs/sample3_base_build_report.json: warnings_or_errors")
@@ -418,10 +434,8 @@ def manifest():
     en = dt.datetime.strptime(open(f"{E}/build_logs/sample3_finished_at.txt").read().strip(), "%Y-%m-%dT%H:%M:%SZ")
     put("s3_build_minutes", (en - st).total_seconds() / 60, f"{E}/build_logs/sample3_started_at.txt and sample3_finished_at.txt")
     bs = jload(f"{E}/build_logs/sample3_conflict_build_summary.json")
-    put("s3_build_date", bs["created"][:10], f"{E}/build_logs/sample3_conflict_build_summary.json: created")
-    d02 = jload("experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/build_summary.json")
-    put("dev_banks_date", d02["created"][:10], "experiments/e2e_samples0-2_2026-10-26_14-31_two_dates/build_logs/conflict/build_summary.json: created")
-    put("dev_banks_model", d02["model"], "same file: model")
+    put("s3_build_date", iso_us(bs["created"]), f"{E}/build_logs/sample3_conflict_build_summary.json: created")
+    put("s3_base_date", iso_us(b0["finished"]), f"{E}/build_logs/sample3_base_build_report.json: finished")
     put("s3_build_model", bs["model"], f"{E}/build_logs/sample3_conflict_build_summary.json: model")
     bc = jload(f"{E}/checks/build_sample3.json")
     assert bc["ok"]
@@ -444,6 +458,8 @@ def checks():
     a = jload(f"{E}/checks/checks_all.json")
     assert a["ok"] and all(i["ok"] for i in a["items"])
     put("checks_final", len(a["items"]), f"{E}/checks/checks_all.json: items, all ok")
+    put("checks_final_extra", sum(1 for i in a["items"] if not i["check"].startswith("R")), f"{E}/checks/checks_all.json: checks other than R0-R11 (A1)")
+    put("checks_r9_per_wave", sum(1 for i in jload(f"{E}/checks/checks_seed42.json")["items"] if i["check"].startswith("R9")), f"{E}/checks/checks_seed42.json: R9 items")
     r10 = {re.search(r"0 of (\d+) differ", i["detail"]).group(1) for i in a["items"] if i["check"].startswith("R10")}
     assert len(r10) == 1
     put("r10_questions", int(r10.pop()), f"{E}/checks/checks_all.json: R10 details")
@@ -473,8 +489,8 @@ def extra_and_summary():
     x = jload(f"{E}/analysis/extra.json")
     for s in SAMPLES:
         now = x["mechanism"][str(s)]["now_q"]
-        assert now % 5 == 0
-        put(f"now_q{s}", now // 5, f"{E}/analysis/extra.json: mechanism.{s}.now_q / 5 runs")
+        assert now % len(SEEDS) == 0
+        put(f"now_q{s}", now // len(SEEDS), f"{E}/analysis/extra.json: mechanism.{s}.now_q / runs")
     put("now_q_total", sum(F[f"now_q{s}"]["value"] for s in SAMPLES), "sum of the four")
     from memory_layer_robust import is_now_question
     data = jload("data/locomo10.json")
@@ -483,15 +499,14 @@ def extra_and_summary():
     sm = jload(f"{E}/analysis/summary.json")
     put("boot_reps", sm["method"]["reps"], f"{E}/analysis/summary.json: method.reps")
     put("boot_seed", sm["method"]["rng_seed"], f"{E}/analysis/summary.json: method.rng_seed")
-    fam = collections.Counter()
-    for g, rows in sm["vs_amem"].items():
-        fam["vs_" + g] = len(rows)
     put("fam_factorial", len(sm["factorial"]["samples 0-3"]), f"{E}/analysis/summary.json: factorial['samples 0-3'] rows")
-    main = [r for r in sm["vs_amem"]["samples 0-3"] if r["setup"] in ("s2_t", "s3_c", "s4_h", "s8_tch")]
-    other = [r for r in sm["vs_amem"]["samples 0-3"] if r["setup"] in ("s5_tc", "s6_th", "s7_ch")]
+    main = [r for r in sm["vs_amem"]["samples 0-3"] if r["primary"]]
+    other = [r for r in sm["vs_amem"]["samples 0-3"] if not r["primary"]]
     put("fam_main", len(main), f"{E}/analysis/summary.json: vs_amem rows for s2, s3, s4, s8")
     put("fam_other", len(other), f"{E}/analysis/summary.json: vs_amem rows for s5, s6, s7")
     put("n_groups", len(sm["setups"]), f"{E}/analysis/summary.json: sample groups")
+    fams = {("vs", bool(r["primary"])) for r in sm["vs_amem"]["samples 0-3"]} | {("factorial", None)}
+    put("n_families", len(fams), f"{E}/analysis/summary.json: main tests, other setups (primary flag) and factorial effects")
 
 
 def analysis_rules():
@@ -523,10 +538,9 @@ def structure():
     src = inspect.getsource(mlr.RobustAgenticMemorySystem.process_memory)
     put("evolution_k", int(re.search(r"find_related_memories\(note\.content, k=(\d+)\)", src).group(1)), "memory_layer_robust.py: process_memory, find_related_memories(k=...)")
     put("evolution_calls", src.count("llm.get_completion("), "memory_layer_robust.py: process_memory, language-model calls")
-    doc = sys.modules["memory_conflicts"].__doc__ if "memory_conflicts" in sys.modules else __import__("memory_conflicts").__doc__
-    labs = re.search(r"\(CONFLICT_CHECK_PROMPT\): ([A-Z, \n]+?) or ([A-Z]+)", doc)
-    names = [x.strip() for x in labs.group(1).replace("\n", " ").split(",") if x.strip()] + [labs.group(2)]
-    put("conflict_labels", names, "memory_conflicts.py: module docstring, CONFLICT_CHECK_PROMPT labels")
+    import llm_text_parsers
+    names = list(llm_text_parsers.CONFLICT_LABELS)
+    put("conflict_labels", names, "llm_text_parsers.py: CONFLICT_LABELS")
     put("n_conflict_labels", len(names), "memory_conflicts.py: number of labels")
     rw = open(f"{E}/scripts/run_wave.py").read()
     put("poll_seconds", int(re.search(r"time\.sleep\((\d+)\)", rw).group(1)), f"{E}/scripts/run_wave.py: time.sleep")
@@ -536,6 +550,9 @@ def structure():
     put("checks_across_files", len(kinds) - F["checks_per_file"]["value"], f"{E}/checks/checks_seed42.json: kinds not run per file (R9, R10)")
     put("check_first", kinds[0], f"{E}/checks/checks_seed42.json")
     put("check_last", kinds[-1], f"{E}/checks/checks_seed42.json")
+    plan = open(f"{E}/PLAN.md").read()
+    sec6 = re.search(r"## 6\..*?(?=\n## 7\.)", plan, re.S).group(0)
+    put("plan_stages", len(re.findall(r"^\| \*\*\d+\*\* \|", sec6, re.M)), f"{E}/PLAN.md section 6: rows of the stage table")
 
 
 def main():

@@ -3,7 +3,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch
 OUT, FACTS = sys.argv[1], sys.argv[2]
-S = json.load(open("experiments/factorial8_samples0-3_2026-11-07/analysis/summary.json"))
+import os
+S = json.load(open(os.environ["SUMMARY"]))
 F = {k: v["value"] for k, v in json.load(open(FACTS)).items()}   # labels with numbers come from the facts file
 plt.rcParams.update({"font.family": "Times New Roman", "font.size": 10, "axes.spines.top": False, "axes.spines.right": False,
                      "axes.edgecolor": "#555555", "axes.linewidth": 0.6, "xtick.color": "#333333", "ytick.color": "#333333"})
@@ -37,7 +38,7 @@ fig.tight_layout(); fig.savefig(f"{OUT}/fig1_pipeline.png", dpi=300); plt.close(
 ORDER = ["s1_amem", "s2_t", "s3_c", "s4_h", "s5_tc", "s6_th", "s7_ch", "s8_tch"]
 LAB = ["A-MEM", "T", "C", "H", "T + C", "T + H", "C + H", "All three"]
 fig, axes = plt.subplots(2, 2, figsize=(6.2, 5.2), sharex=True)
-for col, (g, gt) in enumerate([("samples 0-3", f"Samples 0–3 ({F['d_total_questions']} questions)"), ("sample 3 (clean test)", f"Sample 3, clean test ({F['d3_questions']} questions)")]):
+for col, (g, gt) in enumerate([("samples 0-3", "Samples 0–3"), ("sample 3 (clean test)", "Sample 3 (clean test)")]):
     for row, (m, mt) in enumerate([("time_f1", "Temporal F1"), ("answerable_f1", "Answerable F1")]):
         a = axes[row][col]
         means = [S["setups"][g][s][m]["mean"] for s in ORDER]
@@ -56,7 +57,7 @@ for col, (g, gt) in enumerate([("samples 0-3", f"Samples 0–3 ({F['d_total_ques
 fig.tight_layout(); fig.savefig(f"{OUT}/fig2_setups.png", dpi=300); plt.close(fig)
 
 # ---- Figure 3: factorial effects with 95% intervals
-EFF = ["T", "C", "H", "TxC", "TxH", "CxH", "TxCxH"]; EL = ["T", "C", "H", "T×C", "T×H", "C×H", "T×C×H"]
+EFF = ["T", "C", "H", "TxC", "TxH", "CxH", "TxCxH"]; EL = ["T", "C", "H", "T × C", "T × H", "C × H", "T × C × H"]
 GROUPS = [("samples 0-3", "Samples 0–3"), ("samples 0-2 (development)", "Samples 0–2 (development)"), ("sample 3 (clean test)", "Sample 3 (clean test)")]
 fig, axes = plt.subplots(2, 3, figsize=(6.4, 4.6), sharey=True)
 for row, (m, mt) in enumerate([("time_f1", "Temporal F1"), ("answerable_f1", "Answerable F1")]):

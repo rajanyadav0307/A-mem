@@ -60,16 +60,8 @@
   "reason": "self-count: the sentence lists three kinds (alone, average, interactions)"
  },
  {
-  "phrase": "Four measures enforced the rule",
-  "reason": "self-count: the paragraph lists four measures"
- },
- {
   "phrase": "these two categories",
   "reason": "self-count: categories 2 and 5, just named"
- },
- {
-  "phrase": "the first two",
-  "reason": "self-count: shared search words and fixed option order, just named"
  },
  {
   "phrase": "two overall scores",
@@ -100,24 +92,12 @@
   "reason": "self-count: SAME_FACT and SMALL_TALK"
  },
  {
-  "phrase": "the first three checks",
-  "reason": "self-count: the paragraph describes four checks, the first three hard"
- },
- {
-  "phrase": "those three checks",
-  "reason": "self-count: the same three checks"
- },
- {
   "phrase": "Two of the checks bear directly",
   "reason": "self-count: R11 and R10, named next"
  },
  {
   "phrase": "Three patterns are visible",
   "reason": "self-count: the paragraph gives three patterns"
- },
- {
-  "phrase": "Two features of sample 3",
-  "reason": "self-count: the paragraph gives First and Second"
  },
  {
   "phrase": "the two sample groups",
@@ -156,10 +136,6 @@
   "reason": "code: build_timelines drops clusters from one day"
  },
  {
-  "phrase": "two statuses count as the same",
-  "reason": "code: comparison_steps compares pairs of statuses"
- },
- {
   "phrase": "if two confirmed changes point",
   "reason": "code: detect_and_apply, earliest replacement wins"
  },
@@ -170,10 +146,6 @@
  {
   "phrase": "carries two dates",
   "reason": "code: timeline_date_style two_dates (said on, happened)"
- },
- {
-  "phrase": "the two agreed",
-  "reason": "PLAN.md: the two retrievals (shared bank, A-MEM's own bank) agreed"
  },
  {
   "phrase": "tested two-sided",
@@ -230,5 +202,73 @@
  {
   "phrase": "Two-Module Setups",
   "reason": "setups s5, s6, s7 have two modules on (manifest setups); title case"
+ },
+ {
+  "phrase": "all-three setup",
+  "reason": "name of setup s8 (all modules on); module count is n_modules in facts.json"
+ },
+ {
+  "phrase": "With all three modules switched on",
+  "reason": "all modules on (n_modules = 3 in facts.json); names setup s8"
+ },
+ {
+  "phrase": "Four controls kept the input the same",
+  "reason": "self-count: the paragraph lists four controls"
+ },
+ {
+  "phrase": "describe three types",
+  "reason": "self-count: the sentence lists three question types"
+ },
+ {
+  "phrase": "Two statuses count as the same",
+  "reason": "code: comparison_steps compares pairs of statuses"
+ },
+ {
+  "phrase": "Two runs identical",
+  "reason": "REPORT.md Stage 7: two runs byte-identical"
+ },
+ {
+  "phrase": "Two analyses were computed afterwards",
+  "reason": "self-count: the sentence names the two analyses"
+ },
+ {
+  "phrase": "Two features of sample",
+  "reason": "self-count: the paragraph gives First and Second"
+ },
+ {
+  "phrase": "generated once per question and run",
+  "reason": "make_keywords.py: one search-word entry per question and run"
+ },
+ {
+  "phrase": "once with each of the seeds",
+  "reason": "manifest: one run per seed"
+ },
+ {
+  "phrase": "work once, offline",
+  "reason": "build_consolidated_cache.py and build_conflict_bank.py run once per bank"
+ },
+ {
+  "phrase": "Made once per question and run",
+  "reason": "make_keywords.py: one entry per question and run"
+ },
+ {
+  "phrase": "generated once with A-MEM's own function",
+  "reason": "make_keywords.py: one entry per question and run"
+ },
+ {
+  "phrase": "at once",
+  "reason": "idiom (immediately): run_wave.py emergency stop"
+ },
+ {
+  "phrase": "repeated words count once",
+  "reason": "utils.py: tokens compared as sets"
+ },
+ {
+  "phrase": "counts once per run",
+  "reason": "extra_analysis.py counts each question once per run"
+ },
+ {
+  "phrase": "was built once",
+  "reason": "each bank has one build (manifest banks)"
  }
 ]

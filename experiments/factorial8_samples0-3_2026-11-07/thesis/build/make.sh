@@ -11,8 +11,8 @@ E=$REPO/experiments/factorial8_samples0-3_2026-11-07
 B=$E/thesis/build
 mkdir -p "$OUT/figs"
 OUT=$(cd "$OUT" && pwd)
-cd "$REPO" && .venv/bin/python "$B/make_figs.py" "$OUT/figs" "$FACTS" > /dev/null
 export FACTS SUMMARY=$E/analysis/summary.json EXTRA=$E/analysis/extra.json MANIFEST=$E/manifest.json FIGDIR=$OUT/figs
+cd "$REPO" && .venv/bin/python "$B/make_figs.py" "$OUT/figs" "$FACTS" > /dev/null
 cd "$B"
 for kind in plain marked; do
   if [ $kind = marked ]; then export MARK=1; name=chapters_marked; else export MARK=0; name=chapters; fi
@@ -30,4 +30,5 @@ PY
   rm -f "$OUT/$name.docx" && (cd "$OUT/wc" && zip -qXr "../$name.docx" '[Content_Types].xml' _rels docProps word)
   rm -rf "$OUT/wc" "$OUT/${name}_raw.docx"
 done
-echo "built $OUT/chapters.docx and $OUT/chapters_marked.docx"
+python3 "$E/thesis/totext.py" "$OUT/chapters.docx" > "$OUT/chapters.txt"
+echo "built $OUT/chapters.docx, $OUT/chapters_marked.docx and chapters.txt"

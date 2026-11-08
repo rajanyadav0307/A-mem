@@ -45,7 +45,7 @@ const X = (k) => { const v = fact(k); if (typeof v !== "string") throw new Error
 const V = (s, from) => val(s, from);
 
 // Markup inside strings: **bold**, *italic*, ~subscript~; the statistical symbol p is set in italics.
-const PSYM = /((?<![A-Za-z\-])p(?= [=<])|(?<=Holm )p\b)/;
+const PSYM = /((?<![A-Za-z\-])p(?= [=<])|(?<=Holm )p\b|(?<![A-Za-z\-])p(?=-value))/;
 function plain(text, base, out) {
   text.split(PSYM).forEach((part, i) => {
     if (!part) return;
@@ -115,6 +115,7 @@ function table(title, header, rows, widths, noteText) {
   else out.push(new Paragraph({ children: [], spacing: { after: 120, line: 240, lineRule: "auto" } }));
   return [out, n];
 }
+const nextFigure = () => figureNo;   // number the next figure will get (for references before it)
 function figure(path, wIn, hIn, caption) {
   const n = figureNo++; figures.push([n, caption]);
   return [[
@@ -126,4 +127,4 @@ function figure(path, wIn, hIn, caption) {
   ], n];
 }
 module.exports = { d, chapter, h1, h2, p, item, eq, note, table, figure, tables, figures, runs, PageBreak,
-  fact, val, rnd, asCount, cap, N, W, Wc, D, P, X, V, USED, FACTS, REFS };
+  fact, val, rnd, asCount, cap, N, W, Wc, D, P, X, V, USED, FACTS, REFS, nextFigure };

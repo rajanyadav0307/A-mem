@@ -83,19 +83,20 @@ report("V2", not bad and len(spans) > 0, f"{len(spans)} inserted values, all reg
 
 # ---------------------------------------------------------------- V3 digits
 ID = [
-    r"\bTable \d+\b", r"\bTables \d+ and \d+\b", r"\bFigure \d+\b", r"\bEquation \d+\b",
-    r"\bRQ\d(–RQ\d)?\b", r"\bH\d_\{0\}", r"\bR\d+\b", r"\bB\d\b", r"\bB1–B", r"\bs\d\b", r"\bs\d–s\d\b",
-    r"\bsamples \d to \d\b", r"\bconversations \d, \d and \d\b", r"\b[Ss]amples? \d(–\d)?\b", r"\b[Cc]onversations? \d(–\d)?\b", r"\band 0–2\b",
-    r"\b0, 1, 2 and 3\b", r"\b[Cc]ategor(y|ies) \d(–\d)?\b", r"\b[Cc]at\. \d\b",
-    r"\b[Ww]aves? \d(–)?", r"\bStage \d\b", r"\bF1\b", r"\bBLEU-1\b", r"\bSHA-256\b", r"MiniLM-L6-v2", r"gpt-4o-mini",
+    r"\bTable \d+\b", r"\bTables \d+ and \d+\b", r"\bFigure \d+\b", r"\bEquation \d+\b", r"\bChapter (III|IV|V)\b",
+    r"\bRQ[1-5](–RQ[1-5])?\b", r"\bH[1-3]_\{0\}", r"\bR(1[01]|[0-9])\b", r"\bB[1-5]\b", r"\bB1–B", r"\bs[1-8]\b", r"\bs[1-8]–s[1-8]\b",
+    r"\b[Ss]amples? [0-3]\b", r"\b[Cc]ategor(y|ies) [1-5](–[1-5])?\b", r"\b[Cc]at\. [1-5]\b", r"gpt-4o-mini",
+    r"\b[Ww]ave 1\b", r"\bWaves 2–", r"\bStages? [0-7](–)?", r"\bF1\b", r"\bBLEU-1\b", r"\bSHA-256\b",
     r"\(\d\)$",                                                    # equation number at the end of an equation line
-    r"(?<=[A-Za-z]\. )\(?\d{4}\)?", r"et al\., \d{4}", r"\b(19|20)\d\d\)", r", (19|20)\d\d[;)]", r"\((19|20)\d\d\)",  # citation years
     r"^\d\.\t",                                                    # list item numbers
     r"\b1 if it is a refusal and 0 otherwise\b",                   # scoring rule of analyze.py: float(refusal)
     r"plus 1/",                                                    # p formula of analyze.py: + 1 / REPS
-    r"\b0–3\b", r"(?<=, )3$", r"\b3 = sample 3", r"\b0–3 = samples 0–3", r"^Sample [0-3]$", r"^[0-6]$", r"^Total$",
-    r"\bseeds? (?=⟦)",
 ]
+# citation years: exactly the citations used in the chapters
+CITES = ["W. Xu et al., 2025", "Montgomery, 2017", "Reimers & Gurevych, 2017", "Maharana et al., 2024", "Maharana et al. (2024)", "OpenAI, 2024",
+         "Reimers & Gurevych, 2019", "W. Wang et al., 2020", "Yadav & Kumar, 2026", "Lin, 2004", "Papineni et al., 2002", "Banerjee & Lavie, 2005",
+         "Zhang et al., 2020", "Montgomery (2017)", "Efron & Tibshirani, 1993", "Koehn, 2004", "Dror et al., 2018", "Holm (1979)"]
+ID += [re.escape(c) for c in CITES]
 ID_RE = re.compile("|".join(f"(?:{x})" for x in ID), re.M)
 left = []
 for kind, t, _ in marked:
@@ -108,7 +109,7 @@ for kind, t, _ in marked:
 report("V3", not left, "no typed digit outside identifiers", left)
 
 # ---------------------------------------------------------------- V4 counting words
-COUNT = r"\b(two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|twice|half|halves|dozen|single)\b"
+COUNT = r"\b(two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|twenty|thirty|hundred|thousand|once|twice|thrice|half|halves|dozen|single)\b"
 ALLOW = json.load(open(os.path.join(HERE, "allowed_count_words.json")))
 left = []
 for kind, t, _ in marked:
@@ -122,12 +123,76 @@ unused = [ph["phrase"] for ph in ALLOW if not any(ph["phrase"] in re.sub(r"⟦.*
 report("V4b", not unused, "every allowlisted phrase occurs in the text", unused)
 
 # ---------------------------------------------------------------- V5 typed numbers in code
+WORDING = {"none", "no", "No", "Yes", "half", "once", "T-MEM", "A-MEM"}   # words chosen by a must() guard just before
+
+
+def first_arg(src, start):
+    depth, i, q = 0, start, None
+    while i < len(src):
+        c = src[i]
+        if q:
+            if c == "\\":
+                i += 2
+                continue
+            if c == q:
+                q = None
+        elif c in "'\"`":
+            q = c
+        elif c in "([{":
+            depth += 1
+        elif c in ")]}":
+            if depth == 0:
+                return src[start:i]
+            depth -= 1
+        elif c == "," and depth == 0:
+            return src[start:i]
+        i += 1
+    return src[start:]
+
+
 left = []
 for fn in ("ch3.js", "ch4.js"):
-    for i, line in enumerate(open(os.path.join(HERE, "build", fn)), 1):
-        for m in re.finditer(r"\b(V|cnt|num|val)\(\s*(\"[^\"]*\d[^\"]*\"|'[^']*\d[^']*'|\d[\d.]*)\s*[,)]", line):
-            left.append(f"{fn}:{i}: {m.group(0)}")
-report("V5", not left, "no hand-typed number passed to V/cnt/num/val", left)
+    src = open(os.path.join(HERE, "build", fn)).read()
+    for m in re.finditer(r"(?<![\w.])(V|cnt|num|val)\(", src):
+        arg = first_arg(src, m.end()).strip()
+        line = src.count("\n", 0, m.start()) + 1
+        code = re.sub(r"(\"[^\"]*\"|'[^']*'|`[^`]*`)", "S", arg)        # string literals out of the way
+        # formatting constants, not data: array indexes, decimal places, percent scaling, last index
+        code = re.sub(r"\[\s*\d+\s*\]|,\s*\d\s*\)|\b100\s*\*|toFixed\(\d\)|length - 1|/\^0/|[<>]=?\s*0\b", "", code)
+        if re.search(r"(?<![\w.])\d+(\.\d+)?(?![\w])", code) and not re.fullmatch(r".*\b(1000|1e-9)\b.*", code):
+            left.append(f"{fn}:{line}: number literal in {arg[:80]}")
+        lit = re.fullmatch(r"\"([^\"]*)\"|'([^']*)'", arg)
+        if lit and (lit.group(1) or lit.group(2) or "") not in WORDING:
+            left.append(f"{fn}:{line}: text literal {arg[:80]}")
+report("V5", not left, "no hand-typed number (and no unexplained text) passed to V/cnt/num/val", left)
+
+# ---------------------------------------------------------------- V6 equations equal the analysis code
+import random as _r
+src_an = open(os.path.join(HERE, "..", "scripts", "analyze.py")).read()
+ns = {"S": ["s1_amem", "s2_t", "s3_c", "s4_h", "s5_tc", "s6_th", "s7_ch", "s8_tch"]}
+exec(re.search(r"def contrast_values\(q, kind\):.*?(?=\n\S)", src_an, re.S).group(0), ns)
+eqs = [t for k, t, _ in plain if k == "eq"]
+body_txt = " ".join(t for k, t, _ in plain if k == "p")
+want = {"T": next(e for e in eqs if e.strip().startswith("T =")), "TxC": next(e for e in eqs if e.strip().startswith("T × C ="))}
+want["TxCxH"] = "T × C × H = " + re.search(r"with H off: (\[.*?\] − \[.*?\])", body_txt).group(1)
+bad = []
+for kind, text in want.items():
+    expr = text.split("=", 1)[1].rsplit("(", 1)[0] if kind != "TxCxH" else text.split("=", 1)[1]
+    expr = expr.replace("−", "-").replace("[", "(").replace("]", ")").strip()
+    expr = re.sub(r"s([1-8])", r"v[\1-1]", expr)
+    for _ in range(20):
+        v = [_r.random() for _ in range(8)]
+        q = {s: v[i] for i, s in enumerate(["s1_amem", "s2_t", "s3_c", "s4_h", "s5_tc", "s6_th", "s7_ch", "s8_tch"])}
+        try:
+            got = eval(expr, {"v": v})
+            ref = ns["contrast_values"](q, kind)
+        except Exception as e:                                    # noqa: BLE001
+            bad.append(f"{kind}: {e}")
+            break
+        if abs(got - ref) > 1e-12:
+            bad.append(f"{kind}: chapter formula differs from analyze.py ({got} vs {ref})")
+            break
+report("V6", not bad, "Equations of T and T × C and the three-way formula equal analyze.py contrast_values", bad)
 
 # ---------------------------------------------------------------- F: UTPB format
 st = ET.fromstring(pz.read("word/styles.xml"))
@@ -168,7 +233,7 @@ pbad = []
 for _, t, el in plain:
     for r in el.iter(W + "r"):
         tx = "".join((x.text or "") for x in r.iter(W + "t"))
-        if re.search(r"(?<![A-Za-z\-])p(?= [=<])", tx) or (re.search(r"Holm p\b", tx) and not tx.strip() == "p"):
+        if re.search(r"(?<![A-Za-z\-])p(?= [=<]|-value)", tx) or (re.search(r"Holm p\b", tx) and not tx.strip() == "p"):
             if r.find(f"{W}rPr/{W}i") is None:
                 pbad.append(tx[:60])
 report("F8", not pbad, "statistical p in italics", pbad)
@@ -240,7 +305,8 @@ for kind, t, _ in marked:
         sent_end = t.find(". ", m.end()); sent_end = len(t) if sent_end < 0 else sent_end
         sent = t[sent_start:sent_end]
         ctx_b, ctx_a = t[max(0, m.start() - 12):m.start()], t[m.end():m.end() + 3]
-        if ctx_a.startswith(" ×") or ctx_b.endswith("× ") or ctx_b.endswith("category ") or ctx_b.endswith("seed ("):
+        if (ctx_a.startswith(" ×") or ctx_b.endswith("× ") or ctx_b.endswith("category ") or ctx_b.endswith("seed (")
+                or re.search(r"[Ss]amples? $", ctx_b) or ctx_b.endswith("–") or ctx_a.startswith("–") or ctx_b.endswith("Stages ") or ctx_b.endswith("–B")):
             continue
         if any(int(x.replace(",", "")) >= 10 for x in re.findall(r"⟦(\d[\d,]*)⟧", sent)):
             continue
