@@ -101,10 +101,9 @@ MN = {"Temporal F1": "time", "Answerable F1": "ans"}
 star = lambda t: "*" if t["ph"] < 0.05 else ""  # noqa: E731
 ci = lambda t: f"[{bd(t['lo'])}, {bd(t['hi'])}]"  # noqa: E731
 MAIN, OTHER = ["s2_t", "s3_c", "s4_h", "s8_tch"], ["s5_tc", "s6_th", "s7_ch"]
-for tn, g in ((16, "A"), (24, "DEV")):
-    for s, r in zip(SET, rows_of(tn, 8)):
-        chk(f"T{tn} name", r[0], NAME[s])
-        row(f"T{tn} {r[0]}", r[1:], [ms(g, s, "ans"), ms(g, s, "time"), mp(g, s, "ref"), ms(g, s, "paper"), ms(g, s, "cred")])
+for s, r in zip(SET, rows_of(16, 8)):
+    chk("T16 name", r[0], NAME[s])
+    row(f"T16 {r[0]}", r[1:], [ms("A", s, "ans"), ms("A", s, "time"), mp("A", s, "ref"), ms("A", s, "paper"), ms("A", s, "cred")])
 for tn, setups in ((17, MAIN), (22, OTHER)):
     exp_rows = [(s, m) for s in setups for m in ("time", "ans")]
     for (s, m), r in zip(exp_rows, rows_of(tn, len(exp_rows))):
@@ -113,29 +112,17 @@ for tn, setups in ((17, MAIN), (22, OTHER)):
         if tn == 17:
             e.append(f"{t['qb']} / {t['qw']}")
         row(f"T{tn} {s} {m}", r, e)
-GL = [("A", "Samples 0–3"), ("DEV", "Samples 0–2"), ("S3", "Sample 3")]
 EN = {"TxC": "T × C", "TxH": "T × H", "CxH": "C × H", "TxCxH": "T × C × H"}
 for tn, effs in ((18, ["T", "C", "H"]), (21, ["TxC", "TxH", "CxH", "TxCxH"])):
-    exp_rows = [(g, gl, e) for g, gl in GL for e in effs]
-    for (g, gl, e), r in zip(exp_rows, rows_of(tn, len(exp_rows))):
-        a, b = fe(g, e, "time"), fe(g, e, "ans")
-        row(f"T{tn} {g} {e}", r, [gl if e == effs[0] else "", EN.get(e, e), sg(a["v"]) + star(a), ci(a), pv(a["ph"]), sg(b["v"]) + star(b), ci(b), pv(b["ph"])])
+    for e, r in zip(effs, rows_of(tn, len(effs))):
+        a, b = fe("A", e, "time"), fe("A", e, "ans")
+        row(f"T{tn} {e}", r, [EN.get(e, e), sg(a["v"]) + star(a), ci(a), pv(a["ph"]), sg(b["v"]) + star(b), ci(b), pv(b["ph"])])
 for s, r in zip(SET, rows_of(20, 8)):
     row(f"T20 {s}", r, [NAME[s]] + [f3(st["A"][s][k][0]) for k in ["cat1", "cat2", "cat3", "cat4", "cat5"]])
 for s, r in zip(SET, rows_of(23, 8)):
-    if s == "s1_amem":
-        row("T23 A-MEM", r, [NAME[s], ms("S3", s, "ans"), ms("S3", s, "time"), "—", "—", "—", "—"])
-        continue
-    a, b = vs("S3", s, "time"), vs("S3", s, "ans")
-    row(f"T23 {s}", r, [NAME[s], ms("S3", s, "ans"), ms("S3", s, "time"), f"{sg(a['diff'])}{star(a)} {ci(a)}", pv(a["ph"]), f"{sg(b['diff'])}{star(b)} {ci(b)}", pv(b["ph"])])
-exp_rows = [(s, m) for s in MAIN + OTHER for m in ("time", "ans")]
-for (s, m), r in zip(exp_rows, rows_of(25, len(exp_rows))):
-    a, b = vs("DEV", s, m), vs("S3", s, m)
-    row(f"T25 {s} {m}", r, [NAME[s], {"time": "Temporal F1", "ans": "Answerable F1"}[m], f"{sg(a['diff'])}{star(a)} {ci(a)}", pv(a["ph"]), f"{sg(b['diff'])}{star(b)} {ci(b)}", pv(b["ph"])])
-for s, r in zip(SET, rows_of(26, 8)):
-    row(f"T26 {s}", r, [NAME[s], mp("A", s, "ref"), ms("A", s, "paper"), ms("A", s, "cred"), mp("S3", s, "ref"), ms("S3", s, "paper"), ms("S3", s, "cred")])
-for s, r in zip(SET, rows_of(27, 8)):
-    row(f"T27 {s}", r, [NAME[s]] + [f3(X["met"][s][k]) for k in ["f1", "exact_match", "rougeL_f", "bleu1", "meteor", "bert_f1", "sbert_similarity"]])
+    row(f"T23 {s}", r, [NAME[s], mp("A", s, "ref"), ms("A", s, "paper"), ms("A", s, "cred")])
+for s, r in zip(SET, rows_of(24, 8)):
+    row(f"T24 {s}", r, [NAME[s]] + [f3(X["met"][s][k]) for k in ["f1", "exact_match", "rougeL_f", "bleu1", "meteor", "bert_f1", "sbert_similarity"]])
 n4 = ok + bad
 
 # ---------------------------------------------------------------- Table 19 vs the Stage 7 recount
@@ -179,8 +166,7 @@ for idx, r in enumerate(rows_of(5, 5)):
         turns += sum(len(c[k]) for k in keys)
         cats.update(q["category"] for q in x["qa"])
     spk = "" if idx == 4 else f"{rows[0]['conversation']['speaker_a']} & {rows[0]['conversation']['speaker_b']}"
-    row(f"T5 {r[0]}", r, ["Total" if idx == 4 else str(idx), spk, f"{sess:,}", f"{turns:,}", f"{sum(cats.values()):,}"] + [f"{cats[k]:,}" for k in (1, 2, 3, 4, 5)]
-        + ["" if idx == 4 else ("Test" if idx == 3 else "Dev.")])
+    row(f"T5 {r[0]}", r, ["Total" if idx == 4 else str(idx), spk, f"{sess:,}", f"{turns:,}", f"{sum(cats.values()):,}"] + [f"{cats[k]:,}" for k in (1, 2, 3, 4, 5)])
 import memory_layer_robust  # noqa: E402,F401
 bank = {s: list(pickle.load(open(f"{E}/cache/shared/memory_cache_sample_{s}.pkl", "rb")).values()) for s in range(4)}
 raw = {s: [n for n in bank[s] if n.note_type == "raw"] for s in range(4)}

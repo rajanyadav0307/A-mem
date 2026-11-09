@@ -27,6 +27,9 @@ must(fact("n_seeds") === M.seeds.length && fact("n_samples") === SMP.length, "ma
 add(chapter("III", "METHODOLOGY"));
 // src: structure of this chapter
 add(p("This chapter describes how the study was carried out: the research design and research questions, the benchmark data, the baseline system, the T-MEM modules, the memory banks, the procedure for running the experiment, the checks applied to every run, and the measures and statistical procedures. Every setting reported here was read from the source code at the commit named in the text, from the experiment's plan and manifest, or from the logs and files written during the experiment."));
+// src: GHTC 2026 presentation (external to this experiment; not drawn from the manifest or plan)
+const ghtcRange = () => `${sid(SMP[0])}–${sid(SMP[1])}`;
+add(p(`An earlier, narrower evaluation of the time-ranking module alone, on samples ${ghtcRange()}, was presented at GHTC 2026, in Boulder, Colorado, on October 8, 2026 (Yadav & Kumar, 2026); that paper has not been published. This chapter and the next report a full, end-to-end evaluation of all ${W("n_modules")} T-MEM modules (time ranking, consolidation, and conflict handling), run on samples ${allRange()}.`));
 
 // ------------------------------------------------------------------ design
 add(h1("Research Design and Rationale"));
@@ -50,8 +53,8 @@ add(p("A factorial design was chosen over adding the modules one at a time. When
 }
 // src: manifest commands (--memories_dir, --keywords_file, --trap_order per_question, --seed, --run_tag); git diff 0c8039f2..b84b89cc of the evaluation scripts
 add(p("Every setup received the same input, so that a difference between two setups could come only from the modules that separate them. Four controls kept the input the same. All setups read one shared memory bank per sample. The search words that A-MEM generates from each question were generated once per question and run, and every setup read them. The order of the two answer options in adversarial questions was fixed per question and run. Finally, A-MEM's memory, retrieval, and answering code paths, its prompts, and its answer temperatures were left unchanged. The evaluation scripts gained optional switches, off by default, for the shared search words, the fixed option order, the T-MEM modules, the bank folder, the seed, and the log name, and every setup used the switches for the shared search words and the fixed option order. With every module off, retrieval follows A-MEM's code path. Each control is described later in this chapter."));
-// src: PLAN.md section 1 (samples 0-2 development, sample 3 clean test) and section 2 (settings frozen)
-add(p(`The plan fixed the roles of the data. The LoCoMo conversations used are called samples ${allRange()}. The plan names samples ${devRange()} the development samples, on which T-MEM was built, and sample ${sid(TEST)} the clean test; the bank of sample ${sid(TEST)} was built for this experiment. The settings of the modules were frozen in the plan before the runs. Results are reported for samples ${allRange()} together, for samples ${devRange()} alone, and for sample ${sid(TEST)} alone.`));
+// src: PLAN.md section 2 (settings frozen); manifest sample3_build (bank built fresh for this experiment)
+add(p(`The LoCoMo conversations used are called samples ${allRange()}. The settings of the modules were frozen in the plan before the runs, and the bank of sample ${sid(TEST)} was built fresh for this experiment, as described under Memory Banks Used in the Experiment. Results are reported for samples ${allRange()} together.`));
 // src: manifest seeds; shared_keywords.trap_draw; make_keywords.py (one search-word file per seed)
 add(p(`Each setup was run ${W("n_seeds")} times, once with each of the seeds ${list(fact("seeds").map((s) => V(String(s), "seeds")))}, giving ${N("n_runs")} runs. The seed selects the run's shared search words and fixes the order of the answer options in adversarial questions; it does not control the language model's sampling. Several runs were needed because the answering model samples at a non-zero temperature, so the same setup gives slightly different answers from one run to the next (Reimers & Gurevych, 2017).`));
 // src: git log PLAN.md (first commit c1fcece5); manifest attempts trial.started; trial output; plan section 8 and analyze.py unchanged since (asserted in facts.py)
@@ -67,13 +70,11 @@ const RQS = [
    "H2~0~: The setup with every module on has the same mean answerable F1 and the same mean temporal F1 as A-MEM."],
   ["RQ3. How the modules combine.", "Does the effect of one module depend on whether another module is switched on?",
    "H3~0~: Every interaction effect (T × C, T × H, C × H, and T × C × H) is zero on both measures."],
-  ["RQ4. The clean test.", `Do the effects observed on the development samples hold on sample ${sid(TEST)}, the clean test?`,
-   `RQ4 has no separate hypothesis. It is answered by repeating every test of RQ1–RQ3 on samples ${devRange()} alone and on sample ${sid(TEST)} alone, and by comparing the results.`],
-  ["RQ5. Adversarial questions and scoring.", "Do the setups differ in how often they decline adversarial questions, and does the way those questions are scored change the comparison between setups?",
-   "RQ5 is descriptive. It is answered with the refusal rate and two overall scores, reported for every setup without significance tests."],
+  ["RQ4. Adversarial questions and scoring.", "Do the setups differ in how often they decline adversarial questions, and does the way those questions are scored change the comparison between setups?",
+   "RQ4 is descriptive. It is answered with the refusal rate and two overall scores, reported for every setup without significance tests."],
 ];
 // src: PLAN.md section 1 and section 8; Measures section of this chapter
-add(p(`The experiment addressed ${V(asCount(RQS.length), "count of RQS")} research questions. Answerable F1 and temporal F1, the two main measures, are defined under Measures. The hypotheses are stated as null hypotheses of no difference and are tested two-sided; the tests in Chapter IV either reject them or fail to reject them, separately in each sample group.`));
+add(p(`The experiment addressed ${V(asCount(RQS.length), "count of RQS")} research questions. Answerable F1 and temporal F1, the two main measures, are defined under Measures. The hypotheses are stated as null hypotheses of no difference and are tested two-sided; the tests in Chapter IV either reject them or fail to reject them.`));
 RQS.forEach(([a, q, h]) => { add(p(`**${a}** ${q}`)); add(p(h)); });
 add(p(`Table ${T.rqs} links each research question to the comparisons and measures that answer it.`));
 tbl("rqs", "Research Questions, Comparisons, and Measures",
@@ -81,8 +82,7 @@ tbl("rqs", "Research Questions, Comparisons, and Measures",
   [["RQ1 Each module alone", "T, C, and H against A-MEM; average effect of each module", "Answerable F1, temporal F1", "Main tests; factorial effects"],
    ["RQ2 All modules together", "All three against A-MEM", "Answerable F1, temporal F1", "Main tests"],
    ["RQ3 How the modules combine", "Interaction effects; T + C, T + H, and C + H against A-MEM", "Answerable F1, temporal F1", "Factorial effects; other setups"],
-   ["RQ4 The clean test", `Every test above on samples ${devRange()} and on sample ${sid(TEST)} alone`, "Answerable F1, temporal F1", "All families, per sample group"],
-   ["RQ5 Adversarial questions", "All setups", "Refusal rate; two overall scores", "Descriptive, no tests"]],
+   ["RQ4 Adversarial questions", "All setups", "Refusal rate; two overall scores", "Descriptive, no tests"]],
   [2000, 3000, 1800, 1800],
   "The test families are defined under Data Analysis Plan and Statistical Procedures.");
 
@@ -91,12 +91,12 @@ add(h1("Data Source: The LoCoMo Benchmark"));
 // src: data/locomo10.json
 add(p(`The data came from LoCoMo, a benchmark built to test memory over very long conversations (Maharana et al., 2024). The released file, ${X("data_file")}, contains ${N("data_conversations")} conversations between pairs of speakers. Each conversation runs over many dated sessions and comes with question–answer pairs that refer back to specific turns. The file used in every run has a SHA-256 fingerprint beginning ${X("data_sha256_prefix")}. Table ${T.locomo} describes the ${W("n_samples")} conversations used, samples ${allRange()}. Together they contain ${N("d_total_turns")} dialogue turns and ${N("d_total_questions")} questions.`));
 tbl("locomo", "The LoCoMo Conversations Used in This Study",
-  ["Sample", "Speakers", "Sessions", "Turns", "Questions", "Cat. 1", "Cat. 2", "Cat. 3", "Cat. 4", "Cat. 5", "Role"],
+  ["Sample", "Speakers", "Sessions", "Turns", "Questions", "Cat. 1", "Cat. 2", "Cat. 3", "Cat. 4", "Cat. 5"],
   [...S4.map((s) => [sid(s), X(`d${s}_speakers`), N(`d${s}_sessions`), N(`d${s}_turns`), N(`d${s}_questions`),
-      N(`d${s}_cat1`), N(`d${s}_cat2`), N(`d${s}_cat3`), N(`d${s}_cat4`), N(`d${s}_cat5`), s === TEST ? "Test" : "Dev."]),
-   ["Total", "", N("d_total_sessions"), N("d_total_turns"), N("d_total_questions"), N("d_total_cat1"), N("d_total_cat2"), N("d_total_cat3"), N("d_total_cat4"), N("d_total_cat5"), ""]],
-  [700, 1700, 800, 650, 850, 560, 560, 560, 560, 560, 640],
-  `Counted from ${X("data_file")}. Cat. = question category (see text); Dev. = development; Test = clean test. The sessions of sample ${sid(TEST)} run from ${X("d3_first_session")}, to ${X("d3_last_session")}.`);
+      N(`d${s}_cat1`), N(`d${s}_cat2`), N(`d${s}_cat3`), N(`d${s}_cat4`), N(`d${s}_cat5`)]),
+   ["Total", "", N("d_total_sessions"), N("d_total_turns"), N("d_total_questions"), N("d_total_cat1"), N("d_total_cat2"), N("d_total_cat3"), N("d_total_cat4"), N("d_total_cat5")]],
+  [800, 1800, 900, 700, 900, 600, 600, 600, 600, 600],
+  `Counted from ${X("data_file")}. Cat. = question category (see text). The sessions of sample ${sid(TEST)} run from ${X("d3_first_session")}, to ${X("d3_last_session")}.`);
 // src: data/locomo10.json qa[0]; test_advanced_robust.py answer_question (category 2 and 5 prompts)
 add(p(`The questions fall into ${W("n_categories")} categories, identified by a number in the data file. Category 2 holds temporal questions, which ask when something happened, for example "${X("example_temporal_question")}" Category 5 holds adversarial questions, which Maharana et al. (2024) describe as designed to trick the agent into giving a wrong answer. In these questions the stored reference answer is the plausible but wrong answer that the question invites. The A-MEM evaluation code treats these two categories separately. For category 2 it adds an instruction to use the date of the conversation. For category 5 it asks the model to choose between the stored answer and "${X("prompt_c5_option")}."`));
 // src: data/locomo10.json evidence lists (an entry may hold several turns separated by ';')
@@ -104,7 +104,7 @@ must(fact("n_categories") === 5, "categories 1-5");
 add(p(`The data file labels the other categories only by number. Maharana et al. (2024) describe three types: single-hop questions, answered from one session; multi-hop questions, which need several sessions; and open-domain questions, which combine what a speaker said with outside knowledge. The numbers were matched to these types by the structure of the questions in samples ${allRange()}. In category 1, ${P("ev_cat1_two_plus_pct", 0)} of the questions cite two or more evidence turns (mean ${D("ev_cat1_mean", 2)}), which fits multi-hop. Of the category 4 questions, ${P("ev_cat4_two_plus_pct", 0)} cite more than one turn (mean ${D("ev_cat4_mean", 2)}), which fits single-hop. Category 3 questions ask for inference beyond what was said, which fits open-domain.`));
 // src: data/locomo10.json counts
 must(fact("d1_cat3") === 0, "sample 1 has no category 3 question");
-add(p(`Two properties of the data matter when reading the results. First, temporal questions are a minority: ${N("d_total_cat2")} of the ${N("d_total_questions")} questions (${P("d_temporal_share_pct", 1)}), and only ${N("d3_cat2")} in sample ${sid(TEST)}. A module that helps only temporal questions can therefore move answerable F1 only a little, and on sample ${sid(TEST)} alone the test can detect only large effects on temporal questions. Second, the ${W("n_samples")} samples contain only ${N("d_total_cat3")} open-domain questions, and sample 1 contains ${V("none", "d1_cat3")}, so results for category 3 rest on very few items.`));
+add(p(`Two properties of the data matter when reading the results. First, temporal questions are a minority: ${N("d_total_cat2")} of the ${N("d_total_questions")} questions (${P("d_temporal_share_pct", 1)}). A module that helps only temporal questions can therefore move answerable F1 only a little. Second, the ${W("n_samples")} samples contain only ${N("d_total_cat3")} open-domain questions, and sample 1 contains ${V("none", "d1_cat3")}, so results for category 3 rest on very few items.`));
 
 // ------------------------------------------------------------------ A-MEM
 add(h1("Baseline System: A-MEM"));
@@ -344,9 +344,9 @@ add(h2("Correction for Multiple Tests"));
 const FAM = [["Main tests", "T, C, H, and all three against A-MEM, on answerable F1 and temporal F1", N("fam_main")],
   ["Other setups", "T + C, T + H, and C + H against A-MEM, on the same two measures", N("fam_other")],
   ["Factorial effects", "T, C, H, T × C, T × H, C × H, and T × C × H, on the same two measures", N("fam_factorial")]];
-add(p(`The tests were grouped into ${V(asCount(FAM.length), "rows of Table " + T.families)} families, and the Holm (1979) procedure was applied within each family. The procedure keeps the chance of any false rejection within a family at ${P("alpha_pct", 0)}; it does not correct across families or across sample groups. Table ${T.families} defines the families. Each family was run separately on ${W("n_groups")} sample groups: samples ${allRange()}, samples ${devRange()}, and sample ${sid(TEST)} alone.`));
+add(p(`The tests were grouped into ${V(asCount(FAM.length), "rows of Table " + T.families)} families, and the Holm (1979) procedure was applied within each family. The procedure keeps the chance of any false rejection within a family at ${P("alpha_pct", 0)}; it does not correct across families. Table ${T.families} defines the families.`));
 tbl("families", "Test Families", ["Family", "Tests", "Number of tests"], FAM, [1800, 4800, 1400],
-  "Holm correction was applied within each family and each sample group.");
+  "Holm correction was applied within each family.");
 add(h2("Decision Rule"));
 // src: scripts/analyze.py (real = Holm p < alpha), tables.md columns
 add(p(`A difference is called significant only if its Holm-adjusted p-value is below ${V(rnd(fact("alpha"), 2).replace(/^0/, ""), "alpha")}. The uncorrected ${P("ci_level_pct", 0)} interval is reported next to every test. For the comparisons with A-MEM on samples ${allRange()}, the number of runs, out of ${W("n_seeds")}, in which the setup scored higher than A-MEM is also given, and for the main tests the number of questions that improved or worsened. The trial run and the failed first attempt at wave 1 were excluded from every analysis, as the plan required.`));
@@ -356,7 +356,7 @@ add(h1("Ethical Considerations"));
 add(p("The study involved no human participants and collected no personal data. [TO CONFIRM BEFORE SUBMISSION: whether UTPB requires Institutional Review Board review, or a determination that this is not human-subjects research. Ask the committee chair or the IRB office, then replace this note.] The conversations in LoCoMo are not records of real people. Maharana et al. (2024) produced them with a pipeline in which language-model agents, each given a persona and a temporal event graph, held the conversations, and human annotators then verified and edited them. The speakers named in this thesis are those personas. The conversations and questions were sent to the OpenAI API during memory construction and answering, under the API's terms of use. The API key was kept out of the repository. The use of generative AI tools in preparing this thesis is described in the Disclosure of AI Tool Usage at the front of the document."));
 
 add(h1("Summary"));
-add(p(`The study compared A-MEM with every combination of ${W("n_modules")} T-MEM modules in a ${lv()} factorial design on ${W("n_samples")} LoCoMo samples, with ${N("d_total_turns")} dialogue turns and ${N("d_total_questions")} questions, ${W("n_seeds")} runs per setup, and ${N("n_runs")} runs in all. Sample ${sid(TEST)} served as the clean test. All setups shared one memory bank per sample, the same search words, and the same option order, and A-MEM's memory, retrieval, and answering code paths, prompts, and temperatures were not changed. The runs passed ${N("check_kinds")} kinds of check (${X("check_first")}–${X("check_last")}), including an offline replay of every retrieved context. The measures, test families, correction, and decision rule were fixed and committed before any run. Chapter IV reports the results, one research question at a time.`));
+add(p(`The study compared A-MEM with every combination of ${W("n_modules")} T-MEM modules in a ${lv()} factorial design on ${W("n_samples")} LoCoMo samples, with ${N("d_total_turns")} dialogue turns and ${N("d_total_questions")} questions, ${W("n_seeds")} runs per setup, and ${N("n_runs")} runs in all. All setups shared one memory bank per sample, the same search words, and the same option order, and A-MEM's memory, retrieval, and answering code paths, prompts, and temperatures were not changed. The runs passed ${N("check_kinds")} kinds of check (${X("check_first")}–${X("check_last")}), including an offline replay of every retrieved context. The measures, test families, correction, and decision rule were fixed and committed before any run. Chapter IV reports the results, one research question at a time.`));
 
 function hn(xs) {
   const a = xs.map((x) => x.split("_")[0]), n = a.map((x) => Number(x.slice(1)));

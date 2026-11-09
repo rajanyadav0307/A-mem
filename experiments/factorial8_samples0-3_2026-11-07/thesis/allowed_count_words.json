@@ -96,20 +96,12 @@
   "reason": "self-count: R11 and R10, named next"
  },
  {
-  "phrase": "Three patterns are visible",
-  "reason": "self-count: the paragraph gives three patterns"
- },
- {
-  "phrase": "the two sample groups",
-  "reason": "self-count: samples 0-2 and sample 3, just named"
+  "phrase": "Two patterns are visible",
+  "reason": "self-count: the paragraph gives two patterns"
  },
  {
   "phrase": "the two rows",
-  "reason": "figure layout: Figure 3 has two rows (make_figs.py plt.subplots(2, 3))"
- },
- {
-  "phrase": "the right half of Figure 2",
-  "reason": "figure layout: Figure 2 has two columns (make_figs.py plt.subplots(2, 2))"
+  "reason": "figure layout: Figures 2 and 3 each have two rows (temporal F1, answerable F1; make_figs.py plt.subplots(2, 1))"
  },
  {
   "phrase": "two answer options",
@@ -230,10 +222,6 @@
  {
   "phrase": "Two analyses were computed afterwards",
   "reason": "self-count: the sentence names the two analyses"
- },
- {
-  "phrase": "Two features of sample",
-  "reason": "self-count: the paragraph gives First and Second"
  },
  {
   "phrase": "generated once per question and run",

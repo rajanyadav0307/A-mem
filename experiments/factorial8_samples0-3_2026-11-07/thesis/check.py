@@ -95,7 +95,8 @@ ID = [
 # citation years: exactly the citations used in the chapters
 CITES = ["W. Xu et al., 2025", "Montgomery, 2017", "Reimers & Gurevych, 2017", "Maharana et al., 2024", "Maharana et al. (2024)", "OpenAI, 2024",
          "Reimers & Gurevych, 2019", "W. Wang et al., 2020", "Yadav & Kumar, 2026", "Lin, 2004", "Papineni et al., 2002", "Banerjee & Lavie, 2005",
-         "Zhang et al., 2020", "Montgomery (2017)", "Efron & Tibshirani, 1993", "Koehn, 2004", "Dror et al., 2018", "Holm (1979)"]
+         "Zhang et al., 2020", "Montgomery (2017)", "Efron & Tibshirani, 1993", "Koehn, 2004", "Dror et al., 2018", "Holm (1979)",
+         "GHTC 2026", "October 8, 2026"]
 ID += [re.escape(c) for c in CITES]
 ID_RE = re.compile("|".join(f"(?:{x})" for x in ID), re.M)
 left = []
